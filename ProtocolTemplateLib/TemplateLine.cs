@@ -12,11 +12,13 @@ namespace ProtocolTemplateLib
 
     public class TemplateLine : TemplateItem
     {
+        public string Lebel { get; set; }
+        public Editable Field { get; set; }
 
     }
 
     public class TemplateHeader : TemplateItem
     {
-
+        public string Header { get; set; }
     }
 }

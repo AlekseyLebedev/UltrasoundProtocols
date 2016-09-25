@@ -8,6 +8,12 @@ namespace ProtocolTemplateLib
     public class Template
     {
         public string Name { get; set; }
-        
+        public List<TemplateItem> Items { get; }
+
+        public Template()
+        {
+            Name = "";
+            Items = new List<TemplateItem>();
+        }
     }
 }
