@@ -7,6 +7,48 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="0*"/>
+            <ColumnDefinition Width="0*"/>
+        </Grid.ColumnDefinitions>
+        <TabControl x:Name="tabControl" HorizontalAlignment="Left" Height="319" VerticalAlignment="Top" Width="517">
+            <TabItem Header="Общая информация" RenderTransformOrigin="6.895,10.883">
+                <Grid Background="#FFE5E5E5">
+                    <TextBox x:Name="textBoxName" HorizontalAlignment="Left" Height="23" Margin="155.21,75.842,0,0" TextWrapping="Wrap" Text="Название" VerticalAlignment="Top" Width="206.842"/>
+                    <TextBox x:Name="textBoxId" Text="Идентификатор" HorizontalAlignment="Left" Height="23" Margin="155.21,133.684,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="206.842" TextChanged="textBox_TextChanged">
+                        <!--      <TextBox.Header>
+                <TextBlock  Text="Header" Foreground="red" FontFamily="Times New Roman"></TextBlock>
+            </TextBox.Header>
+        -->
+                    </TextBox>
+                    <TextBlock x:Name="textBlockIdHint" HorizontalAlignment="Left" Margin="155.21,161.684,0,0" TextWrapping="Wrap" Text="Идентификатор - это слово, состоящее из латинских букв и цифр" VerticalAlignment="Top" Height="35.697" Width="206.842"/>
+                    <Button x:Name="buttonSave" Content="Сохранить" HorizontalAlignment="Left" Margin="155.21,234,0,0" VerticalAlignment="Top" Width="75"/>
+                    <Button x:Name="buttonLoad" Content="Загрузить" HorizontalAlignment="Left" Margin="287.052,234,0,0" VerticalAlignment="Top" Width="75"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Редактирование">
+                <Grid Background="#FFE5E5E5">
+                    <ListView x:Name="listView" HorizontalAlignment="Left" Height="291.04" VerticalAlignment="Top" Width="393">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                    <GroupBox x:Name="groupBox" Header="Свойства" HorizontalAlignment="Left" Margin="393,0,0,0" VerticalAlignment="Top" Height="291.04" Width="118"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Предпросмотр">
+                <Grid Background="#FFE5E5E5">
+                </Grid>
+            </TabItem>
+            <TabItem Header="Образец протокола">
+                <Grid Background="#FFE5E5E5">
+                    <WebBrowser x:Name="Browser" Source="https://www.yandex.ru"/>
+                </Grid>
+            </TabItem>
+        </TabControl>
+
     </Grid>
 </Window>
