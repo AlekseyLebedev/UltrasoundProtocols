@@ -8,32 +8,34 @@
         Title="MainWindow" Height="350" Width="525">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="368*"/>
+            <ColumnDefinition Width="149*"/>
             <ColumnDefinition Width="0*"/>
             <ColumnDefinition Width="0*"/>
         </Grid.ColumnDefinitions>
-        <TabControl x:Name="tabControl"  Margin="0">
+        <TabControl x:Name="tabControl"  Margin="0" Grid.ColumnSpan="2">
             <TabItem Header="Общая информация" RenderTransformOrigin="6.895,10.883">
-                <Grid Background="#FFE5E5E5">
-                    <TextBox x:Name="textBoxName" HorizontalAlignment="Left" Height="23" Margin="155.21,75.842,0,0" TextWrapping="Wrap" Text="Название" VerticalAlignment="Top" Width="206.842"/>
-                    <TextBox x:Name="textBoxId" Text="Идентификатор" HorizontalAlignment="Left" Height="23" Margin="155.21,133.684,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="206.842" TextChanged="textBox_TextChanged">
+                <Grid Background="#FFE5E5E5" Margin="0,-3,0,3">
+                    <TextBox x:Name="textBoxName" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Margin="0, 0, 0, 80" Width="300" Height="20" TextWrapping="Wrap" Text="Название"/>
+                    <TextBox x:Name="textBoxId" Text="Идентификатор" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0, 0, 0, 30" TextWrapping="Wrap" Width="300" Height="20"  TextChanged="textBox_TextChanged">
                         <!--      <TextBox.Header>
                 <TextBlock  Text="Header" Foreground="red" FontFamily="Times New Roman"></TextBlock>
             </TextBox.Header>
         -->
                     </TextBox>
-                    <TextBlock x:Name="textBlockIdHint" HorizontalAlignment="Left" Margin="155.21,161.684,0,0" TextWrapping="Wrap" Text="Идентификатор - это слово, состоящее из латинских букв и цифр" VerticalAlignment="Top" Height="35.697" Width="206.842"/>
-                    <Button x:Name="buttonSave" Content="Сохранить" HorizontalAlignment="Left" Margin="155.21,234,0,0" VerticalAlignment="Top" Width="75"/>
-                    <Button x:Name="buttonLoad" Content="Загрузить" HorizontalAlignment="Left" Margin="287.052,234,0,0" VerticalAlignment="Top" Width="75"/>
+                    <TextBlock x:Name="textBlockIdHint" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0, 30, 0, 0" TextWrapping="Wrap" Width="300" Height="40" Text="Идентификатор - это слово, состоящее из латинских букв и цифр"/>
+                    <Button x:Name="buttonSave" Content="Сохранить" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0, 200,100,0" Width="75" Height="20"/>
+                    <Button x:Name="buttonLoad" Content="Загрузить" HorizontalAlignment="Stretch" Margin="100,200,0,0" VerticalAlignment="Stretch" Width="75" Height="20"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Редактирование">
                 <Grid Background="#FFE5E5E5">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="8*"/>
-                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="82*"/>
+                        <ColumnDefinition Width="327*"/>
+                        <ColumnDefinition Width="102*"/>
                     </Grid.ColumnDefinitions>
-                    <ListView x:Name="listView" Margin="0" Grid.ColumnSpan="1">
+                    <ListView x:Name="listView" Margin="0" Grid.ColumnSpan="2">
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn/>
