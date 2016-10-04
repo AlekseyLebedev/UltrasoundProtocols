@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows;
 using System.Windows.Controls;
 using System.Xml;
 
@@ -10,7 +11,7 @@ namespace ProtocolTemplateLib
     public abstract class TemplateItem : ITemplatePart
     {
         public string Id { get; set; }
-        public abstract Control GetEditControl();
+        public abstract UIElement GetEditControl();
         public abstract string GetPartOfCreateTableScript(string id);
         public abstract string PrintToProtocol(object value);
         public abstract void SaveXml(XmlWriter writer);
@@ -45,9 +46,26 @@ namespace ProtocolTemplateLib
         public string Label { get; set; }
         public Editable Field { get; set; }
 
-        public override Control GetEditControl()
+        public override UIElement GetEditControl()
         {
-            throw new NotImplementedException();
+            Grid grid = new Grid();
+            grid.Margin = new System.Windows.Thickness(0);
+            //grid.VerticalAlignment = System.Windows.VerticalAlignment.Stretch;
+            grid.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
+            TextBlock label = new TextBlock();
+            label.Text = Label;
+            label.Margin = new Thickness(5, 0, 0, 0);
+            label.VerticalAlignment = VerticalAlignment.Stretch;
+            label.HorizontalAlignment = HorizontalAlignment.Left;
+            label.Width = 200;
+            Control field = (Control)Field.GetEditControl();
+            Thickness old = field.Margin;
+            old.Left += label.Width + 2 * label.Margin.Left;
+            field.Margin = old;
+            grid.Children.Add(label);
+            grid.Children.Add(field);
+            return grid;
+
         }
 
         public override string GetPartOfCreateTableScript(string id)
@@ -87,9 +105,13 @@ namespace ProtocolTemplateLib
     {
         public string Header { get; set; }
 
-        public override Control GetEditControl()
+        public override UIElement GetEditControl()
         {
-            throw new NotImplementedException();
+            TextBox block = new TextBox();
+            block.Text = Header;
+            block.FontSize = 20;
+            block.Margin = new Thickness(0);
+            return block;
         }
 
         public override string GetPartOfCreateTableScript(string id)

@@ -15,6 +15,7 @@ namespace ProtocolTemplateLib
         public abstract void SaveXml(XmlWriter writer);
 
         protected abstract string PartOfCreateTableScript(string id);
+
         public string GetPartOfCreateTableScript(string id)
         {
             string result = PartOfCreateTableScript(id);
@@ -43,7 +44,7 @@ namespace ProtocolTemplateLib
             return result;
         }
 
-        public abstract Control GetEditControl();
+        public abstract UIElement GetEditControl();
         public abstract string PrintToProtocol(object value);
 
         protected static void LocateControlStandart(Control control)
@@ -85,7 +86,7 @@ namespace ProtocolTemplateLib
 
         public String[] Variants { get; set; }
 
-        public override Control GetEditControl()
+        public override UIElement GetEditControl()
         {
             ComboBox control = new ComboBox();
             LocateControlStandart(control);
@@ -117,7 +118,7 @@ namespace ProtocolTemplateLib
 
         protected override string PartOfCreateTableScript(string id)
         {
-            throw new NotImplementedException();
+            return id + " int";
         }
 
         protected override void LoadFromXml(XmlNode node)
@@ -136,7 +137,7 @@ namespace ProtocolTemplateLib
     }
     public class TextBoxEditable : Editable
     {
-        public override Control GetEditControl()
+        public override UIElement GetEditControl()
         {
             TextBox control = new TextBox();
             LocateControlStandart(control);
@@ -162,7 +163,7 @@ namespace ProtocolTemplateLib
 
         protected override string PartOfCreateTableScript(string id)
         {
-            throw new NotImplementedException();
+            return id + " nvarchar(1024)";
         }
     }
 }

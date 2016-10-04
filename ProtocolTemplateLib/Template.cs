@@ -5,6 +5,7 @@ using System.Text;
 using System.Windows.Controls;
 using System.Xml;
 using NLog;
+using System.Windows;
 
 namespace ProtocolTemplateLib
 {
@@ -20,9 +21,35 @@ namespace ProtocolTemplateLib
             Items = new List<TemplateItem>();
         }
 
-        public Control GetEditControl()
+        public UIElement GetEditControl()
         {
-            throw new NotImplementedException();
+            Grid grid = new Grid();
+            grid.Margin = new System.Windows.Thickness(0);
+            grid.VerticalAlignment = System.Windows.VerticalAlignment.Stretch;
+            grid.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
+            double totalHeight = 0;
+            foreach (TemplateItem item in Items)
+            {
+                UIElement element = item.GetEditControl();
+                totalHeight += 5;
+                if (element is Control)
+                {
+                    Control control = element as Control;
+                    control.Margin = new Thickness(0, totalHeight, 0, 0);
+                    control.VerticalAlignment = VerticalAlignment.Top;
+                    totalHeight += control.Height;
+                }
+                else
+                {
+                    Grid childgrid = element as Grid;
+                    childgrid.Margin = new Thickness(0, totalHeight, 0, 0);
+                    childgrid.VerticalAlignment = VerticalAlignment.Top;
+                    totalHeight += childgrid.Height;
+                }
+                grid.Children.Add(element);
+            }
+            return grid;
+
         }
 
         public string PrintToProtocol(object value)
