@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Controls;
+using System.Xml;
 using NLog;
 
 namespace ProtocolTemplateLib
@@ -41,12 +42,57 @@ namespace ProtocolTemplateLib
                 builder.AppendLine(", ");
                 builder.Append(Items[i].GetPartOfCreateTableScript(null));
             }
-            builder.Append(" CONSTRAINT [PK_tbltest] PRIMARY KEY CLUSTERED (id)");
+            builder.Append(" CONSTRAINT [");
+            builder.Append(IdName);
+            builder.Append(" ] PRIMARY KEY CLUSTERED (id)");
             builder.AppendLine(")");
             var result = builder.ToString();
-            logger.Debug("Create script: '{0}'", result);
+            logger.Info("Create script: '{0}'", result);
             return result;
         }
+
+
+        public void SaveXml(XmlWriter writer)
+        {
+            writer.WriteStartElement(NodeNameTemplate);
+            foreach (var item in Items)
+            {
+                item.SaveXml(writer);
+            }
+            writer.WriteEndElement();
+        }
+
+        public string SaveToXmlString()
+        {
+            StringBuilder result = new StringBuilder();
+            XmlWriter writer = XmlWriter.Create(result);
+            writer.WriteStartDocument();
+            SaveXml(writer);
+            writer.WriteEndDocument();
+            return result.ToString();
+        }
+
+        public static Template GetFromXml(XmlDocument document)
+        {
+            if (document.ChildNodes.Count != 2)
+            {
+                throw new XmlException("Wrong root node number");
+            }
+
+            var rootNodeName = document.ChildNodes[1].Name;
+            if (rootNodeName != NodeNameTemplate)
+            {
+                throw new XmlException(String.Format("Wrong root node name. Expected {0}, found {1}", NodeNameTemplate, rootNodeName));
+            }
+            Template template = new Template();
+            foreach (XmlNode node in document.ChildNodes[1].ChildNodes)
+            {
+                template.Items.Add(TemplateItem.GetFromXml(node));
+            }
+            return template;
+        }
+
+        private const string NodeNameTemplate = "template";
 
         private static Logger logger = LogManager.GetCurrentClassLogger();
     }

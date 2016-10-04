@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows;
 using System.Windows.Controls;
 using System.Xml;
 
@@ -24,17 +25,76 @@ namespace ProtocolTemplateLib
             return result;
         }
 
+        public static Editable GetFromXml(XmlNode node)
+        {
+            Editable result;
+            switch (node.Name)
+            {
+                case NodeNameComboBox:
+                    result = new ComboboxEditable();
+                    break;
+                case NodeNameTextBox:
+                    result = new TextBoxEditable();
+                    break;
+                default:
+                    throw new XmlException(String.Format("Wrong node name for Editable. Not found '{0}' type.", node.Name));
+            }
+            result.LoadFromXml(node);
+            return result;
+        }
+
         public abstract Control GetEditControl();
         public abstract string PrintToProtocol(object value);
+
+        protected static void LocateControlStandart(Control control)
+        {
+            control.VerticalAlignment = VerticalAlignment.Top;
+            control.HorizontalAlignment = HorizontalAlignment.Stretch;
+            control.Margin = new Thickness(5);
+        }
+
+        protected void SaveOtherEnabled(XmlWriter writer)
+        {
+            writer.WriteAttributeString(AttributeNameOtherEnabled, EnableOtherField.ToString());
+        }
+
+        protected void LoadOtherEnabled(XmlNode node)
+        {
+            XmlUtils.AssertAttributeNotNull(node, AttributeNameOtherEnabled);
+            try
+            {
+                EnableOtherField = Boolean.Parse(node.Attributes[AttributeNameOtherEnabled].Value);
+            }
+            catch (FormatException ex)
+            {
+                throw new XmlException(string.Format("Error loading template. Attribute '{0}' is not boolean in node '{1}'", AttributeNameOtherEnabled, node.Name), ex);
+            }
+        }
+
+        protected abstract void LoadFromXml(XmlNode node);
+
+        protected const string AttributeNameOtherEnabled = "other";
+        protected const string NodeNameComboBox = "combobox";
+        protected const string NodeNameTextBox = "textbox";
     }
 
     public class ComboboxEditable : Editable
     {
+        private const string NodeNameVariant = "variant";
+        private const string AttributeNameValue = "value";
+
         public String[] Variants { get; set; }
 
         public override Control GetEditControl()
         {
-            throw new NotImplementedException();
+            ComboBox control = new ComboBox();
+            LocateControlStandart(control);
+            foreach (var item in Variants)
+            {
+                control.Items.Add(item);
+            }
+            control.IsEditable = EnableOtherField;
+            return control;
         }
 
         public override string PrintToProtocol(object value)
@@ -44,19 +104,43 @@ namespace ProtocolTemplateLib
 
         public override void SaveXml(XmlWriter writer)
         {
-            throw new NotImplementedException();
+            writer.WriteStartElement(NodeNameComboBox);
+            SaveOtherEnabled(writer);
+            foreach (var item in Variants)
+            {
+                writer.WriteStartAttribute(NodeNameVariant);
+                writer.WriteAttributeString(AttributeNameValue, item);
+                writer.WriteEndElement();
+            }
+            writer.WriteEndElement();
         }
 
         protected override string PartOfCreateTableScript(string id)
         {
             throw new NotImplementedException();
         }
+
+        protected override void LoadFromXml(XmlNode node)
+        {
+            XmlUtils.AssertNodeName(node, NodeNameComboBox);
+            LoadOtherEnabled(node);
+            List<string> variants = new List<string>();
+            foreach (XmlNode item in node.ChildNodes)
+            {
+                XmlUtils.AssertNodeName(item, NodeNameVariant, true);
+                XmlUtils.AssertAttributeNotNull(item, AttributeNameValue);
+                variants.Add(item.Attributes[AttributeNameValue].Value);
+            }
+            Variants = variants.ToArray();
+        }
     }
     public class TextBoxEditable : Editable
     {
         public override Control GetEditControl()
         {
-            throw new NotImplementedException();
+            TextBox control = new TextBox();
+            LocateControlStandart(control);
+            return control;
         }
 
         public override string PrintToProtocol(object value)
@@ -66,7 +150,14 @@ namespace ProtocolTemplateLib
 
         public override void SaveXml(XmlWriter writer)
         {
-            throw new NotImplementedException();
+            writer.WriteStartElement(NodeNameTextBox);
+            writer.WriteEndElement();
+        }
+
+        protected override void LoadFromXml(XmlNode node)
+        {
+            // No properties
+            XmlUtils.AssertNodeName(node, NodeNameTextBox);
         }
 
         protected override string PartOfCreateTableScript(string id)

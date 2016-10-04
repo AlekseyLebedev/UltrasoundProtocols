@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Controls;
+using System.Xml;
 
 namespace ProtocolTemplateLib
 {
@@ -14,5 +15,6 @@ namespace ProtocolTemplateLib
 
         string GetPartOfCreateTableScript(string id);
 
+        void SaveXml(XmlWriter writer);
     }
 }
