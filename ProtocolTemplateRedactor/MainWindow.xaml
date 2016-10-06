@@ -40,16 +40,14 @@
                             <RowDefinition Height="1*"/>
                         </Grid.RowDefinitions>
                         <GroupBox x:Name="groupBox" Header="Свойства" Margin="0" Grid.Row="0"/>
-                        <ComboBox x:Name="comboBox" SelectedIndex="0" HorizontalAlignment="Center"  Grid.Row="1" VerticalAlignment="Center">
+                        <ComboBox x:Name="comboBoxSelect" SelectedIndex="0" HorizontalAlignment="Center"  Grid.Row="1" VerticalAlignment="Center">
                             <ComboBoxItem Content="Заголовок"/>
                             <ComboBoxItem Content="Текстовое поле"/>
-                            <ComboBoxItem Content="Лист"/>
+                            <ComboBoxItem Content="Список"/>
                         </ComboBox>
-                        <Button x:Name="button" Content="Добавить" HorizontalAlignment="Center"  Grid.Row="2" VerticalAlignment="Center"/>
-
+                        <Button x:Name="buttonAdd" Content="Добавить" HorizontalAlignment="Center"  Grid.Row="2" VerticalAlignment="Center"/>
                     </Grid>
-             </Grid>
-
+                </Grid>
             </TabItem>
             <TabItem Header="Предпросмотр">
                 <Grid Background="#FFE5E5E5">

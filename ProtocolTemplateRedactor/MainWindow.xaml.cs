@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProtocolTemplateLib;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,11 +23,35 @@ namespace ProtocolTemplateRedactor
         public MainWindow()
         {
             InitializeComponent();
-        }
+            buttonAdd.Click += addButtonClick;
 
+        }
+        void addButtonClick(object sender, EventArgs e)
+        {
+            Button button = sender as Button;
+            switch( comboBoxSelect.SelectedIndex )
+            {
+                case 0:
+                    template.Items.Add(new TemplateHeader());
+                    break;
+                case 1:
+                    template.Items.Add(new TemplateLine());
+                    break;
+                case 2:
+                    template.Items.Add(new TemplateLine());
+                    break;
+                default:
+                    break;
+            }
+
+            
+        }
+        Template template = new ProtocolTemplateLib.Template();
+       
         private void textBox_TextChanged(object sender, TextChangedEventArgs e)
         {
 
         }
+
     }
 }
