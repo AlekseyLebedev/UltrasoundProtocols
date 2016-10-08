@@ -22,5 +22,16 @@ namespace UltrasoundProtocols.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=VALERIYPC\\SQLEXPRESS;Initial Catalog=UltraSoundProtocolsDB;Persist Se" +
+            "curity Info=True;User ID=val_guest;Password=hf94hd78")]
+        public string UltraSoundProtocolsDBConnectionString {
+            get {
+                return ((string)(this["UltraSoundProtocolsDBConnectionString"]));
+            }
+        }
     }
 }

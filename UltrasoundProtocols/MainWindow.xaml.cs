@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -22,6 +23,10 @@ namespace UltrasoundProtocols
         public MainWindow()
         {
             InitializeComponent();
+			UltrasoundProtocolsDataSetSelector selector = new UltrasoundProtocolsDataSetSelector();
+			List<Doctor> doctors = selector.getActiveDoctors();
+			var hzchtoetopokachto = selector.getFullFilledProtocols();
+			Debugger.Break();
         }
     }
 }
