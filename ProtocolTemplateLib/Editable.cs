@@ -47,7 +47,7 @@ namespace ProtocolTemplateLib
         }
 
         public abstract object GetValueFromControl();
-        public abstract object SetValueToControl(Object value);
+        public abstract void SetValueToControl(Object value);
         public abstract UIElement GetEditControl();
         public abstract string PrintToProtocol(object value);
         public abstract string PrintToSaveQuery(object value);
@@ -151,7 +151,7 @@ namespace ProtocolTemplateLib
             throw new NotImplementedException();
         }
 
-        public override object SetValueToControl(Object value)
+        public override void SetValueToControl(Object value)
         {
             throw new NotImplementedException();
         }
@@ -160,9 +160,9 @@ namespace ProtocolTemplateLib
     {
         public override UIElement GetEditControl()
         {
-            TextBox control = new TextBox();
-            LocateControlStandart(control);
-            return control;
+            lastControl = new TextBox();
+            LocateControlStandart(lastControl);
+            return lastControl;
         }
 
         public override string PrintToProtocol(object value)
@@ -194,12 +194,14 @@ namespace ProtocolTemplateLib
 
         public override object GetValueFromControl()
         {
-            throw new NotImplementedException();
+            return lastControl.Text;
         }
 
-        public override object SetValueToControl(Object value)
+        public override void SetValueToControl(Object value)
         {
-            throw new NotImplementedException();
+            lastControl.Text = (String)value;
         }
+
+        private TextBox lastControl;
     }
 }
