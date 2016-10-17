@@ -11,10 +11,7 @@ namespace ProtocolTemplateLib
     public interface ITemplatePart
     {
         UIElement GetEditControl();
-
-        String PrintToProtocol(Object value);
-
-        string GetPartOfCreateTableScript(string id);
+        string GetPartOfCreateTableScript();
 
         void SaveXml(XmlWriter writer);
     }

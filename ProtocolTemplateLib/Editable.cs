@@ -12,16 +12,18 @@ namespace ProtocolTemplateLib
     {
         public bool EnableOtherField { get; set; }
 
+        public string Id { get; set; }
+
         public abstract void SaveXml(XmlWriter writer);
 
-        protected abstract string PartOfCreateTableScript(string id);
+        protected abstract string PartOfCreateTableScript();
 
-        public string GetPartOfCreateTableScript(string id)
+        public string GetPartOfCreateTableScript()
         {
-            string result = PartOfCreateTableScript(id);
+            string result = PartOfCreateTableScript();
             if (EnableOtherField)
             {
-                result += ", " + id + "_other nvarchar(255) NOT NULL";
+                result += ", " + Id + "_other nvarchar(255) NOT NULL";
             }
             return result;
         }
@@ -44,8 +46,11 @@ namespace ProtocolTemplateLib
             return result;
         }
 
+        public abstract object GetValueFromControl();
+        public abstract object SetValueToControl(Object value);
         public abstract UIElement GetEditControl();
         public abstract string PrintToProtocol(object value);
+        public abstract string PrintToSaveQuery(object value);
 
         protected static void LocateControlStandart(Control control)
         {
@@ -77,6 +82,7 @@ namespace ProtocolTemplateLib
         protected const string AttributeNameOtherEnabled = "other";
         protected const string NodeNameComboBox = "combobox";
         protected const string NodeNameTextBox = "textbox";
+
     }
 
     public class ComboboxEditable : Editable
@@ -116,9 +122,9 @@ namespace ProtocolTemplateLib
             writer.WriteEndElement();
         }
 
-        protected override string PartOfCreateTableScript(string id)
+        protected override string PartOfCreateTableScript()
         {
-            return id + " int";
+            return Id + " int";
         }
 
         protected override void LoadFromXml(XmlNode node)
@@ -133,6 +139,21 @@ namespace ProtocolTemplateLib
                 variants.Add(item.Attributes[AttributeNameValue].Value);
             }
             Variants = variants.ToArray();
+        }
+
+        public override string PrintToSaveQuery(object value)
+        {
+            return (EnableOtherField ? (string)value : ((int)value).ToString());
+        }
+
+        public override object GetValueFromControl()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override object SetValueToControl(Object value)
+        {
+            throw new NotImplementedException();
         }
     }
     public class TextBoxEditable : Editable
@@ -161,9 +182,24 @@ namespace ProtocolTemplateLib
             XmlUtils.AssertNodeName(node, NodeNameTextBox);
         }
 
-        protected override string PartOfCreateTableScript(string id)
+        protected override string PartOfCreateTableScript()
         {
-            return id + " nvarchar(1024)";
+            return Id + " nvarchar(1024)";
+        }
+
+        public override string PrintToSaveQuery(object value)
+        {
+            return (string)value;
+        }
+
+        public override object GetValueFromControl()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override object SetValueToControl(Object value)
+        {
+            throw new NotImplementedException();
         }
     }
 }

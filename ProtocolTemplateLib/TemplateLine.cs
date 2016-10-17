@@ -12,9 +12,11 @@ namespace ProtocolTemplateLib
     {
         public string Id { get; set; }
         public abstract UIElement GetEditControl();
-        public abstract string GetPartOfCreateTableScript(string id);
+        public abstract string GetPartOfCreateTableScript();
         public abstract string PrintToProtocol(object value);
+        public abstract string PrintToSaveQuery(object value);
         public abstract void SaveXml(XmlWriter writer);
+        public abstract bool RequireValue();
         public static TemplateItem GetFromXml(XmlNode node)
         {
             TemplateItem result;
@@ -42,9 +44,31 @@ namespace ProtocolTemplateLib
 
     public class TemplateLine : TemplateItem
     {
-
-        public string Label { get; set; }
-        public Editable Field { get; set; }
+        public string Label { get
+            {
+                return Label_;
+            }
+            set
+            {
+                if (Field_ != null)
+                {
+                    Field_.Id = value;
+                }
+                Label_ = value;
+            }
+        }
+        public Editable Field
+        {
+            get
+            {
+                return Field_;
+            }
+            set
+            {
+                Field_ = value;
+                Field_.Id = Id;
+            }
+        }
 
         public override UIElement GetEditControl()
         {
@@ -68,9 +92,9 @@ namespace ProtocolTemplateLib
 
         }
 
-        public override string GetPartOfCreateTableScript(string id)
+        public override string GetPartOfCreateTableScript()
         {
-            return Field.GetPartOfCreateTableScript(Id);
+            return Field.GetPartOfCreateTableScript();
         }
 
         public override string PrintToProtocol(object value)
@@ -98,6 +122,19 @@ namespace ProtocolTemplateLib
             Label = node.Attributes[AttributeNameLabel].Value;
         }
 
+        public override string PrintToSaveQuery(object value)
+        {
+            return Field.PrintToSaveQuery(value);
+        }
+
+        public override bool RequireValue()
+        {
+            return true;
+        }
+
+        private string Label_;
+        private Editable Field_;
+
         private const string AttributeNameLabel = "label";
     }
 
@@ -114,9 +151,9 @@ namespace ProtocolTemplateLib
             return block;
         }
 
-        public override string GetPartOfCreateTableScript(string id)
+        public override string GetPartOfCreateTableScript()
         {
-            throw new NotImplementedException();
+            return null;
         }
 
         public override string PrintToProtocol(object value)
@@ -136,6 +173,17 @@ namespace ProtocolTemplateLib
             XmlUtils.AssertNodeName(node, NodeNameLine);
             XmlUtils.AssertAttributeNotNull(node, AttributeNameLabel);
             Header = node.Attributes[AttributeNameLabel].Value;
+        }
+
+        public override string PrintToSaveQuery(object value)
+        {
+            // Заголовки не сохраняются в БД
+            throw new NotSupportedException();
+        }
+
+        public override bool RequireValue()
+        {
+            return false;
         }
 
         private const string AttributeNameLabel = "label";
