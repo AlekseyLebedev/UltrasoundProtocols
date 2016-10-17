@@ -52,12 +52,7 @@ namespace ProtocolTemplateLib
 
         }
 
-        public string PrintToProtocol(object value)
-        {
-            throw new NotImplementedException();
-        }
-
-        public string GetPartOfCreateTableScript(string id)
+        public string GetPartOfCreateTableScript()
         {
             StringBuilder builder = new StringBuilder("CREATE TABLE ");
             builder.Append(IdName);
@@ -66,8 +61,12 @@ namespace ProtocolTemplateLib
             builder.Append("id int");
             for (int i = 0; i < Items.Count; i++)
             {
-                builder.AppendLine(", ");
-                builder.Append(Items[i].GetPartOfCreateTableScript(null));
+                var part = Items[i].GetPartOfCreateTableScript();
+                if (part != null)
+                {
+                    builder.AppendLine(", ");
+                    builder.Append(part);
+                }
             }
             builder.Append(" CONSTRAINT [");
             builder.Append(IdName);
