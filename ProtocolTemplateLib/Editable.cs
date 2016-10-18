@@ -90,7 +90,7 @@ namespace ProtocolTemplateLib
         private const string NodeNameVariant = "variant";
         private const string AttributeNameValue = "value";
 
-        public String[] Variants { get; set; }
+        public List<String> Variants { get; set; }
 
         public override UIElement GetEditControl()
         {
@@ -101,6 +101,7 @@ namespace ProtocolTemplateLib
                 control.Items.Add(item);
             }
             control.IsEditable = EnableOtherField;
+            lastComboBox = control;
             return control;
         }
 
@@ -138,23 +139,54 @@ namespace ProtocolTemplateLib
                 XmlUtils.AssertAttributeNotNull(item, AttributeNameValue);
                 variants.Add(item.Attributes[AttributeNameValue].Value);
             }
-            Variants = variants.ToArray();
+            Variants = variants;
         }
 
         public override string PrintToSaveQuery(object value)
         {
-            return (EnableOtherField ? (string)value : ((int)value).ToString());
+            if (EnableOtherField)
+            {
+                string realValue = (String)value;
+                int index = Variants.IndexOf(realValue);
+                if (index < 0)
+                {
+                    return "NULL, " + realValue;
+                }
+                else
+                {
+                    return index + ", NULL";
+                }
+            }
+            else
+            {
+                return ((int)value).ToString();
+            }
         }
 
         public override object GetValueFromControl()
         {
-            throw new NotImplementedException();
+            if (EnableOtherField)
+            {
+                return lastComboBox.SelectedValue;
+            }
+            else
+            {
+                return lastComboBox.SelectedIndex;
+            }
         }
 
         public override void SetValueToControl(Object value)
         {
-            throw new NotImplementedException();
+            if (EnableOtherField) {
+                lastComboBox.SelectedValue = (String)value;
+            }
+            else
+            {
+                lastComboBox.SelectedIndex = (int)value;
+            }
         }
+
+        private ComboBox lastComboBox;
     }
     public class TextBoxEditable : Editable
     {
