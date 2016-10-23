@@ -19,60 +19,31 @@ namespace ProtocolTemplateRedactor
     /// </summary>
     public partial class MainWindow : Window
     {
-        public struct ExampleType
-        {
-            public ExampleType(string _type, string _info)
-            {
-                type = _type;
-                info = _info;
-            }
-
-            string type;
-            public string Type
-            {
-                get { return type; }
-                set { type = value; }
-            }
-
-            string info;
-            public string Info
-            {
-                get { return info; }
-                set { info = value; }
-            }
-        }
-        
         public MainWindow()
         {
             InitializeComponent();
-            buttonAdd.Click += addButtonClick;
-            GridView view = new GridView();
-
-            GridViewColumn col1 = new GridViewColumn();
-            col1.Header = "Type";
-            col1.DisplayMemberBinding = new Binding("Type");
-            view.Columns.Add(col1);
-
-            GridViewColumn col2 = new GridViewColumn();
-            col2.Header = "Info";
-            col2.DisplayMemberBinding = new Binding("Info");
-            view.Columns.Add(col2);
-
-            listView.View = view;
-
-            listView.Items.Add(new ExampleType("Запись", "Какой-то текст"));
-            listView.Items.Add(new ExampleType("Доктор", "Иванов Федор Михайлович"));
+            TypeColumn.DisplayMemberBinding = new Binding("Type");
+            InformationColumn.DisplayMemberBinding = new Binding("Info");
         }
-        void addButtonClick(object sender, EventArgs e)
-        {
-            presenter.AddItem(comboBoxSelect.SelectedIndex);
-            
-        }
+
         EditTemplatePresenter presenter = new EditTemplatePresenter();
+
         private void textBox_TextChanged(object sender, TextChangedEventArgs e)
         {
 
         }
 
+        private void PreviewTabItem_GotFocus(object sender, RoutedEventArgs e)
+        {
+            PreviewGrid.Children.Clear();
+            UIElement element = presenter.RequestEditControl();
+            PreviewGrid.Children.Add(element);
+            
+        }
+
+        private void buttonAdd_Click(object sender, RoutedEventArgs e)
+        {
+            listView.Items.Add(presenter.AddItem(comboBoxSelect.SelectedIndex));
+        }
     }
 }

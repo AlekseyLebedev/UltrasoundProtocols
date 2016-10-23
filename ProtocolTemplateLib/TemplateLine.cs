@@ -36,7 +36,24 @@ namespace ProtocolTemplateLib
 
         }
 
+        public string Info
+        {
+            get
+            {
+                return GetInfo();
+            }
+        }
 
+        public string Type
+        {
+            get
+            {
+                return GetGuiType();
+            }
+        }
+
+        protected abstract string GetGuiType();
+        protected abstract string GetInfo(); 
         protected abstract void LoadFromXml(XmlNode node);
         protected const string NodeNameLine  = "line";
         protected const string NodeNameHeader = "header";
@@ -132,6 +149,18 @@ namespace ProtocolTemplateLib
             return true;
         }
 
+        protected override string GetGuiType()
+        {
+            // TODO
+            return "Исправить на типо контрола";
+        }
+
+        protected override string GetInfo()
+        {
+            // TODO
+            return "TODO";
+        }
+
         private string Label_;
         private Editable Field_;
 
@@ -184,6 +213,16 @@ namespace ProtocolTemplateLib
         public override bool RequireValue()
         {
             return false;
+        }
+
+        protected override string GetGuiType()
+        {
+            return "Заголовок";
+        }
+
+        protected override string GetInfo()
+        {
+            return Header;
         }
 
         private const string AttributeNameLabel = "label";

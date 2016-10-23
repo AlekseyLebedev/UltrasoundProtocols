@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows;
 
 namespace ProtocolTemplateRedactor
 {
@@ -10,26 +11,34 @@ namespace ProtocolTemplateRedactor
     {
         Template template = new ProtocolTemplateLib.Template();
 
-        internal void AddItem(int selectedIndex)
+        internal TemplateItem AddItem(int selectedIndex)
         {
-            TemplateLine line = new TemplateLine();
+            TemplateItem item = new TemplateLine();
             switch (selectedIndex)
             {
                 case 0:
-                    template.Items.Add(new TemplateHeader());
+                    item = new TemplateHeader();
                     break;
                 case 1:
+                    TemplateLine line = new TemplateLine();
                     line.Field = new TextBoxEditable();
-                    template.Items.Add(line);
+                    item = line;
                     break;
                 case 2:
+                    line = new TemplateLine();
                     line.Field = new ComboboxEditable();
-                    template.Items.Add(line);
+                    item = line;
                     break;
                 default:
                     break;
             }
+            template.Items.Add(item);
+            return item;
+        }
 
+        internal UIElement RequestEditControl()
+        {
+            return template.GetEditControl();
         }
     }
 }

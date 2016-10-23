@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProtocolTemplateRedactor"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="350" Width="525" WindowState="Maximized">
     <Grid>
         <TabControl x:Name="tabControl"  Margin="0">
             <TabItem Header="Общая информация" RenderTransformOrigin="6.895,10.883">
@@ -27,7 +27,14 @@
                         <ColumnDefinition Width="2*"/>
                     </Grid.ColumnDefinitions>
                     <ListView x:Name="listView" Margin="0" Grid.ColumnSpan="1">
-                        
+                        <ListView.View>
+                            <GridView>
+                                <GridView.Columns>
+                                    <GridViewColumn x:Name="TypeColumn" Header="Тип" Width="300" />
+                                    <GridViewColumn x:Name="InformationColumn" Header="Информация" Width="800" />
+                                </GridView.Columns>
+                            </GridView>
+                        </ListView.View>
                     </ListView>
                     <Grid Background="#FFE5E5E5" Grid.Column = "1">
                         <GroupBox x:Name="groupBox" Header="Свойства" Margin="0,0,0,61.92" Grid.Row="0"/>
@@ -36,12 +43,12 @@
                             <ComboBoxItem Content="Текстовое поле"/>
                             <ComboBoxItem Content="Список"/>
                         </ComboBox>
-                        <Button x:Name="buttonAdd" Content="Добавить" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Margin="10,0,10,10"/>
+                        <Button x:Name="buttonAdd" Content="Добавить" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Margin="10,0,10,10" Click="buttonAdd_Click"/>
                     </Grid>
                 </Grid>
             </TabItem>
-            <TabItem Header="Предпросмотр">
-                <Grid Background="#FFE5E5E5">
+            <TabItem x:Name="PreviewTabItem" Header="Предпросмотр" GotFocus="PreviewTabItem_GotFocus">
+                <Grid x:Name="PreviewGrid"  Background="#FFE5E5E5">
                 </Grid>
             </TabItem>
             <TabItem Header="Образец протокола">
