@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
+  <Class Name="UltrasoundProtocols.Doctor">
+    <Position X="12" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgQAAAAAAAAAAAAAAAAAAAAAAAAEBAAAAAAEAAAAAgA=</HashCode>
+      <FileName>BasicObjects\Doctor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UltrasoundProtocols.ExaminationType">
+    <Position X="6.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAEAAAAAgA=</HashCode>
+      <FileName>BasicObjects\ExaminationType.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UltrasoundProtocols.MedicalEquipment">
+    <Position X="14" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAEAAAAAgA=</HashCode>
+      <FileName>BasicObjects\MedicalEquipment.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UltrasoundProtocols.Patient">
+    <Position X="15.75" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAQIAAAAAAAAAAAAAwAAAAAAEAAQAAAAEAQAAAgA=</HashCode>
+      <FileName>BasicObjects\Patient.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProtocolTemplateLib.Protocol">
+    <Position X="10" Y="3.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="ProtocolTemplateLib.Template">
+    <Position X="1.25" Y="5.25" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ProtocolTemplateLib.TemplateHeader">
+    <Position X="15" Y="7" Width="2.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="ProtocolTemplateLib.TemplateItem">
+    <Position X="12" Y="7" Width="2.75" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ProtocolTemplateLib.TemplateLine">
+    <Position X="9" Y="7" Width="2.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="ProtocolTemplateLib.TextBoxEditable">
+    <Position X="0.5" Y="8.5" Width="2.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="ProtocolTemplateLib.Editable">
+    <Position X="3.25" Y="6.25" Width="2.75" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ProtocolTemplateLib.ComboboxEditable">
+    <Position X="6.25" Y="8" Width="2.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="UltrasoundProtocols.FullProtocol">
+    <Position X="8.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAIgAAAAQAAAAIAAAAAAAAABAAEAAAAhAAAAAAAAgA=</HashCode>
+      <FileName>BasicObjects\Protocol.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="ProtocolTemplateLib.ITemplatePart">
+    <Position X="1.25" Y="3" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

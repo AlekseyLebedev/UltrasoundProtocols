@@ -47,12 +47,12 @@ namespace UltrasoundProtocols
 			return equipments;
 		}
 
-		public List<Protocol> getProtocols()
+		public List<FullProtocol> getProtocols()
 		{
 			UltrasoundProtocolsDataSetTableAdapters.Tbl_ProtocolsTableAdapter adapter =
 				new UltrasoundProtocolsDataSetTableAdapters.Tbl_ProtocolsTableAdapter();
-			List<Protocol> protocols = (from table in adapter.GetData() select table)
-				.Select(x => new Protocol(x.prt_id, x.prt_datetime, x.prt_doctor, x.prt_patient, x.prt_equipment, x.prt_source))
+			List<FullProtocol> protocols = (from table in adapter.GetData() select table)
+				.Select(x => new FullProtocol(x.prt_id, x.prt_datetime, x.prt_doctor, x.prt_patient, x.prt_equipment, x.prt_source))
 				.ToList();
 			return protocols;
 		}
