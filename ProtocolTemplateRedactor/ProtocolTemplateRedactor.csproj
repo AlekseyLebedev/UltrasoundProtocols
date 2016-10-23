@@ -63,7 +63,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="ComboBoxRedactor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="HeaderRedactor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LineRedactor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -75,9 +83,15 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ComboBoxRedactor.xaml.cs">
+      <DependentUpon>ComboBoxRedactor.xaml</DependentUpon>
+    </Compile>
     <Compile Include="EditTemplatePresenter.cs" />
     <Compile Include="HeaderRedactor.xaml.cs">
       <DependentUpon>HeaderRedactor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LineRedactor.xaml.cs">
+      <DependentUpon>LineRedactor.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

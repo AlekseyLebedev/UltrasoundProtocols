@@ -13,8 +13,7 @@
                     <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="20, 0, 0, 80" TextWrapping="Wrap" Text="Название:"/>
                     <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="20, 0, 0, 30" TextWrapping="Wrap" Text="Идентификатор:"/>
                     <TextBox x:Name="textBoxName" HorizontalAlignment="Stretch" VerticalAlignment="Center"  Margin="120, 0, 20, 80" Height="20" TextWrapping="Wrap" Text="Название"/>
-                    <TextBox x:Name="textBoxId" Text="Идентификатор" HorizontalAlignment="Stretch" VerticalAlignment="center" Margin="120, 0, 20, 30" TextWrapping="Wrap" Height="20">
-                    </TextBox>
+                    <TextBox x:Name="textBoxId" Text="Идентификатор" HorizontalAlignment="Stretch" VerticalAlignment="center" Margin="120, 0, 20, 30" TextWrapping="Wrap" Height="20"></TextBox>
                     <TextBlock x:Name="textBlockIdHint" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="120, 30, 20, 0" TextWrapping="Wrap" Text="Идентификатор - это слово, состоящее из латинских букв и цифр"/>
                     <Button x:Name="buttonSave" Content="Сохранить" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0, 200,100,0" Width="75" Height="20"/>
                     <Button x:Name="buttonLoad" Content="Загрузить" HorizontalAlignment="Stretch" Margin="100,200,0,0" VerticalAlignment="Stretch" Width="75" Height="20"/>
@@ -30,7 +29,7 @@
                         <ListView.View>
                             <GridView>
                                 <GridView.Columns>
-                                    <GridViewColumn x:Name="TypeColumn" Header="Тип" Width="100" />
+                                    <GridViewColumn x:Name="TypeColumn" Header="Тип" Width="200" />
                                     <GridViewColumn x:Name="IdColumn" Header="ID" Width="200" />
                                     <GridViewColumn x:Name="InformationColumn" Header="Информация" Width="800" />
                                 </GridView.Columns>

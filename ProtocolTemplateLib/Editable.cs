@@ -76,6 +76,7 @@ namespace ProtocolTemplateLib
                 throw new XmlException(string.Format("Error loading template. Attribute '{0}' is not boolean in node '{1}'", AttributeNameOtherEnabled, node.Name), ex);
             }
         }
+        internal abstract string GetTypeName();
 
         protected abstract void LoadFromXml(XmlNode node);
 
@@ -186,6 +187,11 @@ namespace ProtocolTemplateLib
             }
         }
 
+        internal override string GetTypeName()
+        {
+            return "выпадающий список";
+        }
+
         private ComboBox lastComboBox;
     }
     public class TextBoxEditable : Editable
@@ -232,6 +238,11 @@ namespace ProtocolTemplateLib
         public override void SetValueToControl(Object value)
         {
             lastControl.Text = (String)value;
+        }
+
+        internal override string GetTypeName()
+        {
+            return "текстовоe поле";
         }
 
         private TextBox lastControl;

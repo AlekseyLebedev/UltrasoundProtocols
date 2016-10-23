@@ -10,7 +10,16 @@ namespace ProtocolTemplateLib
 {
     public abstract class TemplateItem : ITemplatePart
     {
-        public string Id { get; set; }
+        public string Id { get
+            {
+                return Id_;
+            }
+            set
+            {
+                
+                Id_ = value;
+            }
+        }
         public abstract UIElement GetEditControl();
         public abstract string GetPartOfCreateTableScript();
         public abstract string PrintToProtocol(object value);
@@ -51,12 +60,16 @@ namespace ProtocolTemplateLib
                 return GetGuiType();
             }
         }
-
+        
+        protected virtual void SetId(string value)
+        {
+        }
         protected abstract string GetGuiType();
         protected abstract string GetInfo(); 
         protected abstract void LoadFromXml(XmlNode node);
         protected const string NodeNameLine  = "line";
         protected const string NodeNameHeader = "header";
+        private string Id_;
     }
 
     public class TemplateLine : TemplateItem
@@ -67,10 +80,6 @@ namespace ProtocolTemplateLib
             }
             set
             {
-                if (Field_ != null)
-                {
-                    Field_.Id = value;
-                }
                 Label_ = value;
             }
         }
@@ -151,14 +160,25 @@ namespace ProtocolTemplateLib
 
         protected override string GetGuiType()
         {
-            // TODO
-            return "Исправить на типо контрола";
+            return "Строка с полем: " + Field.GetTypeName();
         }
 
         protected override string GetInfo()
         {
-            // TODO
-            return "TODO";
+            if (Label == null)
+            {
+                return "Нет подписи";
+            }
+            return Label;
+        }
+
+        protected override void SetId(string value)
+        {
+            if (Field_ != null)
+            {
+                Field_.Id = value;
+            }
+            base.SetId(value);
         }
 
         private string Label_;

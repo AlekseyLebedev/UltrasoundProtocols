@@ -25,6 +25,56 @@ namespace ProtocolTemplateRedactor
             get { return SelectedItem.Id; }
         }
 
+        internal bool SelectedEditableEnabled
+        {
+            get { return ((TemplateLine)SelectedItem).Field.EnableOtherField; }
+            set
+            {
+                logger.Debug("Set selected editable otherEnabled = '{0}'", value);
+                InvokeRefresh();
+                ((TemplateLine)SelectedItem).Field.EnableOtherField = value;
+            }
+        }
+
+        internal string SelectedLineLabel
+        {
+            get { return ((TemplateLine)SelectedItem).Label; }
+            set
+            {
+                logger.Debug("Set selected line label = '{0}'", value);
+                InvokeRefresh();
+                ((TemplateLine)SelectedItem).Label = value;
+            }
+        }
+
+
+        internal string SelectedComboBoxVariants
+        {
+            get
+            {
+                List<String> variants = ((ComboboxEditable)((TemplateLine)SelectedItem).Field).Variants;
+                StringBuilder result = new StringBuilder();
+                for (int i = 0; i < variants.Count; i++)
+                {
+                    if ((i + 1) < variants.Count)
+                    {
+                        result.AppendLine(variants[i]);
+                    }
+                    else
+                    {
+                        result.Append(variants[i]);
+                    }
+                }
+                return result.ToString();
+            }
+            set
+            {
+                logger.Debug("Set variants: '{0}'", value.Replace("\n", "\\n").Replace("\r", "\\r"));
+                string[] tokens = value.Split(Environment.NewLine.ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+                ((ComboboxEditable)((TemplateLine)SelectedItem).Field).Variants = tokens.ToList();
+            }
+        }
+
         internal bool SetSelectedItemId(string value)
         {
             logger.Debug("Set selected item id = '{0}'", value);
@@ -53,6 +103,8 @@ namespace ProtocolTemplateRedactor
             return true;
         }
 
+        private const string ADD_LABEL_TEXT = "Добавьте подпись";
+
         internal TemplateItem AddItem(int selectedIndex)
         {
             TemplateItem item = new TemplateLine();
@@ -64,11 +116,13 @@ namespace ProtocolTemplateRedactor
                 case 1:
                     TemplateLine line = new TemplateLine();
                     line.Field = new TextBoxEditable();
+                    line.Label = ADD_LABEL_TEXT;
                     item = line;
                     break;
                 case 2:
                     line = new TemplateLine();
-                    line.Field = new ComboboxEditable();
+                    line.Field = new ComboboxEditable() { Variants = new List<string>() };
+                    line.Label = ADD_LABEL_TEXT;
                     item = line;
                     break;
                 default:

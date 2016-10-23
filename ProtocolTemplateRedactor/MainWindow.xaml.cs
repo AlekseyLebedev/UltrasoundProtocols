@@ -59,22 +59,7 @@ namespace ProtocolTemplateRedactor
                 presenter.SelectItem(null);
                 IdTextBox.Text = selectedItem.Id;
                 presenter.SelectItem(selectedItem);
-                if (selectedItem is TemplateHeader)
-                {
-                    HeaderRedactor headerRedactor = new HeaderRedactor();
-                    headerRedactor.Margin = new Thickness(0);
-                    headerRedactor.Presenter = presenter;
-                    RedactorGrid.Children.Add(headerRedactor);
-                }
-                else
-                {
-                    if (selectedItem is TemplateLine)
-                    {
-
-                    }
-                    else
-                        throw new NotImplementedException("Editro doesn't support this type of element");
-                }
+                SetRedactor(selectedItem);
                 PropertiesGroupBox.IsEnabled = true;
             }
             else
@@ -82,6 +67,37 @@ namespace ProtocolTemplateRedactor
                 presenter.SelectItem(null);
                 IdTextBox.Text = "";
                 PropertiesGroupBox.IsEnabled = false;
+            }
+        }
+
+        private void SetRedactor(TemplateItem selectedItem)
+        {
+            Control redactor = null;
+            if (selectedItem is TemplateHeader)
+            {
+                redactor = new HeaderRedactor() { Presenter = presenter };
+
+            }
+            else if (selectedItem is TemplateLine)
+            {
+                TemplateLine line = (TemplateLine)selectedItem;
+                if (line.Field is TextBoxEditable)
+                {
+                    redactor = new LineRedactor() { Presenter = presenter };
+                }
+                else if (line.Field is ComboboxEditable)
+                {
+                    redactor = new ComboBoxRedactor() { Presenter = presenter };
+                }
+                else
+                    throw new NotImplementedException("Editor doesn't support editable in template line");
+            }
+            else
+                throw new NotImplementedException("Editor doesn't support this type of element");
+            if (redactor != null)
+            {
+                redactor.Margin = new Thickness(0);
+                RedactorGrid.Children.Add(redactor);
             }
         }
 
