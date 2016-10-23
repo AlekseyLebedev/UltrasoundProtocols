@@ -23,10 +23,18 @@ namespace ProtocolTemplateRedactor
         {
             InitializeComponent();
             TypeColumn.DisplayMemberBinding = new Binding("Type");
+            IdColumn.DisplayMemberBinding = new Binding("Id");
             InformationColumn.DisplayMemberBinding = new Binding("Info");
+            presenter = new EditTemplatePresenter();
+            presenter.Refresh += Presenter_Refresh;
         }
 
-        EditTemplatePresenter presenter = new EditTemplatePresenter();
+        private void Presenter_Refresh(object sender, EventArgs e)
+        {
+            listView.UpdateLayout();
+        }
+
+        EditTemplatePresenter presenter;
 
         private void textBox_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -38,12 +46,65 @@ namespace ProtocolTemplateRedactor
             PreviewGrid.Children.Clear();
             UIElement element = presenter.RequestEditControl();
             PreviewGrid.Children.Add(element);
-            
+
         }
 
         private void buttonAdd_Click(object sender, RoutedEventArgs e)
         {
             listView.Items.Add(presenter.AddItem(comboBoxSelect.SelectedIndex));
+        }
+
+        private void listView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            RedactorGrid.Children.Clear();
+            if (e.AddedItems.Count == 1)
+            {
+                TemplateItem selectedItem = (TemplateItem)e.AddedItems[0];
+                IdTextBox.Text = selectedItem.Id;
+                presenter.SelectItem(selectedItem);
+                if (selectedItem is TemplateHeader)
+                {
+                    HeaderRedactor headerRedactor = new HeaderRedactor();
+                    headerRedactor.Margin = new Thickness(0);
+                    headerRedactor.Presenter = presenter;
+                    RedactorGrid.Children.Add(headerRedactor);
+                }
+                else
+                {
+                    throw new NotImplementedException("Editro doesn't support this type of element");
+                }
+                PropertiesGroupBox.IsEnabled = true;
+            }
+            else
+            {
+                presenter.SelectItem(null);
+                IdTextBox.Text = "";
+                PropertiesGroupBox.IsEnabled = false;
+            }
+        }
+
+        private void PropertiesGroupBox_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            Thickness margin = RedactorGrid.Margin;
+            margin.Top = IdInfoTextBox.ActualHeight + IdInfoTextBox.Margin.Top + 5;
+            RedactorGrid.Margin = margin;
+        }
+
+        private void IdTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (presenter.GetSelectedItem() != null)
+            {
+                IdTextBox.Background = (presenter.SetSelectedItemId(IdTextBox.Text) ? Brushes.White : Brushes.Red);
+            }
+            else
+            {
+                IdTextBox.Background = Brushes.White;
+            }
+        }
+
+        private void DeleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            listView.Items.Remove(presenter.RemoveSelectedItem());
         }
     }
 }

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProtocolTemplateRedactor"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525" WindowState="Maximized">
+        Title="MainWindow" Height="600" Width="900" WindowState="Maximized">
     <Grid>
         <TabControl x:Name="tabControl"  Margin="0">
             <TabItem Header="Общая информация" RenderTransformOrigin="6.895,10.883">
@@ -26,18 +26,27 @@
                         <ColumnDefinition Width="8*"/>
                         <ColumnDefinition Width="2*"/>
                     </Grid.ColumnDefinitions>
-                    <ListView x:Name="listView" Margin="0" Grid.ColumnSpan="1">
+                    <ListView x:Name="listView" Margin="0" Grid.ColumnSpan="1" SelectionChanged="listView_SelectionChanged">
                         <ListView.View>
                             <GridView>
                                 <GridView.Columns>
-                                    <GridViewColumn x:Name="TypeColumn" Header="Тип" Width="300" />
+                                    <GridViewColumn x:Name="TypeColumn" Header="Тип" Width="100" />
+                                    <GridViewColumn x:Name="IdColumn" Header="ID" Width="200" />
                                     <GridViewColumn x:Name="InformationColumn" Header="Информация" Width="800" />
                                 </GridView.Columns>
                             </GridView>
                         </ListView.View>
                     </ListView>
                     <Grid Background="#FFE5E5E5" Grid.Column = "1">
-                        <GroupBox x:Name="groupBox" Header="Свойства" Margin="0,0,0,61.92" Grid.Row="0"/>
+                        <GroupBox x:Name="PropertiesGroupBox" Header="Свойства" Margin="0,0,0,61.92" Grid.Row="0" IsEnabled="False" SizeChanged="PropertiesGroupBox_SizeChanged">
+                            <Grid  Margin="0">
+                                <Label Content="Идентификатор" VerticalAlignment="Top" Margin="10,10,10,0"/>
+                                <TextBox x:Name="IdTextBox" Height="23" Margin="10,40.96,10,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" TextChanged="IdTextBox_TextChanged"/>
+                                <TextBlock x:Name="IdInfoTextBox" Margin="10,68.96,10,0" TextWrapping="Wrap" Text="Идентификатор - это некое слово из латинских букв и цифр. Оно должно быть уникальным. Пользователь системы его не увидит, это слово только для программы." VerticalAlignment="Top"/>
+                                <Grid x:Name="RedactorGrid" Margin="10,185.68,10,39.96"/>
+                                <Button x:Name="DeleteButton" Content="Удалить" Margin="10,0,10,10" Height="24.96" VerticalAlignment="Bottom" Click="DeleteButton_Click"/>
+                            </Grid>
+                        </GroupBox>
                         <ComboBox x:Name="comboBoxSelect" SelectedIndex="0" HorizontalAlignment="Stretch" Margin="10,0,10,34.96" Height="21.96" VerticalAlignment="Bottom">
                             <ComboBoxItem Content="Заголовок"/>
                             <ComboBoxItem Content="Текстовое поле"/>
