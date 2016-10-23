@@ -28,8 +28,28 @@ namespace ProtocolTemplateRedactor
         internal bool SetSelectedItemId(string value)
         {
             logger.Debug("Set selected item id = '{0}'", value);
-            InvokeRefresh();
+            if (value.Length == 0)
+            {
+                logger.Info("Empty text set for id");
+                return false;
+            }
+            for (int i = 0; i < value.Length; i++)
+            {
+                var symbol = value[i];
+                if (!(char.IsDigit(symbol) || ((symbol >= 'a') && (symbol <= 'z'))
+                    || ((symbol >= 'A') && (symbol <= 'Z'))))
+                {
+                    logger.Info("Wrong symbol '{0}' in id", symbol);
+                    return false;
+                }
+            }
+            if (!ValidateUniqueId(value))
+            {
+                logger.Info("Dublicate id");
+                return false;
+            }
             SelectedItem.Id = value;
+            InvokeRefresh();
             return true;
         }
 
@@ -54,6 +74,10 @@ namespace ProtocolTemplateRedactor
                 default:
                     throw new NotImplementedException("Error in switch in adding element");
             }
+            do
+            {
+                item.Id = "item" + Rnd.Next();
+            } while (!ValidateUniqueId(item.Id));
             Template.Items.Add(item);
             logger.Info("Add element {0}", item.Type);
             return item;
@@ -89,10 +113,20 @@ namespace ProtocolTemplateRedactor
                 Refresh(this, new EventArgs());
             }
         }
+        private bool ValidateUniqueId(string name)
+        {
+            foreach (var item in Template.Items)
+            {
+                if (item.Id.Equals(name))
+                    return false;
+            }
+            return true;
+        }
 
         private static Logger logger = LogManager.GetCurrentClassLogger();
         private Template Template = new ProtocolTemplateLib.Template();
         private TemplateItem SelectedItem = null;
+        private Random Rnd = new Random();
 
         internal TemplateItem RemoveSelectedItem()
         {

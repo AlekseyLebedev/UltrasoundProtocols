@@ -1,6 +1,7 @@
 ﻿using ProtocolTemplateLib;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -31,15 +32,10 @@ namespace ProtocolTemplateRedactor
 
         private void Presenter_Refresh(object sender, EventArgs e)
         {
-            listView.UpdateLayout();
+            listView.Items.Refresh();
         }
 
         EditTemplatePresenter presenter;
-
-        private void textBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
 
         private void PreviewTabItem_GotFocus(object sender, RoutedEventArgs e)
         {
@@ -60,6 +56,7 @@ namespace ProtocolTemplateRedactor
             if (e.AddedItems.Count == 1)
             {
                 TemplateItem selectedItem = (TemplateItem)e.AddedItems[0];
+                presenter.SelectItem(null);
                 IdTextBox.Text = selectedItem.Id;
                 presenter.SelectItem(selectedItem);
                 if (selectedItem is TemplateHeader)
@@ -71,7 +68,12 @@ namespace ProtocolTemplateRedactor
                 }
                 else
                 {
-                    throw new NotImplementedException("Editro doesn't support this type of element");
+                    if (selectedItem is TemplateLine)
+                    {
+
+                    }
+                    else
+                        throw new NotImplementedException("Editro doesn't support this type of element");
                 }
                 PropertiesGroupBox.IsEnabled = true;
             }
