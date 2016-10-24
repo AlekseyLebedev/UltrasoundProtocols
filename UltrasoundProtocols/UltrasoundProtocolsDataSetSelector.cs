@@ -23,7 +23,7 @@ namespace UltrasoundProtocols
             UltrasoundProtocolsDataSetTableAdapters.Tbl_PatientsTableAdapter adapter =
                 new UltrasoundProtocolsDataSetTableAdapters.Tbl_PatientsTableAdapter();
             List<Patient> patients = (from table in adapter.GetData() select table)
-                .Select(x => new Patient(x.pat_id, x.pat_fullname, x.pat_gender, x.pat_birthdate, x.pat_numberambulatorycard))
+                .Select(x => new Patient(x.pat_id, x.pat_fullname, "Middle Name", "Last Name", x.pat_gender, x.pat_birthdate, x.pat_numberambulatorycard))
                 .ToList();
             return patients;
         }

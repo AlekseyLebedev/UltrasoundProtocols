@@ -65,12 +65,19 @@
     <Compile Include="BasicObjects\MedicalEquipment.cs" />
     <Compile Include="BasicObjects\Patient.cs" />
     <Compile Include="BasicObjects\Protocol.cs" />
+    <Compile Include="EditPatientUserControl.xaml.cs">
+      <DependentUpon>EditPatientUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UltrasoundProtocolsDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>UltrasoundProtocolsDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="UltrasoundProtocolsDataSetSelector.cs" />
+    <Page Include="EditPatientUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
