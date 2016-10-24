@@ -5,46 +5,26 @@ using System.Text;
 
 namespace UltrasoundProtocols
 {
-	class Patient
+	struct Patient
 	{
-		private int id;
-		private string name;
-		private int gender;
-		private DateTime date;
-		private string numberAmbulatoryCard;
+        public int Id { get; set; }
+        public string FirstName { get; set; }
+        public string MiddleName { get; set; }
+        public string LastName { get; set; }
+        public int Gender { get; set; }
+        public DateTime Date { get; set; }
+        public string NumberAmbulatoryCard { get; set; }
 
-		public Patient(int id, string name, int gender, DateTime date, string numberAmbulatoryCard)
+        public Patient(int id, string FirstName, string MiddleName, string LastName,
+            int gender, DateTime date, string numberAmbulatoryCard) : this()
 		{
-			this.id = id;
-			this.name = name;
-			this.gender = gender;
-			this.date = date;
-			this.numberAmbulatoryCard = numberAmbulatoryCard;
-		}
-
-		public int getId()
-		{
-			return id;
-		}
-
-		public string getName()
-		{
-			return name;
-		}
-
-		public int getGender()
-		{
-			return gender;
-		}
-
-		public DateTime getDate()
-		{
-			return date;
-		}
-
-		public string getNumberAmbulatoryCard()
-		{
-			return numberAmbulatoryCard;
+            this.Id = id;
+            this.FirstName = FirstName;
+            this.MiddleName = MiddleName;
+            this.LastName = LastName;
+            this.Gender = gender;
+            this.Date = date;
+			this.NumberAmbulatoryCard = numberAmbulatoryCard;
 		}
 	}
 }
