@@ -13,7 +13,7 @@ namespace ProtocolTemplateLib
     {
         public string Name { get; set; }
         public string IdName { get; set; }
-        public List<TemplateItem> Items { get; }
+        public List<TemplateItem> Items { get; private set; }
 
         public Template()
         {
