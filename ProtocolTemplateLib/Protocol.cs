@@ -1,13 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
+using System.Data.SqlClient;
+using NLog;
 
 namespace ProtocolTemplateLib
 {
     public class Protocol
     {
-        public Template TemplateInstance { get; private set; }
+
+		private static Logger logger = LogManager.GetCurrentClassLogger();
+
+		private static string login = "val_guest";
+		private static string password = "hf94hd78";
+		private static StringBuilder connectString;
+
+		private static string INSERT_INTO = "INSERT INTO";
+		private static string SELECT_ALL = "SELECT * FROM";
+		private static string SPACE = " ";
+		private static string OPEN_BRACKET = "(";
+		private static string CLOSE_BRACKET = ")";
+		private static string VALUES = "VALUES";
+		private static string COMMA = ",";
+		private static string SEMICOLON = ";";
+		private static string QUOTE = "'";
+		private static string DOT = ".";
+
+		public Template TemplateInstance { get; private set; }
         public Protocol(Template template)
         {
             TemplateInstance = template;
@@ -21,7 +40,50 @@ namespace ProtocolTemplateLib
             }
             Values = new Object[valuableItems.Count];
             ValuableTemplateItems = valuableItems.ToArray();
-        }
+			connectString = new StringBuilder("Data Source=VALERIYPC\\SQLEXPRESS; Integrated Security=SSPI; Initial Catalog=UltraSoundProtocolsDB; User=")
+				.Append(Protocol.login)
+				.Append("; Password=")
+				.Append(Protocol.password);
+		}
+
+		public bool ChangeRequestNewUserDataBase(string login, string password)
+		{
+			if (false/*TODO if connection to database closed*/)
+			{
+				SetLoginUserDataBase(login);
+				SetPasswordUserDataBase(password);
+				//TODO update connectString
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+
+		private void SetLoginUserDataBase(string newLogin)
+		{
+			if (newLogin != null)
+			{
+				Protocol.login = newLogin;
+			}
+		}
+
+		private void SetPasswordUserDataBase(string newPassword)
+		{
+			if (newPassword != null)
+			{
+				Protocol.password = newPassword;
+			}
+		}
+
+		private void SetConnectString(string newConnectString)
+		{
+			if (newConnectString != null)
+			{
+				Protocol.connectString = new StringBuilder(newConnectString);
+			}
+		}
 
         private const string UnsupportedItemTypeExceptionMessage = "Unsopported type of template item";
 
@@ -60,29 +122,43 @@ namespace ProtocolTemplateLib
         {
             throw new NotImplementedException();
         }
-
-        // TODO for Ivan
-        public void SaveToDatabase(int ProtocolId /*, BD argument*/)
+		
+        public void SaveToDatabase(int ProtocolId, SqlCommand insertCommand /*, BD argument*/)
         {
-            throw new NotImplementedException();
-            int itemsIndex = 0;
-            StringBuilder builder = new StringBuilder("insert...");
-            // TODO
-            foreach (var item in ValuableTemplateItems)
+            //throw new NotImplementedException();
+			string tableName = "Tbl_doctors";//TODO getTableName(id)
+			StringBuilder builder = new StringBuilder(INSERT_INTO);
+			builder.Append(SPACE).Append(tableName).Append(VALUES).Append(OPEN_BRACKET);
+			StringBuilder insertLine = new StringBuilder();
+			for (int index = 0; index < ValuableTemplateItems.Length; ++index)
             {
-                // TODO handle result and work with it
-                item.PrintToSaveQuery(Values[itemsIndex++]);
+				insertLine.Append(ValuableTemplateItems[index].PrintToSaveQuery(Values[index]));
+				if (index < ValuableTemplateItems.Length)
+				{
+					insertLine.Append(COMMA);
+				}
             }
-            // TODO
-        }
+			logger.Info("Added to " + tableName + " record = " + insertLine.ToString());
+			builder.Append(insertLine).Append(CLOSE_BRACKET).Append(SEMICOLON);
+			insertCommand.CommandText = builder.ToString();
 
-        public void LoadFromDatabase(int ProtocolId /*, DB argument*/)
+			insertCommand.ExecuteNonQuery();
+		}
+
+        public void LoadFromDatabase(int ProtocolId, SqlCommand command)
         {
-            throw new NotImplementedException();
-            int itemsIndex = 0;
-            StringBuilder builder = new StringBuilder("select...");
-            // TODO
-            foreach (var item in ValuableTemplateItems)
+            //throw new NotImplementedException();
+			int itemsIndex = 0;
+
+			string tableName = "Tbl_doctors";//TODO getTableName(id)
+            StringBuilder builder = new StringBuilder("SELECT * FROM ")
+				.Append(tableName)
+				.Append("\nWHERE id=")
+				.Append(ProtocolId)
+				.Append(";");
+			command.CommandText = builder.ToString();
+			// TODO
+			foreach (var item in ValuableTemplateItems)
             {
                 // TODO: 
                 // Ask for interface
@@ -90,11 +166,26 @@ namespace ProtocolTemplateLib
             // TODO
         }
 
-        public static Protocol LoadProtocol(Template template, int id /*, DB argument*/)
+        public static Protocol LoadProtocol(Template template, int id/*, DB argument*/)
         {
             Protocol protocol = new Protocol(template);
-            protocol.LoadFromDatabase(id/*, bb*/);
-            return protocol;
+
+			//TODO вынести отдельно (после обсуждения)
+			try {
+				SqlConnection connection = new SqlConnection(connectString.ToString());
+				SqlCommand command = connection.CreateCommand();
+				connection.Open();
+
+				protocol.LoadFromDatabase(id, command/*, bb*/);
+
+				connection.Close();
+				connection.Dispose();
+			}
+			catch (Exception e) {
+				Console.WriteLine(e.Message + " я ввел: " + login + ", но где то накосячил");
+			}
+
+			return protocol;
         }
 
         private Object[] Values;

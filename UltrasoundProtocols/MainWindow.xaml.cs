@@ -26,7 +26,7 @@ namespace UltrasoundProtocols
 			UltrasoundProtocolsDataSetSelector selector = new UltrasoundProtocolsDataSetSelector();
 			List<Doctor> doctors = selector.getActiveDoctors();
 			var hzchtoetopokachto = selector.getFullFilledProtocols();
-			Debugger.Break();
-        }
+			//Debugger.Break();
+		}
     }
 }
