@@ -21,34 +21,34 @@ namespace ProtocolTemplateLib
             Items = new List<TemplateItem>();
         }
 
-        public UIElement GetEditControl()
+        private const int MarginBetweenControlsInEditControl = 5;
+
+        public Control GetEditControl()
         {
             Grid grid = new Grid();
             grid.Margin = new System.Windows.Thickness(0);
             grid.VerticalAlignment = System.Windows.VerticalAlignment.Stretch;
             grid.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
-            double totalHeight = 0;
+            List<Control> controls = new List<Control>();
             foreach (TemplateItem item in Items)
             {
-                UIElement element = item.GetEditControl();
-                totalHeight += 5;
-                if (element is Control)
-                {
-                    Control control = element as Control;
-                    control.Margin = new Thickness(0, totalHeight, 0, 0);
-                    control.VerticalAlignment = VerticalAlignment.Top;
-                    totalHeight += control.Height;
-                }
-                else
-                {
-                    Grid childgrid = element as Grid;
-                    childgrid.Margin = new Thickness(0, totalHeight, 0, 0);
-                    childgrid.VerticalAlignment = VerticalAlignment.Top;
-                    totalHeight += childgrid.Height;
-                }
-                grid.Children.Add(element);
+                Control control = item.GetEditControl();
+                control.VerticalAlignment = VerticalAlignment.Top;
+                control.Margin = new Thickness(0);
+                grid.Children.Add(control);
+                controls.Add(control);
             }
-            return grid;
+            grid.SizeChanged += new SizeChangedEventHandler((Object, SizeChangedEventArgs) =>
+            {
+                for (int i = 1; i < controls.Count; i++)
+                {
+                    controls[i].Margin = new Thickness(0, controls[i - 1].Margin.Top + controls[i - 1].ActualHeight +
+                        MarginBetweenControlsInEditControl, 0, 0);
+                }
+            });
+            ProtocolEditControl result = new ProtocolEditControl();
+            result.SetContent(grid);
+            return result;
 
         }
 

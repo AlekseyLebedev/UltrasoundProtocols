@@ -40,9 +40,8 @@ namespace ProtocolTemplateRedactor
         private void PreviewTabItem_GotFocus(object sender, RoutedEventArgs e)
         {
             PreviewGrid.Children.Clear();
-            UIElement element = presenter.RequestEditControl();
-            PreviewGrid.Children.Add(element);
-
+            Control element = presenter.RequestEditControl();
+            PreviewGrid.Children.Add(element);           
         }
 
         private void buttonAdd_Click(object sender, RoutedEventArgs e)

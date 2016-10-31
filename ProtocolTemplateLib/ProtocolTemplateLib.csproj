@@ -55,7 +55,13 @@
   <ItemGroup>
     <Compile Include="Editable.cs" />
     <Compile Include="ITemplatePart.cs" />
+    <Compile Include="LineControl.xaml.cs">
+      <DependentUpon>LineControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Protocol.cs" />
+    <Compile Include="ProtocolEditControl.xaml.cs">
+      <DependentUpon>ProtocolEditControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Template.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TemplateLine.cs" />
@@ -72,6 +78,16 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="LineControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ProtocolEditControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
