@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" d:DesignWidth="400" Height="320">
     <Grid HorizontalAlignment="Left" Width="400" Height="300" VerticalAlignment="Top">
+        
         <Label Content="Фамилия" 
                HorizontalAlignment="Left" 
                Margin="120,10,0,0" 

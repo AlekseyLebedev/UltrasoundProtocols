@@ -48,7 +48,7 @@ namespace ProtocolTemplateLib
 
         public abstract object GetValueFromControl();
         public abstract void SetValueToControl(Object value);
-        public abstract UIElement GetEditControl();
+        public abstract Control GetEditControl();
         public abstract string PrintToProtocol(object value);
         public abstract string PrintToSaveQuery(object value);
 
@@ -93,7 +93,7 @@ namespace ProtocolTemplateLib
 
         public List<String> Variants { get; set; }
 
-        public override UIElement GetEditControl()
+        public override Control GetEditControl()
         {
             ComboBox control = new ComboBox();
             LocateControlStandart(control);
@@ -196,7 +196,7 @@ namespace ProtocolTemplateLib
     }
     public class TextBoxEditable : Editable
     {
-        public override UIElement GetEditControl()
+        public override Control GetEditControl()
         {
             lastControl = new TextBox();
             LocateControlStandart(lastControl);

@@ -10,7 +10,7 @@ namespace ProtocolTemplateLib
 {
     public interface ITemplatePart
     {
-        UIElement GetEditControl();
+        Control GetEditControl();
         string GetPartOfCreateTableScript();
 
         void SaveXml(XmlWriter writer);

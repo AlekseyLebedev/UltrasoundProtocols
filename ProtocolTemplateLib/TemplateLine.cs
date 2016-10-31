@@ -20,7 +20,7 @@ namespace ProtocolTemplateLib
                 Id_ = value;
             }
         }
-        public abstract UIElement GetEditControl();
+        public abstract Control GetEditControl();
         public abstract string GetPartOfCreateTableScript();
         public abstract string PrintToProtocol(object value);
         public abstract string PrintToSaveQuery(object value);
@@ -96,26 +96,13 @@ namespace ProtocolTemplateLib
             }
         }
 
-        public override UIElement GetEditControl()
+        public override Control GetEditControl()
         {
-            Grid grid = new Grid();
-            grid.Margin = new System.Windows.Thickness(0);
-            //grid.VerticalAlignment = System.Windows.VerticalAlignment.Stretch;
-            grid.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
-            TextBlock label = new TextBlock();
-            label.Text = Label;
-            label.Margin = new Thickness(5, 0, 0, 0);
-            label.VerticalAlignment = VerticalAlignment.Stretch;
-            label.HorizontalAlignment = HorizontalAlignment.Left;
-            label.Width = 200;
-            Control field = (Control)Field.GetEditControl();
-            Thickness old = field.Margin;
-            old.Left += label.Width + 2 * label.Margin.Left;
-            field.Margin = old;
-            grid.Children.Add(label);
-            grid.Children.Add(field);
-            return grid;
-
+            LineControl control = new LineControl();
+            control.Line = this;
+            control.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
+            control.Margin = new Thickness(0);
+            return control;
         }
 
         public override string GetPartOfCreateTableScript()
@@ -191,7 +178,7 @@ namespace ProtocolTemplateLib
     {
         public string Header { get; set; }
 
-        public override UIElement GetEditControl()
+        public override Control GetEditControl()
         {
             TextBox block = new TextBox();
             block.Text = Header;

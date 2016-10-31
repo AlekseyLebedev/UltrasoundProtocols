@@ -21,7 +21,7 @@ namespace ProtocolTemplateLib
             Items = new List<TemplateItem>();
         }
 
-        public UIElement GetEditControl()
+        public Control GetEditControl()
         {
             Grid grid = new Grid();
             grid.Margin = new System.Windows.Thickness(0);
@@ -48,7 +48,9 @@ namespace ProtocolTemplateLib
                 }
                 grid.Children.Add(element);
             }
-            return grid;
+            ProtocolEditControl result = new ProtocolEditControl();
+            result.SetContent(grid);
+            return result;
 
         }
 
