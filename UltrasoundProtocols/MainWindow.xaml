@@ -5,8 +5,55 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UltrasoundProtocols"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+           Title="MainWindow" Height="600" Width="900" WindowState="Maximized">
     <Grid>
-        
+        <TabControl x:Name="tabControl"  Margin="0">
+            <TabItem Header="Общая информация" RenderTransformOrigin="6.895,10.883">
+                <Grid Background="#FFE5E5E5" Margin="0,0,0,0">
+                </Grid>
+            </TabItem>
+            <TabItem Header="Пациенты">
+                <Grid Background="#FFE5E5E5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="8*"/>
+                        <ColumnDefinition Width="5*"/>
+                    </Grid.ColumnDefinitions>
+                    <ListView x:Name="listView" Margin="0" Grid.ColumnSpan="1">
+                        <ListView.View>
+                            <GridView>
+                                <GridView.Columns>
+                                    <GridViewColumn x:Name="Surname" Header="Surname" Width="200" />
+                                    <GridViewColumn x:Name="Name" Header="Name" Width="200" />
+                                    <GridViewColumn x:Name="id" Header="Номер карты" Width="150" />
+                                </GridView.Columns>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                    <Grid Background="#FFE5E5E5" Grid.Column = "1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="3*"/>
+                            <RowDefinition Height="8*"/>
+                        </Grid.RowDefinitions>
+                        <GroupBox x:Name="PatientSearchBox" Header="Поиск пациента" Margin="0,0,0,61.92" 
+                                  Grid.Row="0" IsEnabled="False"> <!--SizeChanged="PatientGroupBox_SizeChanged"> -->
+                            <Grid  Margin="0">
+                                <TextBox x:Name="SearchSurnameTextBox" Height="23" Margin="10,0,10,0" TextWrapping="Wrap" Text="Иванов" VerticalAlignment="Top"/><!-- TextChanged="SearchSurnameTextBox_TextChanged"/> -->
+                                <TextBox x:Name="SearchNameTextBox" Height="23" Margin="10,24,10,0" TextWrapping="Wrap" Text="Иван" VerticalAlignment="Top"/> <!--TextChanged="SearchNameTextBox_TextChanged"/>-->
+                                <TextBox x:Name="SearchIdTextBox" Height="23" Margin="10,47,10,0" TextWrapping="Wrap" Text="12345678" VerticalAlignment="Top"/> <!--TextChanged="IdTextBox_TextChanged"/>-->
+                            </Grid>
+                        </GroupBox>
+                        <GroupBox x:Name="PropertiesGroupBox" Header="Информация о выбранном пациенте"
+                                  Grid.Row="1" IsEnabled="False" >
+                            <Grid  Margin="0">
+                                <local:ShowPatientControl>
+                                </local:ShowPatientControl>
+                            </Grid>
+                        </GroupBox>
+                    </Grid>
+                </Grid>
+            </TabItem>
+ 
+        </TabControl>
+
     </Grid>
 </Window>
