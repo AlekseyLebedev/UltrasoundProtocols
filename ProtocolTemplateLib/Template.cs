@@ -21,37 +21,48 @@ namespace ProtocolTemplateLib
             Items = new List<TemplateItem>();
         }
 
+        private const int MarginBetweenControlsInEditControl = 5;
+
         public Control GetEditControl()
         {
             Grid grid = new Grid();
             grid.Margin = new System.Windows.Thickness(0);
             grid.VerticalAlignment = System.Windows.VerticalAlignment.Stretch;
             grid.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
-            double totalHeight = 0;
+            Control lastControl = null;
             foreach (TemplateItem item in Items)
             {
-                UIElement element = item.GetEditControl();
-                totalHeight += 5;
-                if (element is Control)
+                Control control = item.GetEditControl();
+                control.VerticalAlignment = VerticalAlignment.Top;
+                control.Margin = new Thickness(0);
+                grid.Children.Add(control);
+                if (lastControl != null)
                 {
-                    Control control = element as Control;
-                    control.Margin = new Thickness(0, totalHeight, 0, 0);
-                    control.VerticalAlignment = VerticalAlignment.Top;
-                    totalHeight += control.Height;
+                    Control currentLastControl = lastControl;
+                    currentLastControl.SizeChanged += new SizeChangedEventHandler(
+                        (object sender, SizeChangedEventArgs e) =>
+                        {
+                            control.Margin = new Thickness(0, currentLastControl.Margin.Top +
+                                currentLastControl.ActualHeight + MarginBetweenControlsInEditControl, 0, 0);
+                        });
+                    currentLastControl.Initialized += new EventHandler(
+                        (object sender, EventArgs e) =>
+                        {
+                            control.Margin = new Thickness(0, currentLastControl.Margin.Top +
+                                currentLastControl.ActualHeight + MarginBetweenControlsInEditControl, 0, 0);
+                        });
                 }
-                else
-                {
-                    Grid childgrid = element as Grid;
-                    childgrid.Margin = new Thickness(0, totalHeight, 0, 0);
-                    childgrid.VerticalAlignment = VerticalAlignment.Top;
-                    totalHeight += childgrid.Height;
-                }
-                grid.Children.Add(element);
+                lastControl = control;
             }
             ProtocolEditControl result = new ProtocolEditControl();
             result.SetContent(grid);
             return result;
 
+        }
+
+        private void LastControl_SourceUpdated(object sender, System.Windows.Data.DataTransferEventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         public string GetPartOfCreateTableScript()

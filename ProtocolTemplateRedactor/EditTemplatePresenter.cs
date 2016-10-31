@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace ProtocolTemplateRedactor
 {
@@ -137,7 +138,7 @@ namespace ProtocolTemplateRedactor
             return item;
         }
 
-        internal UIElement RequestEditControl()
+        internal Control RequestEditControl()
         {
             logger.Debug("Edit control requested");
             return Template.GetEditControl();
