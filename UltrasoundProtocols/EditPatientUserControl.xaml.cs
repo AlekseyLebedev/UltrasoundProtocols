@@ -19,7 +19,8 @@ namespace UltrasoundProtocols
     /// </summary>
     public partial class EditPatientUserControl : UserControl
     {
-        private Patient Patient_
+
+        public Patient CurrentPatient
         {
             get 
             {
@@ -79,5 +80,8 @@ namespace UltrasoundProtocols
         {
             onSaveButtonClick(Patient_);
         }
+
+        private Patient Patient_;
+
     }
 }
