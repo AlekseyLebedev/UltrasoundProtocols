@@ -29,31 +29,23 @@ namespace ProtocolTemplateLib
             grid.Margin = new System.Windows.Thickness(0);
             grid.VerticalAlignment = System.Windows.VerticalAlignment.Stretch;
             grid.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
-            Control lastControl = null;
+            List<Control> controls = new List<Control>();
             foreach (TemplateItem item in Items)
             {
                 Control control = item.GetEditControl();
                 control.VerticalAlignment = VerticalAlignment.Top;
                 control.Margin = new Thickness(0);
                 grid.Children.Add(control);
-                if (lastControl != null)
-                {
-                    Control currentLastControl = lastControl;
-                    currentLastControl.SizeChanged += new SizeChangedEventHandler(
-                        (object sender, SizeChangedEventArgs e) =>
-                        {
-                            control.Margin = new Thickness(0, currentLastControl.Margin.Top +
-                                currentLastControl.ActualHeight + MarginBetweenControlsInEditControl, 0, 0);
-                        });
-                    currentLastControl.Initialized += new EventHandler(
-                        (object sender, EventArgs e) =>
-                        {
-                            control.Margin = new Thickness(0, currentLastControl.Margin.Top +
-                                currentLastControl.ActualHeight + MarginBetweenControlsInEditControl, 0, 0);
-                        });
-                }
-                lastControl = control;
+                controls.Add(control);
             }
+            grid.SizeChanged += new SizeChangedEventHandler((Object, SizeChangedEventArgs) =>
+            {
+                for (int i = 1; i < controls.Count; i++)
+                {
+                    controls[i].Margin = new Thickness(0, controls[i - 1].Margin.Top + controls[i - 1].ActualHeight +
+                        MarginBetweenControlsInEditControl, 0, 0);
+                }
+            });
             ProtocolEditControl result = new ProtocolEditControl();
             result.SetContent(grid);
             return result;
