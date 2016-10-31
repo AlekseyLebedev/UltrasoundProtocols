@@ -52,11 +52,6 @@ namespace ProtocolTemplateLib
 
         }
 
-        private void LastControl_SourceUpdated(object sender, System.Windows.Data.DataTransferEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
         public string GetPartOfCreateTableScript()
         {
             StringBuilder builder = new StringBuilder("CREATE TABLE ");
