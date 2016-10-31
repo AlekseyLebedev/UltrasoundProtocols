@@ -19,7 +19,8 @@ namespace UltrasoundProtocols
     /// </summary>
     public partial class EditPatientUserControl : UserControl
     {
-        private Patient Patient_
+        private Patient Patient_;
+        public Patient Patient
         {
             get 
             {

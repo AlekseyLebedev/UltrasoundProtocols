@@ -5,7 +5,7 @@ using System.Text;
 
 namespace UltrasoundProtocols
 {
-	struct Patient
+	public class Patient
 	{
         public int Id { get; set; }
         public string FirstName { get; set; }
@@ -16,7 +16,7 @@ namespace UltrasoundProtocols
         public string NumberAmbulatoryCard { get; set; }
 
         public Patient(int id, string FirstName, string MiddleName, string LastName,
-            int gender, DateTime date, string numberAmbulatoryCard) : this()
+            int gender, DateTime date, string numberAmbulatoryCard) 
 		{
             this.Id = id;
             this.FirstName = FirstName;
