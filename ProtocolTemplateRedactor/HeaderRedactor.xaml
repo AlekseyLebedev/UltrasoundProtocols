@@ -8,7 +8,7 @@
              x:ClassModifier="internal"
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
-        <TextBox x:Name="headerLabel" Height="23" Margin="10,10,10,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" TextChanged="headerLabel_TextChanged"/>
+        <TextBox x:Name="headerLabel" Margin="10" TextWrapping="Wrap" Text="TextBox" TextChanged="headerLabel_TextChanged"/>
 
     </Grid>
 </UserControl>
