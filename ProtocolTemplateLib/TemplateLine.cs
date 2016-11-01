@@ -180,10 +180,11 @@ namespace ProtocolTemplateLib
 
         public override Control GetEditControl()
         {
-            TextBox block = new TextBox();
-            block.Text = Header;
-            block.FontSize = 20;
+            HeaderControl block = new HeaderControl();
+            block.Header = this;
             block.Margin = new Thickness(0);
+            block.HorizontalAlignment = HorizontalAlignment.Stretch;
+            block.VerticalAlignment = VerticalAlignment.Top;
             return block;
         }
 

@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="ProtocolTemplateLib.LineControl"
+﻿<UserControl x:Class="ProtocolTemplateLib.HeaderControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,13 +6,7 @@
              xmlns:local="clr-namespace:ProtocolTemplateLib"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid >
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2*"/>
-            <ColumnDefinition Width="5*"/>
-        </Grid.ColumnDefinitions>
-        <TextBlock x:Name="LineLabel" Text="Text" Grid.Column="0" TextWrapping="Wrap"/>
-        <Grid x:Name="ControlGrid" Grid.Column="1" Margin="0"/>
-
+    <Grid>
+        <TextBlock Margin="0" x:Name="HeaderLabel" FontSize="20" TextWrapping="Wrap"/>
     </Grid>
 </UserControl>
