@@ -13,12 +13,15 @@ namespace ProtocolTemplateLib
 
 		private static string login = "val_guest";
 		private static string password = "hf94hd78";
-		private static StringBuilder connectString;
+		private static StringBuilder connectionString;
+		private const string connectionPropertiesString =
+			"Data Source=VALERIYPC\\SQLEXPRESS; Integrated Security=SSPI; Initial Catalog=UltraSoundProtocolsDB; User='{0}'; Password='{1}'";
 
 		private static string INSERT_INTO = "INSERT INTO";
 		private static string SELECT_ALL = "SELECT * FROM";
 		private static string SPACE = " ";
 		private static string OPEN_BRACKET = "(";
+		private static string WHERE_ID = "WHERE id=";
 		private static string CLOSE_BRACKET = ")";
 		private static string VALUES = "VALUES";
 		private static string COMMA = ",";
@@ -40,10 +43,7 @@ namespace ProtocolTemplateLib
             }
             Values = new Object[valuableItems.Count];
             ValuableTemplateItems = valuableItems.ToArray();
-			connectString = new StringBuilder("Data Source=VALERIYPC\\SQLEXPRESS; Integrated Security=SSPI; Initial Catalog=UltraSoundProtocolsDB; User=")
-				.Append(Protocol.login)
-				.Append("; Password=")
-				.Append(Protocol.password);
+			connectionString = new StringBuilder(String.Format(connectionPropertiesString, Protocol.login, Protocol.password));
 		}
 
 		public bool ChangeRequestNewUserDataBase(string login, string password)
@@ -52,7 +52,7 @@ namespace ProtocolTemplateLib
 			{
 				SetLoginUserDataBase(login);
 				SetPasswordUserDataBase(password);
-				//TODO update connectString
+				UpdateConnectionString();
 				return true;
 			}
 			else
@@ -61,11 +61,19 @@ namespace ProtocolTemplateLib
 			}
 		}
 
+		private void UpdateConnectionString()
+		{
+			string connectionString = String.Format(connectionPropertiesString, Protocol.login, Protocol.password);
+			Protocol.connectionString = new StringBuilder(connectionString);
+			logger.Info("Connection string is changed.");
+		}
+
 		private void SetLoginUserDataBase(string newLogin)
 		{
 			if (newLogin != null)
 			{
 				Protocol.login = newLogin;
+				logger.Info("User login is successfully changed.");
 			}
 		}
 
@@ -74,6 +82,7 @@ namespace ProtocolTemplateLib
 			if (newPassword != null)
 			{
 				Protocol.password = newPassword;
+				logger.Info("User password is successfully changed.");
 			}
 		}
 
@@ -81,7 +90,7 @@ namespace ProtocolTemplateLib
 		{
 			if (newConnectString != null)
 			{
-				Protocol.connectString = new StringBuilder(newConnectString);
+				Protocol.connectionString = new StringBuilder(newConnectString);
 			}
 		}
 
@@ -125,7 +134,6 @@ namespace ProtocolTemplateLib
 		
         public void SaveToDatabase(int ProtocolId, SqlCommand insertCommand /*, BD argument*/)
         {
-            //throw new NotImplementedException();
 			string tableName = "Tbl_doctors";//TODO getTableName(id)
 			StringBuilder builder = new StringBuilder(INSERT_INTO);
 			builder.Append(SPACE).Append(tableName).Append(VALUES).Append(OPEN_BRACKET);
@@ -151,11 +159,11 @@ namespace ProtocolTemplateLib
 			int itemsIndex = 0;
 
 			string tableName = "Tbl_doctors";//TODO getTableName(id)
-            StringBuilder builder = new StringBuilder("SELECT * FROM ")
+            StringBuilder builder = new StringBuilder(SELECT_ALL)
 				.Append(tableName)
-				.Append("\nWHERE id=")
+				.AppendLine(WHERE_ID)
 				.Append(ProtocolId)
-				.Append(";");
+				.Append(SEMICOLON);
 			command.CommandText = builder.ToString();
 			// TODO
 			foreach (var item in ValuableTemplateItems)
@@ -172,7 +180,7 @@ namespace ProtocolTemplateLib
 
 			//TODO вынести отдельно (после обсуждения)
 			try {
-				SqlConnection connection = new SqlConnection(connectString.ToString());
+				SqlConnection connection = new SqlConnection(Protocol.connectionString.ToString());
 				SqlCommand command = connection.CreateCommand();
 				connection.Open();
 
