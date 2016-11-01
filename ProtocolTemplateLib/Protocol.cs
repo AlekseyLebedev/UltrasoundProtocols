@@ -126,7 +126,6 @@ namespace ProtocolTemplateLib
             }
         }
 
-
         public string GetPartOfHtmlProtocol()
         {
             throw new NotImplementedException();
@@ -155,9 +154,6 @@ namespace ProtocolTemplateLib
 
         public void LoadFromDatabase(int ProtocolId, SqlCommand command)
         {
-            //throw new NotImplementedException();
-			int itemsIndex = 0;
-
 			string tableName = "Tbl_doctors";//TODO getTableName(id)
             StringBuilder builder = new StringBuilder(SELECT_ALL)
 				.Append(tableName)
@@ -165,14 +161,17 @@ namespace ProtocolTemplateLib
 				.Append(ProtocolId)
 				.Append(SEMICOLON);
 			command.CommandText = builder.ToString();
-			// TODO
-			foreach (var item in ValuableTemplateItems)
-            {
-                // TODO: 
-                // Ask for interface
-            }
-            // TODO
-        }
+
+			using (SqlDataReader reader = command.ExecuteReader())
+			{
+				Values = new Object[reader.FieldCount];
+				for (int i = 0; i < reader.FieldCount - 1; ++i)
+				{
+					Values[i] = reader[i].ToString();
+					ValuableTemplateItems[i] = new TemplateLine();//TODO
+				}
+			}
+		}
 
         public static Protocol LoadProtocol(Template template, int id/*, DB argument*/)
         {
