@@ -10,12 +10,12 @@
         <GroupBox Header="Пациенты">
             <Grid >
                 <TextBox x:Name="Search" HorizontalAlignment="Stretch"  VerticalAlignment="Top" Text="" Margin="46.663,0,0,0" />
-                <Grid>
+                <Grid Margin="0,24,0,0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="8*" x:Name ="ListColumn"/>
                         <ColumnDefinition Width ="0*" x:Name ="PatientColumn"/>
                     </Grid.ColumnDefinitions>
-                    <ListView x:Name="listView" Margin="0,24,0,0" Loaded="listView_Loaded" Grid.Column="0" SelectionChanged="listView_SelectionChanged">
+                    <ListView x:Name="listView"  Loaded="listView_Loaded" Grid.Column="0" SelectionChanged="listView_SelectionChanged">
                         <ListView.View>
                             <GridView>
                                 <GridView.Columns>
@@ -29,8 +29,8 @@
                             </GridView>
                         </ListView.View>
                     </ListView>
-                    <local:EditPatientUserControl Grid.Column="1">
-                    </local:EditPatientUserControl>
+                    <local:PatientShowController Grid.Column="1">
+                    </local:PatientShowController>
 
                 </Grid>
                 <Label Content="Поиск:" HorizontalAlignment="Left" Margin="0,-1.96,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.514,0.194"/>
