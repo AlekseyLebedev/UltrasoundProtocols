@@ -57,10 +57,11 @@ namespace UltrasoundProtocols
             try
             {
                 Connector.CreateConnection();
-            }
+			}
             catch (Exception exc)
             {
                 ShowErrorBox(exc);
+                return;
             }
 
             //all good start MainWindow

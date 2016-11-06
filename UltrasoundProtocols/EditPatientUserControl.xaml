@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:wf="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
              mc:Ignorable="d" d:DesignWidth="400" Height="320">
     <Grid HorizontalAlignment="Left" Width="400" Height="300" VerticalAlignment="Top">
         
@@ -59,11 +60,9 @@
                  Height="30" Margin="180,90,20,0" 
                  TextWrapping="Wrap" Text="TextBox" 
                  VerticalAlignment="Top"/>
-        <TextBox Name="BirthdayTextBox" HorizontalAlignment="Stretch" 
-                 Height="30" Margin="180,210,20,0" 
-                 TextWrapping="Wrap" 
-                 Text="TextBox" 
-                 VerticalAlignment="Top"/>
+        <WindowsFormsHost HorizontalAlignment="Stretch" Height="30" Margin="180,130,20,0" VerticalAlignment="Top" >
+            <wf:DateTimePicker x:Name="BirthdayPicker" Dock="Fill" Size="200, 30" Format="Short" />
+        </WindowsFormsHost>
         <TextBox Name="AmbulatorCardTextBox" 
                  HorizontalAlignment="Stretch" 
         	     Height="30" Margin="180,130,20,0" 

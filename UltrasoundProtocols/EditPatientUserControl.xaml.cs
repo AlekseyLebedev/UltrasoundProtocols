@@ -48,7 +48,7 @@ namespace UltrasoundProtocols
             FirstNameTextBox.Text = "";
             MiddleNameTextBox.Text = "";
             LastNameTextBox.Text = "";
-            BirthdayTextBox.Text = "";
+            BirthdayPicker.Value = DateTime.Today;
             AmbulatorCardTextBox.Text = "";
 
             SexComboBox.Items.Add("Мужской");
@@ -71,14 +71,13 @@ namespace UltrasoundProtocols
                 SexComboBox.SelectedIndex = 1;
             }
 
-            BirthdayTextBox.Text = Patient_.Date.ToString();
-
-            
+            BirthdayPicker.Value = Patient_.Date;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             onSaveButtonClick(Patient_);
         }
+
     }
 }
