@@ -16,18 +16,23 @@ namespace ProtocolTemplateLib
 
 		public SqlCommand Command { get; set; }
 
-		private DataBaseSettings dataBaseSettings;
+		private static DataBaseSettings Settings;
 
 		public DataBaseConnector(DataBaseSettings settings)
 		{
-			dataBaseSettings = settings;
+			Settings = settings;
+		}
+
+		public static string GetConnectionString()
+		{
+			return Settings.GetConnectionString();
 		}
 
 		public void CreateConnection()
 		{
 			try
 			{
-				Connection = new SqlConnection(dataBaseSettings.GetConnectionString());
+				Connection = new SqlConnection(Settings.GetConnectionString());
 				Command = Connection.CreateCommand();
 				Connection.Open();
 			}

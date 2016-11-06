@@ -72,6 +72,7 @@
     <Compile Include="ProtocolEditControl.xaml.cs">
       <DependentUpon>ProtocolEditControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ProtocolField.cs" />
     <Compile Include="Template.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TemplateLine.cs" />

@@ -10,20 +10,29 @@
         <GroupBox Header="Пациенты">
             <Grid >
                 <TextBox x:Name="Search" HorizontalAlignment="Stretch"  VerticalAlignment="Top" Text="" Margin="46.663,0,0,0" />
-                <ListView x:Name="listView" Margin="0,24,0,0" Loaded="listView_Loaded">
-                    <ListView.View>
-                        <GridView>
-                            <GridView.Columns>
-                                <GridViewColumn x:Name="Surname" Header="Фамилия" Width="200" />
-                                <GridViewColumn x:Name="Name" Header="Имя" Width="200" />
-                                <GridViewColumn x:Name="MiddleName" Header="Отчество" Width="200" />
-                                <GridViewColumn x:Name="id" Header="Номер карты" Width="150" />
-                                <GridViewColumn x:Name="Gender" Header="Пол" Width="150" />
-                                <GridViewColumn x:Name="Birthday" Header="Дата рождения" Width="150" />
-                            </GridView.Columns>
-                        </GridView>
-                    </ListView.View>
-                </ListView>
+                <Grid Margin="0,24,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="8*" x:Name ="ListColumn"/>
+                        <ColumnDefinition Width ="0*" x:Name ="PatientColumn"/>
+                    </Grid.ColumnDefinitions>
+                    <ListView x:Name="listView"  Loaded="listView_Loaded" Grid.Column="0" SelectionChanged="listView_SelectionChanged">
+                        <ListView.View>
+                            <GridView>
+                                <GridView.Columns>
+                                    <GridViewColumn x:Name="Surname" Header="Фамилия" Width="200" />
+                                    <GridViewColumn x:Name="Name" Header="Имя" Width="200" />
+                                    <GridViewColumn x:Name="MiddleName" Header="Отчество" Width="200" />
+                                    <GridViewColumn x:Name="id" Header="Номер карты" Width="150" />
+                                    <GridViewColumn x:Name="Gender" Header="Пол" Width="150" />
+                                    <GridViewColumn x:Name="Birthday" Header="Дата рождения" Width="150" />
+                                </GridView.Columns>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                    <local:PatientShowController Grid.Column="1">
+                    </local:PatientShowController>
+
+                </Grid>
                 <Label Content="Поиск:" HorizontalAlignment="Left" Margin="0,-1.96,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.514,0.194"/>
             </Grid>
         </GroupBox>

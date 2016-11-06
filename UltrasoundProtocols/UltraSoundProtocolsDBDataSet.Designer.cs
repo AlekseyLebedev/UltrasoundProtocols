@@ -3329,9 +3329,8 @@ SELECT dct_id, dct_fullname, dct_status FROM Tbl_Doctors WHERE (dct_id = @dct_id
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = "Data Source=VALERIYPC\\SQLEXPRESS;Initial Catalog=UltraSoundProtocolsDB;User ID=va" +
-                "l_guest";
-        }
+            this._connection.ConnectionString = ProtocolTemplateLib.DataBaseConnector.GetConnectionString();
+		}
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -3652,9 +3651,8 @@ SELECT dct_id, dct_fullname, dct_status FROM Tbl_Doctors WHERE (dct_id = @dct_id
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = "Data Source=VALERIYPC\\SQLEXPRESS;Initial Catalog=UltraSoundProtocolsDB;User ID=va" +
-                "l_guest";
-        }
+            this._connection.ConnectionString = ProtocolTemplateLib.DataBaseConnector.GetConnectionString();
+		}
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -3971,8 +3969,7 @@ SELECT dct_id, dct_fullname, dct_status FROM Tbl_Doctors WHERE (dct_id = @dct_id
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = "Data Source=VALERIYPC\\SQLEXPRESS;Initial Catalog=UltraSoundProtocolsDB;User ID=va" +
-                "l_guest";
+			this._connection.ConnectionString = ProtocolTemplateLib.DataBaseConnector.GetConnectionString();
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4290,9 +4287,8 @@ SELECT dct_id, dct_fullname, dct_status FROM Tbl_Doctors WHERE (dct_id = @dct_id
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = "Data Source=VALERIYPC\\SQLEXPRESS;Initial Catalog=UltraSoundProtocolsDB;User ID=va" +
-                "l_guest";
-        }
+            this._connection.ConnectionString = ProtocolTemplateLib.DataBaseConnector.GetConnectionString();
+		}
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -4624,9 +4620,8 @@ SELECT pat_id, pat_fullname, pat_gender, pat_birthdate, pat_numberambulatorycard
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = "Data Source=VALERIYPC\\SQLEXPRESS;Initial Catalog=UltraSoundProtocolsDB;User ID=va" +
-                "l_guest";
-        }
+            this._connection.ConnectionString = ProtocolTemplateLib.DataBaseConnector.GetConnectionString();
+		}
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -5000,9 +4995,8 @@ SELECT prt_id, prt_datetime, prt_doctor, prt_patient, prt_equipment, prt_source 
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = "Data Source=VALERIYPC\\SQLEXPRESS;Initial Catalog=UltraSoundProtocolsDB;User ID=va" +
-                "l_guest";
-        }
+            this._connection.ConnectionString = ProtocolTemplateLib.DataBaseConnector.GetConnectionString();
+		}
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -5340,9 +5334,8 @@ SELECT prt_id, prt_datetime, prt_doctor, prt_patient, prt_equipment, prt_source 
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = "Data Source=VALERIYPC\\SQLEXPRESS;Initial Catalog=UltraSoundProtocolsDB;User ID=va" +
-                "l_guest";
-        }
+            this._connection.ConnectionString = ProtocolTemplateLib.DataBaseConnector.GetConnectionString();
+		}
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]

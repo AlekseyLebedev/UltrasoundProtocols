@@ -16,16 +16,16 @@ namespace ProtocolTemplateLib
             }
             set
             {
-                
+                SetId(value);
                 Id_ = value;
             }
         }
         public abstract Control GetEditControl();
         public abstract string GetPartOfCreateTableScript();
-        public abstract string PrintToProtocol(object value);
-        public abstract string PrintToSaveQuery(object value);
+        public abstract string PrintToProtocol(ProtocolField value);
         public abstract void SaveXml(XmlWriter writer);
         public abstract bool RequireValue();
+        public abstract ProtocolField GetFieldIntance();
         public static TemplateItem GetFromXml(XmlNode node)
         {
             TemplateItem result;
@@ -110,11 +110,6 @@ namespace ProtocolTemplateLib
             return Field.GetPartOfCreateTableScript();
         }
 
-        public override string PrintToProtocol(object value)
-        {
-            throw new NotImplementedException();
-        }
-
         public override void SaveXml(XmlWriter writer)
         {
             writer.WriteStartElement(NodeNameLine);
@@ -133,11 +128,6 @@ namespace ProtocolTemplateLib
             }
             Field = Editable.GetFromXml(node.ChildNodes[0]);
             Label = node.Attributes[AttributeNameLabel].Value;
-        }
-
-        public override string PrintToSaveQuery(object value)
-        {
-            return Field.PrintToSaveQuery(value);
         }
 
         public override bool RequireValue()
@@ -168,6 +158,16 @@ namespace ProtocolTemplateLib
             base.SetId(value);
         }
 
+        public override string PrintToProtocol(ProtocolField value)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override ProtocolField GetFieldIntance()
+        {
+            throw new NotImplementedException();
+        }
+
         private string Label_;
         private Editable Field_;
 
@@ -193,11 +193,6 @@ namespace ProtocolTemplateLib
             return null;
         }
 
-        public override string PrintToProtocol(object value)
-        {
-            throw new NotImplementedException();
-        }
-
         public override void SaveXml(XmlWriter writer)
         {
             writer.WriteStartElement(NodeNameHeader);
@@ -210,12 +205,6 @@ namespace ProtocolTemplateLib
             XmlUtils.AssertNodeName(node, NodeNameLine);
             XmlUtils.AssertAttributeNotNull(node, AttributeNameLabel);
             Header = node.Attributes[AttributeNameLabel].Value;
-        }
-
-        public override string PrintToSaveQuery(object value)
-        {
-            // Заголовки не сохраняются в БД
-            throw new NotSupportedException();
         }
 
         public override bool RequireValue()
@@ -231,6 +220,16 @@ namespace ProtocolTemplateLib
         protected override string GetInfo()
         {
             return Header;
+        }
+
+        public override string PrintToProtocol(ProtocolField value)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override ProtocolField GetFieldIntance()
+        {
+            throw new NotImplementedException();
         }
 
         private const string AttributeNameLabel = "label";

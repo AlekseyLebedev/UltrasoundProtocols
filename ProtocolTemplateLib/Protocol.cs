@@ -32,66 +32,19 @@ namespace ProtocolTemplateLib
         public Protocol(Template template)
         {
             TemplateInstance = template;
-            List<TemplateItem> valuableItems = new List<TemplateItem>();
+            Fields = new List<ProtocolField>();
             foreach (var item in template.Items)
             {
                 if (item.RequireValue())
                 {
-                    valuableItems.Add(item);
+                    Fields.Add(item.GetFieldIntance());
                 }
             }
-            Values = new Object[valuableItems.Count];
-            ValuableTemplateItems = valuableItems.ToArray();
 			dataBaseConnector = new DataBaseConnector(new DataBaseSettings());
 			dataBaseConnector.CreateConnection();
 		}
 
-		//public bool ChangeRequestNewUserDataBase(string login, string password)
-		//{
-		//	if (false/*TODO if connection to database closed*/)
-		//	{
-		//		SetLoginUserDataBase(login);
-		//		SetPasswordUserDataBase(password);
-		//		UpdateConnectionString();
-		//		return true;
-		//	}
-		//	else
-		//	{
-		//		return false;
-		//	}
-		//}
-
         private const string UnsupportedItemTypeExceptionMessage = "Unsopported type of template item";
-
-        public void GetFromGui()
-        {
-            for (int i = 0; i < ValuableTemplateItems.Length; i++)
-            {
-                if (ValuableTemplateItems[i] is TemplateLine)
-                {
-                    Values[i] = ((TemplateLine)ValuableTemplateItems[i]).Field.GetValueFromControl();
-                }
-                else
-                {
-                    throw new ArithmeticException(UnsupportedItemTypeExceptionMessage);
-                }
-            }
-        }
-
-        public void SetValuesToGui()
-        {
-            for (int i = 0; i < ValuableTemplateItems.Length; i++)
-            {
-                if (ValuableTemplateItems[i] is TemplateLine)
-                {
-                    ((TemplateLine)ValuableTemplateItems[i]).Field.SetValueToControl(Values[i]);
-                }
-                else
-                {
-                    throw new ArithmeticException(UnsupportedItemTypeExceptionMessage);
-                }
-            }
-        }
 
         public string GetPartOfHtmlProtocol()
         {
@@ -100,14 +53,14 @@ namespace ProtocolTemplateLib
 		
         public void SaveToDatabase(int ProtocolId)
         {
-			string tableName = "Tbl_doctors";//TODO getTableName(id)
-			StringBuilder builder = new StringBuilder(INSERT_INTO);
+			string tableName = TemplateInstance.IdName; 
+            StringBuilder builder = new StringBuilder(INSERT_INTO);
 			builder.Append(SPACE).Append(tableName).Append(VALUES).Append(OPEN_BRACKET);
 			StringBuilder insertLine = new StringBuilder();
-			for (int index = 0; index < ValuableTemplateItems.Length; ++index)
+			for (int index = 0; index < Fields.Count; ++index)
             {
-				insertLine.Append(ValuableTemplateItems[index].PrintToSaveQuery(Values[index]));
-				if (index < ValuableTemplateItems.Length)
+				insertLine.Append(Fields[index].AddToSaveRequest());
+				if (index < Fields.Count)
 				{
 					insertLine.Append(COMMA);
 				}
@@ -121,7 +74,7 @@ namespace ProtocolTemplateLib
 
         public void LoadFromDatabase(int ProtocolId, SqlCommand command)
         {
-			string tableName = "Tbl_doctors";//TODO getTableName(id)
+            string tableName = TemplateInstance.IdName;
             StringBuilder builder = new StringBuilder(SELECT_ALL)
 				.Append(tableName)
 				.AppendLine(WHERE_ID)
@@ -131,11 +84,10 @@ namespace ProtocolTemplateLib
 
 			using (SqlDataReader reader = command.ExecuteReader())
 			{
-				Values = new Object[reader.FieldCount];
 				for (int i = 0; i < reader.FieldCount - 1; ++i)
 				{
-					Values[i] = reader[i].ToString();
-					ValuableTemplateItems[i] = new TemplateLine();//TODO
+                    //TODO for Velera
+					Fields[i].GetFromRequest(reader[i].ToString());
 				}
 			}
 		}
@@ -154,7 +106,6 @@ namespace ProtocolTemplateLib
 			return protocol;
         }
 
-		private Object[] Values;
-        private TemplateItem[] ValuableTemplateItems;
+        private List<ProtocolField> Fields;
     }
 }
