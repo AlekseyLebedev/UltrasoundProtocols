@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ProtocolTemplateLib;
 
 namespace UltrasoundProtocols
 {
@@ -20,6 +21,8 @@ namespace UltrasoundProtocols
     /// </summary>
     public partial class MainWindow : Window
     {
+        public DataBaseConnector Connector { get; set; }
+
         public MainWindow()
         {
             InitializeComponent();
