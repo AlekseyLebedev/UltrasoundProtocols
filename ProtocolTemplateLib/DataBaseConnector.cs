@@ -7,7 +7,7 @@ using NLog;
 
 namespace ProtocolTemplateLib
 {
-	class DataBaseConnector
+	public class DataBaseConnector
 	{
 
 		private static Logger logger = LogManager.GetCurrentClassLogger();

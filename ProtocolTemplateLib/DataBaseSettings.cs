@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ProtocolTemplateLib
 {
-	class DataBaseSettings
+	public class DataBaseSettings
 	{
 
 		public string GetConnectionString()
