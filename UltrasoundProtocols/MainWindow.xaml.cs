@@ -30,11 +30,7 @@ namespace UltrasoundProtocols
             Gender.DisplayMemberBinding = new Binding("Gender");
             Birthday.DisplayMemberBinding = new Binding("Date");
             presenter = new EditPatientPresenter();
-	 		//UltrasoundProtocolsDataSetSelector selector = new UltrasoundProtocolsDataSetSelector();
-			//List<Doctor> doctors = selector.getActiveDoctors();
-			//var hzchtoetopokachto = selector.getFullFilledProtocols();
-			//Debugger.Break();
-		}
+	 	}
 
         EditPatientPresenter presenter;
         private void listView_Loaded(object sender, RoutedEventArgs e)
@@ -44,6 +40,11 @@ namespace UltrasoundProtocols
             {
                 listView.Items.Add(patient);
             }
+        }
+
+        private void listView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            PatientColumn.Width = new GridLength(9, GridUnitType.Star);
         }
     }
 }
