@@ -37,40 +37,38 @@
                VerticalAlignment="Top"  
                Width="170" Height="30"/>
         <ComboBox Name="SexComboBox"
-                  HorizontalAlignment="Left" 
-                  Height="30" Margin="180,170,0,0" 
-                  VerticalAlignment="Top" 
-                  Width="180"/>
+                  HorizontalAlignment="Stretch" 
+                  Height="30" Margin="180,170,20,0" 
+                  VerticalAlignment="Top" />
         <TextBox Name="LastNameTextBox" 
-                 HorizontalAlignment="Left" 
+                 HorizontalAlignment="Stretch" 
                  Height="30" 
-                 Margin="180,10,0,0" 
+                 Margin="180,10,20,0" 
                  TextWrapping="Wrap" 
                  Text="TextBox" 
-                 VerticalAlignment="Top" 
-                 Width="180"/>
+                 VerticalAlignment="Top"/>
         <TextBox Name="FirstNameTextBox"
-                 HorizontalAlignment="Left" 
+                 HorizontalAlignment="Stretch" 
                  Height="30" 
-                 Margin="180,50,0,0" 
+                 Margin="180,50,20,0" 
                  TextWrapping="Wrap" 
                  Text="TextBox" 
-                 VerticalAlignment="Top" Width="180"/>
+                 VerticalAlignment="Top"/>
         <TextBox Name="MiddleNameTextBox"
-                 HorizontalAlignment="Left" 
-                 Height="30" Margin="180,90,0,0" 
+                 HorizontalAlignment="Stretch" 
+                 Height="30" Margin="180,90,20,0" 
                  TextWrapping="Wrap" Text="TextBox" 
-                 VerticalAlignment="Top" Width="180"/>
-        <TextBox Name="BirthdayTextBox" HorizontalAlignment="Left" 
-                 Height="30" Margin="180,210,0,0" 
+                 VerticalAlignment="Top"/>
+        <TextBox Name="BirthdayTextBox" HorizontalAlignment="Stretch" 
+                 Height="30" Margin="180,210,20,0" 
                  TextWrapping="Wrap" 
                  Text="TextBox" 
-                 VerticalAlignment="Top" Width="180"/>
+                 VerticalAlignment="Top"/>
         <TextBox Name="AmbulatorCardTextBox" 
-                 HorizontalAlignment="Left" 
-        	     Height="30" Margin="180,130,0,0" 
-        	     TextWrapping="Wrap" Text="TextBox" 
-        	     VerticalAlignment="Top" Width="180"/>
+                 HorizontalAlignment="Stretch" 
+        	     Height="30" Margin="180,130,20,0" 
+        	     TextWrapping="Wrap" Text="TextBox"
+        	     VerticalAlignment="Top"/>
         <Button Content="Сохранить" 
                 HorizontalAlignment="Left" 
                 Margin="160,260,0,0" 
