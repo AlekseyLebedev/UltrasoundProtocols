@@ -29,7 +29,7 @@
                             </GridView>
                         </ListView.View>
                     </ListView>
-                    <local:PatientShowController Grid.Column="1">
+                    <local:PatientShowController Grid.Column="1" x:Name="showController">
                     </local:PatientShowController>
 
                 </Grid>

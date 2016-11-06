@@ -47,7 +47,24 @@ namespace UltrasoundProtocols
 
         private void listView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            PatientColumn.Width = new GridLength(9, GridUnitType.Star);
+            if (e.AddedItems.Count == 1)
+            {
+                Patient selectedItem = (Patient)e.AddedItems[0];
+                showController.FirstNameTextBlock.Text = selectedItem.FirstName;
+                //presenter.SelectItem(null);
+                //IdTextBox.Text = selectedItem.Id;
+                //presenter.SelectItem(selectedItem);
+                //SetRedactor(selectedItem);
+                //PropertiesGroupBox.IsEnabled = true;
+                PatientColumn.Width = new GridLength(9, GridUnitType.Star);
+            }
+            else
+            {
+            //    presenter.SelectItem(null);
+            //    IdTextBox.Text = "";
+            //    PropertiesGroupBox.IsEnabled = false;
+            }
+
         }
     }
 }
