@@ -23,10 +23,27 @@ namespace UltrasoundProtocols
         public MainWindow()
         {
             InitializeComponent();
-			//UltrasoundProtocolsDataSetSelector selector = new UltrasoundProtocolsDataSetSelector();
+            Surname.DisplayMemberBinding = new Binding("LastName");
+            Name.DisplayMemberBinding = new Binding("FirstName");
+            MiddleName.DisplayMemberBinding = new Binding("MiddleName");
+            id.DisplayMemberBinding = new Binding("NumberAmbulatoryCard");
+            Gender.DisplayMemberBinding = new Binding("Gender");
+            Birthday.DisplayMemberBinding = new Binding("Date");
+            presenter = new EditPatientPresenter();
+	 		//UltrasoundProtocolsDataSetSelector selector = new UltrasoundProtocolsDataSetSelector();
 			//List<Doctor> doctors = selector.getActiveDoctors();
 			//var hzchtoetopokachto = selector.getFullFilledProtocols();
 			//Debugger.Break();
 		}
+
+        EditPatientPresenter presenter;
+        private void listView_Loaded(object sender, RoutedEventArgs e)
+        {
+            List<Patient> patientList = presenter.LoadPatientListFromDataBase();
+            foreach(Patient patient in patientList)
+            {
+                listView.Items.Add(patient);
+            }
+        }
     }
 }

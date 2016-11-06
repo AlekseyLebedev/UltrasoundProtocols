@@ -10,12 +10,13 @@
         <GroupBox Header="Пациенты">
             <Grid >
                 <TextBox x:Name="Search" HorizontalAlignment="Stretch"  VerticalAlignment="Top" Text="" Margin="46.663,0,0,0" />
-                <ListView x:Name="listView" Margin="0,24,0,0">
+                <ListView x:Name="listView" Margin="0,24,0,0" Loaded="listView_Loaded">
                     <ListView.View>
                         <GridView>
                             <GridView.Columns>
                                 <GridViewColumn x:Name="Surname" Header="Фамилия" Width="200" />
                                 <GridViewColumn x:Name="Name" Header="Имя" Width="200" />
+                                <GridViewColumn x:Name="MiddleName" Header="Отчество" Width="200" />
                                 <GridViewColumn x:Name="id" Header="Номер карты" Width="150" />
                                 <GridViewColumn x:Name="Gender" Header="Пол" Width="150" />
                                 <GridViewColumn x:Name="Birthday" Header="Дата рождения" Width="150" />
