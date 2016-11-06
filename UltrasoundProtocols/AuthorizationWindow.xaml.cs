@@ -34,15 +34,15 @@ namespace UltrasoundProtocols
 
             if (dialogResult == MessageBoxResult.Yes)
             {
-                //do something
+                TryConnect();
             }
             else if (dialogResult == MessageBoxResult.No)
             {
-                //do something else
+                //relax
             }
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void TryConnect()
         {
             DataBaseSettings Settings = new DataBaseSettings();
             Settings.Login = LoginBox.Text;
@@ -59,8 +59,11 @@ namespace UltrasoundProtocols
             {
                 ShowErrorBox(exc);
             }
+        }
 
-
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            TryConnect();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
