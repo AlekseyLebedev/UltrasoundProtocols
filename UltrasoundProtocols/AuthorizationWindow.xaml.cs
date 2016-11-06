@@ -38,7 +38,6 @@ namespace UltrasoundProtocols
             if (dialogResult == MessageBoxResult.Yes)
             {
                 TryConnect();
-                return;
             }
             else if (dialogResult == MessageBoxResult.No)
             {
@@ -62,6 +61,7 @@ namespace UltrasoundProtocols
             catch (Exception exc)
             {
                 ShowErrorBox(exc);
+                return;
             }
 
             //all good start MainWindow
