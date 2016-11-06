@@ -16,16 +16,15 @@ namespace ProtocolTemplateLib
             }
             set
             {
-                
                 Id_ = value;
             }
         }
         public abstract Control GetEditControl();
         public abstract string GetPartOfCreateTableScript();
-        public abstract string PrintToProtocol(object value);
-        public abstract string PrintToSaveQuery(object value);
+        public abstract string PrintToProtocol(ProtocolField value);
         public abstract void SaveXml(XmlWriter writer);
         public abstract bool RequireValue();
+        public abstract ProtocolField GetFieldIntance();
         public static TemplateItem GetFromXml(XmlNode node)
         {
             TemplateItem result;
