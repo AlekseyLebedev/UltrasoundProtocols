@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using ProtocolTemplateLib;
+using NLog;
 
 namespace UltrasoundProtocols
 {
@@ -19,6 +20,8 @@ namespace UltrasoundProtocols
     /// </summary>
     public partial class AuthorizationWindow : Window
     {
+        private static Logger logger = LogManager.GetCurrentClassLogger();
+
         public AuthorizationWindow()
         {
             InitializeComponent();
@@ -63,6 +66,7 @@ namespace UltrasoundProtocols
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            logger.Info("Login=" + LoginBox.Text);
             TryConnect();
         }
 

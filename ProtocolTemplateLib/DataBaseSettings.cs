@@ -24,7 +24,7 @@ namespace ProtocolTemplateLib
         public string DataSource { get; set; }//"VALERIYPC\\SQLEXPRESS"
 
 		private const string connectionPropertiesString =
-			"Data Source='{0}'; Integrated Security=SSPI; Initial Catalog=UltraSoundProtocolsDB; User='{1}'; Password='{2}'";
+			"Data Source='{0}'; Integrated Security=FALSE; Initial Catalog=UltraSoundProtocolsDB; User='{1}'; Password='{2}'";
 
 	}
 }
