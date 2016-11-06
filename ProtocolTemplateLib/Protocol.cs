@@ -40,26 +40,9 @@ namespace ProtocolTemplateLib
                     Fields.Add(item.GetFieldIntance());
                 }
             }
-            Values = new Object[valuableItems.Count];
-            ValuableTemplateItems = valuableItems.ToArray();
 			dataBaseConnector = new DataBaseConnector(new DataBaseSettings());
 			dataBaseConnector.CreateConnection();
 		}
-
-		//public bool ChangeRequestNewUserDataBase(string login, string password)
-		//{
-		//	if (false/*TODO if connection to database closed*/)
-		//	{
-		//		SetLoginUserDataBase(login);
-		//		SetPasswordUserDataBase(password);
-		//		UpdateConnectionString();
-		//		return true;
-		//	}
-		//	else
-		//	{
-		//		return false;
-		//	}
-		//}
 
         private const string UnsupportedItemTypeExceptionMessage = "Unsopported type of template item";
 
