@@ -10,5 +10,8 @@
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
       <Value Profile="(Default)">Data Source=VALERIYPC\SQLEXPRESS;Initial Catalog=UltraSoundProtocolsDB;Persist Security Info=True;User ID=val_guest;Password=hf94hd78</Value>
     </Setting>
+    <Setting Name="ServerName" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
   </Settings>
 </SettingsFile>

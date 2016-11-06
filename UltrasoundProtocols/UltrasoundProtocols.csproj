@@ -60,6 +60,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AuthorizationWindow.xaml.cs">
+      <DependentUpon>AuthorizationWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="BasicObjects\Doctor.cs" />
     <Compile Include="BasicObjects\ExaminationType.cs" />
     <Compile Include="BasicObjects\MedicalEquipment.cs" />
@@ -74,6 +77,10 @@
       <DependentUpon>UltrasoundProtocolsDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="UltrasoundProtocolsDataSetSelector.cs" />
+    <Page Include="AuthorizationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="EditPatientUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

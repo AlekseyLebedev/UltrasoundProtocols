@@ -4,7 +4,7 @@
         Title="AuthorizationWindow" Height="200" Width="300"
         MinWidth="200"
         MinHeight="200"
-        MaxHeight="200">
+        MaxHeight="200" Loaded="Window_Loaded" Closing="Window_Closing">
 
     <Grid Height="170" VerticalAlignment="Top" Margin="0,0,0,0">
         <Label Content="Login" HorizontalAlignment="Left" Margin="60,15,0,0" VerticalAlignment="Top"/>

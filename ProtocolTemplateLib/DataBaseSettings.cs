@@ -7,6 +7,10 @@ namespace ProtocolTemplateLib
 {
 	public class DataBaseSettings
 	{
+        public DataBaseSettings()
+        {
+
+        }
 
 		public string GetConnectionString()
 		{
