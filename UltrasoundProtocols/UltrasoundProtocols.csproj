@@ -65,6 +65,7 @@
     <Compile Include="BasicObjects\MedicalEquipment.cs" />
     <Compile Include="BasicObjects\Patient.cs" />
     <Compile Include="BasicObjects\Protocol.cs" />
+    <Compile Include="EditPatientPresenter.cs" />
     <Compile Include="EditPatientUserControl.xaml.cs">
       <DependentUpon>EditPatientUserControl.xaml</DependentUpon>
     </Compile>
