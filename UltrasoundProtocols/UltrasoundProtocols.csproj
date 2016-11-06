@@ -72,12 +72,12 @@
     <Compile Include="EditPatientUserControl.xaml.cs">
       <DependentUpon>EditPatientUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UltrasoundProtocolsDataSet.Designer.cs">
+    <Compile Include="UltrasoundProtocolsDataSetSelector.cs" />
+    <Compile Include="UltraSoundProtocolsDBDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>UltrasoundProtocolsDataSet.xsd</DependentUpon>
+      <DependentUpon>UltraSoundProtocolsDBDataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="UltrasoundProtocolsDataSetSelector.cs" />
     <Page Include="AuthorizationWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -132,16 +132,16 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
-    <None Include="UltrasoundProtocolsDataSet.xsc">
-      <DependentUpon>UltrasoundProtocolsDataSet.xsd</DependentUpon>
+    <None Include="UltraSoundProtocolsDBDataSet.xsc">
+      <DependentUpon>UltraSoundProtocolsDBDataSet.xsd</DependentUpon>
     </None>
-    <None Include="UltrasoundProtocolsDataSet.xsd">
-      <SubType>Designer</SubType>
+    <None Include="UltraSoundProtocolsDBDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>UltrasoundProtocolsDataSet.Designer.cs</LastGenOutput>
+      <LastGenOutput>UltraSoundProtocolsDBDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </None>
-    <None Include="UltrasoundProtocolsDataSet.xss">
-      <DependentUpon>UltrasoundProtocolsDataSet.xsd</DependentUpon>
+    <None Include="UltraSoundProtocolsDBDataSet.xss">
+      <DependentUpon>UltraSoundProtocolsDBDataSet.xsd</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>

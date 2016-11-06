@@ -10,8 +10,8 @@ namespace UltrasoundProtocols
     {
         public List<Doctor> getActiveDoctors()
         {
-            UltrasoundProtocolsDataSetTableAdapters.Tbl_DoctorsTableAdapter adapter =
-                new UltrasoundProtocolsDataSetTableAdapters.Tbl_DoctorsTableAdapter();
+			UltraSoundProtocolsDBDataSetTableAdapters.Tbl_DoctorsTableAdapter adapter =
+                new UltraSoundProtocolsDBDataSetTableAdapters.Tbl_DoctorsTableAdapter();
             List<Doctor> doctors = (from table in adapter.GetData() where table.dct_status select table)
                 .Select(x => new Doctor(x.dct_id, x.dct_fullname, x.dct_status))
                 .ToList();
@@ -20,8 +20,8 @@ namespace UltrasoundProtocols
 
         public List<Patient> getPatients()
         {
-            UltrasoundProtocolsDataSetTableAdapters.Tbl_PatientsTableAdapter adapter =
-                new UltrasoundProtocolsDataSetTableAdapters.Tbl_PatientsTableAdapter();
+			UltraSoundProtocolsDBDataSetTableAdapters.Tbl_PatientsTableAdapter adapter =
+                new UltraSoundProtocolsDBDataSetTableAdapters.Tbl_PatientsTableAdapter();
             List<Patient> patients = (from table in adapter.GetData() select table)
                 .Select(x => new Patient(x.pat_id, x.pat_fullname, "Middle Name", "Last Name", (PatientGender)x.pat_gender, x.pat_birthdate, x.pat_numberambulatorycard))
                 .ToList();
@@ -30,8 +30,8 @@ namespace UltrasoundProtocols
 
         public List<ExaminationType> getExaminationTypes()
         {
-            UltrasoundProtocolsDataSetTableAdapters.Tbl_ExaminationTypesTableAdapter adapter =
-                new UltrasoundProtocolsDataSetTableAdapters.Tbl_ExaminationTypesTableAdapter();
+			UltraSoundProtocolsDBDataSetTableAdapters.Tbl_ExaminationTypesTableAdapter adapter =
+                new UltraSoundProtocolsDBDataSetTableAdapters.Tbl_ExaminationTypesTableAdapter();
             List<ExaminationType> examinationTypes = (from table in adapter.GetData() select table)
                 .Select(x => new ExaminationType(x.ext_id, x.ext_name))
                 .ToList();
@@ -40,8 +40,8 @@ namespace UltrasoundProtocols
 
         public List<MedicalEquipment> getMedicalEquipments()
         {
-            UltrasoundProtocolsDataSetTableAdapters.Tbl_MedicalEquipmentsTableAdapter adapter =
-                new UltrasoundProtocolsDataSetTableAdapters.Tbl_MedicalEquipmentsTableAdapter();
+			UltraSoundProtocolsDBDataSetTableAdapters.Tbl_MedicalEquipmentsTableAdapter adapter =
+                new UltraSoundProtocolsDBDataSetTableAdapters.Tbl_MedicalEquipmentsTableAdapter();
             List<MedicalEquipment> equipments = (from table in adapter.GetData() select table)
                 .Select(x => new MedicalEquipment(x.meq_id, x.meq_name))
                 .ToList();
@@ -50,8 +50,8 @@ namespace UltrasoundProtocols
 
         public List<FullProtocol> getProtocols()
         {
-            UltrasoundProtocolsDataSetTableAdapters.Tbl_ProtocolsTableAdapter adapter =
-                new UltrasoundProtocolsDataSetTableAdapters.Tbl_ProtocolsTableAdapter();
+			UltraSoundProtocolsDBDataSetTableAdapters.Tbl_ProtocolsTableAdapter adapter =
+                new UltraSoundProtocolsDBDataSetTableAdapters.Tbl_ProtocolsTableAdapter();
             List<FullProtocol> protocols = (from table in adapter.GetData() select table)
                 .Select(x => new FullProtocol(x.prt_id, x.prt_datetime, x.prt_doctor, x.prt_patient, x.prt_equipment, x.prt_source))
                 .ToList();
@@ -59,14 +59,14 @@ namespace UltrasoundProtocols
         }
         public List<FullProtocol> getFullFilledProtocols()
         {
-            UltrasoundProtocolsDataSetTableAdapters.Tbl_ProtocolsTableAdapter adapterProtocols =
-                new UltrasoundProtocolsDataSetTableAdapters.Tbl_ProtocolsTableAdapter();
-            UltrasoundProtocolsDataSetTableAdapters.Tbl_DoctorsTableAdapter adapterDoctors =
-                new UltrasoundProtocolsDataSetTableAdapters.Tbl_DoctorsTableAdapter();
-            UltrasoundProtocolsDataSetTableAdapters.Tbl_PatientsTableAdapter adapterPatients =
-                new UltrasoundProtocolsDataSetTableAdapters.Tbl_PatientsTableAdapter();
-            UltrasoundProtocolsDataSetTableAdapters.Tbl_MedicalEquipmentsTableAdapter adapterEquipments =
-                new UltrasoundProtocolsDataSetTableAdapters.Tbl_MedicalEquipmentsTableAdapter();
+			UltraSoundProtocolsDBDataSetTableAdapters.Tbl_ProtocolsTableAdapter adapterProtocols =
+                new UltraSoundProtocolsDBDataSetTableAdapters.Tbl_ProtocolsTableAdapter();
+			UltraSoundProtocolsDBDataSetTableAdapters.Tbl_DoctorsTableAdapter adapterDoctors =
+                new UltraSoundProtocolsDBDataSetTableAdapters.Tbl_DoctorsTableAdapter();
+			UltraSoundProtocolsDBDataSetTableAdapters.Tbl_PatientsTableAdapter adapterPatients =
+                new UltraSoundProtocolsDBDataSetTableAdapters.Tbl_PatientsTableAdapter();
+			UltraSoundProtocolsDBDataSetTableAdapters.Tbl_MedicalEquipmentsTableAdapter adapterEquipments =
+                new UltraSoundProtocolsDBDataSetTableAdapters.Tbl_MedicalEquipmentsTableAdapter();
             var fullFilledProtocols = (from protocols in adapterProtocols.GetData()
                                        join doctors in adapterDoctors.GetData() on protocols.prt_doctor equals doctors.dct_id
                                        join patients in adapterPatients.GetData() on protocols.prt_patient equals patients.pat_id
