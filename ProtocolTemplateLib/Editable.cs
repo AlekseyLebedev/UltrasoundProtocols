@@ -97,10 +97,8 @@ namespace ProtocolTemplateLib
         {
             ComboBox control = new ComboBox();
             LocateControlStandart(control);
-            foreach (var item in Variants)
-            {
-                control.Items.Add(item);
-            }
+            control.ItemsSource = Variants;
+             
             control.IsEditable = EnableOtherField;
             lastComboBox = control;
             return control;
