@@ -23,9 +23,9 @@ namespace UltrasoundProtocols
         public MainWindow()
         {
             InitializeComponent();
-			UltrasoundProtocolsDataSetSelector selector = new UltrasoundProtocolsDataSetSelector();
-			List<Doctor> doctors = selector.getActiveDoctors();
-			var hzchtoetopokachto = selector.getFullFilledProtocols();
+			//UltrasoundProtocolsDataSetSelector selector = new UltrasoundProtocolsDataSetSelector();
+			//List<Doctor> doctors = selector.getActiveDoctors();
+			//var hzchtoetopokachto = selector.getFullFilledProtocols();
 			//Debugger.Break();
 		}
     }
