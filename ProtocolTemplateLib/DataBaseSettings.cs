@@ -2,14 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using NLog;
 
 namespace ProtocolTemplateLib
 {
 	class DataBaseSettings
 	{
-
-		private static Logger logger = LogManager.GetCurrentClassLogger();
 
 		public string GetConnectionString()
 		{
