@@ -69,11 +69,13 @@ namespace UltrasoundProtocols
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             ServerBox.Text = Properties.Settings.Default.ServerName;
+            LoginBox.Text = Properties.Settings.Default.Login;
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             Properties.Settings.Default.ServerName = ServerBox.Text;
+            Properties.Settings.Default.Login = LoginBox.Text;
             Properties.Settings.Default.Save();
         }
     }
