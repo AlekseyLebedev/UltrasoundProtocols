@@ -3,11 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data.SqlClient;
+using NLog;
 
 namespace ProtocolTemplateLib
 {
 	class DataBaseConnector
 	{
+
+		private static Logger logger = LogManager.GetCurrentClassLogger();
+
 		private SqlConnection Connection { get; set; }
 
 		public SqlCommand Command { get; set; }
@@ -27,9 +31,20 @@ namespace ProtocolTemplateLib
 				Command = Connection.CreateCommand();
 				Connection.Open();
 			}
-			catch (Exception e)
+			catch (InvalidOperationException ex)
 			{
-				Console.WriteLine(e.Message + "Connection failed.");
+				logger.Error(ex);
+				throw (ex);
+			}
+			catch (SqlException ex)
+			{
+				logger.Error(ex);
+				throw (ex);
+			}
+			catch (Exception ex)
+			{
+				logger.Fatal(ex);
+				throw (ex);
 			}
 		}
 
@@ -40,16 +55,17 @@ namespace ProtocolTemplateLib
 				Connection.Close();
 				Connection.Dispose();
 			}
-			catch (Exception e)
+			catch (SqlException ex)
 			{
-				Console.WriteLine(e.Message + "Connection was not closed.");
+				logger.Error(ex);
+				throw (ex);
+			}
+			catch (Exception ex)
+			{
+				logger.Fatal(ex);
+				throw (ex);
 			}
 		}
-
-		//SqlCommand GetSqlCommand()
-		//{
-		//	return Command;
-		//}
 
 	}
 }
