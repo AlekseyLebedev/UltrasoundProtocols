@@ -11,7 +11,7 @@
             <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="5*"/>
         </Grid.ColumnDefinitions>
-        <TextBlock x:Name="LineLabel" Text="Text" Grid.Column="0"/>
+        <TextBlock x:Name="LineLabel" Text="Text" Grid.Column="0" TextWrapping="Wrap"/>
         <Grid x:Name="ControlGrid" Grid.Column="1" Margin="0"/>
 
     </Grid>

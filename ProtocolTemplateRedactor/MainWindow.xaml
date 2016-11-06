@@ -42,7 +42,7 @@
                                 <Label Content="Идентификатор" VerticalAlignment="Top" Margin="10,10,10,0"/>
                                 <TextBox x:Name="IdTextBox" Height="23" Margin="10,40.96,10,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" TextChanged="IdTextBox_TextChanged"/>
                                 <TextBlock x:Name="IdInfoTextBox" Margin="10,68.96,10,0" TextWrapping="Wrap" Text="Идентификатор - это некое слово из латинских букв и цифр. Оно должно быть уникальным. Пользователь системы его не увидит, это слово только для программы." VerticalAlignment="Top"/>
-                                <Grid x:Name="RedactorGrid" Margin="10,185.68,10,39.96"/>
+                                <Grid x:Name="RedactorGrid" Margin="0,185.68,0,39.96"/>
                                 <Button x:Name="DeleteButton" Content="Удалить" Margin="10,0,10,10" Height="24.96" VerticalAlignment="Bottom" Click="DeleteButton_Click"/>
                             </Grid>
                         </GroupBox>
