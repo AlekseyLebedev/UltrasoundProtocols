@@ -22,10 +22,10 @@ namespace ProtocolTemplateLib
         }
         public abstract Control GetEditControl();
         public abstract string GetPartOfCreateTableScript();
-        public abstract string PrintToProtocol(ProtocolField value);
+        public abstract string PrintToProtocol(StringBuilder builder, ProtocolField value);
         public abstract void SaveXml(XmlWriter writer);
         public abstract bool RequireValue();
-        public abstract ProtocolField GetFieldIntance();
+        public abstract ProtocolField CreateFieldIntance();
         public static TemplateItem GetFromXml(XmlNode node)
         {
             TemplateItem result;
@@ -158,12 +158,12 @@ namespace ProtocolTemplateLib
             base.SetId(value);
         }
 
-        public override string PrintToProtocol(ProtocolField value)
+        public override string PrintToProtocol(StringBuilder builder, ProtocolField value)
         {
             throw new NotImplementedException();
         }
 
-        public override ProtocolField GetFieldIntance()
+        public override ProtocolField CreateFieldIntance()
         {
             return Field.CreateFieldInstance();
         }
@@ -222,12 +222,12 @@ namespace ProtocolTemplateLib
             return Header;
         }
 
-        public override string PrintToProtocol(ProtocolField value)
+        public override string PrintToProtocol(StringBuilder builder, ProtocolField value)
         {
             throw new NotImplementedException();
         }
 
-        public override ProtocolField GetFieldIntance()
+        public override ProtocolField CreateFieldIntance()
         {
             // Нет поля для заголовка
             throw new InvalidOperationException();

@@ -37,7 +37,7 @@ namespace ProtocolTemplateLib
             {
                 if (item.RequireValue())
                 {
-                    Fields.Add(item.GetFieldIntance());
+                    Fields.Add(item.CreateFieldIntance());
                 }
             }
 			dataBaseConnector = new DataBaseConnector(new DataBaseSettings());
@@ -46,7 +46,7 @@ namespace ProtocolTemplateLib
 
         private const string UnsupportedItemTypeExceptionMessage = "Unsopported type of template item";
 
-        public string GetPartOfHtmlProtocol()
+        public string PrintToProtocol(StringBuilder builder)
         {
             throw new NotImplementedException();
         }
@@ -84,6 +84,9 @@ namespace ProtocolTemplateLib
 
 			using (SqlDataReader reader = command.ExecuteReader())
 			{
+                // TODO Валере
+                // Почему -1
+                // Некоторые поля могут по 2 столбца занимать.
 				for (int i = 0; i < reader.FieldCount - 1; ++i)
 				{
                     //TODO for Velera
