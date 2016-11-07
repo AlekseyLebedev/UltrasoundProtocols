@@ -10,7 +10,7 @@ namespace ProtocolTemplateLib
     {
         public abstract void GetFromRequest(string value);
         public abstract string AddToSaveRequest();
-        public abstract void AddToHtmlProtocol(StringBuilder builder);
+        public abstract void PrintToProtocol(StringBuilder builder);
     }
 
     public class TextboxField : ProtocolField
@@ -44,9 +44,9 @@ namespace ProtocolTemplateLib
             Value = value;
         }
 
-        public override void AddToHtmlProtocol(StringBuilder builder)
+        public override void PrintToProtocol(StringBuilder builder)
         {
-            throw new NotImplementedException();
+            builder.Append(Value);
         }
 
         private string Value_;
@@ -69,9 +69,9 @@ namespace ProtocolTemplateLib
             ValueString_ = "";
         }
 
-        public override void AddToHtmlProtocol(StringBuilder builder)
+        public override void PrintToProtocol(StringBuilder builder)
         {
-            throw new NotImplementedException();
+            builder.Append(Value);
         }
 
         public override string AddToSaveRequest()

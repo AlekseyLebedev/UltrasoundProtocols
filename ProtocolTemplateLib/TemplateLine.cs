@@ -5,12 +5,16 @@ using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Xml;
+using System.Net;
+using System.Web;
 
 namespace ProtocolTemplateLib
 {
     public abstract class TemplateItem : ITemplatePart
     {
-        public string Id { get
+        public string Id
+        {
+            get
             {
                 return Id_;
             }
@@ -22,7 +26,7 @@ namespace ProtocolTemplateLib
         }
         public abstract Control GetEditControl();
         public abstract string GetPartOfCreateTableScript();
-        public abstract string PrintToProtocol(StringBuilder builder, ProtocolField value);
+        public abstract void PrintToProtocol(StringBuilder builder, ProtocolField value);
         public abstract void SaveXml(XmlWriter writer);
         public abstract bool RequireValue();
         public abstract ProtocolField CreateFieldIntance();
@@ -60,21 +64,26 @@ namespace ProtocolTemplateLib
                 return GetGuiType();
             }
         }
-        
+
+        internal const string NewLineTag = "<br/>";
+
+
         protected virtual void SetId(string value)
         {
         }
         protected abstract string GetGuiType();
-        protected abstract string GetInfo(); 
+        protected abstract string GetInfo();
         protected abstract void LoadFromXml(XmlNode node);
-        protected const string NodeNameLine  = "line";
+        protected const string NodeNameLine = "line";
         protected const string NodeNameHeader = "header";
         private string Id_;
     }
 
     public class TemplateLine : TemplateItem
     {
-        public string Label { get
+        public string Label
+        {
+            get
             {
                 return Label_;
             }
@@ -158,9 +167,14 @@ namespace ProtocolTemplateLib
             base.SetId(value);
         }
 
-        public override string PrintToProtocol(StringBuilder builder, ProtocolField value)
+        public override void PrintToProtocol(StringBuilder builder, ProtocolField value)
         {
-            throw new NotImplementedException();
+            builder.Append("<p>");
+            builder.Append(HttpUtility.HtmlEncode(Label));
+            value.PrintToProtocol(builder);
+            builder.Append(" ");
+            builder.AppendLine("</p>");
+            builder.AppendLine(NewLineTag);
         }
 
         public override ProtocolField CreateFieldIntance()
@@ -222,9 +236,12 @@ namespace ProtocolTemplateLib
             return Header;
         }
 
-        public override string PrintToProtocol(StringBuilder builder, ProtocolField value)
+        public override void PrintToProtocol(StringBuilder builder, ProtocolField value)
         {
-            throw new NotImplementedException();
+            builder.Append("<h3>");
+            builder.Append(HttpUtility.HtmlEncode(Header));
+            builder.AppendLine("</h3>");
+            builder.AppendLine(NewLineTag);
         }
 
         public override ProtocolField CreateFieldIntance()
