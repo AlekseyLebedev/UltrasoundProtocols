@@ -29,8 +29,8 @@
                             </GridView>
                         </ListView.View>
                     </ListView>
-                    <local:PatientShowController Grid.Column="1" x:Name="showController">
-                    </local:PatientShowController>
+                    <local:PatientShowControl Grid.Column="1" x:Name="showController">
+                    </local:PatientShowControl>
 
                 </Grid>
                 <Label Content="Поиск:" HorizontalAlignment="Left" Margin="0,-1.96,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.514,0.194"/>

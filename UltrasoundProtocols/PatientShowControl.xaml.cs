@@ -17,9 +17,9 @@ namespace UltrasoundProtocols
     /// <summary>
     /// Логика взаимодействия для PatientShowController.xaml
     /// </summary>
-    public partial class PatientShowController : UserControl
+    public partial class PatientShowControl : UserControl
     {
-        public PatientShowController()
+        public PatientShowControl()
         {
             InitializeComponent();
         }
