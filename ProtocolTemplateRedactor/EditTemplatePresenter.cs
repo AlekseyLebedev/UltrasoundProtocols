@@ -11,6 +11,10 @@ namespace ProtocolTemplateRedactor
 {
     class EditTemplatePresenter
     {
+        internal EditTemplatePresenter()
+        {
+        }
+
         internal string SelectedHeaderText
         {
             get { return ((TemplateHeader)SelectedItem).Header; }
@@ -138,10 +142,41 @@ namespace ProtocolTemplateRedactor
             return item;
         }
 
+        internal string RequestHtmlProtocol()
+        {
+            logger.Debug("Request HTML");
+            CreateProtocolIfNeeded();
+            StringBuilder builder = new StringBuilder();
+            builder.AppendLine("<html>");
+            builder.AppendLine("<head><meta charset=\"utf-8\"></head>");
+            builder.AppendLine("<body>");
+            CurrentProtocol.PrintToProtocol(builder);
+            builder.AppendLine("</body>");
+            builder.AppendLine("</html>");
+            string html = builder.ToString();
+            logger.Debug("Html: {0}", html);
+            return html;
+        }
+
+        internal void EnterEditorTab()
+        {
+            logger.Debug("Enter editor tab");
+            CurrentProtocol = null;
+        }
+
         internal Control RequestEditControl()
         {
             logger.Debug("Edit control requested");
+            CreateProtocolIfNeeded();
             return Template.GetEditControl();
+        }
+
+        private void CreateProtocolIfNeeded()
+        {
+            if (CurrentProtocol == null)
+            {
+                CurrentProtocol = new Protocol(Template);
+            }
         }
 
         internal void SelectItem(TemplateItem item)
@@ -182,6 +217,7 @@ namespace ProtocolTemplateRedactor
         private Template Template = new ProtocolTemplateLib.Template();
         private TemplateItem SelectedItem = null;
         private Random Rnd = new Random();
+        private Protocol CurrentProtocol = null;
 
         internal TemplateItem RemoveSelectedItem()
         {

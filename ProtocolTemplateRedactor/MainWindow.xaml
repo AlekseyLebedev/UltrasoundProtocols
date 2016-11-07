@@ -19,7 +19,7 @@
                     <Button x:Name="buttonLoad" Content="Загрузить" HorizontalAlignment="Stretch" Margin="100,200,0,0" VerticalAlignment="Stretch" Width="75" Height="20"/>
                 </Grid>
             </TabItem>
-            <TabItem Header="Редактирование">
+            <TabItem x:Name="EditTabItem" Header="Редактирование" GotFocus="EditTabItem_GotFocus">
                 <Grid Background="#FFE5E5E5">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="8*"/>
@@ -59,9 +59,9 @@
                 <Grid x:Name="PreviewGrid"  Background="#FFE5E5E5">
                 </Grid>
             </TabItem>
-            <TabItem Header="Образец протокола">
+            <TabItem x:Name="ProtocolPreviewTabItem" Header="Образец протокола" GotFocus="ProtocolPreviewTabItem_GotFocus">
                 <Grid Background="#FFE5E5E5">
-                    <WebBrowser x:Name="Browser" Source="https://www.yandex.ru"/>
+                    <WebBrowser x:Name="ProtocolBrowser"/>
                 </Grid>
             </TabItem>
         </TabControl>

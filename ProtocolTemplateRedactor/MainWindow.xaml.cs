@@ -123,5 +123,16 @@ namespace ProtocolTemplateRedactor
         {
             listView.Items.Remove(presenter.RemoveSelectedItem());
         }
+
+        private void EditTabItem_GotFocus(object sender, RoutedEventArgs e)
+        {
+            presenter.EnterEditorTab();
+        }
+
+        private void ProtocolPreviewTabItem_GotFocus(object sender, RoutedEventArgs e)
+        {
+            ProtocolBrowser.NavigateToString(presenter.RequestHtmlProtocol());
+           
+        }
     }
 }

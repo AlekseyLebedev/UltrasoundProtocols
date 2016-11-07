@@ -14,8 +14,6 @@ namespace ProtocolTemplateLib
         private static string login = "val_guest";
         private static string password = "hf94hd78";
 
-        private DataBaseConnector dataBaseConnector;
-
         private static string INSERT_INTO = "INSERT INTO";
         private static string SELECT_ALL = "SELECT * FROM";
         private static string SPACE = " ";
@@ -40,8 +38,6 @@ namespace ProtocolTemplateLib
                     Fields.Add(item.CreateFieldIntance());
                 }
             }
-            dataBaseConnector = new DataBaseConnector(new DataBaseSettings());
-            dataBaseConnector.CreateConnection();
         }
 
         private const string UnsupportedItemTypeExceptionMessage = "Unsopported type of template item";
@@ -55,7 +51,10 @@ namespace ProtocolTemplateLib
             }
         }
 
-        public void SaveToDatabase(int ProtocolId)
+        // TODO Еод ниже хранит нарботки по сохранению.
+        // Они не могут быть применены, т.к. тут в классе создается Connection, который по идее должен передаваться в аргументы
+        // Из-за этого не работает остальной код.
+        /*public void SaveToDatabase(int ProtocolId)
         {
             string tableName = TemplateInstance.IdName;
             StringBuilder builder = new StringBuilder(INSERT_INTO);
@@ -113,7 +112,7 @@ namespace ProtocolTemplateLib
                 Console.WriteLine(e.Message + " я ввел: " + login + ", но где то накосячил");
             }
             return protocol;
-        }
+        }*/
 
         private List<ProtocolField> Fields;
     }
