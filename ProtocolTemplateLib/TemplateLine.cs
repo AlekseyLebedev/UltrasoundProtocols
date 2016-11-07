@@ -165,7 +165,7 @@ namespace ProtocolTemplateLib
 
         public override ProtocolField GetFieldIntance()
         {
-            throw new NotImplementedException();
+            return Field.CreateFieldInstance();
         }
 
         private string Label_;
@@ -229,7 +229,8 @@ namespace ProtocolTemplateLib
 
         public override ProtocolField GetFieldIntance()
         {
-            throw new NotImplementedException();
+            // Нет поля для заголовка
+            throw new InvalidOperationException();
         }
 
         private const string AttributeNameLabel = "label";

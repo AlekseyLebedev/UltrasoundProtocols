@@ -45,12 +45,11 @@ namespace ProtocolTemplateLib
             result.LoadFromXml(node);
             return result;
         }
-
-        public abstract object GetValueFromControl();
-        public abstract void SetValueToControl(Object value);
         public abstract Control GetEditControl();
-        public abstract string PrintToProtocol(object value);
-        public abstract string PrintToSaveQuery(object value);
+        public abstract ProtocolField CreateFieldInstance();
+        public abstract string GetTypeName();
+
+
 
         protected static void LocateControlStandart(Control control)
         {
@@ -76,7 +75,6 @@ namespace ProtocolTemplateLib
                 throw new XmlException(string.Format("Error loading template. Attribute '{0}' is not boolean in node '{1}'", AttributeNameOtherEnabled, node.Name), ex);
             }
         }
-        internal abstract string GetTypeName();
 
         protected abstract void LoadFromXml(XmlNode node);
 
@@ -96,17 +94,14 @@ namespace ProtocolTemplateLib
         public override Control GetEditControl()
         {
             ComboBox control = new ComboBox();
-            LocateControlStandart(control);
             control.ItemsSource = Variants;
-             
             control.IsEditable = EnableOtherField;
-            lastComboBox = control;
+            if (lastField != null)
+            {
+                lastField.Control = control;
+            }
+            LocateControlStandart(control);
             return control;
-        }
-
-        public override string PrintToProtocol(object value)
-        {
-            throw new NotImplementedException();
         }
 
         public override void SaveXml(XmlWriter writer)
@@ -141,69 +136,30 @@ namespace ProtocolTemplateLib
             Variants = variants;
         }
 
-        public override string PrintToSaveQuery(object value)
-        {
-            if (EnableOtherField)
-            {
-                string realValue = (String)value;
-                int index = Variants.IndexOf(realValue);
-                if (index < 0)
-                {
-                    return "NULL, " + realValue;
-                }
-                else
-                {
-                    return index + ", NULL";
-                }
-            }
-            else
-            {
-                return ((int)value).ToString();
-            }
-        }
-
-        public override object GetValueFromControl()
-        {
-            if (EnableOtherField)
-            {
-                return lastComboBox.SelectedValue;
-            }
-            else
-            {
-                return lastComboBox.SelectedIndex;
-            }
-        }
-
-        public override void SetValueToControl(Object value)
-        {
-            if (EnableOtherField) {
-                lastComboBox.SelectedValue = (String)value;
-            }
-            else
-            {
-                lastComboBox.SelectedIndex = (int)value;
-            }
-        }
-
-        internal override string GetTypeName()
+        public override string GetTypeName()
         {
             return "выпадающий список";
         }
 
-        private ComboBox lastComboBox;
+        public override ProtocolField CreateFieldInstance()
+        {
+            lastField = new ComboBoxField(this);
+            return lastField;
+        }
+
+        private ComboBoxField lastField;
     }
     public class TextBoxEditable : Editable
     {
         public override Control GetEditControl()
         {
-            lastControl = new TextBox();
-            LocateControlStandart(lastControl);
-            return lastControl;
-        }
-
-        public override string PrintToProtocol(object value)
-        {
-            throw new NotImplementedException();
+            var control = new TextBox();
+            if (lastField != null)
+            {
+                lastField.Control = control;
+            }
+            LocateControlStandart(control);
+            return control;
         }
 
         public override void SaveXml(XmlWriter writer)
@@ -223,26 +179,17 @@ namespace ProtocolTemplateLib
             return Id + " nvarchar(1024)";
         }
 
-        public override string PrintToSaveQuery(object value)
-        {
-            return (string)value;
-        }
-
-        public override object GetValueFromControl()
-        {
-            return lastControl.Text;
-        }
-
-        public override void SetValueToControl(Object value)
-        {
-            lastControl.Text = (String)value;
-        }
-
-        internal override string GetTypeName()
+        public override string GetTypeName()
         {
             return "текстовоe поле";
         }
 
-        private TextBox lastControl;
+        public override ProtocolField CreateFieldInstance()
+        {
+            lastField = new TextboxField();
+            return lastField;
+        }
+
+        private TextboxField lastField;
     }
 }
