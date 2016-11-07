@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ProtocolTemplateLib;
 
 namespace UltrasoundProtocols
 {
@@ -20,6 +21,8 @@ namespace UltrasoundProtocols
     /// </summary>
     public partial class MainWindow : Window
     {
+        public DataBaseConnector Connector { get; set; }
+
         public MainWindow()
         {
             InitializeComponent();
@@ -30,11 +33,7 @@ namespace UltrasoundProtocols
             Gender.DisplayMemberBinding = new Binding("Gender");
             Birthday.DisplayMemberBinding = new Binding("Date");
             presenter = new EditPatientPresenter();
-	 		//UltrasoundProtocolsDataSetSelector selector = new UltrasoundProtocolsDataSetSelector();
-			//List<Doctor> doctors = selector.getActiveDoctors();
-			//var hzchtoetopokachto = selector.getFullFilledProtocols();
-			//Debugger.Break();
-		}
+	 	}
 
         EditPatientPresenter presenter;
         private void listView_Loaded(object sender, RoutedEventArgs e)
@@ -44,6 +43,28 @@ namespace UltrasoundProtocols
             {
                 listView.Items.Add(patient);
             }
+        }
+
+        private void listView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (e.AddedItems.Count == 1)
+            {
+                Patient selectedItem = (Patient)e.AddedItems[0];
+                showController.FirstNameTextBlock.Text = selectedItem.FirstName;
+                //presenter.SelectItem(null);
+                //IdTextBox.Text = selectedItem.Id;
+                //presenter.SelectItem(selectedItem);
+                //SetRedactor(selectedItem);
+                //PropertiesGroupBox.IsEnabled = true;
+                PatientColumn.Width = new GridLength(9, GridUnitType.Star);
+            }
+            else
+            {
+            //    presenter.SelectItem(null);
+            //    IdTextBox.Text = "";
+            //    PropertiesGroupBox.IsEnabled = false;
+            }
+
         }
     }
 }
