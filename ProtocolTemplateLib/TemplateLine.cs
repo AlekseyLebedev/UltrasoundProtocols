@@ -174,7 +174,6 @@ namespace ProtocolTemplateLib
             value.PrintToProtocol(builder);
             builder.Append(" ");
             builder.AppendLine("</p>");
-            builder.AppendLine(NewLineTag);
         }
 
         public override ProtocolField CreateFieldIntance()

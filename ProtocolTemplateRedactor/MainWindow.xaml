@@ -59,8 +59,8 @@
                 <Grid x:Name="PreviewGrid"  Background="#FFE5E5E5">
                 </Grid>
             </TabItem>
-            <TabItem x:Name="ProtocolPreviewTabItem" Header="Образец протокола" GotFocus="ProtocolPreviewTabItem_GotFocus">
-                <Grid Background="#FFE5E5E5">
+            <TabItem x:Name="ProtocolPreviewTabItem" Header="Образец протокола" GotFocus="ProtocolPreviewTabItem_GotFocus" >
+                <Grid x:Name="HtmlPreviewGrid" Background="#FFE5E5E5" GotFocus="HtmlPreviewGrid_GotFocus">
                     <WebBrowser x:Name="ProtocolBrowser"/>
                 </Grid>
             </TabItem>

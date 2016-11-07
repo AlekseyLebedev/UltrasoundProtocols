@@ -131,8 +131,17 @@ namespace ProtocolTemplateRedactor
 
         private void ProtocolPreviewTabItem_GotFocus(object sender, RoutedEventArgs e)
         {
+            UpdateHtmlProtocol();
+        }
+
+        private void UpdateHtmlProtocol()
+        {
             ProtocolBrowser.NavigateToString(presenter.RequestHtmlProtocol());
-           
+        }
+
+        private void HtmlPreviewGrid_GotFocus(object sender, RoutedEventArgs e)
+        {
+            UpdateHtmlProtocol();
         }
     }
 }
