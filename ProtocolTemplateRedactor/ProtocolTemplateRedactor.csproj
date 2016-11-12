@@ -63,6 +63,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="TemplatesDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TemplatesDataSet.xsd</DependentUpon>
+    </Compile>
     <Page Include="ComboBoxRedactor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -129,6 +134,17 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <None Include="TemplatesDataSet.xsc">
+      <DependentUpon>TemplatesDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="TemplatesDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>TemplatesDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="TemplatesDataSet.xss">
+      <DependentUpon>TemplatesDataSet.xsd</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

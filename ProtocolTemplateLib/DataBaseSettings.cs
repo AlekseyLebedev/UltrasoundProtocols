@@ -21,7 +21,7 @@ namespace ProtocolTemplateLib
 
         public string Password { get; set; }
 
-        public string DataSource { get; set; }//"VALERIYPC\\SQLEXPRESS"
+        public string DataSource { get; set; }
 
 		private const string connectionPropertiesString =
 			"Data Source='{0}'; Integrated Security=FALSE; Initial Catalog=UltraSoundProtocolsDB; User='{1}'; Password='{2}'";
