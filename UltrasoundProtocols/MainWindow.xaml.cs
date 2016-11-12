@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ProtocolTemplateLib;
+using System.Threading;
+using NLog;
 
 namespace UltrasoundProtocols
 {
@@ -33,16 +35,24 @@ namespace UltrasoundProtocols
             Gender.DisplayMemberBinding = new Binding("Gender");
             Birthday.DisplayMemberBinding = new Binding("Date");
             presenter = new EditPatientPresenter();
-	 	}
+        }
 
         EditPatientPresenter presenter;
         private void listView_Loaded(object sender, RoutedEventArgs e)
         {
-            List<Patient> patientList = presenter.LoadPatientListFromDataBase();
-            foreach(Patient patient in patientList)
-            {
-                listView.Items.Add(patient);
-            }
+            this.IsEnabled = false;
+            logger.Debug("Loading patients");
+            (new GuiAsyncTask<List<Patient>>(() => presenter.LoadPatientListFromDataBase(),
+                (patientList) =>
+                {
+                    foreach (Patient patient in patientList)
+                    {
+                        listView.Items.Add(patient);
+                    }
+                    this.IsEnabled = true;
+                },
+                () => Environment.Exit(1),
+                true, "Ошибка загрузки пациентов", Dispatcher, logger, "Loading Patients")).Run();
         }
 
         private void listView_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -51,20 +61,16 @@ namespace UltrasoundProtocols
             {
                 Patient selectedItem = (Patient)e.AddedItems[0];
                 showController.FirstNameTextBlock.Text = selectedItem.FirstName;
-                //presenter.SelectItem(null);
-                //IdTextBox.Text = selectedItem.Id;
-                //presenter.SelectItem(selectedItem);
-                //SetRedactor(selectedItem);
-                //PropertiesGroupBox.IsEnabled = true;
+                // TODO
                 PatientColumn.Width = new GridLength(9, GridUnitType.Star);
             }
             else
             {
-            //    presenter.SelectItem(null);
-            //    IdTextBox.Text = "";
-            //    PropertiesGroupBox.IsEnabled = false;
+                // TODO
             }
 
         }
+
+        private Logger logger = LogManager.GetCurrentClassLogger();
     }
 }
