@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProtocolTemplateRedactor"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="900" WindowState="Maximized">
+        Title="MainWindow" Height="600" Width="900" WindowState="Maximized"
+        >
     <Grid>
         <TabControl x:Name="tabControl"  Margin="0" SelectionChanged="tabControl_SelectionChanged">
             <TabItem Header="Общая информация" RenderTransformOrigin="6.895,10.883">

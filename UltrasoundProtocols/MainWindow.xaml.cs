@@ -42,17 +42,23 @@ namespace UltrasoundProtocols
         {
             this.IsEnabled = false;
             logger.Debug("Loading patients");
-            (new GuiAsyncTask<List<Patient>>(() => presenter.LoadPatientListFromDataBase(),
-                (patientList) =>
-                {
-                    foreach (Patient patient in patientList)
-                    {
-                        listView.Items.Add(patient);
-                    }
-                    this.IsEnabled = true;
-                },
-                () => Environment.Exit(1),
-                true, "Ошибка загрузки пациентов", Dispatcher, logger, "Loading Patients")).Run();
+            GuiAsyncTask<List<Patient>> task = new GuiAsyncTask<List<Patient>>();
+            task.AsyncTask = () => presenter.LoadPatientListFromDataBase();
+            task.SyncTask = (patientList) =>
+              {
+                  foreach (Patient patient in patientList)
+                  {
+                      listView.Items.Add(patient);
+                  }
+                  this.IsEnabled = true;
+              };
+            task.Fail = () => Environment.Exit(1);
+            task.RetryEnabled = true;
+            task.ErrorTitle = "Ошибка загрузки пациентов";
+            task.Dispatcher = Dispatcher;
+            task.Logger = logger;
+            task.InfoMessage = "Loading Patients";
+            task.Run();
         }
 
         private void listView_SelectionChanged(object sender, SelectionChangedEventArgs e)

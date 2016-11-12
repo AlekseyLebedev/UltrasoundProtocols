@@ -29,6 +29,7 @@ namespace UltrasoundProtocols
 
         private void ShowErrorBox(Exception exc)
         {
+            this.IsEnabled = true;
             MessageBoxResult dialogResult = MessageBox.Show(
                 exc.Message + "\nПопробовать ещё раз?",
                 "Ошибка подключения",
@@ -47,33 +48,35 @@ namespace UltrasoundProtocols
 
         private void TryConnect()
         {
+            this.IsEnabled = false;
+
             DataBaseSettings Settings = new DataBaseSettings();
             Settings.Login = LoginBox.Text;
             Settings.Password = PasswordBox.Password;
             Settings.DataSource = ServerBox.Text;
-
             DataBaseConnector Connector = new DataBaseConnector(Settings);
 
-            try
-            {
-                Connector.CreateConnection();
-			}
-            catch (Exception exc)
-            {
-                ShowErrorBox(exc);
-                return;
-            }
-
-            //all good start MainWindow
-            MainWindow Main = new MainWindow();
-            Main.Connector = Connector;
-            Main.Show();
-            this.Close();
+            GuiAsyncTask task = new GuiAsyncTask();
+            task.AsyncTask = Connector.CreateConnection;
+            task.CustomExceptionAction = ShowErrorBox;
+            task.SyncTask = () =>
+              {
+                  MainWindow Main = new MainWindow();
+                  Main.Connector = Connector;
+                  this.Hide();
+                  Main.ShowDialog();
+                  this.Close();
+              };
+            task.Logger = logger;
+            task.InfoMessage = "login";
+            task.Dispatcher = Dispatcher;
+            task.Run();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             logger.Info("Login=" + LoginBox.Text);
+            logger.Info("Server=" + ServerBox.Text);
             TryConnect();
         }
 
