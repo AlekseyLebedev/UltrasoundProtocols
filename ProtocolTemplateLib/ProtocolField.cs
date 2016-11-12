@@ -8,9 +8,18 @@ namespace ProtocolTemplateLib
 {
     public abstract class ProtocolField
     {
-        public abstract void GetFromRequest(string value);
+        public virtual void GetFromRequest(string[] values)
+        {
+            if (values.Length != GetFieldCount())
+            {
+                throw new ArgumentException("Wrong number of tokens in GetFromRequest");
+            }
+            ParseFromTokens(values);
+        }
         public abstract string AddToSaveRequest();
         public abstract void PrintToProtocol(StringBuilder builder);
+        public abstract int GetFieldCount();
+        protected abstract void ParseFromTokens(string[] values);
     }
 
     public class TextboxField : ProtocolField
@@ -39,14 +48,19 @@ namespace ProtocolTemplateLib
             return Value;
         }
 
-        public override void GetFromRequest(string value)
+        protected override void ParseFromTokens(string[] values)
         {
-            Value = value;
+            Value = values[0];
         }
 
         public override void PrintToProtocol(StringBuilder builder)
         {
             builder.Append(Value);
+        }
+
+        public override int GetFieldCount()
+        {
+            return 1;
         }
 
         private string Value_ = "";
@@ -95,18 +109,17 @@ namespace ProtocolTemplateLib
             }
         }
 
-        public override void GetFromRequest(string value)
+        protected override void ParseFromTokens(string[] values)
         {
             if (Editable_.EnableOtherField)
             {
-                string[] tokens = value.Split(" ,".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
-                if (tokens.Length > 2)
+                if (values.Length > 2)
                 {
                     throw new ArgumentException("Wrong number of tokens");
                 }
-                if (ChechNotNull(tokens[0]))
+                if (ChechNotNull(values[0]))
                 {
-                    ParseValueInt(tokens[0]);
+                    ParseValueInt(values[0]);
                     ValueString = Editable_.Variants[ValueInt_];
                 }
                 else
@@ -114,14 +127,14 @@ namespace ProtocolTemplateLib
                     ValueInt_ = -1;
                     ValueString = "";
                 }
-                if ((tokens.Length == 2) && ChechNotNull(tokens[1]))
+                if ((values.Length == 2) && ChechNotNull(values[1]))
                 {
-                    ValueString = value;
+                    ValueString = values[1];
                 }
             }
             else
             {
-                ParseValueInt(value);
+                ParseValueInt(values[0]);
             }
         }
 
@@ -140,6 +153,11 @@ namespace ProtocolTemplateLib
             {
                 throw new ArgumentException("Value have to be null", ex);
             }
+        }
+
+        public override int GetFieldCount()
+        {
+            return (Editable_.EnableOtherField ? 2 : 1);
         }
 
         protected string ValueString
