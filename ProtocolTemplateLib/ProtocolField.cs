@@ -49,7 +49,7 @@ namespace ProtocolTemplateLib
             builder.Append(Value);
         }
 
-        private string Value_;
+        private string Value_ = "";
         internal TextBox Control;
     }
 
@@ -181,8 +181,8 @@ namespace ProtocolTemplateLib
             }
         }
 
-        private string ValueString_;
-        private int ValueInt_;
+        private string ValueString_ = "";
+        private int ValueInt_ = -1;
         private ComboboxEditable Editable_;
         internal ComboBox Control;
     }

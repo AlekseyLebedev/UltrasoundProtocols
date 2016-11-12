@@ -143,5 +143,16 @@ namespace ProtocolTemplateRedactor
         {
             UpdateHtmlProtocol();
         }
+
+        private void tabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            foreach (var item in e.AddedItems)
+            {
+                if (item == ProtocolPreviewTabItem)
+                {
+                    UpdateHtmlProtocol();
+                }
+            }
+        }
     }
 }
