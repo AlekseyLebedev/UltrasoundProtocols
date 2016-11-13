@@ -63,6 +63,11 @@
         <WindowsFormsHost HorizontalAlignment="Stretch" Height="30" Margin="180,130,20,0" VerticalAlignment="Top" >
             <wf:DateTimePicker x:Name="BirthdayPicker" Dock="Fill" Size="200, 30" Format="Short" />
         </WindowsFormsHost>
+        <TextBox Name="AmbulatorCardTextBox" 
+                 HorizontalAlignment="Stretch" 
+        	     Height="30" Margin="180,210,20,0" 
+        	     TextWrapping="Wrap" Text="TextBox"
+        	     VerticalAlignment="Top"/>
         <Button Content="Сохранить" 
                 HorizontalAlignment="Left" 
                 Margin="160,260,0,0" 
