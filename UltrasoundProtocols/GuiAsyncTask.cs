@@ -166,9 +166,6 @@ namespace UltrasoundProtocols
     /// </summary>
     class GuiAsyncTask
     {
-        private GuiAsyncTask<Object> task;
-
-
         // Обязательные свойства
         /// <summary>
         /// Асинхронно выполняемая задача. [Обязательное свойство]

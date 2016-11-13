@@ -37,13 +37,6 @@ namespace ProtocolTemplateRedactor
 
         EditTemplatePresenter presenter;
 
-        private void PreviewTabItem_GotFocus(object sender, RoutedEventArgs e)
-        {
-            PreviewGrid.Children.Clear();
-            Control element = presenter.RequestEditControl();
-            PreviewGrid.Children.Add(element);           
-        }
-
         private void buttonAdd_Click(object sender, RoutedEventArgs e)
         {
             listView.Items.Add(presenter.AddItem(comboBoxSelect.SelectedIndex));
@@ -124,16 +117,6 @@ namespace ProtocolTemplateRedactor
             listView.Items.Remove(presenter.RemoveSelectedItem());
         }
 
-        private void EditTabItem_GotFocus(object sender, RoutedEventArgs e)
-        {
-            presenter.EnterEditorTab();
-        }
-
-        private void ProtocolPreviewTabItem_GotFocus(object sender, RoutedEventArgs e)
-        {
-            UpdateHtmlProtocol();
-        }
-
         private void UpdateHtmlProtocol()
         {
             ProtocolBrowser.NavigateToString(presenter.RequestHtmlProtocol());
@@ -151,6 +134,19 @@ namespace ProtocolTemplateRedactor
                 if (item == ProtocolPreviewTabItem)
                 {
                     UpdateHtmlProtocol();
+                    continue;
+                }
+                if (item == PreviewTabItem)
+                {
+                    PreviewGrid.Children.Clear();
+                    Control element = presenter.RequestEditControl();
+                    PreviewGrid.Children.Add(element);
+                    continue;
+                }
+                if (item == EditTabItem)
+                {
+                    presenter.EnterEditorTab();
+                    continue;
                 }
             }
         }
