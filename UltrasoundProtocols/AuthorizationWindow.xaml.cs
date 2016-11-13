@@ -53,7 +53,7 @@ namespace UltrasoundProtocols
             DataBaseSettings Settings = new DataBaseSettings();
             Settings.Login = LoginBox.Text;
             Settings.Password = PasswordBox.Password;
-            Settings.DataSource = ServerBox.Text;
+            Settings.ServerName = ServerBox.Text;
             DataBaseConnector Connector = new DataBaseConnector(Settings);
 
             GuiAsyncTask task = new GuiAsyncTask();
