@@ -8,7 +8,7 @@ namespace UltrasoundProtocols
 {
     class UltrasoundProtocolsDataSetSelector
     {
-        public List<Doctor> getActiveDoctors()
+        public static List<Doctor> getActiveDoctors()
         {
 			UltraSoundProtocolsDBDataSetTableAdapters.Tbl_DoctorsTableAdapter adapter =
                 new UltraSoundProtocolsDBDataSetTableAdapters.Tbl_DoctorsTableAdapter();
@@ -18,7 +18,7 @@ namespace UltrasoundProtocols
             return doctors;
         }
 
-        public List<Patient> getPatients()
+        public static List<Patient> getPatients()
         {
 			UltraSoundProtocolsDBDataSetTableAdapters.Tbl_PatientsTableAdapter adapter =
                 new UltraSoundProtocolsDBDataSetTableAdapters.Tbl_PatientsTableAdapter();
@@ -28,7 +28,7 @@ namespace UltrasoundProtocols
             return patients;
         }
 
-        public List<ExaminationType> getExaminationTypes()
+        public static List<ExaminationType> getExaminationTypes()
         {
 			UltraSoundProtocolsDBDataSetTableAdapters.Tbl_ExaminationTypesTableAdapter adapter =
                 new UltraSoundProtocolsDBDataSetTableAdapters.Tbl_ExaminationTypesTableAdapter();
@@ -38,7 +38,7 @@ namespace UltrasoundProtocols
             return examinationTypes;
         }
 
-        public List<MedicalEquipment> getMedicalEquipments()
+        public static List<MedicalEquipment> getMedicalEquipments()
         {
 			UltraSoundProtocolsDBDataSetTableAdapters.Tbl_MedicalEquipmentsTableAdapter adapter =
                 new UltraSoundProtocolsDBDataSetTableAdapters.Tbl_MedicalEquipmentsTableAdapter();
@@ -48,7 +48,7 @@ namespace UltrasoundProtocols
             return equipments;
         }
 
-        public List<FullProtocol> getProtocols()
+        public static List<FullProtocol> getProtocols()
         {
 			UltraSoundProtocolsDBDataSetTableAdapters.Tbl_ProtocolsTableAdapter adapter =
                 new UltraSoundProtocolsDBDataSetTableAdapters.Tbl_ProtocolsTableAdapter();
@@ -57,7 +57,7 @@ namespace UltrasoundProtocols
                 .ToList();
             return protocols;
         }
-        public List<FullProtocol> getFullFilledProtocols()
+        public static List<FullProtocol> getFullFilledProtocols()
         {
 			UltraSoundProtocolsDBDataSetTableAdapters.Tbl_ProtocolsTableAdapter adapterProtocols =
                 new UltraSoundProtocolsDBDataSetTableAdapters.Tbl_ProtocolsTableAdapter();
