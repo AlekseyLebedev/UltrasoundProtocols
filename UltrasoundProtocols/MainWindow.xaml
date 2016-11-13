@@ -14,6 +14,7 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="8*" x:Name ="ListColumn"/>
                         <ColumnDefinition Width ="0*" x:Name ="PatientColumn"/>
+                        <ColumnDefinition Width ="0*" x:Name ="EditPatientColumn"/>
                     </Grid.ColumnDefinitions>
                     <ListView x:Name="listView"  Loaded="listView_Loaded" Grid.Column="0" SelectionChanged="listView_SelectionChanged">
                         <ListView.View>
@@ -29,8 +30,17 @@
                             </GridView>
                         </ListView.View>
                     </ListView>
-                    <local:PatientShowControl Grid.Column="1" x:Name="showController">
-                    </local:PatientShowControl>
+                    <Grid Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="10*"/>
+                            <RowDefinition Height="1*"/>
+                        </Grid.RowDefinitions>
+                        <local:PatientShowControl Grid.Row="0" x:Name="showController">
+                        </local:PatientShowControl>
+                        <Button Grid.Row="1" x:Name="EditPatientBotton" Content="Редактировать" Click="EditPatientBotton_Click"/>
+                    </Grid>
+                    <local:EditPatientUserControl Grid.Column ="2" x:Name="editController">
+                    </local:EditPatientUserControl>
 
                 </Grid>
                 <Label Content="Поиск:" HorizontalAlignment="Left" Margin="0,-1.96,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.514,0.194"/>
