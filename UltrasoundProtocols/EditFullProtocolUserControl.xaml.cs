@@ -129,6 +129,8 @@ namespace UltrasoundProtocols
                 }
             }
             EquipmentsComboBox.SelectedIndex = equipmentIndexInCombobox;
+
+            DatePicker.Value = FullProtocol_.DateTime;
         }
 
         private void ApplyViewsDataToProtocol()
@@ -137,6 +139,7 @@ namespace UltrasoundProtocols
             FullProtocol_.Doctor = Doctors[DoctorsComboBox.SelectedIndex].getId();
             FullProtocol_.Equipment = Equipments[EquipmentsComboBox.SelectedIndex].getId();
             FullProtocol_.Source = SourceTextBox.Text;
+            FullProtocol_.DateTime = DatePicker.Value;
         }
 
         private void OutToLogger()
@@ -145,6 +148,7 @@ namespace UltrasoundProtocols
             logger.Debug(TAG, "Doctor id: " + FullProtocol_.Doctor);
             logger.Debug(TAG, "Patient id: " + FullProtocol_.Patient);
             logger.Debug(TAG, "Equipment id" + FullProtocol_.Equipment);
+            logger.Debug(TAG, "Date: " + FullProtocol_.DateTime);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
