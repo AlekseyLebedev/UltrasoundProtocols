@@ -34,8 +34,13 @@ namespace UltrasoundProtocols
             }
         }
 
-        private List<MedicalEquipment> equipments;
-        private List<Doctor> doctors;
+        private List<MedicalEquipment> Equipments;
+        private List<Doctor> Doctors;
+        private Patient Patient;
+
+        public delegate void OnSaveButtonClick(FullProtocol protocol);
+
+        public event OnSaveButtonClick onSaveButtonClick;
 
         public EditFullProtocolUserControl()
         {
@@ -68,13 +73,70 @@ namespace UltrasoundProtocols
         //Подгружает данные из бд
         private void LoadFields()
         {
+            Equipments = UltrasoundProtocolsDataSetSelector.getMedicalEquipments();
+            Doctors = UltrasoundProtocolsDataSetSelector.getActiveDoctors();
+            Patient = UltrasoundProtocolsDataSetSelector.getPatient(FullProtocol_.Patient);
+        }
 
+        private void ShowPatientLoadError()
+        {
+            MessageBoxResult dialogResult = MessageBox.Show(
+                "Пациент не загрузился :(",
+                "Ошибка базы данных",
+                MessageBoxButton.OK,
+                MessageBoxImage.Error);
         }
 
         //Применяет данные из бд к views
         private void applyFieldsToViews()
         {
+            if (Patient == null)
+            {
+                ShowPatientLoadError();
+            }
+            else 
+            {
+                PatientName.Content = Patient.FirstName + " " + Patient.MiddleName + " " + Patient.LastName;
+            }
 
+            SourceTextBox.Text = FullProtocol_.Source;
+
+            int doctorIndexInCombobox = 0;
+            for (int i = 0; i < Doctors.Count; ++i) {
+                Doctor doctor = Doctors[i];
+                DoctorsComboBox.Items.Add(doctor.getName());
+                if (doctor.getId() == FullProtocol_.Doctor)
+                {
+                    doctorIndexInCombobox = i;
+                }
+            }
+            DoctorsComboBox.SelectedIndex = doctorIndexInCombobox;
+
+            int equipmentIndexInCombobox = 0;
+            for (int i = 0; i < Equipments.Count; ++i)
+            {
+                MedicalEquipment equipment = Equipments[i];
+                EquipmentsComboBox.Items.Add(equipment.getName());
+                if (equipment.getId() == FullProtocol_.Equipment)
+                {
+                    equipmentIndexInCombobox = i;
+                }
+            }
+            EquipmentsComboBox.SelectedIndex = equipmentIndexInCombobox;
+        }
+
+        private void ApplyViewsDataToProtocol()
+        {
+            FullProtocol_.Source = SourceTextBox.Text;
+            FullProtocol_.Doctor = Doctors[DoctorsComboBox.SelectedIndex].getId();
+            FullProtocol_.Equipment = Equipments[EquipmentsComboBox.SelectedIndex].getId();
+            FullProtocol_.Source = SourceTextBox.Text;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            ApplyViewsDataToProtocol();
+            onSaveButtonClick(FullProtocol_);
         }
 
     }
