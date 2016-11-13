@@ -7,12 +7,12 @@ namespace UltrasoundProtocols
 {
     public class FullProtocol
     {
-        private int Id { get; set; }
-        private DateTime DateTime { get; set; }
-        private int Doctor { get; set; }
-        private int Patient { get; set; }
-        private int Equipment { get; set; }
-        private string Source { get; set; }
+        public int Id { get; set; }
+        public DateTime DateTime { get; set; }
+        public int Doctor { get; set; }
+        public int Patient { get; set; }
+        public int Equipment { get; set; }
+        public string Source { get; set; }
 
         public FullProtocol(int id, DateTime dateTime, int doctor, int patient, int equipment, string source)
         {
