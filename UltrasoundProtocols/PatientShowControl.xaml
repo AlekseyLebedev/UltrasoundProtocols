@@ -39,13 +39,13 @@
                Width="170" Height="30"/>
         <TextBlock Name="SexTextBox"
                   HorizontalAlignment="Stretch" 
-                  Height="30" Margin="180,170,20,0"
+                  Height="30" Margin="180,175,20,0"
                   Text="Gender"
                   VerticalAlignment="Top" />
         <TextBlock Name="LastNameTextBlock" 
                  HorizontalAlignment="Stretch" 
                  Height="30" 
-                 Margin="180,10,20,0" 
+                 Margin="180,15,20,0" 
                  TextWrapping="Wrap" 
                  Text="TextBlock" 
                  VerticalAlignment="Top"/>
@@ -58,18 +58,19 @@
                  VerticalAlignment="Top"/>
         <TextBlock Name="MiddleNameTextBlock"
                  HorizontalAlignment="Stretch" 
-                 Height="30" Margin="180,90,20,0" 
+                 Height="30" Margin="180,95,20,0" 
                  TextWrapping="Wrap" Text="TextBlock" 
-                 VerticalAlignment="Top"/>
-        <TextBlock Name="BirthdayTextBlock" HorizontalAlignment="Stretch" 
-                 Height="30" Margin="180,210,20,0" 
-                 TextWrapping="Wrap" 
-                 Text="TextBlock" 
                  VerticalAlignment="Top"/>
         <TextBlock Name="AmbulatorCardTextBlock" 
                  HorizontalAlignment="Stretch" 
-        	     Height="30" Margin="180,130,20,0" 
+        	     Height="30" Margin="180,215,20,0"  
         	     TextWrapping="Wrap" Text="TextBlock"
         	     VerticalAlignment="Top"/>
+        <TextBlock Name="BirthdayTextBlock" HorizontalAlignment="Stretch" 
+                 Height="30" Margin="180,135,20,0"
+                 TextWrapping="Wrap" 
+                 Text="TextBlock" 
+                 VerticalAlignment="Top"/>
+
         </Grid>
 </UserControl>

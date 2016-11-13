@@ -65,9 +65,8 @@ namespace UltrasoundProtocols
         {
             if (e.AddedItems.Count == 1)
             {
-                Patient selectedItem = (Patient)e.AddedItems[0];
-                showController.FirstNameTextBlock.Text = selectedItem.FirstName;
-                // TODO
+                logger.Debug("show one patient");
+                presenter.ShowPatient(showController, e);
                 PatientColumn.Width = new GridLength(9, GridUnitType.Star);
             }
             else
