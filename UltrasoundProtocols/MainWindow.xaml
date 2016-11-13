@@ -20,7 +20,7 @@
                             <GridView>
                                 <GridView.Columns>
                                     <GridViewColumn x:Name="Surname" Header="Фамилия" Width="200" />
-                                    <GridViewColumn x:Name="Name" Header="Имя" Width="200" />
+                                    <GridViewColumn x:Name="NameColumn" Header="Имя" Width="200" />
                                     <GridViewColumn x:Name="MiddleName" Header="Отчество" Width="200" />
                                     <GridViewColumn x:Name="id" Header="Номер карты" Width="150" />
                                     <GridViewColumn x:Name="Gender" Header="Пол" Width="150" />

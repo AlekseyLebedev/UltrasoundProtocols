@@ -43,6 +43,18 @@ namespace ProtocolTemplateLib
                 }
             }
         }
+        internal TextBox Control
+        {
+            get
+            {
+                return Contol_;
+            }
+            set
+            {
+                value.Text = Value;
+                Contol_ = value;
+            }
+        }
         public override string AddToSaveRequest()
         {
             return Value;
@@ -64,7 +76,7 @@ namespace ProtocolTemplateLib
         }
 
         private string Value_ = "";
-        internal TextBox Control;
+        private TextBox Contol_ = null;
     }
 
     public class ComboBoxField : ProtocolField

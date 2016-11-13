@@ -29,7 +29,7 @@ namespace UltrasoundProtocols
         {
             InitializeComponent();
             Surname.DisplayMemberBinding = new Binding("LastName");
-            Name.DisplayMemberBinding = new Binding("FirstName");
+            NameColumn.DisplayMemberBinding = new Binding("FirstName");
             MiddleName.DisplayMemberBinding = new Binding("MiddleName");
             id.DisplayMemberBinding = new Binding("NumberAmbulatoryCard");
             Gender.DisplayMemberBinding = new Binding("Gender");
