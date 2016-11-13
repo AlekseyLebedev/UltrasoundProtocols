@@ -67,7 +67,7 @@ namespace UltrasoundProtocols
 
             AmbulatorCardTextBox.Text = Patient_.NumberAmbulatoryCard;
 
-            if (Patient_.Gender == 0)
+            if (Patient_.Gender == PatientGender.Man)
             {
                 SexComboBox.SelectedIndex = 0;
             }
