@@ -30,23 +30,52 @@ namespace UltrasoundProtocols
             set
             {
                 FullProtocol_ = value;
-                LoadFields();
+                LoadFieldsAsync();
             }
         }
+
+        private List<MedicalEquipment> equipments;
+        private List<Doctor> doctors;
 
         public EditFullProtocolUserControl()
         {
             InitializeComponent();
         }
 
+        //Загружает асинхронно данные из бд
+        private void LoadFieldsAsync()
+        {
+            GuiAsyncTask task = new GuiAsyncTask();
+            task.AsyncTask = LoadFields;
+            task.CustomExceptionAction = ShowErrorBox;
+            task.SyncTask = applyFieldsToViews;
+            //task.Logger = logger;
+            task.InfoMessage = "EditFullProtocolUserControl";
+            task.Dispatcher = Dispatcher;
+            task.Run();
+        }
+
+        //показать ошибку загрузки данных из бд
+        private void ShowErrorBox(Exception exc)
+        {
+            MessageBoxResult dialogResult = MessageBox.Show(
+                exc.Message + "\nПроизошла ошибка при загрузке из базы данных",
+                "Ошибка базы данных",
+                MessageBoxButton.OK,
+                MessageBoxImage.Error);
+        }
+
+        //Подгружает данные из бд
         private void LoadFields()
         {
 
         }
 
-        private void ApplyFullProtocolFields()
+        //Применяет данные из бд к views
+        private void applyFieldsToViews()
         {
 
         }
+
     }
 }
