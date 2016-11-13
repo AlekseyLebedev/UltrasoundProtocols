@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using NLog;
 
 namespace UltrasoundProtocols
 {
@@ -19,6 +20,10 @@ namespace UltrasoundProtocols
     /// </summary>
     public partial class EditPatientUserControl : UserControl
     {
+        private static string TAG = "EditPatientUserControl";
+
+        private static Logger logger = LogManager.GetCurrentClassLogger();
+
         private Patient Patient_;
         public Patient Patient
         {
@@ -76,7 +81,19 @@ namespace UltrasoundProtocols
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            OutToLog();
             onSaveButtonClick(Patient_);
+        }
+
+        private void OutToLog()
+        {
+            logger.Debug(TAG, "first name: " + Patient_.FirstName);
+            logger.Debug(TAG, "middle name: " + Patient_.MiddleName);
+            logger.Debug(TAG, "last name: " + Patient_.LastName);
+            logger.Debug(TAG, "NumberAmbulatoryCard: " + Patient_.NumberAmbulatoryCard);
+            logger.Debug(TAG, "Gender: " + Patient_.Gender);
+            logger.Debug(TAG, "Date: " + Patient_.Date);
+            logger.Debug(TAG, "Id: " + Patient_.Id);
         }
 
     }
