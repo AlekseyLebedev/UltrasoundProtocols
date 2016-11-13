@@ -18,6 +18,24 @@ namespace UltrasoundProtocols
             return doctors;
         }
 
+        public static Patient getPatient(int id)
+        {
+            UltraSoundProtocolsDBDataSetTableAdapters.Tbl_PatientsTableAdapter adapter =
+                new UltraSoundProtocolsDBDataSetTableAdapters.Tbl_PatientsTableAdapter();
+            List<Patient> patients = (from table in adapter.GetData() where table.pat_id == id select table)
+                .Select(x => new Patient(x.pat_id, x.pat_fullname, "Middle Name", "Last Name", (PatientGender)x.pat_gender, x.pat_birthdate, x.pat_numberambulatorycard))
+                .ToList();
+
+            if (patients.Count == 1)
+            {
+                return patients[0];
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         public static List<Patient> getPatients()
         {
 			UltraSoundProtocolsDBDataSetTableAdapters.Tbl_PatientsTableAdapter adapter =
