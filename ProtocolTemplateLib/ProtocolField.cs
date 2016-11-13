@@ -85,7 +85,7 @@ namespace ProtocolTemplateLib
         {
             get
             {
-                return (Editable_.EnableOtherField ? ValueString : ValueInt.ToString());
+                return (Editable_.EnableOtherField ? ValueString : Editable_.Variants[ValueInt]);
             }
         }
         public ComboBoxField(ComboboxEditable editable)
@@ -121,6 +121,25 @@ namespace ProtocolTemplateLib
             }
         }
 
+        internal ComboBox Control
+        {
+            get
+            {
+                return Control_;
+            }
+            set
+            {
+                if (Editable_.EnableOtherField)
+                {
+                    value.Text = ValueString;
+                }
+                else
+                {
+                    value.SelectedIndex = ValueInt;
+                }
+                Control_ = value;
+            }
+        }
         protected override void ParseFromTokens(string[] values)
         {
             if (Editable_.EnableOtherField)
@@ -214,6 +233,6 @@ namespace ProtocolTemplateLib
         private string ValueString_ = "";
         private int ValueInt_ = -1;
         private ComboboxEditable Editable_;
-        internal ComboBox Control;
+        private ComboBox Control_;
     }
 }
