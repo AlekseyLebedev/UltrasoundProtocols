@@ -11,6 +11,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using NLog;
+
 
 namespace UltrasoundProtocols
 {
@@ -19,6 +21,10 @@ namespace UltrasoundProtocols
     /// </summary>
     public partial class EditFullProtocolUserControl : UserControl
     {
+        private static string TAG = "EditFullProtocolUserControl";
+
+        private static Logger logger = LogManager.GetCurrentClassLogger();
+
         private FullProtocol FullProtocol_;
         public FullProtocol FullProtocol
         {
@@ -54,8 +60,8 @@ namespace UltrasoundProtocols
             task.AsyncTask = LoadFields;
             task.CustomExceptionAction = ShowErrorBox;
             task.SyncTask = applyFieldsToViews;
-            //task.Logger = logger;
-            task.InfoMessage = "EditFullProtocolUserControl";
+            task.Logger = logger;
+            task.InfoMessage = TAG;
             task.Dispatcher = Dispatcher;
             task.Run();
         }
@@ -133,9 +139,18 @@ namespace UltrasoundProtocols
             FullProtocol_.Source = SourceTextBox.Text;
         }
 
+        private void OutToLogger()
+        {
+            logger.Debug(TAG, "Source: " + FullProtocol_.Source);
+            logger.Debug(TAG, "Doctor id: " + FullProtocol_.Doctor);
+            logger.Debug(TAG, "Patient id: " + FullProtocol_.Patient);
+            logger.Debug(TAG, "Equipment id" + FullProtocol_.Equipment);
+        }
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             ApplyViewsDataToProtocol();
+            OutToLogger();
             onSaveButtonClick(FullProtocol_);
         }
 
