@@ -81,8 +81,29 @@ namespace UltrasoundProtocols
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            ApplyFieldsToPatient();
             OutToLog();
             onSaveButtonClick(Patient_);
+        }
+
+        private void ApplyFieldsToPatient()
+        {
+            Patient_.FirstName = FirstNameTextBox.Text;
+            Patient_.MiddleName = MiddleNameTextBox.Text;
+            Patient_.LastName = LastNameTextBox.Text;
+
+            Patient_.NumberAmbulatoryCard = AmbulatorCardTextBox.Text;
+
+            if (SexComboBox.SelectedIndex == 0)
+            {
+                Patient_.Gender = PatientGender.Man;
+            }
+            else
+            {
+                Patient_.Gender = PatientGender.Woman;
+            }
+
+            Patient_.Date = BirthdayPicker.Value;
         }
 
         private void OutToLog()
