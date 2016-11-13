@@ -5,7 +5,7 @@ using System.Text;
 
 namespace UltrasoundProtocols
 {
-    class FullProtocol
+    public class FullProtocol
     {
         private int Id { get; set; }
         private DateTime DateTime { get; set; }
