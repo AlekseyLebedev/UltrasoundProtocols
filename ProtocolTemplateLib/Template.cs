@@ -25,31 +25,20 @@ namespace ProtocolTemplateLib
 
         public Control GetEditControl()
         {
-            Grid grid = new Grid();
-            grid.Margin = new System.Windows.Thickness(0);
-            grid.VerticalAlignment = System.Windows.VerticalAlignment.Stretch;
-            grid.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
-            List<Control> controls = new List<Control>();
+            StackPanel panel = new StackPanel();
+            panel.Margin = new System.Windows.Thickness(0);
+            panel.VerticalAlignment = System.Windows.VerticalAlignment.Stretch;
+            panel.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
             foreach (TemplateItem item in Items)
             {
                 Control control = item.GetEditControl();
                 control.VerticalAlignment = VerticalAlignment.Top;
                 control.Margin = new Thickness(0);
-                grid.Children.Add(control);
-                controls.Add(control);
+                panel.Children.Add(control);
             }
-            grid.SizeChanged += new SizeChangedEventHandler((Object, SizeChangedEventArgs) =>
-            {
-                for (int i = 1; i < controls.Count; i++)
-                {
-                    controls[i].Margin = new Thickness(0, controls[i - 1].Margin.Top + controls[i - 1].ActualHeight +
-                        MarginBetweenControlsInEditControl, 0, 0);
-                }
-            });
             ProtocolEditControl result = new ProtocolEditControl();
-            result.SetContent(grid);
+            result.SetContent(panel);
             return result;
-
         }
 
         public string GetPartOfCreateTableScript()

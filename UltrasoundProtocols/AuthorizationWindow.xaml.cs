@@ -29,7 +29,6 @@ namespace UltrasoundProtocols
 
         private void ShowErrorBox(Exception exc)
         {
-            this.IsEnabled = true;
             MessageBoxResult dialogResult = MessageBox.Show(
                 exc.Message + "\nПопробовать ещё раз?",
                 "Ошибка подключения",
@@ -40,15 +39,12 @@ namespace UltrasoundProtocols
             {
                 TryConnect();
             }
-            else if (dialogResult == MessageBoxResult.No)
-            {
-                //relax
-            }
+            LoginButton.IsEnabled = true;
         }
 
         private void TryConnect()
         {
-            this.IsEnabled = false;
+            LoginButton.IsEnabled = false;
 
             DataBaseSettings Settings = new DataBaseSettings();
             Settings.Login = LoginBox.Text;
@@ -73,7 +69,7 @@ namespace UltrasoundProtocols
             task.Run();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
             logger.Info("Login=" + LoginBox.Text);
             logger.Info("Server=" + ServerBox.Text);

@@ -24,9 +24,9 @@ namespace ProtocolTemplateLib
             InitializeComponent();
         }
 
-        public void SetContent(Grid grid)
+        public void SetContent(UIElement element)
         {
-            Viewer.Content = grid;
+            Viewer.Content = element;
         }
     }
 }
