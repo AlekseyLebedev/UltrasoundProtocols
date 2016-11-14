@@ -491,7 +491,11 @@ namespace UltrasoundProtocols {
             
             private global::System.Data.DataColumn columndct_id;
             
-            private global::System.Data.DataColumn columndct_fullname;
+            private global::System.Data.DataColumn columndct_firstname;
+            
+            private global::System.Data.DataColumn columndct_middlename;
+            
+            private global::System.Data.DataColumn columndct_lastname;
             
             private global::System.Data.DataColumn columndct_status;
             
@@ -538,9 +542,25 @@ namespace UltrasoundProtocols {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn dct_fullnameColumn {
+            public global::System.Data.DataColumn dct_firstnameColumn {
                 get {
-                    return this.columndct_fullname;
+                    return this.columndct_firstname;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn dct_middlenameColumn {
+                get {
+                    return this.columndct_middlename;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn dct_lastnameColumn {
+                get {
+                    return this.columndct_lastname;
                 }
             }
             
@@ -589,11 +609,13 @@ namespace UltrasoundProtocols {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public Tbl_DoctorsRow AddTbl_DoctorsRow(string dct_fullname, bool dct_status) {
+            public Tbl_DoctorsRow AddTbl_DoctorsRow(string dct_firstname, string dct_middlename, string dct_lastname, bool dct_status) {
                 Tbl_DoctorsRow rowTbl_DoctorsRow = ((Tbl_DoctorsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
-                        dct_fullname,
+                        dct_firstname,
+                        dct_middlename,
+                        dct_lastname,
                         dct_status};
                 rowTbl_DoctorsRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowTbl_DoctorsRow);
@@ -625,7 +647,9 @@ namespace UltrasoundProtocols {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal void InitVars() {
                 this.columndct_id = base.Columns["dct_id"];
-                this.columndct_fullname = base.Columns["dct_fullname"];
+                this.columndct_firstname = base.Columns["dct_firstname"];
+                this.columndct_middlename = base.Columns["dct_middlename"];
+                this.columndct_lastname = base.Columns["dct_lastname"];
                 this.columndct_status = base.Columns["dct_status"];
             }
             
@@ -634,8 +658,12 @@ namespace UltrasoundProtocols {
             private void InitClass() {
                 this.columndct_id = new global::System.Data.DataColumn("dct_id", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columndct_id);
-                this.columndct_fullname = new global::System.Data.DataColumn("dct_fullname", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columndct_fullname);
+                this.columndct_firstname = new global::System.Data.DataColumn("dct_firstname", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columndct_firstname);
+                this.columndct_middlename = new global::System.Data.DataColumn("dct_middlename", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columndct_middlename);
+                this.columndct_lastname = new global::System.Data.DataColumn("dct_lastname", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columndct_lastname);
                 this.columndct_status = new global::System.Data.DataColumn("dct_status", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columndct_status);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
@@ -646,8 +674,11 @@ namespace UltrasoundProtocols {
                 this.columndct_id.AllowDBNull = false;
                 this.columndct_id.ReadOnly = true;
                 this.columndct_id.Unique = true;
-                this.columndct_fullname.AllowDBNull = false;
-                this.columndct_fullname.MaxLength = 255;
+                this.columndct_firstname.AllowDBNull = false;
+                this.columndct_firstname.MaxLength = 255;
+                this.columndct_middlename.MaxLength = 255;
+                this.columndct_lastname.AllowDBNull = false;
+                this.columndct_lastname.MaxLength = 255;
                 this.columndct_status.AllowDBNull = false;
             }
             
@@ -1618,7 +1649,11 @@ namespace UltrasoundProtocols {
             
             private global::System.Data.DataColumn columnpat_id;
             
-            private global::System.Data.DataColumn columnpat_fullname;
+            private global::System.Data.DataColumn columnpat_firstname;
+            
+            private global::System.Data.DataColumn columnpat_middlename;
+            
+            private global::System.Data.DataColumn columnpat_lastname;
             
             private global::System.Data.DataColumn columnpat_gender;
             
@@ -1669,9 +1704,25 @@ namespace UltrasoundProtocols {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn pat_fullnameColumn {
+            public global::System.Data.DataColumn pat_firstnameColumn {
                 get {
-                    return this.columnpat_fullname;
+                    return this.columnpat_firstname;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn pat_middlenameColumn {
+                get {
+                    return this.columnpat_middlename;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn pat_lastnameColumn {
+                get {
+                    return this.columnpat_lastname;
                 }
             }
             
@@ -1736,11 +1787,13 @@ namespace UltrasoundProtocols {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public Tbl_PatientsRow AddTbl_PatientsRow(string pat_fullname, int pat_gender, System.DateTime pat_birthdate, string pat_numberambulatorycard) {
+            public Tbl_PatientsRow AddTbl_PatientsRow(string pat_firstname, string pat_middlename, string pat_lastname, int pat_gender, System.DateTime pat_birthdate, string pat_numberambulatorycard) {
                 Tbl_PatientsRow rowTbl_PatientsRow = ((Tbl_PatientsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
-                        pat_fullname,
+                        pat_firstname,
+                        pat_middlename,
+                        pat_lastname,
                         pat_gender,
                         pat_birthdate,
                         pat_numberambulatorycard};
@@ -1774,7 +1827,9 @@ namespace UltrasoundProtocols {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal void InitVars() {
                 this.columnpat_id = base.Columns["pat_id"];
-                this.columnpat_fullname = base.Columns["pat_fullname"];
+                this.columnpat_firstname = base.Columns["pat_firstname"];
+                this.columnpat_middlename = base.Columns["pat_middlename"];
+                this.columnpat_lastname = base.Columns["pat_lastname"];
                 this.columnpat_gender = base.Columns["pat_gender"];
                 this.columnpat_birthdate = base.Columns["pat_birthdate"];
                 this.columnpat_numberambulatorycard = base.Columns["pat_numberambulatorycard"];
@@ -1785,8 +1840,12 @@ namespace UltrasoundProtocols {
             private void InitClass() {
                 this.columnpat_id = new global::System.Data.DataColumn("pat_id", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnpat_id);
-                this.columnpat_fullname = new global::System.Data.DataColumn("pat_fullname", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnpat_fullname);
+                this.columnpat_firstname = new global::System.Data.DataColumn("pat_firstname", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnpat_firstname);
+                this.columnpat_middlename = new global::System.Data.DataColumn("pat_middlename", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnpat_middlename);
+                this.columnpat_lastname = new global::System.Data.DataColumn("pat_lastname", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnpat_lastname);
                 this.columnpat_gender = new global::System.Data.DataColumn("pat_gender", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnpat_gender);
                 this.columnpat_birthdate = new global::System.Data.DataColumn("pat_birthdate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
@@ -1801,8 +1860,11 @@ namespace UltrasoundProtocols {
                 this.columnpat_id.AllowDBNull = false;
                 this.columnpat_id.ReadOnly = true;
                 this.columnpat_id.Unique = true;
-                this.columnpat_fullname.AllowDBNull = false;
-                this.columnpat_fullname.MaxLength = 255;
+                this.columnpat_firstname.AllowDBNull = false;
+                this.columnpat_firstname.MaxLength = 255;
+                this.columnpat_middlename.MaxLength = 255;
+                this.columnpat_lastname.AllowDBNull = false;
+                this.columnpat_lastname.MaxLength = 255;
                 this.columnpat_gender.AllowDBNull = false;
                 this.columnpat_birthdate.AllowDBNull = false;
                 this.columnpat_numberambulatorycard.MaxLength = 255;
@@ -2574,12 +2636,39 @@ namespace UltrasoundProtocols {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string dct_fullname {
+            public string dct_firstname {
                 get {
-                    return ((string)(this[this.tableTbl_Doctors.dct_fullnameColumn]));
+                    return ((string)(this[this.tableTbl_Doctors.dct_firstnameColumn]));
                 }
                 set {
-                    this[this.tableTbl_Doctors.dct_fullnameColumn] = value;
+                    this[this.tableTbl_Doctors.dct_firstnameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string dct_middlename {
+                get {
+                    try {
+                        return ((string)(this[this.tableTbl_Doctors.dct_middlenameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("Значение для столбца \'dct_middlename\' в таблице \'Tbl_Doctors\' равно DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableTbl_Doctors.dct_middlenameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string dct_lastname {
+                get {
+                    return ((string)(this[this.tableTbl_Doctors.dct_lastnameColumn]));
+                }
+                set {
+                    this[this.tableTbl_Doctors.dct_lastnameColumn] = value;
                 }
             }
             
@@ -2592,6 +2681,18 @@ namespace UltrasoundProtocols {
                 set {
                     this[this.tableTbl_Doctors.dct_statusColumn] = value;
                 }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool Isdct_middlenameNull() {
+                return this.IsNull(this.tableTbl_Doctors.dct_middlenameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Setdct_middlenameNull() {
+                this[this.tableTbl_Doctors.dct_middlenameColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -2733,12 +2834,39 @@ namespace UltrasoundProtocols {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string pat_fullname {
+            public string pat_firstname {
                 get {
-                    return ((string)(this[this.tableTbl_Patients.pat_fullnameColumn]));
+                    return ((string)(this[this.tableTbl_Patients.pat_firstnameColumn]));
                 }
                 set {
-                    this[this.tableTbl_Patients.pat_fullnameColumn] = value;
+                    this[this.tableTbl_Patients.pat_firstnameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string pat_middlename {
+                get {
+                    try {
+                        return ((string)(this[this.tableTbl_Patients.pat_middlenameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("Значение для столбца \'pat_middlename\' в таблице \'Tbl_Patients\' равно DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableTbl_Patients.pat_middlenameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string pat_lastname {
+                get {
+                    return ((string)(this[this.tableTbl_Patients.pat_lastnameColumn]));
+                }
+                set {
+                    this[this.tableTbl_Patients.pat_lastnameColumn] = value;
                 }
             }
             
@@ -2779,6 +2907,18 @@ namespace UltrasoundProtocols {
                 set {
                     this[this.tableTbl_Patients.pat_numberambulatorycardColumn] = value;
                 }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool Ispat_middlenameNull() {
+                return this.IsNull(this.tableTbl_Patients.pat_middlenameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Setpat_middlenameNull() {
+                this[this.tableTbl_Patients.pat_middlenameColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3293,34 +3433,44 @@ namespace UltrasoundProtocols.UltraSoundProtocolsDBDataSetTableAdapters {
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "Tbl_Doctors";
             tableMapping.ColumnMappings.Add("dct_id", "dct_id");
-            tableMapping.ColumnMappings.Add("dct_fullname", "dct_fullname");
+            tableMapping.ColumnMappings.Add("dct_firstname", "dct_firstname");
+            tableMapping.ColumnMappings.Add("dct_middlename", "dct_middlename");
+            tableMapping.ColumnMappings.Add("dct_lastname", "dct_lastname");
             tableMapping.ColumnMappings.Add("dct_status", "dct_status");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[Tbl_Doctors] WHERE (([dct_id] = @Original_dct_id) AND ([dct_fu" +
-                "llname] = @Original_dct_fullname) AND ([dct_status] = @Original_dct_status))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[Tbl_Doctors] WHERE (([dct_id] = @Original_dct_id) AND ([dct_firstname] = @Original_dct_firstname) AND ((@IsNull_dct_middlename = 1 AND [dct_middlename] IS NULL) OR ([dct_middlename] = @Original_dct_middlename)) AND ([dct_lastname] = @Original_dct_lastname) AND ([dct_status] = @Original_dct_status))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_dct_id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "dct_id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_dct_fullname", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "dct_fullname", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_dct_firstname", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "dct_firstname", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_dct_middlename", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "dct_middlename", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_dct_middlename", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "dct_middlename", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_dct_lastname", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "dct_lastname", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_dct_status", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "dct_status", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[Tbl_Doctors] ([dct_fullname], [dct_status]) VALUES (@dct_fulln" +
-                "ame, @dct_status);\r\nSELECT dct_id, dct_fullname, dct_status FROM Tbl_Doctors WHE" +
-                "RE (dct_id = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[Tbl_Doctors] ([dct_firstname], [dct_middlename], [dct_lastname], [dct_status]) VALUES (@dct_firstname, @dct_middlename, @dct_lastname, @dct_status);
+SELECT dct_id, dct_firstname, dct_middlename, dct_lastname, dct_status FROM Tbl_Doctors WHERE (dct_id = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@dct_fullname", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "dct_fullname", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@dct_firstname", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "dct_firstname", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@dct_middlename", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "dct_middlename", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@dct_lastname", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "dct_lastname", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@dct_status", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "dct_status", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Tbl_Doctors] SET [dct_fullname] = @dct_fullname, [dct_status] = @dct_status WHERE (([dct_id] = @Original_dct_id) AND ([dct_fullname] = @Original_dct_fullname) AND ([dct_status] = @Original_dct_status));
-SELECT dct_id, dct_fullname, dct_status FROM Tbl_Doctors WHERE (dct_id = @dct_id)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Tbl_Doctors] SET [dct_firstname] = @dct_firstname, [dct_middlename] = @dct_middlename, [dct_lastname] = @dct_lastname, [dct_status] = @dct_status WHERE (([dct_id] = @Original_dct_id) AND ([dct_firstname] = @Original_dct_firstname) AND ((@IsNull_dct_middlename = 1 AND [dct_middlename] IS NULL) OR ([dct_middlename] = @Original_dct_middlename)) AND ([dct_lastname] = @Original_dct_lastname) AND ([dct_status] = @Original_dct_status));
+SELECT dct_id, dct_firstname, dct_middlename, dct_lastname, dct_status FROM Tbl_Doctors WHERE (dct_id = @dct_id)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@dct_fullname", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "dct_fullname", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@dct_firstname", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "dct_firstname", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@dct_middlename", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "dct_middlename", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@dct_lastname", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "dct_lastname", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@dct_status", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "dct_status", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_dct_id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "dct_id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_dct_fullname", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "dct_fullname", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_dct_firstname", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "dct_firstname", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_dct_middlename", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "dct_middlename", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_dct_middlename", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "dct_middlename", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_dct_lastname", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "dct_lastname", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_dct_status", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "dct_status", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@dct_id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "dct_id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
@@ -3329,8 +3479,9 @@ SELECT dct_id, dct_fullname, dct_status FROM Tbl_Doctors WHERE (dct_id = @dct_id
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = ProtocolTemplateLib.DataBaseConnector.GetConnectionString();
-		}
+            this._connection.ConnectionString = "Data Source=VALERIYPC\\SQLEXPRESS;Initial Catalog=UltraSoundProtocolsDB;User ID=va" +
+                "l_guest;Password=hf94hd78";
+        }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -3338,7 +3489,8 @@ SELECT dct_id, dct_fullname, dct_status FROM Tbl_Doctors WHERE (dct_id = @dct_id
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT dct_id, dct_fullname, dct_status FROM dbo.Tbl_Doctors";
+            this._commandCollection[0].CommandText = "SELECT dct_id, dct_firstname, dct_middlename, dct_lastname, dct_status FROM dbo.T" +
+                "bl_Doctors";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -3399,15 +3551,29 @@ SELECT dct_id, dct_fullname, dct_status FROM Tbl_Doctors WHERE (dct_id = @dct_id
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_dct_id, string Original_dct_fullname, bool Original_dct_status) {
+        public virtual int Delete(int Original_dct_id, string Original_dct_firstname, string Original_dct_middlename, string Original_dct_lastname, bool Original_dct_status) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_dct_id));
-            if ((Original_dct_fullname == null)) {
-                throw new global::System.ArgumentNullException("Original_dct_fullname");
+            if ((Original_dct_firstname == null)) {
+                throw new global::System.ArgumentNullException("Original_dct_firstname");
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[1].Value = ((string)(Original_dct_fullname));
+                this.Adapter.DeleteCommand.Parameters[1].Value = ((string)(Original_dct_firstname));
             }
-            this.Adapter.DeleteCommand.Parameters[2].Value = ((bool)(Original_dct_status));
+            if ((Original_dct_middlename == null)) {
+                this.Adapter.DeleteCommand.Parameters[2].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[2].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[3].Value = ((string)(Original_dct_middlename));
+            }
+            if ((Original_dct_lastname == null)) {
+                throw new global::System.ArgumentNullException("Original_dct_lastname");
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[4].Value = ((string)(Original_dct_lastname));
+            }
+            this.Adapter.DeleteCommand.Parameters[5].Value = ((bool)(Original_dct_status));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -3428,14 +3594,26 @@ SELECT dct_id, dct_fullname, dct_status FROM Tbl_Doctors WHERE (dct_id = @dct_id
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string dct_fullname, bool dct_status) {
-            if ((dct_fullname == null)) {
-                throw new global::System.ArgumentNullException("dct_fullname");
+        public virtual int Insert(string dct_firstname, string dct_middlename, string dct_lastname, bool dct_status) {
+            if ((dct_firstname == null)) {
+                throw new global::System.ArgumentNullException("dct_firstname");
             }
             else {
-                this.Adapter.InsertCommand.Parameters[0].Value = ((string)(dct_fullname));
+                this.Adapter.InsertCommand.Parameters[0].Value = ((string)(dct_firstname));
             }
-            this.Adapter.InsertCommand.Parameters[1].Value = ((bool)(dct_status));
+            if ((dct_middlename == null)) {
+                this.Adapter.InsertCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[1].Value = ((string)(dct_middlename));
+            }
+            if ((dct_lastname == null)) {
+                throw new global::System.ArgumentNullException("dct_lastname");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[2].Value = ((string)(dct_lastname));
+            }
+            this.Adapter.InsertCommand.Parameters[3].Value = ((bool)(dct_status));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -3456,23 +3634,49 @@ SELECT dct_id, dct_fullname, dct_status FROM Tbl_Doctors WHERE (dct_id = @dct_id
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string dct_fullname, bool dct_status, int Original_dct_id, string Original_dct_fullname, bool Original_dct_status, int dct_id) {
-            if ((dct_fullname == null)) {
-                throw new global::System.ArgumentNullException("dct_fullname");
+        public virtual int Update(string dct_firstname, string dct_middlename, string dct_lastname, bool dct_status, int Original_dct_id, string Original_dct_firstname, string Original_dct_middlename, string Original_dct_lastname, bool Original_dct_status, int dct_id) {
+            if ((dct_firstname == null)) {
+                throw new global::System.ArgumentNullException("dct_firstname");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[0].Value = ((string)(dct_fullname));
+                this.Adapter.UpdateCommand.Parameters[0].Value = ((string)(dct_firstname));
             }
-            this.Adapter.UpdateCommand.Parameters[1].Value = ((bool)(dct_status));
-            this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(Original_dct_id));
-            if ((Original_dct_fullname == null)) {
-                throw new global::System.ArgumentNullException("Original_dct_fullname");
+            if ((dct_middlename == null)) {
+                this.Adapter.UpdateCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(Original_dct_fullname));
+                this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(dct_middlename));
             }
-            this.Adapter.UpdateCommand.Parameters[4].Value = ((bool)(Original_dct_status));
-            this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(dct_id));
+            if ((dct_lastname == null)) {
+                throw new global::System.ArgumentNullException("dct_lastname");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(dct_lastname));
+            }
+            this.Adapter.UpdateCommand.Parameters[3].Value = ((bool)(dct_status));
+            this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(Original_dct_id));
+            if ((Original_dct_firstname == null)) {
+                throw new global::System.ArgumentNullException("Original_dct_firstname");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(Original_dct_firstname));
+            }
+            if ((Original_dct_middlename == null)) {
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[7].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(Original_dct_middlename));
+            }
+            if ((Original_dct_lastname == null)) {
+                throw new global::System.ArgumentNullException("Original_dct_lastname");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(Original_dct_lastname));
+            }
+            this.Adapter.UpdateCommand.Parameters[9].Value = ((bool)(Original_dct_status));
+            this.Adapter.UpdateCommand.Parameters[10].Value = ((int)(dct_id));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -3493,8 +3697,8 @@ SELECT dct_id, dct_fullname, dct_status FROM Tbl_Doctors WHERE (dct_id = @dct_id
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string dct_fullname, bool dct_status, int Original_dct_id, string Original_dct_fullname, bool Original_dct_status) {
-            return this.Update(dct_fullname, dct_status, Original_dct_id, Original_dct_fullname, Original_dct_status, Original_dct_id);
+        public virtual int Update(string dct_firstname, string dct_middlename, string dct_lastname, bool dct_status, int Original_dct_id, string Original_dct_firstname, string Original_dct_middlename, string Original_dct_lastname, bool Original_dct_status) {
+            return this.Update(dct_firstname, dct_middlename, dct_lastname, dct_status, Original_dct_id, Original_dct_firstname, Original_dct_middlename, Original_dct_lastname, Original_dct_status, Original_dct_id);
         }
     }
     
@@ -3651,8 +3855,9 @@ SELECT dct_id, dct_fullname, dct_status FROM Tbl_Doctors WHERE (dct_id = @dct_id
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = ProtocolTemplateLib.DataBaseConnector.GetConnectionString();
-		}
+            this._connection.ConnectionString = "Data Source=VALERIYPC\\SQLEXPRESS;Initial Catalog=UltraSoundProtocolsDB;User ID=va" +
+                "l_guest;Password=hf94hd78";
+        }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -3969,7 +4174,8 @@ SELECT dct_id, dct_fullname, dct_status FROM Tbl_Doctors WHERE (dct_id = @dct_id
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-			this._connection.ConnectionString = ProtocolTemplateLib.DataBaseConnector.GetConnectionString();
+            this._connection.ConnectionString = "Data Source=VALERIYPC\\SQLEXPRESS;Initial Catalog=UltraSoundProtocolsDB;User ID=va" +
+                "l_guest;Password=hf94hd78";
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4287,8 +4493,9 @@ SELECT dct_id, dct_fullname, dct_status FROM Tbl_Doctors WHERE (dct_id = @dct_id
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = ProtocolTemplateLib.DataBaseConnector.GetConnectionString();
-		}
+            this._connection.ConnectionString = "Data Source=VALERIYPC\\SQLEXPRESS;Initial Catalog=UltraSoundProtocolsDB;User ID=va" +
+                "l_guest;Password=hf94hd78";
+        }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -4574,41 +4781,53 @@ SELECT dct_id, dct_fullname, dct_status FROM Tbl_Doctors WHERE (dct_id = @dct_id
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "Tbl_Patients";
             tableMapping.ColumnMappings.Add("pat_id", "pat_id");
-            tableMapping.ColumnMappings.Add("pat_fullname", "pat_fullname");
+            tableMapping.ColumnMappings.Add("pat_firstname", "pat_firstname");
+            tableMapping.ColumnMappings.Add("pat_middlename", "pat_middlename");
+            tableMapping.ColumnMappings.Add("pat_lastname", "pat_lastname");
             tableMapping.ColumnMappings.Add("pat_gender", "pat_gender");
             tableMapping.ColumnMappings.Add("pat_birthdate", "pat_birthdate");
             tableMapping.ColumnMappings.Add("pat_numberambulatorycard", "pat_numberambulatorycard");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[Tbl_Patients] WHERE (([pat_id] = @Original_pat_id) AND ([pat_fullname] = @Original_pat_fullname) AND ([pat_gender] = @Original_pat_gender) AND ([pat_birthdate] = @Original_pat_birthdate) AND ((@IsNull_pat_numberambulatorycard = 1 AND [pat_numberambulatorycard] IS NULL) OR ([pat_numberambulatorycard] = @Original_pat_numberambulatorycard)))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[Tbl_Patients] WHERE (([pat_id] = @Original_pat_id) AND ([pat_firstname] = @Original_pat_firstname) AND ((@IsNull_pat_middlename = 1 AND [pat_middlename] IS NULL) OR ([pat_middlename] = @Original_pat_middlename)) AND ([pat_lastname] = @Original_pat_lastname) AND ([pat_gender] = @Original_pat_gender) AND ([pat_birthdate] = @Original_pat_birthdate) AND ((@IsNull_pat_numberambulatorycard = 1 AND [pat_numberambulatorycard] IS NULL) OR ([pat_numberambulatorycard] = @Original_pat_numberambulatorycard)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_pat_id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "pat_id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_pat_fullname", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "pat_fullname", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_pat_firstname", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "pat_firstname", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_pat_middlename", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "pat_middlename", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_pat_middlename", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "pat_middlename", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_pat_lastname", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "pat_lastname", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_pat_gender", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "pat_gender", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_pat_birthdate", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "pat_birthdate", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_pat_numberambulatorycard", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "pat_numberambulatorycard", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_pat_numberambulatorycard", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "pat_numberambulatorycard", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[Tbl_Patients] ([pat_fullname], [pat_gender], [pat_birthdate], [pat_numberambulatorycard]) VALUES (@pat_fullname, @pat_gender, @pat_birthdate, @pat_numberambulatorycard);
-SELECT pat_id, pat_fullname, pat_gender, pat_birthdate, pat_numberambulatorycard FROM Tbl_Patients WHERE (pat_id = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[Tbl_Patients] ([pat_firstname], [pat_middlename], [pat_lastname], [pat_gender], [pat_birthdate], [pat_numberambulatorycard]) VALUES (@pat_firstname, @pat_middlename, @pat_lastname, @pat_gender, @pat_birthdate, @pat_numberambulatorycard);
+SELECT pat_id, pat_firstname, pat_middlename, pat_lastname, pat_gender, pat_birthdate, pat_numberambulatorycard FROM Tbl_Patients WHERE (pat_id = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@pat_fullname", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "pat_fullname", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@pat_firstname", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "pat_firstname", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@pat_middlename", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "pat_middlename", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@pat_lastname", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "pat_lastname", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@pat_gender", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "pat_gender", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@pat_birthdate", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "pat_birthdate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@pat_numberambulatorycard", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "pat_numberambulatorycard", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Tbl_Patients] SET [pat_fullname] = @pat_fullname, [pat_gender] = @pat_gender, [pat_birthdate] = @pat_birthdate, [pat_numberambulatorycard] = @pat_numberambulatorycard WHERE (([pat_id] = @Original_pat_id) AND ([pat_fullname] = @Original_pat_fullname) AND ([pat_gender] = @Original_pat_gender) AND ([pat_birthdate] = @Original_pat_birthdate) AND ((@IsNull_pat_numberambulatorycard = 1 AND [pat_numberambulatorycard] IS NULL) OR ([pat_numberambulatorycard] = @Original_pat_numberambulatorycard)));
-SELECT pat_id, pat_fullname, pat_gender, pat_birthdate, pat_numberambulatorycard FROM Tbl_Patients WHERE (pat_id = @pat_id)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Tbl_Patients] SET [pat_firstname] = @pat_firstname, [pat_middlename] = @pat_middlename, [pat_lastname] = @pat_lastname, [pat_gender] = @pat_gender, [pat_birthdate] = @pat_birthdate, [pat_numberambulatorycard] = @pat_numberambulatorycard WHERE (([pat_id] = @Original_pat_id) AND ([pat_firstname] = @Original_pat_firstname) AND ((@IsNull_pat_middlename = 1 AND [pat_middlename] IS NULL) OR ([pat_middlename] = @Original_pat_middlename)) AND ([pat_lastname] = @Original_pat_lastname) AND ([pat_gender] = @Original_pat_gender) AND ([pat_birthdate] = @Original_pat_birthdate) AND ((@IsNull_pat_numberambulatorycard = 1 AND [pat_numberambulatorycard] IS NULL) OR ([pat_numberambulatorycard] = @Original_pat_numberambulatorycard)));
+SELECT pat_id, pat_firstname, pat_middlename, pat_lastname, pat_gender, pat_birthdate, pat_numberambulatorycard FROM Tbl_Patients WHERE (pat_id = @pat_id)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@pat_fullname", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "pat_fullname", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@pat_firstname", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "pat_firstname", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@pat_middlename", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "pat_middlename", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@pat_lastname", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "pat_lastname", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@pat_gender", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "pat_gender", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@pat_birthdate", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "pat_birthdate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@pat_numberambulatorycard", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "pat_numberambulatorycard", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_pat_id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "pat_id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_pat_fullname", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "pat_fullname", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_pat_firstname", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "pat_firstname", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_pat_middlename", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "pat_middlename", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_pat_middlename", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "pat_middlename", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_pat_lastname", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "pat_lastname", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_pat_gender", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "pat_gender", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_pat_birthdate", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "pat_birthdate", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_pat_numberambulatorycard", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "pat_numberambulatorycard", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
@@ -4620,8 +4839,9 @@ SELECT pat_id, pat_fullname, pat_gender, pat_birthdate, pat_numberambulatorycard
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = ProtocolTemplateLib.DataBaseConnector.GetConnectionString();
-		}
+            this._connection.ConnectionString = "Data Source=VALERIYPC\\SQLEXPRESS;Initial Catalog=UltraSoundProtocolsDB;User ID=va" +
+                "l_guest;Password=hf94hd78";
+        }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -4629,8 +4849,8 @@ SELECT pat_id, pat_fullname, pat_gender, pat_birthdate, pat_numberambulatorycard
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT pat_id, pat_fullname, pat_gender, pat_birthdate, pat_numberambulatorycard " +
-                "FROM dbo.Tbl_Patients";
+            this._commandCollection[0].CommandText = "SELECT pat_id, pat_firstname, pat_middlename, pat_lastname, pat_gender, pat_birth" +
+                "date, pat_numberambulatorycard FROM dbo.Tbl_Patients";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -4691,23 +4911,37 @@ SELECT pat_id, pat_fullname, pat_gender, pat_birthdate, pat_numberambulatorycard
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_pat_id, string Original_pat_fullname, int Original_pat_gender, System.DateTime Original_pat_birthdate, string Original_pat_numberambulatorycard) {
+        public virtual int Delete(int Original_pat_id, string Original_pat_firstname, string Original_pat_middlename, string Original_pat_lastname, int Original_pat_gender, System.DateTime Original_pat_birthdate, string Original_pat_numberambulatorycard) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_pat_id));
-            if ((Original_pat_fullname == null)) {
-                throw new global::System.ArgumentNullException("Original_pat_fullname");
+            if ((Original_pat_firstname == null)) {
+                throw new global::System.ArgumentNullException("Original_pat_firstname");
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[1].Value = ((string)(Original_pat_fullname));
+                this.Adapter.DeleteCommand.Parameters[1].Value = ((string)(Original_pat_firstname));
             }
-            this.Adapter.DeleteCommand.Parameters[2].Value = ((int)(Original_pat_gender));
-            this.Adapter.DeleteCommand.Parameters[3].Value = ((System.DateTime)(Original_pat_birthdate));
+            if ((Original_pat_middlename == null)) {
+                this.Adapter.DeleteCommand.Parameters[2].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[2].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[3].Value = ((string)(Original_pat_middlename));
+            }
+            if ((Original_pat_lastname == null)) {
+                throw new global::System.ArgumentNullException("Original_pat_lastname");
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[4].Value = ((string)(Original_pat_lastname));
+            }
+            this.Adapter.DeleteCommand.Parameters[5].Value = ((int)(Original_pat_gender));
+            this.Adapter.DeleteCommand.Parameters[6].Value = ((System.DateTime)(Original_pat_birthdate));
             if ((Original_pat_numberambulatorycard == null)) {
-                this.Adapter.DeleteCommand.Parameters[4].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[5].Value = global::System.DBNull.Value;
+                this.Adapter.DeleteCommand.Parameters[7].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[8].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[4].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[5].Value = ((string)(Original_pat_numberambulatorycard));
+                this.Adapter.DeleteCommand.Parameters[7].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[8].Value = ((string)(Original_pat_numberambulatorycard));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -4729,20 +4963,32 @@ SELECT pat_id, pat_fullname, pat_gender, pat_birthdate, pat_numberambulatorycard
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string pat_fullname, int pat_gender, System.DateTime pat_birthdate, string pat_numberambulatorycard) {
-            if ((pat_fullname == null)) {
-                throw new global::System.ArgumentNullException("pat_fullname");
+        public virtual int Insert(string pat_firstname, string pat_middlename, string pat_lastname, int pat_gender, System.DateTime pat_birthdate, string pat_numberambulatorycard) {
+            if ((pat_firstname == null)) {
+                throw new global::System.ArgumentNullException("pat_firstname");
             }
             else {
-                this.Adapter.InsertCommand.Parameters[0].Value = ((string)(pat_fullname));
+                this.Adapter.InsertCommand.Parameters[0].Value = ((string)(pat_firstname));
             }
-            this.Adapter.InsertCommand.Parameters[1].Value = ((int)(pat_gender));
-            this.Adapter.InsertCommand.Parameters[2].Value = ((System.DateTime)(pat_birthdate));
+            if ((pat_middlename == null)) {
+                this.Adapter.InsertCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[1].Value = ((string)(pat_middlename));
+            }
+            if ((pat_lastname == null)) {
+                throw new global::System.ArgumentNullException("pat_lastname");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[2].Value = ((string)(pat_lastname));
+            }
+            this.Adapter.InsertCommand.Parameters[3].Value = ((int)(pat_gender));
+            this.Adapter.InsertCommand.Parameters[4].Value = ((System.DateTime)(pat_birthdate));
             if ((pat_numberambulatorycard == null)) {
-                this.Adapter.InsertCommand.Parameters[3].Value = global::System.DBNull.Value;
+                this.Adapter.InsertCommand.Parameters[5].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[3].Value = ((string)(pat_numberambulatorycard));
+                this.Adapter.InsertCommand.Parameters[5].Value = ((string)(pat_numberambulatorycard));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -4764,39 +5010,65 @@ SELECT pat_id, pat_fullname, pat_gender, pat_birthdate, pat_numberambulatorycard
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string pat_fullname, int pat_gender, System.DateTime pat_birthdate, string pat_numberambulatorycard, int Original_pat_id, string Original_pat_fullname, int Original_pat_gender, System.DateTime Original_pat_birthdate, string Original_pat_numberambulatorycard, int pat_id) {
-            if ((pat_fullname == null)) {
-                throw new global::System.ArgumentNullException("pat_fullname");
+        public virtual int Update(string pat_firstname, string pat_middlename, string pat_lastname, int pat_gender, System.DateTime pat_birthdate, string pat_numberambulatorycard, int Original_pat_id, string Original_pat_firstname, string Original_pat_middlename, string Original_pat_lastname, int Original_pat_gender, System.DateTime Original_pat_birthdate, string Original_pat_numberambulatorycard, int pat_id) {
+            if ((pat_firstname == null)) {
+                throw new global::System.ArgumentNullException("pat_firstname");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[0].Value = ((string)(pat_fullname));
+                this.Adapter.UpdateCommand.Parameters[0].Value = ((string)(pat_firstname));
             }
-            this.Adapter.UpdateCommand.Parameters[1].Value = ((int)(pat_gender));
-            this.Adapter.UpdateCommand.Parameters[2].Value = ((System.DateTime)(pat_birthdate));
+            if ((pat_middlename == null)) {
+                this.Adapter.UpdateCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(pat_middlename));
+            }
+            if ((pat_lastname == null)) {
+                throw new global::System.ArgumentNullException("pat_lastname");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(pat_lastname));
+            }
+            this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(pat_gender));
+            this.Adapter.UpdateCommand.Parameters[4].Value = ((System.DateTime)(pat_birthdate));
             if ((pat_numberambulatorycard == null)) {
-                this.Adapter.UpdateCommand.Parameters[3].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[5].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(pat_numberambulatorycard));
+                this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(pat_numberambulatorycard));
             }
-            this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(Original_pat_id));
-            if ((Original_pat_fullname == null)) {
-                throw new global::System.ArgumentNullException("Original_pat_fullname");
+            this.Adapter.UpdateCommand.Parameters[6].Value = ((int)(Original_pat_id));
+            if ((Original_pat_firstname == null)) {
+                throw new global::System.ArgumentNullException("Original_pat_firstname");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(Original_pat_fullname));
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(Original_pat_firstname));
             }
-            this.Adapter.UpdateCommand.Parameters[6].Value = ((int)(Original_pat_gender));
-            this.Adapter.UpdateCommand.Parameters[7].Value = ((System.DateTime)(Original_pat_birthdate));
-            if ((Original_pat_numberambulatorycard == null)) {
+            if ((Original_pat_middlename == null)) {
                 this.Adapter.UpdateCommand.Parameters[8].Value = ((object)(1));
                 this.Adapter.UpdateCommand.Parameters[9].Value = global::System.DBNull.Value;
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[8].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((string)(Original_pat_numberambulatorycard));
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((string)(Original_pat_middlename));
             }
-            this.Adapter.UpdateCommand.Parameters[10].Value = ((int)(pat_id));
+            if ((Original_pat_lastname == null)) {
+                throw new global::System.ArgumentNullException("Original_pat_lastname");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[10].Value = ((string)(Original_pat_lastname));
+            }
+            this.Adapter.UpdateCommand.Parameters[11].Value = ((int)(Original_pat_gender));
+            this.Adapter.UpdateCommand.Parameters[12].Value = ((System.DateTime)(Original_pat_birthdate));
+            if ((Original_pat_numberambulatorycard == null)) {
+                this.Adapter.UpdateCommand.Parameters[13].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[14].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[13].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[14].Value = ((string)(Original_pat_numberambulatorycard));
+            }
+            this.Adapter.UpdateCommand.Parameters[15].Value = ((int)(pat_id));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -4817,8 +5089,8 @@ SELECT pat_id, pat_fullname, pat_gender, pat_birthdate, pat_numberambulatorycard
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string pat_fullname, int pat_gender, System.DateTime pat_birthdate, string pat_numberambulatorycard, int Original_pat_id, string Original_pat_fullname, int Original_pat_gender, System.DateTime Original_pat_birthdate, string Original_pat_numberambulatorycard) {
-            return this.Update(pat_fullname, pat_gender, pat_birthdate, pat_numberambulatorycard, Original_pat_id, Original_pat_fullname, Original_pat_gender, Original_pat_birthdate, Original_pat_numberambulatorycard, Original_pat_id);
+        public virtual int Update(string pat_firstname, string pat_middlename, string pat_lastname, int pat_gender, System.DateTime pat_birthdate, string pat_numberambulatorycard, int Original_pat_id, string Original_pat_firstname, string Original_pat_middlename, string Original_pat_lastname, int Original_pat_gender, System.DateTime Original_pat_birthdate, string Original_pat_numberambulatorycard) {
+            return this.Update(pat_firstname, pat_middlename, pat_lastname, pat_gender, pat_birthdate, pat_numberambulatorycard, Original_pat_id, Original_pat_firstname, Original_pat_middlename, Original_pat_lastname, Original_pat_gender, Original_pat_birthdate, Original_pat_numberambulatorycard, Original_pat_id);
         }
     }
     
@@ -4995,8 +5267,9 @@ SELECT prt_id, prt_datetime, prt_doctor, prt_patient, prt_equipment, prt_source 
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = ProtocolTemplateLib.DataBaseConnector.GetConnectionString();
-		}
+            this._connection.ConnectionString = "Data Source=VALERIYPC\\SQLEXPRESS;Initial Catalog=UltraSoundProtocolsDB;User ID=va" +
+                "l_guest;Password=hf94hd78";
+        }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -5334,8 +5607,9 @@ SELECT prt_id, prt_datetime, prt_doctor, prt_patient, prt_equipment, prt_source 
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = ProtocolTemplateLib.DataBaseConnector.GetConnectionString();
-		}
+            this._connection.ConnectionString = "Data Source=VALERIYPC\\SQLEXPRESS;Initial Catalog=UltraSoundProtocolsDB;User ID=va" +
+                "l_guest;Password=hf94hd78";
+        }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]

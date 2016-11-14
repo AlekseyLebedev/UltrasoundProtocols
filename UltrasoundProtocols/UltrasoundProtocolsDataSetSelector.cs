@@ -13,7 +13,7 @@ namespace UltrasoundProtocols
 			UltraSoundProtocolsDBDataSetTableAdapters.Tbl_DoctorsTableAdapter adapter =
                 new UltraSoundProtocolsDBDataSetTableAdapters.Tbl_DoctorsTableAdapter();
             List<Doctor> doctors = (from table in adapter.GetData() where table.dct_status select table)
-                .Select(x => new Doctor(x.dct_id, x.dct_fullname, x.dct_status))
+                .Select(x => new Doctor(x.dct_id, x.dct_firstname, x.dct_middlename, x.dct_lastname, x.dct_status))
                 .ToList();
             return doctors;
         }
@@ -23,7 +23,7 @@ namespace UltrasoundProtocols
             UltraSoundProtocolsDBDataSetTableAdapters.Tbl_PatientsTableAdapter adapter =
                 new UltraSoundProtocolsDBDataSetTableAdapters.Tbl_PatientsTableAdapter();
             List<Patient> patients = (from table in adapter.GetData() where table.pat_id == id select table)
-                .Select(x => new Patient(x.pat_id, x.pat_fullname, "Middle Name", "Last Name", (PatientGender)x.pat_gender, x.pat_birthdate, x.pat_numberambulatorycard))
+                .Select(x => new Patient(x.pat_id, x.pat_firstname, x.pat_middlename, x.pat_lastname, (PatientGender)x.pat_gender, x.pat_birthdate, x.pat_numberambulatorycard))
                 .ToList();
 
             if (patients.Count == 1)
@@ -41,7 +41,7 @@ namespace UltrasoundProtocols
 			UltraSoundProtocolsDBDataSetTableAdapters.Tbl_PatientsTableAdapter adapter =
                 new UltraSoundProtocolsDBDataSetTableAdapters.Tbl_PatientsTableAdapter();
             List<Patient> patients = (from table in adapter.GetData() select table)
-                .Select(x => new Patient(x.pat_id, x.pat_fullname, "Middle Name", "Last Name", (PatientGender)x.pat_gender, x.pat_birthdate, x.pat_numberambulatorycard))
+                .Select(x => new Patient(x.pat_id, x.pat_firstname, x.pat_middlename, x.pat_lastname, (PatientGender)x.pat_gender, x.pat_birthdate, x.pat_numberambulatorycard))
                 .ToList();
             return patients;
         }
@@ -93,8 +93,8 @@ namespace UltrasoundProtocols
                                        {
                                            Id = protocols.prt_id,
                                            DateTime = protocols.prt_datetime,
-                                           Doctor = doctors.dct_fullname,
-                                           Patient = patients.pat_fullname,
+                                           Doctor = doctors.dct_firstname + doctors.dct_middlename + doctors.dct_lastname,
+                                           Patient = patients.pat_firstname + patients.pat_middlename + patients.pat_lastname,
                                            Equipment = equipments.meq_name,
                                            Source = protocols.prt_source
                                        })

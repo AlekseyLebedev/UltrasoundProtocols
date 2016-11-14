@@ -110,8 +110,8 @@ namespace UltrasoundProtocols
             int doctorIndexInCombobox = 0;
             for (int i = 0; i < Doctors.Count; ++i) {
                 Doctor doctor = Doctors[i];
-                DoctorsComboBox.Items.Add(doctor.getName());
-                if (doctor.getId() == FullProtocol_.Doctor)
+                DoctorsComboBox.Items.Add(doctor.Firstname);
+                if (doctor.Id == FullProtocol_.Doctor)
                 {
                     doctorIndexInCombobox = i;
                 }
@@ -136,7 +136,7 @@ namespace UltrasoundProtocols
         private void ApplyViewsDataToProtocol()
         {
             FullProtocol_.Source = SourceTextBox.Text;
-            FullProtocol_.Doctor = Doctors[DoctorsComboBox.SelectedIndex].getId();
+            FullProtocol_.Doctor = Doctors[DoctorsComboBox.SelectedIndex].Id;
             FullProtocol_.Equipment = Equipments[EquipmentsComboBox.SelectedIndex].getId();
             FullProtocol_.Source = SourceTextBox.Text;
             FullProtocol_.DateTime = DatePicker.Value;

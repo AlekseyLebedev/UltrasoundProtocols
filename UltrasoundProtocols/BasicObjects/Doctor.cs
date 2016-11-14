@@ -7,30 +7,19 @@ namespace UltrasoundProtocols
 {
 	public class Doctor
 	{
-		private int id;
-		private string name;
-		private bool status;
+		public int Id { get; set; }
+		public string Firstname { get; set; }
+		public string Middlename { get; set; }
+		public string Lastname { get; set; }
+		public bool Status { get; set; }
 
-		public Doctor(int id, string name, bool status)
+		public Doctor(int id, string firstname, string middlename, string lastname, bool status)
 		{
-			this.id = id;
-			this.name = name;
-			this.status = status;
-		}
-
-		public int getId()
-		{
-			return id;
-		}
-
-		public string getName()
-		{
-			return name;
-		}
-
-		public bool getStatus()
-		{
-			return status;
+			this.Id = id;
+			this.Firstname = firstname;
+			this.Middlename = middlename;
+			this.Lastname = lastname;
+			this.Status = status;
 		}
 	}
 }

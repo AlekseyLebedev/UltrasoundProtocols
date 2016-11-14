@@ -60,8 +60,8 @@
                  Height="30" Margin="180,90,20,0" 
                  TextWrapping="Wrap" Text="TextBox" 
                  VerticalAlignment="Top"/>
-        <WindowsFormsHost HorizontalAlignment="Stretch" Height="30" Margin="180,130,20,0" VerticalAlignment="Top" >
-            <wf:DateTimePicker x:Name="BirthdayPicker" Dock="Fill" Size="200, 30" Format="Short" />
+        <WindowsFormsHost HorizontalAlignment="Stretch" Height="30" Margin="180,130,20,0" VerticalAlignment="Top" ChildChanged="WindowsFormsHost_ChildChanged" >
+            <wf:DateTimePicker x:Name="BirthdayPicker" Dock="Fill" Size="200, 30" Format="Custom" CustomFormat="dd-MM-yyyy" />
         </WindowsFormsHost>
         <TextBox Name="AmbulatorCardTextBox" 
                  HorizontalAlignment="Stretch" 

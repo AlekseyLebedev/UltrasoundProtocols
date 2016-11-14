@@ -8,10 +8,9 @@ namespace UltrasoundProtocols
 {
     class EditPatientPresenter
     {
-        UltrasoundProtocolsDataSetSelector selector;
         public EditPatientPresenter()
         {
-            selector = new UltrasoundProtocolsDataSetSelector();
+
         }
         internal List<Patient> LoadPatientListFromDataBase()
         {
@@ -20,7 +19,7 @@ namespace UltrasoundProtocols
             List<Patient> patientList = new List<Patient>();
             patientList.Add(new Patient(0, "Александр", "Сергеевич", "Пушкин", PatientGender.Man, new DateTime(1799, 6, 6), "0"));
             patientList.Add(new Patient(1, "Петр", "Алексеевич", "Романов", PatientGender.Man, new DateTime(1672, 6, 9), "123"));
-            patientList.AddRange(selector.getPatients());
+			patientList.AddRange(UltrasoundProtocolsDataSetSelector.getPatients());
             return patientList;
         }
 
@@ -31,9 +30,18 @@ namespace UltrasoundProtocols
             showController.SexTextBox.Text = selectedItem.Gender.ToString();
             showController.LastNameTextBlock.Text = selectedItem.LastName;
             showController.MiddleNameTextBlock.Text = selectedItem.MiddleName;
-            showController.BirthdayTextBlock.Text = selectedItem.Date.ToString();
+			showController.BirthdayTextBlock.Text = selectedItem.Date.ToShortDateString();
             showController.AmbulatorCardTextBlock.Text = selectedItem.NumberAmbulatoryCard;
         }
+
+		internal string GetDateString(DateTime dateTime)
+		{
+			StringBuilder date = new StringBuilder()
+				.Append(dateTime.Day)
+				.Append(dateTime.Month)
+				.Append(dateTime.Year);
+			return date.ToString();
+		}
     }
 }
     
