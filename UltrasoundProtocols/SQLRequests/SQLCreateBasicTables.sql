@@ -4,7 +4,9 @@ CREATE TABLE
 	Tbl_Doctors
     (
 		dct_id INT NOT NULL IDENTITY(1, 1) PRIMARY KEY,
-		dct_fullname VARCHAR(255) NOT NULL,
+		dct_firstname VARCHAR(255) NOT NULL,
+		dct_middlename VARCHAR(255) NULL,
+		dct_lastname VARCHAR(255) NOT NULL,
 		dct_status BIT NOT NULL DEFAULT 1
 	);
 
@@ -19,7 +21,9 @@ CREATE TABLE
 	Tbl_Patients
 	(
 		pat_id INT NOT NULL IDENTITY(1, 1) PRIMARY KEY,
-		pat_fullname VARCHAR(255) NOT NULL,
+		pat_firstname VARCHAR(255) NOT NULL,
+		pat_middlename VARCHAR(255) NULL,
+		pat_lastname VARCHAR(255) NOT NULL,
 		pat_gender INT NOT NULL,
 		pat_birthdate DATE NOT NULL,
 		pat_numberambulatorycard VARCHAR(255) NULL
