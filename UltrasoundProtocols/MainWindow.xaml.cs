@@ -34,6 +34,7 @@ namespace UltrasoundProtocols
             id.DisplayMemberBinding = new Binding("NumberAmbulatoryCard");
             Gender.DisplayMemberBinding = new Binding("Gender");
             Birthday.DisplayMemberBinding = new Binding("Date");
+			Birthday.DisplayMemberBinding.StringFormat = "dd.MM.yyyy";
             presenter = new EditPatientPresenter();
         }
 
