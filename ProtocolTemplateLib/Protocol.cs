@@ -54,11 +54,10 @@ namespace ProtocolTemplateLib
         // TODO Еод ниже хранит нарботки по сохранению.
         // Они не могут быть применены, т.к. тут в классе создается Connection, который по идее должен передаваться в аргументы
         // Из-за этого не работает остальной код.
-        /*public void SaveToDatabase(int ProtocolId)
+        public void SaveToDatabase(int ProtocolId, SqlCommand command)
         {
-            string tableName = TemplateInstance.IdName;
             StringBuilder builder = new StringBuilder(INSERT_INTO);
-            builder.Append(SPACE).Append(tableName).Append(VALUES).Append(OPEN_BRACKET);
+            builder.Append(SPACE).Append("@TableId").Append(VALUES).Append(OPEN_BRACKET);
             StringBuilder insertLine = new StringBuilder();
             for (int index = 0; index < Fields.Count; ++index)
             {
@@ -68,14 +67,18 @@ namespace ProtocolTemplateLib
                     insertLine.Append(COMMA);
                 }
             }
-            logger.Info("Added to " + tableName + " record = " + insertLine.ToString());
+            logger.Info("Added to " + TemplateInstance.IdName + " record = " + insertLine.ToString());
             builder.Append(insertLine).Append(CLOSE_BRACKET).Append(SEMICOLON);
 
-            dataBaseConnector.Command.CommandText = builder.ToString();
-            dataBaseConnector.Command.ExecuteNonQuery();
+			command.Parameters.AddWithValue("@TableId", TemplateInstance.IdName);
+
+
+
+            command.CommandText = builder.ToString();
+            command.ExecuteNonQuery();
         }
 
-        public void LoadFromDatabase(int ProtocolId, SqlCommand command)
+        /*public void LoadFromDatabase(int ProtocolId, SqlCommand command)
         {
             string tableName = TemplateInstance.IdName;
             StringBuilder builder = new StringBuilder(SELECT_ALL)
