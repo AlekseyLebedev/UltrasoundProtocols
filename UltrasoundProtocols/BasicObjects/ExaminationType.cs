@@ -7,8 +7,8 @@ namespace UltrasoundProtocols
 {
 	class ExaminationType
 	{
-		private int Id { get; set; }
-		private string Name { get; set; }
+		public int Id { get; set; }
+		public string Name { get; set; }
 
 		public ExaminationType(int id, string name)
 		{

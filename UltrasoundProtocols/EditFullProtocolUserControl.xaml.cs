@@ -122,8 +122,8 @@ namespace UltrasoundProtocols
             for (int i = 0; i < Equipments.Count; ++i)
             {
                 MedicalEquipment equipment = Equipments[i];
-                EquipmentsComboBox.Items.Add(equipment.getName());
-                if (equipment.getId() == FullProtocol_.Equipment)
+                EquipmentsComboBox.Items.Add(equipment.Name);
+                if (equipment.Id == FullProtocol_.Equipment)
                 {
                     equipmentIndexInCombobox = i;
                 }
@@ -137,7 +137,7 @@ namespace UltrasoundProtocols
         {
             FullProtocol_.Source = SourceTextBox.Text;
             FullProtocol_.Doctor = Doctors[DoctorsComboBox.SelectedIndex].Id;
-            FullProtocol_.Equipment = Equipments[EquipmentsComboBox.SelectedIndex].getId();
+            FullProtocol_.Equipment = Equipments[EquipmentsComboBox.SelectedIndex].Id;
             FullProtocol_.Source = SourceTextBox.Text;
             FullProtocol_.DateTime = DatePicker.Value;
         }
