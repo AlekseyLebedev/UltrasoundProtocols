@@ -61,6 +61,11 @@ namespace ProtocolTemplateLib
             StringBuilder insertLine = new StringBuilder();
             for (int index = 0; index < Fields.Count; ++index)
             {
+				string fieldStringLower = Fields[index].AddToSaveRequest().ToLower();
+				if (fieldStringLower.Contains(" or ") || fieldStringLower.Contains(" and "))
+				{
+					throw (new SqlSecurityException("Sql-injection was founded. Not corrected field in ProtocolField"));
+				}
                 insertLine.Append(Fields[index].AddToSaveRequest());
                 if (index < Fields.Count)
                 {
@@ -72,10 +77,16 @@ namespace ProtocolTemplateLib
 
 			command.Parameters.AddWithValue("@TableId", TemplateInstance.IdName);
 
+			command.CommandText = builder.ToString();
 
-
-            command.CommandText = builder.ToString();
-            command.ExecuteNonQuery();
+			if (SqlCommandChecker.checkSqlCommandForInjections(command.CommandText))
+			{
+				command.ExecuteNonQuery();
+			}
+			else
+			{
+				throw (new SqlSecurityException("Sql-injection was founded."));
+			}
         }
 
         /*public void LoadFromDatabase(int ProtocolId, SqlCommand command)
