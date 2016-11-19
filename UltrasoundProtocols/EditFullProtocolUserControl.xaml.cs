@@ -83,7 +83,7 @@ namespace UltrasoundProtocols
         {
             Equipments = Controller.GetMedicalEquipments();
             Doctors = Controller.GetActiveDoctors();
-            Patient = Controller.GetPatient(FullProtocol_.Patient);
+            Patient = Controller.GetPatient(FullProtocol_.PatientId);
         }
 
         private void ShowPatientLoadError()
@@ -113,8 +113,8 @@ namespace UltrasoundProtocols
             for (int i = 0; i < Doctors.Count; ++i)
             {
                 Doctor doctor = Doctors[i];
-                DoctorsComboBox.Items.Add(doctor.Firstname);
-                if (doctor.Id == FullProtocol_.Doctor)
+                DoctorsComboBox.Items.Add(doctor.FirstName);
+                if (doctor.Id == FullProtocol_.DoctorId)
                 {
                     doctorIndexInCombobox = i;
                 }
@@ -126,7 +126,7 @@ namespace UltrasoundProtocols
             {
                 MedicalEquipment equipment = Equipments[i];
                 EquipmentsComboBox.Items.Add(equipment.Name);
-                if (equipment.Id == FullProtocol_.Equipment)
+                if (equipment.Id == FullProtocol_.EquipmentId)
                 {
                     equipmentIndexInCombobox = i;
                 }
@@ -139,8 +139,8 @@ namespace UltrasoundProtocols
         private void ApplyViewsDataToProtocol()
         {
             FullProtocol_.Source = SourceTextBox.Text;
-            FullProtocol_.Doctor = Doctors[DoctorsComboBox.SelectedIndex].Id;
-            FullProtocol_.Equipment = Equipments[EquipmentsComboBox.SelectedIndex].Id;
+            FullProtocol_.DoctorId = Doctors[DoctorsComboBox.SelectedIndex].Id;
+            FullProtocol_.EquipmentId = Equipments[EquipmentsComboBox.SelectedIndex].Id;
             FullProtocol_.Source = SourceTextBox.Text;
             FullProtocol_.DateTime = DatePicker.Value;
         }
@@ -148,9 +148,9 @@ namespace UltrasoundProtocols
         private void OutToLogger()
         {
             logger.Debug(TAG, "Source: " + FullProtocol_.Source);
-            logger.Debug(TAG, "Doctor id: " + FullProtocol_.Doctor);
-            logger.Debug(TAG, "Patient id: " + FullProtocol_.Patient);
-            logger.Debug(TAG, "Equipment id" + FullProtocol_.Equipment);
+            logger.Debug(TAG, "Doctor id: " + FullProtocol_.DoctorId);
+            logger.Debug(TAG, "Patient id: " + FullProtocol_.PatientId);
+            logger.Debug(TAG, "Equipment id" + FullProtocol_.EquipmentId);
             logger.Debug(TAG, "Date: " + FullProtocol_.DateTime);
         }
 
