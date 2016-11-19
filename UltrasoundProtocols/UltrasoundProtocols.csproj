@@ -67,11 +67,11 @@
     <Compile Include="AuthorizationWindow.xaml.cs">
       <DependentUpon>AuthorizationWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="BasicObjects\Doctor.cs" />
-    <Compile Include="BasicObjects\ExaminationType.cs" />
-    <Compile Include="BasicObjects\MedicalEquipment.cs" />
-    <Compile Include="BasicObjects\Patient.cs" />
-    <Compile Include="BasicObjects\Protocol.cs" />
+    <Compile Include="Doctor.cs" />
+    <Compile Include="ExaminationType.cs" />
+    <Compile Include="MedicalEquipment.cs" />
+    <Compile Include="Patient.cs" />
+    <Compile Include="FullProtocol.cs" />
     <Compile Include="EditFullProtocolUserControl.xaml.cs">
       <DependentUpon>EditFullProtocolUserControl.xaml</DependentUpon>
     </Compile>
