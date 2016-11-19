@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProtocolTemplateLib;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,18 +9,22 @@ namespace UltrasoundProtocols
 {
     class EditPatientPresenter
     {
-        public EditPatientPresenter()
-        {
+        private DataBaseController Controller;
+        private DataBaseConnector Connector;
 
+        public EditPatientPresenter(DataBaseConnector connector)
+        {
+            Controller = new DataBaseController(connector.Settings);
+            Connector = connector;
         }
+
         internal List<Patient> LoadPatientListFromDataBase()
         {
             //TODO удалить дебаговые объекты
-            //Вот не стоит этого пока что делать. Тк когда не подключается база данных, дебаговые объкты спасают
             List<Patient> patientList = new List<Patient>();
             patientList.Add(new Patient(0, "Александр", "Сергеевич", "Пушкин", PatientGender.Man, new DateTime(1799, 6, 6), "0"));
             patientList.Add(new Patient(1, "Петр", "Алексеевич", "Романов", PatientGender.Man, new DateTime(1672, 6, 9), "123"));
-			patientList.AddRange(UltrasoundProtocolsDataSetSelector.getPatients());
+			patientList.AddRange(Controller.GetPatients());
             return patientList;
         }
 

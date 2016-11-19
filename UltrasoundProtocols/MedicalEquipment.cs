@@ -5,7 +5,7 @@ using System.Text;
 
 namespace UltrasoundProtocols
 {
-	class MedicalEquipment
+	public class MedicalEquipment
 	{
 		public int Id { get; set; }
 		public string Name { get; set; }

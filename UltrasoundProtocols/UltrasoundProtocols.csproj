@@ -83,7 +83,7 @@
     <Compile Include="PatientShowControl.xaml.cs">
       <DependentUpon>PatientShowControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UltrasoundProtocolsDataSetSelector.cs" />
+    <Compile Include="DataBaseController.cs" />
     <Compile Include="UltraSoundProtocolsDBDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -132,8 +132,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Content Include="SQLRequests\SQLCreateBasicTables.sql" />
-    <Content Include="SQLRequests\SQLDropBasicTables.sql" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

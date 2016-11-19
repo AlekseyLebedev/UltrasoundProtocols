@@ -23,7 +23,20 @@ namespace UltrasoundProtocols
     /// </summary>
     public partial class MainWindow : Window
     {
-        public DataBaseConnector Connector { get; set; }
+        private DataBaseConnector Connector_;
+        public DataBaseConnector Connector
+        {
+            get { return Connector_; }
+            set
+            {
+                if (Presenter != null)
+                {
+                    throw new NotSupportedException("Settings has been already set");
+                }
+                Connector_ = value;
+                Presenter = new EditPatientPresenter(value);
+            }
+        }
 
         public MainWindow()
         {
@@ -34,11 +47,10 @@ namespace UltrasoundProtocols
             id.DisplayMemberBinding = new Binding("NumberAmbulatoryCard");
             Gender.DisplayMemberBinding = new Binding("Gender");
             Birthday.DisplayMemberBinding = new Binding("Date");
-			Birthday.DisplayMemberBinding.StringFormat = "dd.MM.yyyy";
-            presenter = new EditPatientPresenter();
+            Birthday.DisplayMemberBinding.StringFormat = "dd.MM.yyyy";
         }
 
-        EditPatientPresenter presenter;
+        EditPatientPresenter Presenter;
 
         private void EditPatientBotton_Click(object sender, RoutedEventArgs e)
         {
@@ -52,7 +64,7 @@ namespace UltrasoundProtocols
             this.IsEnabled = false;
             logger.Debug("Loading patients");
             GuiAsyncTask<List<Patient>> task = new GuiAsyncTask<List<Patient>>();
-            task.AsyncTask = () => presenter.LoadPatientListFromDataBase();
+            task.AsyncTask = () => Presenter.LoadPatientListFromDataBase();
             task.SyncTask = (patientList) =>
               {
                   foreach (Patient patient in patientList)
@@ -75,7 +87,7 @@ namespace UltrasoundProtocols
             if (e.AddedItems.Count == 1)
             {
                 logger.Debug("show one patient");
-                presenter.ShowPatient(showController, e);
+                Presenter.ShowPatient(showController, e);
                 PatientColumn.Width = new GridLength(9, GridUnitType.Star);
             }
             else

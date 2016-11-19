@@ -11,9 +11,6 @@ namespace ProtocolTemplateLib
 
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
-        private static string login = "val_guest";
-        private static string password = "hf94hd78";
-
         private static string INSERT_INTO = "INSERT INTO";
         private static string SELECT_ALL = "SELECT * FROM";
         private static string SPACE = " ";
@@ -89,6 +86,9 @@ namespace ProtocolTemplateLib
 			}
         }
 
+        // TODO Еод ниже хранит нарботки по сохранению.
+        // Они не могут быть применены, т.к. тут в классе создается Connection, который по идее должен передаваться в аргументы
+        // Из-за этого не работает остальной код.
         /*public void LoadFromDatabase(int ProtocolId, SqlCommand command)
         {
             string tableName = TemplateInstance.IdName;

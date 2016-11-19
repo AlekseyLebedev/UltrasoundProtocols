@@ -12,7 +12,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using NLog;
-
+using ProtocolTemplateLib;
 
 namespace UltrasoundProtocols
 {
@@ -48,6 +48,8 @@ namespace UltrasoundProtocols
 
         public event OnSaveButtonClick onSaveButtonClick;
 
+        public DataBaseController Controller { get; set; }
+
         public EditFullProtocolUserControl()
         {
             InitializeComponent();
@@ -79,9 +81,9 @@ namespace UltrasoundProtocols
         //Подгружает данные из бд
         private void LoadFields()
         {
-            Equipments = UltrasoundProtocolsDataSetSelector.getMedicalEquipments();
-            Doctors = UltrasoundProtocolsDataSetSelector.getActiveDoctors();
-            Patient = UltrasoundProtocolsDataSetSelector.getPatient(FullProtocol_.Patient);
+            Equipments = Controller.GetMedicalEquipments();
+            Doctors = Controller.GetActiveDoctors();
+            Patient = Controller.GetPatient(FullProtocol_.Patient);
         }
 
         private void ShowPatientLoadError()
@@ -100,7 +102,7 @@ namespace UltrasoundProtocols
             {
                 ShowPatientLoadError();
             }
-            else 
+            else
             {
                 PatientName.Content = Patient.FirstName + " " + Patient.MiddleName + " " + Patient.LastName;
             }
@@ -108,7 +110,8 @@ namespace UltrasoundProtocols
             SourceTextBox.Text = FullProtocol_.Source;
 
             int doctorIndexInCombobox = 0;
-            for (int i = 0; i < Doctors.Count; ++i) {
+            for (int i = 0; i < Doctors.Count; ++i)
+            {
                 Doctor doctor = Doctors[i];
                 DoctorsComboBox.Items.Add(doctor.Firstname);
                 if (doctor.Id == FullProtocol_.Doctor)
