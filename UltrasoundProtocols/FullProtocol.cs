@@ -34,9 +34,10 @@ namespace UltrasoundProtocols
 
         public void Load(DataBaseController controller)
         {
-            //TODO
             Protocols = controller.GetProtocols(Id);
             Doctor = controller.GetDoctor(DoctorId);
+            Equipment = controller.GetMedicalEquipment(EquipmentId);
+            Patient = controller.GetPatient(PatientId);
         }
 
         private const string BEGIN_MARKED_TAG = "<strong>";

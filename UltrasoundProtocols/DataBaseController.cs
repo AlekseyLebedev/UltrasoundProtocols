@@ -23,8 +23,7 @@ namespace UltrasoundProtocols
             Logger.Debug("Request for active doctors");
             Tbl_DoctorsTableAdapter adapter =
                 new Tbl_DoctorsTableAdapter(Settings);
-            List<Doctor> doctors = (from table in adapter.GetData() where table.dct_status select table)
-                .Select(x => new Doctor(x.dct_id, x.dct_firstname, x.dct_middlename, x.dct_lastname, x.dct_status))
+            List<Doctor> doctors = (from table in adapter.GetData() where table.dct_status select ConvertDoctor(table))
                 .ToList();
             Logger.Debug("Found {0} active doctors", doctors.Count);
             return doctors;
@@ -35,9 +34,18 @@ namespace UltrasoundProtocols
             Tbl_PatientsTableAdapter adapter = new Tbl_PatientsTableAdapter(Settings);
             var patients = (from x in adapter.GetData()
                             where x.pat_id == id
-                            select new Patient(x.pat_id, x.pat_firstname, x.pat_middlename, x.pat_lastname,
-                            (PatientGender)x.pat_gender, x.pat_birthdate, x.pat_numberambulatorycard));
+                            select ConvertPatient(x));
             return GetFirstOrNull(patients, id);
+        }
+
+        internal MedicalEquipment GetMedicalEquipment(int id)
+        {
+            Logger.Debug("Request for mediacal equipment {0}", id);
+            Tbl_MedicalEquipmentsTableAdapter adapter = new Tbl_MedicalEquipmentsTableAdapter(Settings);
+            var equipments = (from table in adapter.GetData()
+                           where table.meq_id == id
+                           select ConvertMedicalEquipment(table));
+            return GetFirstOrNull(equipments, id);
         }
 
         internal Doctor GetDoctor(int id)
@@ -46,22 +54,21 @@ namespace UltrasoundProtocols
             Tbl_DoctorsTableAdapter adapter = new Tbl_DoctorsTableAdapter(Settings);
             var doctors = (from table in adapter.GetData()
                            where table.dct_id == id
-                           select new Doctor(table.dct_id, table.dct_firstname, table.dct_middlename, table.dct_lastname, table.dct_status));
+                           select ConvertDoctor(table));
             return GetFirstOrNull(doctors, id);
         }
 
         public List<Patient> GetPatients()
         {
             Tbl_PatientsTableAdapter adapter = new Tbl_PatientsTableAdapter(Settings);
-            List<Patient> patients = (from x in adapter.GetData()
-                                      select new Patient(x.pat_id, x.pat_firstname, x.pat_middlename,
-                                      x.pat_lastname, (PatientGender)x.pat_gender, x.pat_birthdate, x.pat_numberambulatorycard))
+            List<Patient> patients = (from x in adapter.GetData() select ConvertPatient(x))
                 .ToList();
             return patients;
         }
 
         public List<Protocol> GetProtocols(int id)
         {
+            // TODO
             throw new NotImplementedException();
         }
 
@@ -70,7 +77,7 @@ namespace UltrasoundProtocols
             Logger.Debug("Request for examination types");
             Tbl_ExaminationTypesTableAdapter adapter = new Tbl_ExaminationTypesTableAdapter(Settings);
             List<ExaminationType> examinationTypes = (from table in adapter.GetData()
-                                                      select new ExaminationType(table.ext_id, table.ext_name))
+                                                      select ConverExaminationType(table))
                 .ToList();
             Logger.Debug("Found {0} examinations types", examinationTypes.Count);
             return examinationTypes;
@@ -80,8 +87,7 @@ namespace UltrasoundProtocols
         {
             Logger.Debug("Request for medical equipment");
             Tbl_MedicalEquipmentsTableAdapter adapter = new Tbl_MedicalEquipmentsTableAdapter(Settings);
-            List<MedicalEquipment> equipments = (from table in adapter.GetData()
-                                                 select new MedicalEquipment(table.meq_id, table.meq_name))
+            List<MedicalEquipment> equipments = (from table in adapter.GetData() select ConvertMedicalEquipment(table))
                 .ToList();
             Logger.Debug("Found {0} medical equipments", equipments.Count);
             return equipments;
@@ -105,6 +111,27 @@ namespace UltrasoundProtocols
                 Logger.Error(ex, "Element {0} id {1} not found", type, id);
                 return null;
             }
+        }
+
+        private static Patient ConvertPatient(UltraSoundProtocolsDBDataSet.Tbl_PatientsRow x)
+        {
+            return new Patient(x.pat_id, x.pat_firstname, x.pat_middlename, x.pat_lastname,
+                                        (PatientGender)x.pat_gender, x.pat_birthdate, x.pat_numberambulatorycard);
+        }
+
+        private static Doctor ConvertDoctor(UltraSoundProtocolsDBDataSet.Tbl_DoctorsRow table)
+        {
+            return new Doctor(table.dct_id, table.dct_firstname, table.dct_middlename, table.dct_lastname, table.dct_status);
+        }
+
+        private static MedicalEquipment ConvertMedicalEquipment(UltraSoundProtocolsDBDataSet.Tbl_MedicalEquipmentsRow table)
+        {
+            return new MedicalEquipment(table.meq_id, table.meq_name);
+        }
+
+        private static ExaminationType ConverExaminationType(UltraSoundProtocolsDBDataSet.Tbl_ExaminationTypesRow table)
+        {
+            return new ExaminationType(table.ext_id, table.ext_name);
         }
 
         private static Logger Logger = LogManager.GetCurrentClassLogger();
