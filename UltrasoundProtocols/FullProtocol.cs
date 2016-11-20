@@ -36,6 +36,7 @@ namespace UltrasoundProtocols
         {
             //TODO
             Protocols = controller.GetProtocols(Id);
+            Doctor = controller.GetDoctor(DoctorId);
         }
 
         private const string BEGIN_MARKED_TAG = "<strong>";
