@@ -66,10 +66,11 @@ namespace ProtocolTemplateLib
             return result;
         }
 
-
         public void SaveXml(XmlWriter writer)
         {
-            writer.WriteStartElement(NodeNameTemplate);
+            writer.WriteStartElement(NODE_NAME_TEMPLATE);
+            writer.WriteAttributeString(NAME_ATTRIBUTE_NAME, Name);
+            writer.WriteAttributeString(ID_NAME_ATTRIBUTE_NAME, IdName);
             foreach (var item in Items)
             {
                 item.SaveXml(writer);
@@ -80,12 +81,16 @@ namespace ProtocolTemplateLib
         public string SaveToXmlString()
         {
             StringBuilder result = new StringBuilder();
-            XmlWriter writer = XmlWriter.Create(result);
+            XmlWriterSettings settings = new XmlWriterSettings();
+            XmlWriter writer = XmlWriter.Create(result, settings);
             writer.WriteStartDocument();
             SaveXml(writer);
             writer.WriteEndDocument();
-            return result.ToString();
+            writer.Flush();
+            writer.Close();
+            return result.ToString().Replace(" encoding=\"utf-16\"", "");
         }
+
 
         public static Template GetFromXml(XmlDocument document)
         {
@@ -94,12 +99,29 @@ namespace ProtocolTemplateLib
                 throw new XmlException("Wrong root node number");
             }
 
-            var rootNodeName = document.ChildNodes[1].Name;
-            if (rootNodeName != NodeNameTemplate)
+            var rootnode = document.ChildNodes[1];
+            var rootNodeName = rootnode.Name;
+            if (rootNodeName != NODE_NAME_TEMPLATE)
             {
-                throw new XmlException(String.Format("Wrong root node name. Expected {0}, found {1}", NodeNameTemplate, rootNodeName));
+                throw new XmlException(String.Format("Wrong root node name. Expected {0}, found {1}", NODE_NAME_TEMPLATE, rootNodeName));
             }
             Template template = new Template();
+            if (rootnode.Attributes[NAME_ATTRIBUTE_NAME] == null)
+            {
+                throw new XmlException(String.Format(EXCEPTION_NO_ATTRIBUTE_MESSAGE, NAME_ATTRIBUTE_NAME));
+            }
+            else
+            {
+                template.Name = rootnode.Attributes[NAME_ATTRIBUTE_NAME].Value;
+            }
+            if (rootnode.Attributes[ID_NAME_ATTRIBUTE_NAME] == null)
+            {
+                throw new XmlException(String.Format(EXCEPTION_NO_ATTRIBUTE_MESSAGE, ID_NAME_ATTRIBUTE_NAME));
+            }
+            else
+            {
+                template.IdName = rootnode.Attributes[ID_NAME_ATTRIBUTE_NAME].Value;
+            }
             foreach (XmlNode node in document.ChildNodes[1].ChildNodes)
             {
                 template.Items.Add(TemplateItem.GetFromXml(node));
@@ -107,7 +129,10 @@ namespace ProtocolTemplateLib
             return template;
         }
 
-        private const string NodeNameTemplate = "template";
+        private const string NODE_NAME_TEMPLATE = "template";
+        private const string NAME_ATTRIBUTE_NAME = "name";
+        private const string ID_NAME_ATTRIBUTE_NAME = "id";
+        private const string EXCEPTION_NO_ATTRIBUTE_MESSAGE = "Where is no attribute {0}";
 
         private static Logger logger = LogManager.GetCurrentClassLogger();
     }

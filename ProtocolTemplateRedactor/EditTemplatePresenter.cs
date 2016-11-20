@@ -2,10 +2,12 @@
 using ProtocolTemplateLib;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
+using System.Xml;
 
 namespace ProtocolTemplateRedactor
 {
@@ -80,9 +82,67 @@ namespace ProtocolTemplateRedactor
             }
         }
 
+        internal string TemplateName
+        {
+            get
+            {
+                var result = Template.Name;
+                logger.Debug("Get template name '{0}'", result);
+                return result;
+            }
+            set
+            {
+                logger.Debug("Set template name '{0}'", value);
+                Template.Name = value;
+            }
+        }
+
+        internal string TemplateId
+        {
+            get
+            {
+                var result = Template.IdName;
+                logger.Debug("Get template id '{0}'", result);
+                return result;
+            }
+        }
+
+        internal bool SetTemplateId(string value)
+        {
+            logger.Debug("Set template id '{0}'", value);
+            if (ValidateId(value))
+            {
+                Template.IdName = value;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         internal bool SetSelectedItemId(string value)
         {
             logger.Debug("Set selected item id = '{0}'", value);
+            if (ValidateId(value))
+            {
+                if (!ValidateUniqueId(value))
+                {
+                    logger.Info("Dublicate id");
+                    return false;
+                }
+                SelectedItem.Id = value;
+                InvokeRefresh();
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        private static bool ValidateId(string value)
+        {
             if (value.Length == 0)
             {
                 logger.Info("Empty text set for id");
@@ -98,13 +158,6 @@ namespace ProtocolTemplateRedactor
                     return false;
                 }
             }
-            if (!ValidateUniqueId(value))
-            {
-                logger.Info("Dublicate id");
-                return false;
-            }
-            SelectedItem.Id = value;
-            InvokeRefresh();
             return true;
         }
 
@@ -158,6 +211,22 @@ namespace ProtocolTemplateRedactor
             return html;
         }
 
+        internal void SaveTemplateToXml(string fileName)
+        {
+            logger.Debug("Saving to {0}", fileName);
+            var xml = Template.SaveToXmlString();
+            logger.Debug("Xml: {0}", xml);
+            try
+            {
+                File.WriteAllText(fileName, xml, Encoding.UTF8);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex, "Error saving file");
+                throw ex;
+            }
+        }
+
         internal void EnterEditorTab()
         {
             logger.Debug("Enter editor tab");
@@ -169,6 +238,21 @@ namespace ProtocolTemplateRedactor
             logger.Debug("Edit control requested");
             CreateProtocolIfNeeded();
             return Template.GetEditControl();
+        }
+
+        internal void LoadTemplateToXml(string fileName)
+        {
+            XmlDocument document = new XmlDocument();
+            try
+            {
+                document.Load(fileName);
+                Template = Template.GetFromXml(document);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex, "Error loading file");
+                throw ex;
+            }
         }
 
         private void CreateProtocolIfNeeded()

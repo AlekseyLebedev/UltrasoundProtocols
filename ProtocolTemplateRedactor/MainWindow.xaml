@@ -11,13 +11,17 @@
         <TabControl x:Name="tabControl"  Margin="0" SelectionChanged="tabControl_SelectionChanged">
             <TabItem Header="Общая информация" RenderTransformOrigin="6.895,10.883">
                 <Grid Background="#FFE5E5E5" Margin="0,0,0,0">
-                    <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="20, 0, 0, 80" TextWrapping="Wrap" Text="Название:"/>
-                    <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="20, 0, 0, 30" TextWrapping="Wrap" Text="Идентификатор:"/>
-                    <TextBox x:Name="textBoxName" HorizontalAlignment="Stretch" VerticalAlignment="Center"  Margin="120, 0, 20, 80" Height="20" TextWrapping="Wrap" Text="Название"/>
-                    <TextBox x:Name="textBoxId" Text="Идентификатор" HorizontalAlignment="Stretch" VerticalAlignment="center" Margin="120, 0, 20, 30" TextWrapping="Wrap" Height="20"></TextBox>
-                    <TextBlock x:Name="textBlockIdHint" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="120, 30, 20, 0" TextWrapping="Wrap" Text="Идентификатор - это слово, состоящее из латинских букв и цифр"/>
-                    <Button x:Name="buttonSave" Content="Сохранить" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0, 200,100,0" Width="75" Height="20"/>
-                    <Button x:Name="buttonLoad" Content="Загрузить" HorizontalAlignment="Stretch" Margin="100,200,0,0" VerticalAlignment="Stretch" Width="75" Height="20"/>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,11,0,0" TextWrapping="Wrap" Text="Название:"/>
+                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,41,0,0" TextWrapping="Wrap" Text="Идентификатор:"/>
+                    <TextBlock x:Name="textBlockIdHint" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="110,65,0,0" TextWrapping="Wrap" Text="Идентификатор - это слово, состоящее из латинских букв и цифр" Grid.ColumnSpan="2"/>
+                    <TextBox x:Name="textBoxName" HorizontalAlignment="Stretch" VerticalAlignment="Top"  Margin="110,10,10,0" Height="25" TextWrapping="Wrap" Text="Без имени" Grid.ColumnSpan="2" TextChanged="textBoxName_TextChanged"/>
+                    <TextBox x:Name="textBoxId" Text="noname" HorizontalAlignment="Stretch" Margin="110,40,10,0" TextWrapping="Wrap" Height="20" VerticalAlignment="Top" Grid.ColumnSpan="2" TextChanged="textBoxId_TextChanged"/>
+                    <Button x:Name="SaveFileButton" Content="_Сохранить в файл" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="10,85.96,10,0" Height="25" Grid.Column="0" Click="SaveFileButton_Click"/>
+                    <Button x:Name="LoadFileButton" Content="_Загрузить из файла" HorizontalAlignment="Stretch" Margin="10,86.96,10,0" VerticalAlignment="Top" Height="24" Grid.Column="1" Click="LoadFileButton_Click"/>
                 </Grid>
             </TabItem>
             <TabItem x:Name="EditTabItem" Header="Редактирование">

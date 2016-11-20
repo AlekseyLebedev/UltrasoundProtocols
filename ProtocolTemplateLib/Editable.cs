@@ -110,7 +110,7 @@ namespace ProtocolTemplateLib
             SaveOtherEnabled(writer);
             foreach (var item in Variants)
             {
-                writer.WriteStartAttribute(NodeNameVariant);
+                writer.WriteStartElement(NodeNameVariant);
                 writer.WriteAttributeString(AttributeNameValue, item);
                 writer.WriteEndElement();
             }
