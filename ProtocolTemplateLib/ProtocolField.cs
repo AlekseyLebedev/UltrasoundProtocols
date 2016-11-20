@@ -91,7 +91,7 @@ namespace ProtocolTemplateLib
         public ComboBoxField(ComboboxEditable editable)
         {
             Editable_ = editable;
-            ValueInt_ = -1;
+            ValueInt_ = 0;
             ValueString_ = "";
         }
 

@@ -35,10 +35,10 @@ namespace ProtocolTemplateLib
             TemplateItem result;
             switch (node.Name)
             {
-                case NodeNameHeader:
+                case NODE_NAME_HEADER:
                     result = new TemplateHeader();
                     break;
-                case NodeNameLine:
+                case NODE_NAME_LINE:
                     result = new TemplateLine();
                     break;
                 default:
@@ -74,8 +74,8 @@ namespace ProtocolTemplateLib
         protected abstract string GetGuiType();
         protected abstract string GetInfo();
         protected abstract void LoadFromXml(XmlNode node);
-        protected const string NodeNameLine = "line";
-        protected const string NodeNameHeader = "header";
+        protected const string NODE_NAME_LINE = "line";
+        protected const string NODE_NAME_HEADER = "header";
         private string Id_;
     }
 
@@ -121,22 +121,22 @@ namespace ProtocolTemplateLib
 
         public override void SaveXml(XmlWriter writer)
         {
-            writer.WriteStartElement(NodeNameLine);
-            writer.WriteAttributeString(AttributeNameLabel, Label);
+            writer.WriteStartElement(NODE_NAME_LINE);
+            writer.WriteAttributeString(ATTRIBUTE_NAME_LABEL, Label);
             Field.SaveXml(writer);
             writer.WriteEndElement();
         }
 
         protected override void LoadFromXml(XmlNode node)
         {
-            XmlUtils.AssertNodeName(node, NodeNameLine);
-            XmlUtils.AssertAttributeNotNull(node, AttributeNameLabel);
+            XmlUtils.AssertNodeName(node, NODE_NAME_LINE);
+            XmlUtils.AssertAttributeNotNull(node, ATTRIBUTE_NAME_LABEL);
             if (node.ChildNodes.Count != 1)
             {
                 throw new XmlException("Line node has no info about editable");
             }
             Field = Editable.GetFromXml(node.ChildNodes[0]);
-            Label = node.Attributes[AttributeNameLabel].Value;
+            Label = node.Attributes[ATTRIBUTE_NAME_LABEL].Value;
         }
 
         public override bool RequireValue()
@@ -184,7 +184,7 @@ namespace ProtocolTemplateLib
         private string Label_;
         private Editable Field_;
 
-        private const string AttributeNameLabel = "label";
+        private const string ATTRIBUTE_NAME_LABEL = "label";
     }
 
     public class TemplateHeader : TemplateItem
@@ -208,16 +208,16 @@ namespace ProtocolTemplateLib
 
         public override void SaveXml(XmlWriter writer)
         {
-            writer.WriteStartElement(NodeNameHeader);
-            writer.WriteAttributeString(AttributeNameLabel, Header);
+            writer.WriteStartElement(NODE_NAME_HEADER);
+            writer.WriteAttributeString(ATTRIBUTE_NAME_LABEL, Header);
             writer.WriteEndElement();
         }
 
         protected override void LoadFromXml(XmlNode node)
         {
-            XmlUtils.AssertNodeName(node, NodeNameLine);
-            XmlUtils.AssertAttributeNotNull(node, AttributeNameLabel);
-            Header = node.Attributes[AttributeNameLabel].Value;
+            XmlUtils.AssertNodeName(node, NODE_NAME_HEADER);
+            XmlUtils.AssertAttributeNotNull(node, ATTRIBUTE_NAME_LABEL);
+            Header = node.Attributes[ATTRIBUTE_NAME_LABEL].Value;
         }
 
         public override bool RequireValue()
@@ -249,6 +249,6 @@ namespace ProtocolTemplateLib
             throw new InvalidOperationException();
         }
 
-        private const string AttributeNameLabel = "label";
+        private const string ATTRIBUTE_NAME_LABEL = "label";
     }
 }

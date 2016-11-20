@@ -107,6 +107,8 @@ namespace ProtocolTemplateRedactor
             }
         }
 
+        internal List<TemplateItem> AllItems { get { return Template.Items; } }
+
         internal bool SetTemplateId(string value)
         {
             logger.Debug("Set template id '{0}'", value);
@@ -247,6 +249,7 @@ namespace ProtocolTemplateRedactor
             {
                 document.Load(fileName);
                 Template = Template.GetFromXml(document);
+                CurrentProtocol = null;
             }
             catch (Exception ex)
             {

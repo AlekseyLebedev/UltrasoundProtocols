@@ -57,10 +57,15 @@ namespace ProtocolTemplateRedactor
             }
             else
             {
-                Presenter.SelectItem(null);
-                IdTextBox.Text = "";
-                PropertiesGroupBox.IsEnabled = false;
+                SelectNoItems();
             }
+        }
+
+        private void SelectNoItems()
+        {
+            Presenter.SelectItem(null);
+            IdTextBox.Text = "";
+            PropertiesGroupBox.IsEnabled = false;
         }
 
         private void SetRedactor(TemplateItem selectedItem)
@@ -216,6 +221,13 @@ namespace ProtocolTemplateRedactor
                     Presenter.LoadTemplateToXml(dialog.FileName);
                     textBoxId.Text = Presenter.TemplateId;
                     textBoxName.Text = Presenter.TemplateName;
+                    listView.Items.Clear();
+                    SelectNoItems();
+                    List<TemplateItem> allItems = Presenter.AllItems;
+                    foreach (var item in allItems)
+                    {
+                        listView.Items.Add(item);
+                    }
                 }
                 catch (Exception ex)
                 {
