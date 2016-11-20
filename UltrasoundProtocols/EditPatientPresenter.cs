@@ -20,10 +20,7 @@ namespace UltrasoundProtocols
 
         internal List<Patient> LoadPatientListFromDataBase()
         {
-            //TODO удалить дебаговые объекты
             List<Patient> patientList = new List<Patient>();
-            patientList.Add(new Patient(0, "Александр", "Сергеевич", "Пушкин", PatientGender.Man, new DateTime(1799, 6, 6), "0"));
-            patientList.Add(new Patient(1, "Петр", "Алексеевич", "Романов", PatientGender.Man, new DateTime(1672, 6, 9), "123"));
 			patientList.AddRange(Controller.GetPatients());
             return patientList;
         }

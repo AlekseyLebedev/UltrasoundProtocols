@@ -45,7 +45,6 @@ namespace UltrasoundProtocols
             NameColumn.DisplayMemberBinding = new Binding("FirstName");
             MiddleName.DisplayMemberBinding = new Binding("MiddleName");
             id.DisplayMemberBinding = new Binding("NumberAmbulatoryCard");
-            Gender.DisplayMemberBinding = new Binding("Gender");
             Birthday.DisplayMemberBinding = new Binding("Date");
             Birthday.DisplayMemberBinding.StringFormat = "dd.MM.yyyy";
         }

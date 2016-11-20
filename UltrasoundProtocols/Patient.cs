@@ -1,17 +1,37 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.ComponentModel;
+using System.Globalization;
+using System.Windows.Data;
 
 namespace UltrasoundProtocols
 {
 	public enum PatientGender
 	{
-		Woman = 0,
-		Man = 1
+        [Description("Женщина")]
+        Woman = 0,
+        [Description("Мужчина")]
+        Man = 1
 	};
+    public class PatientEnumDescriptionValueConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            var type = typeof(PatientGender);
+            var name = Enum.GetName(type, value);
+            System.Reflection.FieldInfo fi = type.GetField(name);
+            var descriptionAttrib = (DescriptionAttribute)
+                Attribute.GetCustomAttribute(fi, typeof(DescriptionAttribute));
 
-	public class Patient
+            return descriptionAttrib.Description;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotSupportedException();
+        }
+    }
+
+    public class Patient
 	{
 		public int Id { get; set; }
 		public string FirstName { get; set; }
