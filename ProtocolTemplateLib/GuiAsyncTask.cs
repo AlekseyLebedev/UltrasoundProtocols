@@ -6,14 +6,15 @@ using System.Text;
 using System.Threading;
 using System.Windows.Threading;
 using System.Windows;
-namespace UltrasoundProtocols
+
+namespace ProtocolTemplateLib
 {
     /// <summary>
     /// Этот класс позволяет запускать задачи в асинхронном потоке. Обрабатывает ошибки, выдавая сообщение с
     /// предложением повторить задачу (можно переопределить)
     /// </summary>
     /// <typeparam name="T">Тип результата асинхронной задачи</typeparam>
-    class GuiAsyncTask<T>
+    public class GuiAsyncTask<T>
     {
         // Обязательные свойства
         /// <summary>
@@ -164,7 +165,7 @@ namespace UltrasoundProtocols
     /// Этот класс позволяет запускать задачи в асинхронном потоке. Обрабатывает ошибки, выдавая сообщение с
     /// предложением повторить задачу (можно переопределить)
     /// </summary>
-    class GuiAsyncTask
+    public class GuiAsyncTask
     {
         // Обязательные свойства
         /// <summary>

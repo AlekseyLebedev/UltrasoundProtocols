@@ -55,9 +55,13 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AuthorizationControl.xaml.cs">
+      <DependentUpon>AuthorizationControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DataBaseConnector.cs" />
     <Compile Include="DataBaseSettings.cs" />
     <Compile Include="Editable.cs" />
+    <Compile Include="GuiAsyncTask.cs" />
     <Compile Include="HeaderControl.xaml.cs">
       <DependentUpon>HeaderControl.xaml</DependentUpon>
     </Compile>
@@ -89,6 +93,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="NLog.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -99,6 +104,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="AuthorizationControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="HeaderControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

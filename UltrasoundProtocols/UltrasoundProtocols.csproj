@@ -79,7 +79,6 @@
     <Compile Include="EditPatientUserControl.xaml.cs">
       <DependentUpon>EditPatientUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GuiAsyncTask.cs" />
     <Compile Include="PatientShowControl.xaml.cs">
       <DependentUpon>PatientShowControl.xaml</DependentUpon>
     </Compile>
