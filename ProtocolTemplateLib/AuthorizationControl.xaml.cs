@@ -18,11 +18,11 @@ namespace ProtocolTemplateLib
     /// <summary>
     /// Interaction logic for AuthorizationWindow.xaml
     /// </summary>
-    public partial class AuthorizationWindow : UserControl
+    public partial class AuthorizationControl : UserControl
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
-        public AuthorizationWindow()
+        public AuthorizationControl()
         {
             InitializeComponent();
         }

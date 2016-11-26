@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="ProtocolTemplateLib.AuthorizationWindow"
+﻿<UserControl x:Class="ProtocolTemplateLib.AuthorizationControl"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Height="200" Width="400"
@@ -7,9 +7,9 @@
         MaxHeight="200" Loaded="Control_Loaded">
 
     <Grid Height="170" VerticalAlignment="Top" Margin="0,0,0,0">
-        <Label Content="Имя пользователя" Margin="10,15,249.817,0" VerticalAlignment="Top" HorizontalContentAlignment="Right"/>
-        <Label Content="Пароль" Margin="0,50,250.27,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="133.73" HorizontalContentAlignment="Right"/>
-        <Label Content="Имя сервера" HorizontalAlignment="Right" Margin="0,90,249,0" VerticalAlignment="Top" Width="135" HorizontalContentAlignment="Right"/>
+        <Label Content="Имя пользователя" Margin="10,15,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Right" HorizontalAlignment="Left" Width="140.183"/>
+        <Label Content="Пароль" Margin="16,50,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="133.73" HorizontalContentAlignment="Right"/>
+        <Label Content="Имя сервера" HorizontalAlignment="Left" Margin="16,90,0,0" VerticalAlignment="Top" Width="135" HorizontalContentAlignment="Right"/>
         <TextBox x:Name="LoginBox" HorizontalAlignment="Stretch" Height="23" Margin="150,15,20,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
         <PasswordBox x:Name="PasswordBox" HorizontalAlignment="Stretch" Height="23" Margin="150,50,20,0" VerticalAlignment="Top"/>
         <TextBox x:Name="ServerBox" HorizontalAlignment="Stretch" Height="23" Margin="150,90,20,0" TextWrapping="Wrap" VerticalAlignment="Top"/>

@@ -6,5 +6,5 @@
         MinHeight="200"
         MaxHeight="200" ResizeMode="CanMinimize">
 
-    <ProtocolTemplateLib:AuthorizationWindow x:Name="autrorisationControl" />
+    <ProtocolTemplateLib:AuthorizationControl x:Name="autrorisationControl" />
 </Window>

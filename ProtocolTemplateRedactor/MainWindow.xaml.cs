@@ -29,6 +29,8 @@ namespace ProtocolTemplateRedactor
             IdColumn.DisplayMemberBinding = new Binding("Id");
             InformationColumn.DisplayMemberBinding = new Binding("Info");
             Presenter.Refresh += Presenter_Refresh;
+            DataBaseGrid.Visibility = Visibility.Collapsed;
+            Autorization.Visibility = Visibility.Visible;
         }
 
         private void Presenter_Refresh(object sender, EventArgs e)
@@ -234,6 +236,13 @@ namespace ProtocolTemplateRedactor
                     MessageBox.Show(ex.Message, "Ошибка загрузки файла.", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
+        }
+
+        private void Autorization_Connected(object sender, ConnectedEventArgs e)
+        {
+            Presenter.Connector = e.Connector;
+            Autorization.Visibility = Visibility.Collapsed;
+            DataBaseGrid.Visibility = Visibility.Visible;
         }
     }
 }

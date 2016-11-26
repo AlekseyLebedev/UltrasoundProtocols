@@ -15,6 +15,5 @@ namespace UltrasoundProtocols
 			this.Id = id;
 			this.Name = name;
 		}
-	
 	}
 }

@@ -109,6 +109,8 @@ namespace ProtocolTemplateRedactor
 
         internal List<TemplateItem> AllItems { get { return Template.Items; } }
 
+        internal DataBaseConnector Connector { get; set; }
+
         internal bool SetTemplateId(string value)
         {
             logger.Debug("Set template id '{0}'", value);
