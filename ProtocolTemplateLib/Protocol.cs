@@ -48,42 +48,31 @@ namespace ProtocolTemplateLib
             }
         }
 
-        // TODO Еод ниже хранит нарботки по сохранению.
+        // TODO Код ниже хранит нарботки по сохранению.
         // Они не могут быть применены, т.к. тут в классе создается Connection, который по идее должен передаваться в аргументы
         // Из-за этого не работает остальной код.
         public void SaveToDatabase(int ProtocolId, SqlCommand command)
         {
             StringBuilder builder = new StringBuilder(INSERT_INTO);
             builder.Append(SPACE).Append("@TableId").Append(VALUES).Append(OPEN_BRACKET);
-            StringBuilder insertLine = new StringBuilder();
+			command.Parameters.AddWithValue("@TableId", TemplateInstance.IdName);
+
+			StringBuilder insertLine = new StringBuilder();
             for (int index = 0; index < Fields.Count; ++index)
             {
-				string fieldStringLower = Fields[index].AddToSaveRequest().ToLower();
-				if (fieldStringLower.Contains(" or ") || fieldStringLower.Contains(" and "))
-				{
-					throw (new SqlSecurityException("Sql-injection was founded. Not corrected field in ProtocolField"));
-				}
-                insertLine.Append(Fields[index].AddToSaveRequest());
+                insertLine.Append("@Value" + index);
                 if (index < Fields.Count)
                 {
                     insertLine.Append(COMMA);
                 }
-            }
+				command.Parameters.AddWithValue("@Value" + index, Fields[index].AddToSaveRequest());
+			}
             logger.Info("Added to " + TemplateInstance.IdName + " record = " + insertLine.ToString());
             builder.Append(insertLine).Append(CLOSE_BRACKET).Append(SEMICOLON);
 
-			command.Parameters.AddWithValue("@TableId", TemplateInstance.IdName);
-
 			command.CommandText = builder.ToString();
 
-			if (SqlCommandChecker.checkSqlCommandForInjections(command.CommandText))
-			{
-				command.ExecuteNonQuery();
-			}
-			else
-			{
-				throw (new SqlSecurityException("Sql-injection was founded."));
-			}
+			command.ExecuteNonQuery();
         }
 
         // TODO Еод ниже хранит нарботки по сохранению.
