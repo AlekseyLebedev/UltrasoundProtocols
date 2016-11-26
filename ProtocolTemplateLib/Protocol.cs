@@ -48,85 +48,66 @@ namespace ProtocolTemplateLib
             }
         }
 
-        // TODO Еод ниже хранит нарботки по сохранению.
+        // TODO Код ниже хранит нарботки по сохранению.
         // Они не могут быть применены, т.к. тут в классе создается Connection, который по идее должен передаваться в аргументы
         // Из-за этого не работает остальной код.
         public void SaveToDatabase(int ProtocolId, SqlCommand command)
         {
             StringBuilder builder = new StringBuilder(INSERT_INTO);
-            builder.Append(SPACE).Append("@TableId").Append(VALUES).Append(OPEN_BRACKET);
+            builder.Append(SPACE).Append("@TableId").Append(SPACE).Append(VALUES).Append(OPEN_BRACKET);
+            command.Parameters.AddWithValue("@TableId", TemplateInstance.IdName);
+            builder.Append("@ProtocolId").Append(COMMA);
+            command.Parameters.AddWithValue("@ProtocolId", ProtocolId);
+
             StringBuilder insertLine = new StringBuilder();
             for (int index = 0; index < Fields.Count; ++index)
             {
-				string fieldStringLower = Fields[index].AddToSaveRequest().ToLower();
-				if (fieldStringLower.Contains(" or ") || fieldStringLower.Contains(" and "))
-				{
-					throw (new SqlSecurityException("Sql-injection was founded. Not corrected field in ProtocolField"));
-				}
-                insertLine.Append(Fields[index].AddToSaveRequest());
-                if (index < Fields.Count)
+                insertLine.Append("@Value" + index);
+                if (index < Fields.Count - 1)
                 {
                     insertLine.Append(COMMA);
                 }
+                command.Parameters.AddWithValue("@Value" + index, Fields[index].AddToSaveRequest());
             }
             logger.Info("Added to " + TemplateInstance.IdName + " record = " + insertLine.ToString());
             builder.Append(insertLine).Append(CLOSE_BRACKET).Append(SEMICOLON);
 
-			command.Parameters.AddWithValue("@TableId", TemplateInstance.IdName);
+            command.CommandText = builder.ToString();
 
-			command.CommandText = builder.ToString();
-
-			if (SqlCommandChecker.checkSqlCommandForInjections(command.CommandText))
-			{
-				command.ExecuteNonQuery();
-			}
-			else
-			{
-				throw (new SqlSecurityException("Sql-injection was founded."));
-			}
+            command.ExecuteNonQuery();
         }
 
-        // TODO Еод ниже хранит нарботки по сохранению.
-        // Они не могут быть применены, т.к. тут в классе создается Connection, который по идее должен передаваться в аргументы
-        // Из-за этого не работает остальной код.
-        /*public void LoadFromDatabase(int ProtocolId, SqlCommand command)
+        public void LoadFromDatabase(int ProtocolId, SqlCommand command)
         {
-            string tableName = TemplateInstance.IdName;
-            StringBuilder builder = new StringBuilder(SELECT_ALL)
-                .Append(tableName)
-                .AppendLine(WHERE_ID)
-                .Append(ProtocolId)
-                .Append(SEMICOLON);
+            StringBuilder builder = new StringBuilder(SELECT_ALL).Append(SPACE).Append("@TableId").Append(SPACE)
+                .AppendLine(WHERE_ID).Append("@ProtocolId").Append(SEMICOLON);
+            command.Parameters.AddWithValue("@TableId", TemplateInstance.IdName);
+            command.Parameters.AddWithValue("@ProtocolId", ProtocolId);
             command.CommandText = builder.ToString();
 
             using (SqlDataReader reader = command.ExecuteReader())
             {
-                // TODO Валере
-                // Почему -1
-                // Некоторые поля могут по 2 столбца занимать.
-                for (int i = 0; i < reader.FieldCount - 1; ++i)
+                int fieldIndex = 0;
+                for (int i = 0; i < reader.FieldCount; ++i)
                 {
-                    //TODO for Velera
-                    Fields[i].GetFromRequest(reader[i].ToString());
+                    int fieldSize = Fields[fieldIndex].GetFieldCount();
+                    String[] field = new String[fieldSize];
+                    for (int j = 0; j < fieldSize; ++j, i++)
+                    {
+                        field[j] = reader[i].ToString();
+                    }
+                    Fields[fieldIndex++].GetFromRequest(field);
                 }
+                logger.Info("Loaded protocol from " + TemplateInstance.IdName + " by id = " + ProtocolId);
             }
         }
 
-        public Protocol LoadProtocol(Template template, int id)
+        public Protocol LoadProtocol(Template template, int id, SqlCommand command)
         {
             Protocol protocol = new Protocol(template);
-
-            //TODO вынести отдельно (после обсуждения)
-            try
-            {
-                protocol.LoadFromDatabase(id, dataBaseConnector.Command);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message + " я ввел: " + login + ", но где то накосячил");
-            }
+            protocol.LoadFromDatabase(id, command);
             return protocol;
-        }*/
+        }
 
         private List<ProtocolField> Fields;
     }

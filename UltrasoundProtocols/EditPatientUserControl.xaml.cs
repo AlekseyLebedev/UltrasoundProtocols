@@ -56,8 +56,8 @@ namespace UltrasoundProtocols
             BirthdayPicker.Value = DateTime.Today;
             AmbulatorCardTextBox.Text = "";
 
-            SexComboBox.Items.Add("Мужской");
             SexComboBox.Items.Add("Женский");
+            SexComboBox.Items.Add("Мужской");
         }
 
         private void ApplyPatientFields() {

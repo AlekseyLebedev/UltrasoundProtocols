@@ -16,6 +16,9 @@ using ProtocolTemplateLib;
 using System.Threading;
 using NLog;
 
+using System.Data.SqlClient;
+using System.Xml;
+
 namespace UltrasoundProtocols
 {
     /// <summary>
@@ -47,6 +50,14 @@ namespace UltrasoundProtocols
             id.DisplayMemberBinding = new Binding("NumberAmbulatoryCard");
             Birthday.DisplayMemberBinding = new Binding("Date");
             Birthday.DisplayMemberBinding.StringFormat = "dd.MM.yyyy";
+
+			//проверка корректности работы сохранения данных
+			//SqlCommand command = new SqlCommand();
+			//XmlDocument doc = new XmlDocument();
+			//doc.Load("D:\\ABBYY\\UltraSoundProtocol\\UltrasoundProtocols\\ProtocolTemplateRedactor\\bin\\Debug\\test.xml");
+			//Template template = ProtocolTemplateLib.Template.GetFromXml(doc);
+			//Protocol protocol = new Protocol(template);
+			//protocol.SaveToDatabase(1, command);
         }
 
         EditPatientPresenter Presenter;
@@ -54,6 +65,7 @@ namespace UltrasoundProtocols
         private void EditPatientBotton_Click(object sender, RoutedEventArgs e)
         {
             logger.Debug("Edit Template Button is pressed");
+            Presenter.ShowPatientEditor(editController);
             PatientColumn.Width = new GridLength(0, GridUnitType.Star);
             EditPatientColumn.Width = new GridLength(9, GridUnitType.Star);
         }
@@ -87,6 +99,7 @@ namespace UltrasoundProtocols
             {
                 logger.Debug("show one patient");
                 Presenter.ShowPatient(showController, e);
+                EditPatientColumn.Width = new GridLength(0, GridUnitType.Star);
                 PatientColumn.Width = new GridLength(9, GridUnitType.Star);
             }
             else
