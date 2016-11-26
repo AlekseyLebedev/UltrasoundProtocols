@@ -26,7 +26,7 @@ namespace ProtocolTemplateRedactor {
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
     public partial class TemplatesDataSet : global::System.Data.DataSet {
         
-        private Tbl_ExaminationTypesDataTable tableTbl_ExaminationTypes;
+        private Tbl_TemplatesDataTable tableTbl_Templates;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
@@ -56,8 +56,8 @@ namespace ProtocolTemplateRedactor {
             if ((this.DetermineSchemaSerializationMode(info, context) == global::System.Data.SchemaSerializationMode.IncludeSchema)) {
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXmlSchema(new global::System.Xml.XmlTextReader(new global::System.IO.StringReader(strSchema)));
-                if ((ds.Tables["Tbl_ExaminationTypes"] != null)) {
-                    base.Tables.Add(new Tbl_ExaminationTypesDataTable(ds.Tables["Tbl_ExaminationTypes"]));
+                if ((ds.Tables["Tbl_Templates"] != null)) {
+                    base.Tables.Add(new Tbl_TemplatesDataTable(ds.Tables["Tbl_Templates"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -81,9 +81,9 @@ namespace ProtocolTemplateRedactor {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public Tbl_ExaminationTypesDataTable Tbl_ExaminationTypes {
+        public Tbl_TemplatesDataTable Tbl_Templates {
             get {
-                return this.tableTbl_ExaminationTypes;
+                return this.tableTbl_Templates;
             }
         }
         
@@ -154,8 +154,8 @@ namespace ProtocolTemplateRedactor {
                 this.Reset();
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXml(reader);
-                if ((ds.Tables["Tbl_ExaminationTypes"] != null)) {
-                    base.Tables.Add(new Tbl_ExaminationTypesDataTable(ds.Tables["Tbl_ExaminationTypes"]));
+                if ((ds.Tables["Tbl_Templates"] != null)) {
+                    base.Tables.Add(new Tbl_TemplatesDataTable(ds.Tables["Tbl_Templates"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -190,10 +190,10 @@ namespace ProtocolTemplateRedactor {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         internal void InitVars(bool initTable) {
-            this.tableTbl_ExaminationTypes = ((Tbl_ExaminationTypesDataTable)(base.Tables["Tbl_ExaminationTypes"]));
+            this.tableTbl_Templates = ((Tbl_TemplatesDataTable)(base.Tables["Tbl_Templates"]));
             if ((initTable == true)) {
-                if ((this.tableTbl_ExaminationTypes != null)) {
-                    this.tableTbl_ExaminationTypes.InitVars();
+                if ((this.tableTbl_Templates != null)) {
+                    this.tableTbl_Templates.InitVars();
                 }
             }
         }
@@ -206,13 +206,13 @@ namespace ProtocolTemplateRedactor {
             this.Namespace = "http://tempuri.org/TemplatesDataSet.xsd";
             this.EnforceConstraints = true;
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
-            this.tableTbl_ExaminationTypes = new Tbl_ExaminationTypesDataTable();
-            base.Tables.Add(this.tableTbl_ExaminationTypes);
+            this.tableTbl_Templates = new Tbl_TemplatesDataTable();
+            base.Tables.Add(this.tableTbl_Templates);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private bool ShouldSerializeTbl_ExaminationTypes() {
+        private bool ShouldSerializeTbl_Templates() {
             return false;
         }
         
@@ -272,23 +272,25 @@ namespace ProtocolTemplateRedactor {
         }
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public delegate void Tbl_ExaminationTypesRowChangeEventHandler(object sender, Tbl_ExaminationTypesRowChangeEvent e);
+        public delegate void Tbl_TemplatesRowChangeEventHandler(object sender, Tbl_TemplatesRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class Tbl_ExaminationTypesDataTable : global::System.Data.TypedTableBase<Tbl_ExaminationTypesRow> {
+        public partial class Tbl_TemplatesDataTable : global::System.Data.TypedTableBase<Tbl_TemplatesRow> {
             
-            private global::System.Data.DataColumn columnext_id;
+            private global::System.Data.DataColumn columntem_id;
             
-            private global::System.Data.DataColumn columnext_name;
+            private global::System.Data.DataColumn columntem_name;
+            
+            private global::System.Data.DataColumn columntem_template;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public Tbl_ExaminationTypesDataTable() {
-                this.TableName = "Tbl_ExaminationTypes";
+            public Tbl_TemplatesDataTable() {
+                this.TableName = "Tbl_Templates";
                 this.BeginInit();
                 this.InitClass();
                 this.EndInit();
@@ -296,7 +298,7 @@ namespace ProtocolTemplateRedactor {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal Tbl_ExaminationTypesDataTable(global::System.Data.DataTable table) {
+            internal Tbl_TemplatesDataTable(global::System.Data.DataTable table) {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
                     this.CaseSensitive = table.CaseSensitive;
@@ -313,24 +315,32 @@ namespace ProtocolTemplateRedactor {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected Tbl_ExaminationTypesDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+            protected Tbl_TemplatesDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn ext_idColumn {
+            public global::System.Data.DataColumn tem_idColumn {
                 get {
-                    return this.columnext_id;
+                    return this.columntem_id;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn ext_nameColumn {
+            public global::System.Data.DataColumn tem_nameColumn {
                 get {
-                    return this.columnext_name;
+                    return this.columntem_name;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn tem_templateColumn {
+                get {
+                    return this.columntem_template;
                 }
             }
             
@@ -345,53 +355,54 @@ namespace ProtocolTemplateRedactor {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public Tbl_ExaminationTypesRow this[int index] {
+            public Tbl_TemplatesRow this[int index] {
                 get {
-                    return ((Tbl_ExaminationTypesRow)(this.Rows[index]));
+                    return ((Tbl_TemplatesRow)(this.Rows[index]));
                 }
             }
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event Tbl_ExaminationTypesRowChangeEventHandler Tbl_ExaminationTypesRowChanging;
+            public event Tbl_TemplatesRowChangeEventHandler Tbl_TemplatesRowChanging;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event Tbl_ExaminationTypesRowChangeEventHandler Tbl_ExaminationTypesRowChanged;
+            public event Tbl_TemplatesRowChangeEventHandler Tbl_TemplatesRowChanged;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event Tbl_ExaminationTypesRowChangeEventHandler Tbl_ExaminationTypesRowDeleting;
+            public event Tbl_TemplatesRowChangeEventHandler Tbl_TemplatesRowDeleting;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event Tbl_ExaminationTypesRowChangeEventHandler Tbl_ExaminationTypesRowDeleted;
+            public event Tbl_TemplatesRowChangeEventHandler Tbl_TemplatesRowDeleted;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void AddTbl_ExaminationTypesRow(Tbl_ExaminationTypesRow row) {
+            public void AddTbl_TemplatesRow(Tbl_TemplatesRow row) {
                 this.Rows.Add(row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public Tbl_ExaminationTypesRow AddTbl_ExaminationTypesRow(string ext_name) {
-                Tbl_ExaminationTypesRow rowTbl_ExaminationTypesRow = ((Tbl_ExaminationTypesRow)(this.NewRow()));
+            public Tbl_TemplatesRow AddTbl_TemplatesRow(string tem_id, string tem_name, string tem_template) {
+                Tbl_TemplatesRow rowTbl_TemplatesRow = ((Tbl_TemplatesRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        null,
-                        ext_name};
-                rowTbl_ExaminationTypesRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowTbl_ExaminationTypesRow);
-                return rowTbl_ExaminationTypesRow;
+                        tem_id,
+                        tem_name,
+                        tem_template};
+                rowTbl_TemplatesRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowTbl_TemplatesRow);
+                return rowTbl_TemplatesRow;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public Tbl_ExaminationTypesRow FindByext_id(int ext_id) {
-                return ((Tbl_ExaminationTypesRow)(this.Rows.Find(new object[] {
-                            ext_id})));
+            public Tbl_TemplatesRow FindBytem_id(string tem_id) {
+                return ((Tbl_TemplatesRow)(this.Rows.Find(new object[] {
+                            tem_id})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                Tbl_ExaminationTypesDataTable cln = ((Tbl_ExaminationTypesDataTable)(base.Clone()));
+                Tbl_TemplatesDataTable cln = ((Tbl_TemplatesDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -399,59 +410,61 @@ namespace ProtocolTemplateRedactor {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Data.DataTable CreateInstance() {
-                return new Tbl_ExaminationTypesDataTable();
+                return new Tbl_TemplatesDataTable();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal void InitVars() {
-                this.columnext_id = base.Columns["ext_id"];
-                this.columnext_name = base.Columns["ext_name"];
+                this.columntem_id = base.Columns["tem_id"];
+                this.columntem_name = base.Columns["tem_name"];
+                this.columntem_template = base.Columns["tem_template"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             private void InitClass() {
-                this.columnext_id = new global::System.Data.DataColumn("ext_id", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnext_id);
-                this.columnext_name = new global::System.Data.DataColumn("ext_name", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnext_name);
+                this.columntem_id = new global::System.Data.DataColumn("tem_id", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columntem_id);
+                this.columntem_name = new global::System.Data.DataColumn("tem_name", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columntem_name);
+                this.columntem_template = new global::System.Data.DataColumn("tem_template", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columntem_template);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnext_id}, true));
-                this.columnext_id.AutoIncrement = true;
-                this.columnext_id.AutoIncrementSeed = -1;
-                this.columnext_id.AutoIncrementStep = -1;
-                this.columnext_id.AllowDBNull = false;
-                this.columnext_id.ReadOnly = true;
-                this.columnext_id.Unique = true;
-                this.columnext_name.AllowDBNull = false;
-                this.columnext_name.MaxLength = 255;
+                                this.columntem_id}, true));
+                this.columntem_id.AllowDBNull = false;
+                this.columntem_id.Unique = true;
+                this.columntem_id.MaxLength = 255;
+                this.columntem_name.AllowDBNull = false;
+                this.columntem_name.MaxLength = 255;
+                this.columntem_template.AllowDBNull = false;
+                this.columntem_template.MaxLength = 2147483647;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public Tbl_ExaminationTypesRow NewTbl_ExaminationTypesRow() {
-                return ((Tbl_ExaminationTypesRow)(this.NewRow()));
+            public Tbl_TemplatesRow NewTbl_TemplatesRow() {
+                return ((Tbl_TemplatesRow)(this.NewRow()));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new Tbl_ExaminationTypesRow(builder);
+                return new Tbl_TemplatesRow(builder);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Type GetRowType() {
-                return typeof(Tbl_ExaminationTypesRow);
+                return typeof(Tbl_TemplatesRow);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanged(e);
-                if ((this.Tbl_ExaminationTypesRowChanged != null)) {
-                    this.Tbl_ExaminationTypesRowChanged(this, new Tbl_ExaminationTypesRowChangeEvent(((Tbl_ExaminationTypesRow)(e.Row)), e.Action));
+                if ((this.Tbl_TemplatesRowChanged != null)) {
+                    this.Tbl_TemplatesRowChanged(this, new Tbl_TemplatesRowChangeEvent(((Tbl_TemplatesRow)(e.Row)), e.Action));
                 }
             }
             
@@ -459,8 +472,8 @@ namespace ProtocolTemplateRedactor {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanging(e);
-                if ((this.Tbl_ExaminationTypesRowChanging != null)) {
-                    this.Tbl_ExaminationTypesRowChanging(this, new Tbl_ExaminationTypesRowChangeEvent(((Tbl_ExaminationTypesRow)(e.Row)), e.Action));
+                if ((this.Tbl_TemplatesRowChanging != null)) {
+                    this.Tbl_TemplatesRowChanging(this, new Tbl_TemplatesRowChangeEvent(((Tbl_TemplatesRow)(e.Row)), e.Action));
                 }
             }
             
@@ -468,8 +481,8 @@ namespace ProtocolTemplateRedactor {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleted(e);
-                if ((this.Tbl_ExaminationTypesRowDeleted != null)) {
-                    this.Tbl_ExaminationTypesRowDeleted(this, new Tbl_ExaminationTypesRowChangeEvent(((Tbl_ExaminationTypesRow)(e.Row)), e.Action));
+                if ((this.Tbl_TemplatesRowDeleted != null)) {
+                    this.Tbl_TemplatesRowDeleted(this, new Tbl_TemplatesRowChangeEvent(((Tbl_TemplatesRow)(e.Row)), e.Action));
                 }
             }
             
@@ -477,14 +490,14 @@ namespace ProtocolTemplateRedactor {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleting(e);
-                if ((this.Tbl_ExaminationTypesRowDeleting != null)) {
-                    this.Tbl_ExaminationTypesRowDeleting(this, new Tbl_ExaminationTypesRowChangeEvent(((Tbl_ExaminationTypesRow)(e.Row)), e.Action));
+                if ((this.Tbl_TemplatesRowDeleting != null)) {
+                    this.Tbl_TemplatesRowDeleting(this, new Tbl_TemplatesRowChangeEvent(((Tbl_TemplatesRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void RemoveTbl_ExaminationTypesRow(Tbl_ExaminationTypesRow row) {
+            public void RemoveTbl_TemplatesRow(Tbl_TemplatesRow row) {
                 this.Rows.Remove(row);
             }
             
@@ -511,7 +524,7 @@ namespace ProtocolTemplateRedactor {
                 type.Attributes.Add(attribute1);
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "Tbl_ExaminationTypesDataTable";
+                attribute2.FixedValue = "Tbl_TemplatesDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -555,36 +568,47 @@ namespace ProtocolTemplateRedactor {
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class Tbl_ExaminationTypesRow : global::System.Data.DataRow {
+        public partial class Tbl_TemplatesRow : global::System.Data.DataRow {
             
-            private Tbl_ExaminationTypesDataTable tableTbl_ExaminationTypes;
+            private Tbl_TemplatesDataTable tableTbl_Templates;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal Tbl_ExaminationTypesRow(global::System.Data.DataRowBuilder rb) : 
+            internal Tbl_TemplatesRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
-                this.tableTbl_ExaminationTypes = ((Tbl_ExaminationTypesDataTable)(this.Table));
+                this.tableTbl_Templates = ((Tbl_TemplatesDataTable)(this.Table));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int ext_id {
+            public string tem_id {
                 get {
-                    return ((int)(this[this.tableTbl_ExaminationTypes.ext_idColumn]));
+                    return ((string)(this[this.tableTbl_Templates.tem_idColumn]));
                 }
                 set {
-                    this[this.tableTbl_ExaminationTypes.ext_idColumn] = value;
+                    this[this.tableTbl_Templates.tem_idColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string ext_name {
+            public string tem_name {
                 get {
-                    return ((string)(this[this.tableTbl_ExaminationTypes.ext_nameColumn]));
+                    return ((string)(this[this.tableTbl_Templates.tem_nameColumn]));
                 }
                 set {
-                    this[this.tableTbl_ExaminationTypes.ext_nameColumn] = value;
+                    this[this.tableTbl_Templates.tem_nameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string tem_template {
+                get {
+                    return ((string)(this[this.tableTbl_Templates.tem_templateColumn]));
+                }
+                set {
+                    this[this.tableTbl_Templates.tem_templateColumn] = value;
                 }
             }
         }
@@ -593,22 +617,22 @@ namespace ProtocolTemplateRedactor {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public class Tbl_ExaminationTypesRowChangeEvent : global::System.EventArgs {
+        public class Tbl_TemplatesRowChangeEvent : global::System.EventArgs {
             
-            private Tbl_ExaminationTypesRow eventRow;
+            private Tbl_TemplatesRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public Tbl_ExaminationTypesRowChangeEvent(Tbl_ExaminationTypesRow row, global::System.Data.DataRowAction action) {
+            public Tbl_TemplatesRowChangeEvent(Tbl_TemplatesRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public Tbl_ExaminationTypesRow Row {
+            public Tbl_TemplatesRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -636,9 +660,7 @@ namespace ProtocolTemplateRedactor.TemplatesDataSetTableAdapters {
     [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
         ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class Tbl_ExaminationTypesTableAdapter : global::System.ComponentModel.Component {
-
-        public static DataBaseSettings ConnectionSettings;
+    public partial class Tbl_TemplatesTableAdapter : global::System.ComponentModel.Component {
         
         private global::System.Data.SqlClient.SqlDataAdapter _adapter;
         
@@ -650,10 +672,13 @@ namespace ProtocolTemplateRedactor.TemplatesDataSetTableAdapters {
         
         private bool _clearBeforeFill;
         
+        private string ConnectionString;
+
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public Tbl_ExaminationTypesTableAdapter() {
+        public Tbl_TemplatesTableAdapter(DataBaseSettings settings) {
             this.ClearBeforeFill = true;
+            ConnectionString = settings.GetConnectionString();
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -672,7 +697,7 @@ namespace ProtocolTemplateRedactor.TemplatesDataSetTableAdapters {
         internal global::System.Data.SqlClient.SqlConnection Connection {
             get {
                 if ((this._connection == null)) {
-                    this.InitConnection(ConnectionSettings.GetConnectionString());
+                    this.InitConnection();
                 }
                 return this._connection;
             }
@@ -749,40 +774,44 @@ namespace ProtocolTemplateRedactor.TemplatesDataSetTableAdapters {
             this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
-            tableMapping.DataSetTable = "Tbl_ExaminationTypes";
-            tableMapping.ColumnMappings.Add("ext_id", "ext_id");
-            tableMapping.ColumnMappings.Add("ext_name", "ext_name");
+            tableMapping.DataSetTable = "Tbl_Templates";
+            tableMapping.ColumnMappings.Add("tem_id", "tem_id");
+            tableMapping.ColumnMappings.Add("tem_name", "tem_name");
+            tableMapping.ColumnMappings.Add("tem_template", "tem_template");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[Tbl_ExaminationTypes] WHERE (([ext_id] = @Original_ext_id) AND" +
-                " ([ext_name] = @Original_ext_name))";
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[Tbl_Templates] WHERE (([tem_id] = @Original_tem_id) AND ([tem_" +
+                "name] = @Original_tem_name))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ext_id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ext_id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ext_name", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ext_name", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_tem_id", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "tem_id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_tem_name", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "tem_name", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[Tbl_ExaminationTypes] ([ext_name]) VALUES (@ext_name);\r\nSELECT" +
-                " ext_id, ext_name FROM Tbl_ExaminationTypes WHERE (ext_id = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[Tbl_Templates] ([tem_id], [tem_name], [tem_template]) VALUES (" +
+                "@tem_id, @tem_name, @tem_template);\r\nSELECT tem_id, tem_name, tem_template FROM " +
+                "dbo.Tbl_Templates WHERE (tem_id = @tem_id)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ext_name", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ext_name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@tem_id", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "tem_id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@tem_name", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "tem_name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@tem_template", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "tem_template", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = "UPDATE [dbo].[Tbl_ExaminationTypes] SET [ext_name] = @ext_name WHERE (([ext_id] =" +
-                " @Original_ext_id) AND ([ext_name] = @Original_ext_name));\r\nSELECT ext_id, ext_n" +
-                "ame FROM Tbl_ExaminationTypes WHERE (ext_id = @ext_id)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Tbl_Templates] SET [tem_id] = @tem_id, [tem_name] = @tem_name, [tem_template] = @tem_template WHERE (([tem_id] = @Original_tem_id) AND ([tem_name] = @Original_tem_name));
+SELECT tem_id, tem_name, tem_template FROM dbo.Tbl_Templates WHERE (tem_id = @tem_id)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ext_name", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ext_name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ext_id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ext_id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ext_name", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ext_name", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ext_id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "ext_id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@tem_id", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "tem_id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@tem_name", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "tem_name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@tem_template", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "tem_template", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_tem_id", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "tem_id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_tem_name", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "tem_name", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private void InitConnection(string connectionString) {
+        private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = connectionString;
+            this._connection.ConnectionString = ConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -791,7 +820,7 @@ namespace ProtocolTemplateRedactor.TemplatesDataSetTableAdapters {
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT ext_id, ext_name FROM dbo.Tbl_ExaminationTypes";
+            this._commandCollection[0].CommandText = "SELECT tem_id, tem_name, tem_template FROM dbo.Tbl_Templates";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -799,7 +828,7 @@ namespace ProtocolTemplateRedactor.TemplatesDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(TemplatesDataSet.Tbl_ExaminationTypesDataTable dataTable) {
+        public virtual int Fill(TemplatesDataSet.Tbl_TemplatesDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -812,9 +841,9 @@ namespace ProtocolTemplateRedactor.TemplatesDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual TemplatesDataSet.Tbl_ExaminationTypesDataTable GetData() {
+        public virtual TemplatesDataSet.Tbl_TemplatesDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            TemplatesDataSet.Tbl_ExaminationTypesDataTable dataTable = new TemplatesDataSet.Tbl_ExaminationTypesDataTable();
+            TemplatesDataSet.Tbl_TemplatesDataTable dataTable = new TemplatesDataSet.Tbl_TemplatesDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -822,7 +851,7 @@ namespace ProtocolTemplateRedactor.TemplatesDataSetTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(TemplatesDataSet.Tbl_ExaminationTypesDataTable dataTable) {
+        public virtual int Update(TemplatesDataSet.Tbl_TemplatesDataTable dataTable) {
             return this.Adapter.Update(dataTable);
         }
         
@@ -830,7 +859,7 @@ namespace ProtocolTemplateRedactor.TemplatesDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         public virtual int Update(TemplatesDataSet dataSet) {
-            return this.Adapter.Update(dataSet, "Tbl_ExaminationTypes");
+            return this.Adapter.Update(dataSet, "Tbl_Templates");
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -852,13 +881,18 @@ namespace ProtocolTemplateRedactor.TemplatesDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_ext_id, string Original_ext_name) {
-            this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_ext_id));
-            if ((Original_ext_name == null)) {
-                throw new global::System.ArgumentNullException("Original_ext_name");
+        public virtual int Delete(string Original_tem_id, string Original_tem_name) {
+            if ((Original_tem_id == null)) {
+                throw new global::System.ArgumentNullException("Original_tem_id");
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[1].Value = ((string)(Original_ext_name));
+                this.Adapter.DeleteCommand.Parameters[0].Value = ((string)(Original_tem_id));
+            }
+            if ((Original_tem_name == null)) {
+                throw new global::System.ArgumentNullException("Original_tem_name");
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[1].Value = ((string)(Original_tem_name));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -880,12 +914,24 @@ namespace ProtocolTemplateRedactor.TemplatesDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string ext_name) {
-            if ((ext_name == null)) {
-                throw new global::System.ArgumentNullException("ext_name");
+        public virtual int Insert(string tem_id, string tem_name, string tem_template) {
+            if ((tem_id == null)) {
+                throw new global::System.ArgumentNullException("tem_id");
             }
             else {
-                this.Adapter.InsertCommand.Parameters[0].Value = ((string)(ext_name));
+                this.Adapter.InsertCommand.Parameters[0].Value = ((string)(tem_id));
+            }
+            if ((tem_name == null)) {
+                throw new global::System.ArgumentNullException("tem_name");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[1].Value = ((string)(tem_name));
+            }
+            if ((tem_template == null)) {
+                throw new global::System.ArgumentNullException("tem_template");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[2].Value = ((string)(tem_template));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -907,21 +953,37 @@ namespace ProtocolTemplateRedactor.TemplatesDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string ext_name, int Original_ext_id, string Original_ext_name, int ext_id) {
-            if ((ext_name == null)) {
-                throw new global::System.ArgumentNullException("ext_name");
+        public virtual int Update(string tem_id, string tem_name, string tem_template, string Original_tem_id, string Original_tem_name) {
+            if ((tem_id == null)) {
+                throw new global::System.ArgumentNullException("tem_id");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[0].Value = ((string)(ext_name));
+                this.Adapter.UpdateCommand.Parameters[0].Value = ((string)(tem_id));
             }
-            this.Adapter.UpdateCommand.Parameters[1].Value = ((int)(Original_ext_id));
-            if ((Original_ext_name == null)) {
-                throw new global::System.ArgumentNullException("Original_ext_name");
+            if ((tem_name == null)) {
+                throw new global::System.ArgumentNullException("tem_name");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(Original_ext_name));
+                this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(tem_name));
             }
-            this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(ext_id));
+            if ((tem_template == null)) {
+                throw new global::System.ArgumentNullException("tem_template");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(tem_template));
+            }
+            if ((Original_tem_id == null)) {
+                throw new global::System.ArgumentNullException("Original_tem_id");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(Original_tem_id));
+            }
+            if ((Original_tem_name == null)) {
+                throw new global::System.ArgumentNullException("Original_tem_name");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(Original_tem_name));
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -942,8 +1004,8 @@ namespace ProtocolTemplateRedactor.TemplatesDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string ext_name, int Original_ext_id, string Original_ext_name) {
-            return this.Update(ext_name, Original_ext_id, Original_ext_name, Original_ext_id);
+        public virtual int Update(string tem_name, string tem_template, string Original_tem_id, string Original_tem_name) {
+            return this.Update(Original_tem_id, tem_name, tem_template, Original_tem_id, Original_tem_name);
         }
     }
     
@@ -959,7 +1021,7 @@ namespace ProtocolTemplateRedactor.TemplatesDataSetTableAdapters {
         
         private UpdateOrderOption _updateOrder;
         
-        private Tbl_ExaminationTypesTableAdapter _tbl_ExaminationTypesTableAdapter;
+        private Tbl_TemplatesTableAdapter _tbl_TemplatesTableAdapter;
         
         private bool _backupDataSetBeforeUpdate;
         
@@ -981,12 +1043,12 @@ namespace ProtocolTemplateRedactor.TemplatesDataSetTableAdapters {
         [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
             "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
             "a", "System.Drawing.Design.UITypeEditor")]
-        public Tbl_ExaminationTypesTableAdapter Tbl_ExaminationTypesTableAdapter {
+        public Tbl_TemplatesTableAdapter Tbl_TemplatesTableAdapter {
             get {
-                return this._tbl_ExaminationTypesTableAdapter;
+                return this._tbl_TemplatesTableAdapter;
             }
             set {
-                this._tbl_ExaminationTypesTableAdapter = value;
+                this._tbl_TemplatesTableAdapter = value;
             }
         }
         
@@ -1009,9 +1071,9 @@ namespace ProtocolTemplateRedactor.TemplatesDataSetTableAdapters {
                 if ((this._connection != null)) {
                     return this._connection;
                 }
-                if (((this._tbl_ExaminationTypesTableAdapter != null) 
-                            && (this._tbl_ExaminationTypesTableAdapter.Connection != null))) {
-                    return this._tbl_ExaminationTypesTableAdapter.Connection;
+                if (((this._tbl_TemplatesTableAdapter != null) 
+                            && (this._tbl_TemplatesTableAdapter.Connection != null))) {
+                    return this._tbl_TemplatesTableAdapter.Connection;
                 }
                 return null;
             }
@@ -1026,7 +1088,7 @@ namespace ProtocolTemplateRedactor.TemplatesDataSetTableAdapters {
         public int TableAdapterInstanceCount {
             get {
                 int count = 0;
-                if ((this._tbl_ExaminationTypesTableAdapter != null)) {
+                if ((this._tbl_TemplatesTableAdapter != null)) {
                     count = (count + 1);
                 }
                 return count;
@@ -1040,12 +1102,12 @@ namespace ProtocolTemplateRedactor.TemplatesDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private int UpdateUpdatedRows(TemplatesDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
-            if ((this._tbl_ExaminationTypesTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.Tbl_ExaminationTypes.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+            if ((this._tbl_TemplatesTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.Tbl_Templates.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
-                    result = (result + this._tbl_ExaminationTypesTableAdapter.Update(updatedRows));
+                    result = (result + this._tbl_TemplatesTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -1059,11 +1121,11 @@ namespace ProtocolTemplateRedactor.TemplatesDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private int UpdateInsertedRows(TemplatesDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
-            if ((this._tbl_ExaminationTypesTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.Tbl_ExaminationTypes.Select(null, null, global::System.Data.DataViewRowState.Added);
+            if ((this._tbl_TemplatesTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.Tbl_Templates.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
-                    result = (result + this._tbl_ExaminationTypesTableAdapter.Update(addedRows));
+                    result = (result + this._tbl_TemplatesTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -1077,11 +1139,11 @@ namespace ProtocolTemplateRedactor.TemplatesDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private int UpdateDeletedRows(TemplatesDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
             int result = 0;
-            if ((this._tbl_ExaminationTypesTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.Tbl_ExaminationTypes.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+            if ((this._tbl_TemplatesTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.Tbl_Templates.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
-                    result = (result + this._tbl_ExaminationTypesTableAdapter.Update(deletedRows));
+                    result = (result + this._tbl_TemplatesTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -1124,8 +1186,8 @@ namespace ProtocolTemplateRedactor.TemplatesDataSetTableAdapters {
             if ((dataSet.HasChanges() == false)) {
                 return 0;
             }
-            if (((this._tbl_ExaminationTypesTableAdapter != null) 
-                        && (this.MatchTableAdapterConnection(this._tbl_ExaminationTypesTableAdapter.Connection) == false))) {
+            if (((this._tbl_TemplatesTableAdapter != null) 
+                        && (this.MatchTableAdapterConnection(this._tbl_TemplatesTableAdapter.Connection) == false))) {
                 throw new global::System.ArgumentException("Все адаптеры таблицы, управляемые диспетчером адаптера таблицы TableAdapterManage" +
                         "r, должны использовать одинаковую строку подключения.");
             }
@@ -1161,13 +1223,13 @@ namespace ProtocolTemplateRedactor.TemplatesDataSetTableAdapters {
             try {
                 // ---- Prepare for update -----------
                 //
-                if ((this._tbl_ExaminationTypesTableAdapter != null)) {
-                    revertConnections.Add(this._tbl_ExaminationTypesTableAdapter, this._tbl_ExaminationTypesTableAdapter.Connection);
-                    this._tbl_ExaminationTypesTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
-                    this._tbl_ExaminationTypesTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
-                    if (this._tbl_ExaminationTypesTableAdapter.Adapter.AcceptChangesDuringUpdate) {
-                        this._tbl_ExaminationTypesTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
-                        adaptersWithAcceptChangesDuringUpdate.Add(this._tbl_ExaminationTypesTableAdapter.Adapter);
+                if ((this._tbl_TemplatesTableAdapter != null)) {
+                    revertConnections.Add(this._tbl_TemplatesTableAdapter, this._tbl_TemplatesTableAdapter.Connection);
+                    this._tbl_TemplatesTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
+                    this._tbl_TemplatesTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
+                    if (this._tbl_TemplatesTableAdapter.Adapter.AcceptChangesDuringUpdate) {
+                        this._tbl_TemplatesTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
+                        adaptersWithAcceptChangesDuringUpdate.Add(this._tbl_TemplatesTableAdapter.Adapter);
                     }
                 }
                 // 
@@ -1228,9 +1290,9 @@ namespace ProtocolTemplateRedactor.TemplatesDataSetTableAdapters {
                 if (workConnOpened) {
                     workConnection.Close();
                 }
-                if ((this._tbl_ExaminationTypesTableAdapter != null)) {
-                    this._tbl_ExaminationTypesTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._tbl_ExaminationTypesTableAdapter]));
-                    this._tbl_ExaminationTypesTableAdapter.Transaction = null;
+                if ((this._tbl_TemplatesTableAdapter != null)) {
+                    this._tbl_TemplatesTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._tbl_TemplatesTableAdapter]));
+                    this._tbl_TemplatesTableAdapter.Transaction = null;
                 }
                 if ((0 < adaptersWithAcceptChangesDuringUpdate.Count)) {
                     global::System.Data.Common.DataAdapter[] adapters = new System.Data.Common.DataAdapter[adaptersWithAcceptChangesDuringUpdate.Count];
