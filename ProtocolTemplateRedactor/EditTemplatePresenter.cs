@@ -277,6 +277,14 @@ namespace ProtocolTemplateRedactor
             SelectedItem = item;
         }
 
+        internal IEnumerable<Template> LoadTemplates()
+        {
+            logger.Debug("Loading templates");
+            TemplatesDataSet.Tbl_TemplatesDataTable table = new TemplatesDataSetTableAdapters.
+                Tbl_TemplatesTableAdapter(Connector.Settings).GetData();
+            return from row in table select Template.GetFromDatabaseEntry(row.tem_name, row.tem_id, row.tem_template);
+        }
+
         internal TemplateItem GetSelectedItem()
         {
             return SelectedItem;

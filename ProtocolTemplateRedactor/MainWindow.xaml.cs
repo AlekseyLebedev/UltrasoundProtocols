@@ -1,4 +1,5 @@
 ﻿using Microsoft.Win32;
+using NLog;
 using ProtocolTemplateLib;
 using System;
 using System.Collections.Generic;
@@ -242,7 +243,25 @@ namespace ProtocolTemplateRedactor
         {
             Presenter.Connector = e.Connector;
             Autorization.Visibility = Visibility.Collapsed;
-            DataBaseGrid.Visibility = Visibility.Visible;
+            GuiAsyncTask<IEnumerable<Template>> task = new GuiAsyncTask<IEnumerable<ProtocolTemplateLib.Template>>();
+            task.AsyncTask = Presenter.LoadTemplates;
+            task.Dispatcher = Dispatcher;
+            task.ErrorTitle = "Ошибка загрузки шаблонов";
+            task.InfoMessage = "Template loading";
+            task.Logger = Logger;
+            task.RetryEnabled = true;
+            task.SyncTask = (results) =>
+            {
+                foreach (var template in results)
+                {
+                    Logger.Info("Template loaded. Id '{0}', name '{1}'", template.IdName, template.Name);
+                    TemplatesListView.Items.Add(template);
+                }
+                DataBaseGrid.Visibility = Visibility.Visible;
+            };
+            task.Run();
         }
+
+        private Logger Logger = LogManager.GetCurrentClassLogger();
     }
 }
