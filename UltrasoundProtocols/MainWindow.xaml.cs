@@ -65,6 +65,7 @@ namespace UltrasoundProtocols
         private void EditPatientBotton_Click(object sender, RoutedEventArgs e)
         {
             logger.Debug("Edit Template Button is pressed");
+            Presenter.ShowPatientEditor(editController);
             PatientColumn.Width = new GridLength(0, GridUnitType.Star);
             EditPatientColumn.Width = new GridLength(9, GridUnitType.Star);
         }
@@ -98,6 +99,7 @@ namespace UltrasoundProtocols
             {
                 logger.Debug("show one patient");
                 Presenter.ShowPatient(showController, e);
+                EditPatientColumn.Width = new GridLength(0, GridUnitType.Star);
                 PatientColumn.Width = new GridLength(9, GridUnitType.Star);
             }
             else
