@@ -263,5 +263,56 @@ namespace ProtocolTemplateRedactor
         }
 
         private Logger Logger = LogManager.GetCurrentClassLogger();
+
+        private void TemplatesListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (e.AddedItems.Count == 1)
+            {
+                Presenter.SelectedTemplate = (Template)e.AddedItems[0];
+                SetTemplateButtonsEnabled(true);
+            }
+            else
+            {
+                Presenter.SelectedTemplate = null;
+                SetTemplateButtonsEnabled(false);
+            }
+        }
+
+        private void SetTemplateButtonsEnabled(bool enabled)
+        {
+            LoadTemplateButton.IsEnabled = enabled;
+            DeleteTemplateButton.IsEnabled = enabled;
+        }
+
+        private void AddTemplateButton_Click(object sender, RoutedEventArgs e)
+        {
+            DatbaseGroupBox.IsEnabled = false;
+            GuiAsyncTask<bool> task = new GuiAsyncTask<bool>();
+            task.AsyncTask = () => Presenter.SaveTemplateToDB(false);
+            task.Dispatcher = Dispatcher;
+            task.ErrorTitle = "Ошибка добавления шаблона";
+            task.InfoMessage = "Template loading";
+            task.Logger = Logger;
+            task.RetryEnabled = true;
+            task.SyncTask = (success) =>
+            {
+                if (success)
+                {
+                    TemplatesListView.Items.Add(Presenter.Template);
+                }
+                else
+                {
+                    if (MessageBox.Show("Шаблон с таким идентификатором уже существует. Заменить?", "Добавление в базу данных", MessageBoxButton.YesNo,
+                        MessageBoxImage.Question) == MessageBoxResult.Yes)
+                    {
+                        task.AsyncTask = () => Presenter.SaveTemplateToDB(true);
+                        task.Run();
+                        return;
+                    }
+                }
+                DatbaseGroupBox.IsEnabled = true;
+            };
+            task.Run();
+        }
     }
 }

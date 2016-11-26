@@ -22,7 +22,7 @@ namespace ProtocolTemplateRedactor
             get { return ((TemplateHeader)SelectedItem).Header; }
             set
             {
-                logger.Debug("Set selected header text = '{0}'", value);
+                Logger.Debug("Set selected header text = '{0}'", value);
                 InvokeRefresh();
                 ((TemplateHeader)SelectedItem).Header = value;
             }
@@ -37,7 +37,7 @@ namespace ProtocolTemplateRedactor
             get { return ((TemplateLine)SelectedItem).Field.EnableOtherField; }
             set
             {
-                logger.Debug("Set selected editable otherEnabled = '{0}'", value);
+                Logger.Debug("Set selected editable otherEnabled = '{0}'", value);
                 InvokeRefresh();
                 ((TemplateLine)SelectedItem).Field.EnableOtherField = value;
             }
@@ -48,7 +48,7 @@ namespace ProtocolTemplateRedactor
             get { return ((TemplateLine)SelectedItem).Label; }
             set
             {
-                logger.Debug("Set selected line label = '{0}'", value);
+                Logger.Debug("Set selected line label = '{0}'", value);
                 InvokeRefresh();
                 ((TemplateLine)SelectedItem).Label = value;
             }
@@ -76,7 +76,7 @@ namespace ProtocolTemplateRedactor
             }
             set
             {
-                logger.Debug("Set variants: '{0}'", value.Replace("\n", "\\n").Replace("\r", "\\r"));
+                Logger.Debug("Set variants: '{0}'", value.Replace("\n", "\\n").Replace("\r", "\\r"));
                 string[] tokens = value.Split(Environment.NewLine.ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
                 ((ComboboxEditable)((TemplateLine)SelectedItem).Field).Variants = tokens.ToList();
             }
@@ -86,14 +86,14 @@ namespace ProtocolTemplateRedactor
         {
             get
             {
-                var result = Template.Name;
-                logger.Debug("Get template name '{0}'", result);
+                var result = Template_.Name;
+                Logger.Debug("Get template name '{0}'", result);
                 return result;
             }
             set
             {
-                logger.Debug("Set template name '{0}'", value);
-                Template.Name = value;
+                Logger.Debug("Set template name '{0}'", value);
+                Template_.Name = value;
             }
         }
 
@@ -101,22 +101,37 @@ namespace ProtocolTemplateRedactor
         {
             get
             {
-                var result = Template.IdName;
-                logger.Debug("Get template id '{0}'", result);
+                var result = Template_.IdName;
+                Logger.Debug("Get template id '{0}'", result);
                 return result;
             }
         }
 
-        internal List<TemplateItem> AllItems { get { return Template.Items; } }
+        internal List<TemplateItem> AllItems { get { return Template_.Items; } }
 
         internal DataBaseConnector Connector { get; set; }
+        internal Template SelectedTemplate
+        {
+            get
+            {
+                return SelectedTemplate_;
+            }
+            set
+            {
+                SelectedTemplate_ = value;
+                if (value == null)
+                    Logger.Debug("Deselect template");
+                else
+                    Logger.Debug("Set template id {0} name {1}", value.IdName, value.Name);
+            }
+        }
 
         internal bool SetTemplateId(string value)
         {
-            logger.Debug("Set template id '{0}'", value);
+            Logger.Debug("Set template id '{0}'", value);
             if (ValidateId(value))
             {
-                Template.IdName = value;
+                Template_.IdName = value;
                 return true;
             }
             else
@@ -127,12 +142,12 @@ namespace ProtocolTemplateRedactor
 
         internal bool SetSelectedItemId(string value)
         {
-            logger.Debug("Set selected item id = '{0}'", value);
+            Logger.Debug("Set selected item id = '{0}'", value);
             if (ValidateId(value))
             {
                 if (!ValidateUniqueId(value))
                 {
-                    logger.Info("Dublicate id");
+                    Logger.Info("Dublicate id");
                     return false;
                 }
                 SelectedItem.Id = value;
@@ -149,7 +164,7 @@ namespace ProtocolTemplateRedactor
         {
             if (value.Length == 0)
             {
-                logger.Info("Empty text set for id");
+                Logger.Info("Empty text set for id");
                 return false;
             }
             for (int i = 0; i < value.Length; i++)
@@ -158,7 +173,7 @@ namespace ProtocolTemplateRedactor
                 if (!(char.IsDigit(symbol) || ((symbol >= 'a') && (symbol <= 'z'))
                     || ((symbol >= 'A') && (symbol <= 'Z'))))
                 {
-                    logger.Info("Wrong symbol '{0}' in id", symbol);
+                    Logger.Info("Wrong symbol '{0}' in id", symbol);
                     return false;
                 }
             }
@@ -194,14 +209,14 @@ namespace ProtocolTemplateRedactor
             {
                 item.Id = "item" + Rnd.Next();
             } while (!ValidateUniqueId(item.Id));
-            Template.Items.Add(item);
-            logger.Info("Add element {0}", item.Type);
+            Template_.Items.Add(item);
+            Logger.Info("Add element {0}", item.Type);
             return item;
         }
 
         internal string RequestHtmlProtocol()
         {
-            logger.Debug("Request HTML");
+            Logger.Debug("Request HTML");
             CreateProtocolIfNeeded();
             StringBuilder builder = new StringBuilder();
             builder.AppendLine("<html>");
@@ -211,37 +226,37 @@ namespace ProtocolTemplateRedactor
             builder.AppendLine("</body>");
             builder.AppendLine("</html>");
             string html = builder.ToString();
-            logger.Debug("Html: {0}", html);
+            Logger.Debug("Html: {0}", html);
             return html;
         }
 
         internal void SaveTemplateToXml(string fileName)
         {
-            logger.Debug("Saving to {0}", fileName);
-            var xml = Template.SaveToXmlString();
-            logger.Debug("Xml: {0}", xml);
+            Logger.Debug("Saving to {0}", fileName);
+            var xml = Template_.SaveToXmlString();
+            Logger.Debug("Xml: {0}", xml);
             try
             {
                 File.WriteAllText(fileName, xml, Encoding.UTF8);
             }
             catch (Exception ex)
             {
-                logger.Error(ex, "Error saving file");
+                Logger.Error(ex, "Error saving file");
                 throw ex;
             }
         }
 
         internal void EnterEditorTab()
         {
-            logger.Debug("Enter editor tab");
+            Logger.Debug("Enter editor tab");
             CurrentProtocol = null;
         }
 
         internal Control RequestEditControl()
         {
-            logger.Debug("Edit control requested");
+            Logger.Debug("Edit control requested");
             CreateProtocolIfNeeded();
-            return Template.GetEditControl();
+            return Template_.GetEditControl();
         }
 
         internal void LoadTemplateToXml(string fileName)
@@ -250,12 +265,12 @@ namespace ProtocolTemplateRedactor
             try
             {
                 document.Load(fileName);
-                Template = Template.GetFromXml(document);
+                Template_ = Template.GetFromXml(document);
                 CurrentProtocol = null;
             }
             catch (Exception ex)
             {
-                logger.Error(ex, "Error loading file");
+                Logger.Error(ex, "Error loading file");
                 throw ex;
             }
         }
@@ -264,22 +279,22 @@ namespace ProtocolTemplateRedactor
         {
             if (CurrentProtocol == null)
             {
-                CurrentProtocol = new Protocol(Template);
+                CurrentProtocol = new Protocol(Template_);
             }
         }
 
         internal void SelectItem(TemplateItem item)
         {
             if (item == null)
-                logger.Debug("Select nothing");
+                Logger.Debug("Select nothing");
             else
-                logger.Debug("Select item type {0} id '{1}'", item.Type, item.Id);
+                Logger.Debug("Select item type {0} id '{1}'", item.Type, item.Id);
             SelectedItem = item;
         }
 
         internal IEnumerable<Template> LoadTemplates()
         {
-            logger.Debug("Loading templates");
+            Logger.Debug("Loading templates");
             TemplatesDataSet.Tbl_TemplatesDataTable table = new TemplatesDataSetTableAdapters.
                 Tbl_TemplatesTableAdapter(Connector.Settings).GetData();
             return from row in table select Template.GetFromDatabaseEntry(row.tem_name, row.tem_id, row.tem_template);
@@ -290,6 +305,13 @@ namespace ProtocolTemplateRedactor
             return SelectedItem;
         }
 
+        internal Template Template
+        {
+            get
+            {
+                return Template_;
+            }
+        }
 
         internal event EventHandler Refresh;
 
@@ -302,7 +324,7 @@ namespace ProtocolTemplateRedactor
         }
         private bool ValidateUniqueId(string name)
         {
-            foreach (var item in Template.Items)
+            foreach (var item in Template_.Items)
             {
                 if (item.Id.Equals(name))
                     return false;
@@ -310,17 +332,50 @@ namespace ProtocolTemplateRedactor
             return true;
         }
 
-        private static Logger logger = LogManager.GetCurrentClassLogger();
-        private Template Template = new ProtocolTemplateLib.Template();
+        private static Logger Logger = LogManager.GetCurrentClassLogger();
+        private Template Template_ = new ProtocolTemplateLib.Template();
+
+        internal bool SaveTemplateToDB(bool force)
+        {
+            Logger.Info("Saving tamplte id '{0}' name '{1}'", Template_.IdName, Template_.Name);
+            var adapter = new TemplatesDataSetTableAdapters.Tbl_TemplatesTableAdapter(Connector.Settings);
+            TemplatesDataSet.Tbl_TemplatesDataTable table = adapter.GetData();
+            var templates = from r in table select r;
+
+            var alreadyContainsRow = templates.FirstOrDefault(x => (x.tem_id == Template_.IdName));
+            bool containsId = alreadyContainsRow != null;
+            Logger.Info("Find id: {0}", containsId);
+            if (containsId && (!force))
+            {
+                return false;
+            }
+
+            string xml = Template_.SaveToXmlString();
+            Logger.Debug("Xml: {0}", xml);
+            if (containsId)
+            {
+                alreadyContainsRow.tem_name = Template_.Name;
+                alreadyContainsRow.tem_template = xml;
+                adapter.Update(alreadyContainsRow);
+            }
+            else
+            {
+                adapter.Insert(Template_.IdName, Template_.Name, xml);
+            }
+
+            return true;
+        }
+
         private TemplateItem SelectedItem = null;
         private Random Rnd = new Random();
+        private Template SelectedTemplate_ = null;
         private Protocol CurrentProtocol = null;
 
         internal TemplateItem RemoveSelectedItem()
         {
             TemplateItem item = SelectedItem;
-            logger.Debug("Remove slected item. Id='{0}'", item.Id);
-            Template.Items.Remove(item);
+            Logger.Debug("Remove slected item. Id='{0}'", item.Id);
+            Template_.Items.Remove(item);
             return item;
         }
     }
