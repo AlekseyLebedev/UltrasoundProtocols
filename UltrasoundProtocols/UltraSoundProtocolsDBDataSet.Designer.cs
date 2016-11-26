@@ -30,9 +30,7 @@ namespace UltrasoundProtocols
 
         private Tbl_DoctorsDataTable tableTbl_Doctors;
 
-        private Tbl_ExaminationTypesDataTable tableTbl_ExaminationTypes;
-
-        private Tbl_GenderDataTable tableTbl_Gender;
+        private Tbl_TemplatesDataTable tableTbl_Templates;
 
         private Tbl_MedicalEquipmentsDataTable tableTbl_MedicalEquipments;
 
@@ -78,13 +76,9 @@ namespace UltrasoundProtocols
                 {
                     base.Tables.Add(new Tbl_DoctorsDataTable(ds.Tables["Tbl_Doctors"]));
                 }
-                if ((ds.Tables["Tbl_ExaminationTypes"] != null))
+                if ((ds.Tables["Tbl_Templates"] != null))
                 {
-                    base.Tables.Add(new Tbl_ExaminationTypesDataTable(ds.Tables["Tbl_ExaminationTypes"]));
-                }
-                if ((ds.Tables["Tbl_Gender"] != null))
-                {
-                    base.Tables.Add(new Tbl_GenderDataTable(ds.Tables["Tbl_Gender"]));
+                    base.Tables.Add(new Tbl_TemplatesDataTable(ds.Tables["Tbl_Templates"]));
                 }
                 if ((ds.Tables["Tbl_MedicalEquipments"] != null))
                 {
@@ -137,23 +131,11 @@ namespace UltrasoundProtocols
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public Tbl_ExaminationTypesDataTable Tbl_ExaminationTypes
+        public Tbl_TemplatesDataTable Tbl_Templates
         {
             get
             {
-                return this.tableTbl_ExaminationTypes;
-            }
-        }
-
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Browsable(false)]
-        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public Tbl_GenderDataTable Tbl_Gender
-        {
-            get
-            {
-                return this.tableTbl_Gender;
+                return this.tableTbl_Templates;
             }
         }
 
@@ -289,13 +271,9 @@ namespace UltrasoundProtocols
                 {
                     base.Tables.Add(new Tbl_DoctorsDataTable(ds.Tables["Tbl_Doctors"]));
                 }
-                if ((ds.Tables["Tbl_ExaminationTypes"] != null))
+                if ((ds.Tables["Tbl_Templates"] != null))
                 {
-                    base.Tables.Add(new Tbl_ExaminationTypesDataTable(ds.Tables["Tbl_ExaminationTypes"]));
-                }
-                if ((ds.Tables["Tbl_Gender"] != null))
-                {
-                    base.Tables.Add(new Tbl_GenderDataTable(ds.Tables["Tbl_Gender"]));
+                    base.Tables.Add(new Tbl_TemplatesDataTable(ds.Tables["Tbl_Templates"]));
                 }
                 if ((ds.Tables["Tbl_MedicalEquipments"] != null))
                 {
@@ -358,20 +336,12 @@ namespace UltrasoundProtocols
                     this.tableTbl_Doctors.InitVars();
                 }
             }
-            this.tableTbl_ExaminationTypes = ((Tbl_ExaminationTypesDataTable)(base.Tables["Tbl_ExaminationTypes"]));
+            this.tableTbl_Templates = ((Tbl_TemplatesDataTable)(base.Tables["Tbl_Templates"]));
             if ((initTable == true))
             {
-                if ((this.tableTbl_ExaminationTypes != null))
+                if ((this.tableTbl_Templates != null))
                 {
-                    this.tableTbl_ExaminationTypes.InitVars();
-                }
-            }
-            this.tableTbl_Gender = ((Tbl_GenderDataTable)(base.Tables["Tbl_Gender"]));
-            if ((initTable == true))
-            {
-                if ((this.tableTbl_Gender != null))
-                {
-                    this.tableTbl_Gender.InitVars();
+                    this.tableTbl_Templates.InitVars();
                 }
             }
             this.tableTbl_MedicalEquipments = ((Tbl_MedicalEquipmentsDataTable)(base.Tables["Tbl_MedicalEquipments"]));
@@ -419,10 +389,8 @@ namespace UltrasoundProtocols
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
             this.tableTbl_Doctors = new Tbl_DoctorsDataTable();
             base.Tables.Add(this.tableTbl_Doctors);
-            this.tableTbl_ExaminationTypes = new Tbl_ExaminationTypesDataTable();
-            base.Tables.Add(this.tableTbl_ExaminationTypes);
-            this.tableTbl_Gender = new Tbl_GenderDataTable();
-            base.Tables.Add(this.tableTbl_Gender);
+            this.tableTbl_Templates = new Tbl_TemplatesDataTable();
+            base.Tables.Add(this.tableTbl_Templates);
             this.tableTbl_MedicalEquipments = new Tbl_MedicalEquipmentsDataTable();
             base.Tables.Add(this.tableTbl_MedicalEquipments);
             this.tableTbl_Patients = new Tbl_PatientsDataTable();
@@ -442,14 +410,7 @@ namespace UltrasoundProtocols
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private bool ShouldSerializeTbl_ExaminationTypes()
-        {
-            return false;
-        }
-
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private bool ShouldSerializeTbl_Gender()
+        private bool ShouldSerializeTbl_Templates()
         {
             return false;
         }
@@ -553,10 +514,7 @@ namespace UltrasoundProtocols
         public delegate void Tbl_DoctorsRowChangeEventHandler(object sender, Tbl_DoctorsRowChangeEvent e);
 
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public delegate void Tbl_ExaminationTypesRowChangeEventHandler(object sender, Tbl_ExaminationTypesRowChangeEvent e);
-
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public delegate void Tbl_GenderRowChangeEventHandler(object sender, Tbl_GenderRowChangeEvent e);
+        public delegate void Tbl_TemplatesRowChangeEventHandler(object sender, Tbl_TemplatesRowChangeEvent e);
 
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public delegate void Tbl_MedicalEquipmentsRowChangeEventHandler(object sender, Tbl_MedicalEquipmentsRowChangeEvent e);
@@ -949,18 +907,20 @@ namespace UltrasoundProtocols
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class Tbl_ExaminationTypesDataTable : global::System.Data.TypedTableBase<Tbl_ExaminationTypesRow>
+        public partial class Tbl_TemplatesDataTable : global::System.Data.TypedTableBase<Tbl_TemplatesRow>
         {
 
-            private global::System.Data.DataColumn columnext_id;
+            private global::System.Data.DataColumn columntem_id;
 
-            private global::System.Data.DataColumn columnext_name;
+            private global::System.Data.DataColumn columntem_name;
+
+            private global::System.Data.DataColumn columntem_template;
 
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public Tbl_ExaminationTypesDataTable()
+            public Tbl_TemplatesDataTable()
             {
-                this.TableName = "Tbl_ExaminationTypes";
+                this.TableName = "Tbl_Templates";
                 this.BeginInit();
                 this.InitClass();
                 this.EndInit();
@@ -968,7 +928,7 @@ namespace UltrasoundProtocols
 
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal Tbl_ExaminationTypesDataTable(global::System.Data.DataTable table)
+            internal Tbl_TemplatesDataTable(global::System.Data.DataTable table)
             {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive))
@@ -989,7 +949,7 @@ namespace UltrasoundProtocols
 
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected Tbl_ExaminationTypesDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) :
+            protected Tbl_TemplatesDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) :
                     base(info, context)
             {
                 this.InitVars();
@@ -997,21 +957,31 @@ namespace UltrasoundProtocols
 
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn ext_idColumn
+            public global::System.Data.DataColumn tem_idColumn
             {
                 get
                 {
-                    return this.columnext_id;
+                    return this.columntem_id;
                 }
             }
 
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn ext_nameColumn
+            public global::System.Data.DataColumn tem_nameColumn
             {
                 get
                 {
-                    return this.columnext_name;
+                    return this.columntem_name;
+                }
+            }
+
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn tem_templateColumn
+            {
+                get
+                {
+                    return this.columntem_template;
                 }
             }
 
@@ -1028,59 +998,60 @@ namespace UltrasoundProtocols
 
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public Tbl_ExaminationTypesRow this[int index]
+            public Tbl_TemplatesRow this[int index]
             {
                 get
                 {
-                    return ((Tbl_ExaminationTypesRow)(this.Rows[index]));
+                    return ((Tbl_TemplatesRow)(this.Rows[index]));
                 }
             }
 
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event Tbl_ExaminationTypesRowChangeEventHandler Tbl_ExaminationTypesRowChanging;
+            public event Tbl_TemplatesRowChangeEventHandler Tbl_TemplatesRowChanging;
 
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event Tbl_ExaminationTypesRowChangeEventHandler Tbl_ExaminationTypesRowChanged;
+            public event Tbl_TemplatesRowChangeEventHandler Tbl_TemplatesRowChanged;
 
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event Tbl_ExaminationTypesRowChangeEventHandler Tbl_ExaminationTypesRowDeleting;
+            public event Tbl_TemplatesRowChangeEventHandler Tbl_TemplatesRowDeleting;
 
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event Tbl_ExaminationTypesRowChangeEventHandler Tbl_ExaminationTypesRowDeleted;
+            public event Tbl_TemplatesRowChangeEventHandler Tbl_TemplatesRowDeleted;
 
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void AddTbl_ExaminationTypesRow(Tbl_ExaminationTypesRow row)
+            public void AddTbl_TemplatesRow(Tbl_TemplatesRow row)
             {
                 this.Rows.Add(row);
             }
 
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public Tbl_ExaminationTypesRow AddTbl_ExaminationTypesRow(string ext_name)
+            public Tbl_TemplatesRow AddTbl_TemplatesRow(string tem_id, string tem_name, string tem_template)
             {
-                Tbl_ExaminationTypesRow rowTbl_ExaminationTypesRow = ((Tbl_ExaminationTypesRow)(this.NewRow()));
+                Tbl_TemplatesRow rowTbl_TemplatesRow = ((Tbl_TemplatesRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        null,
-                        ext_name};
-                rowTbl_ExaminationTypesRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowTbl_ExaminationTypesRow);
-                return rowTbl_ExaminationTypesRow;
+                        tem_id,
+                        tem_name,
+                        tem_template};
+                rowTbl_TemplatesRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowTbl_TemplatesRow);
+                return rowTbl_TemplatesRow;
             }
 
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public Tbl_ExaminationTypesRow FindByext_id(int ext_id)
+            public Tbl_TemplatesRow FindBytem_id(string tem_id)
             {
-                return ((Tbl_ExaminationTypesRow)(this.Rows.Find(new object[] {
-                            ext_id})));
+                return ((Tbl_TemplatesRow)(this.Rows.Find(new object[] {
+                            tem_id})));
             }
 
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public override global::System.Data.DataTable Clone()
             {
-                Tbl_ExaminationTypesDataTable cln = ((Tbl_ExaminationTypesDataTable)(base.Clone()));
+                Tbl_TemplatesDataTable cln = ((Tbl_TemplatesDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -1089,56 +1060,58 @@ namespace UltrasoundProtocols
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Data.DataTable CreateInstance()
             {
-                return new Tbl_ExaminationTypesDataTable();
+                return new Tbl_TemplatesDataTable();
             }
 
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal void InitVars()
             {
-                this.columnext_id = base.Columns["ext_id"];
-                this.columnext_name = base.Columns["ext_name"];
+                this.columntem_id = base.Columns["tem_id"];
+                this.columntem_name = base.Columns["tem_name"];
+                this.columntem_template = base.Columns["tem_template"];
             }
 
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             private void InitClass()
             {
-                this.columnext_id = new global::System.Data.DataColumn("ext_id", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnext_id);
-                this.columnext_name = new global::System.Data.DataColumn("ext_name", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnext_name);
+                this.columntem_id = new global::System.Data.DataColumn("tem_id", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columntem_id);
+                this.columntem_name = new global::System.Data.DataColumn("tem_name", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columntem_name);
+                this.columntem_template = new global::System.Data.DataColumn("tem_template", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columntem_template);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnext_id}, true));
-                this.columnext_id.AutoIncrement = true;
-                this.columnext_id.AutoIncrementSeed = -1;
-                this.columnext_id.AutoIncrementStep = -1;
-                this.columnext_id.AllowDBNull = false;
-                this.columnext_id.ReadOnly = true;
-                this.columnext_id.Unique = true;
-                this.columnext_name.AllowDBNull = false;
-                this.columnext_name.MaxLength = 255;
+                                this.columntem_id}, true));
+                this.columntem_id.AllowDBNull = false;
+                this.columntem_id.Unique = true;
+                this.columntem_id.MaxLength = 255;
+                this.columntem_name.AllowDBNull = false;
+                this.columntem_name.MaxLength = 255;
+                this.columntem_template.AllowDBNull = false;
+                this.columntem_template.MaxLength = 2147483647;
             }
 
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public Tbl_ExaminationTypesRow NewTbl_ExaminationTypesRow()
+            public Tbl_TemplatesRow NewTbl_TemplatesRow()
             {
-                return ((Tbl_ExaminationTypesRow)(this.NewRow()));
+                return ((Tbl_TemplatesRow)(this.NewRow()));
             }
 
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder)
             {
-                return new Tbl_ExaminationTypesRow(builder);
+                return new Tbl_TemplatesRow(builder);
             }
 
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Type GetRowType()
             {
-                return typeof(Tbl_ExaminationTypesRow);
+                return typeof(Tbl_TemplatesRow);
             }
 
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1146,9 +1119,9 @@ namespace UltrasoundProtocols
             protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e)
             {
                 base.OnRowChanged(e);
-                if ((this.Tbl_ExaminationTypesRowChanged != null))
+                if ((this.Tbl_TemplatesRowChanged != null))
                 {
-                    this.Tbl_ExaminationTypesRowChanged(this, new Tbl_ExaminationTypesRowChangeEvent(((Tbl_ExaminationTypesRow)(e.Row)), e.Action));
+                    this.Tbl_TemplatesRowChanged(this, new Tbl_TemplatesRowChangeEvent(((Tbl_TemplatesRow)(e.Row)), e.Action));
                 }
             }
 
@@ -1157,9 +1130,9 @@ namespace UltrasoundProtocols
             protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e)
             {
                 base.OnRowChanging(e);
-                if ((this.Tbl_ExaminationTypesRowChanging != null))
+                if ((this.Tbl_TemplatesRowChanging != null))
                 {
-                    this.Tbl_ExaminationTypesRowChanging(this, new Tbl_ExaminationTypesRowChangeEvent(((Tbl_ExaminationTypesRow)(e.Row)), e.Action));
+                    this.Tbl_TemplatesRowChanging(this, new Tbl_TemplatesRowChangeEvent(((Tbl_TemplatesRow)(e.Row)), e.Action));
                 }
             }
 
@@ -1168,9 +1141,9 @@ namespace UltrasoundProtocols
             protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e)
             {
                 base.OnRowDeleted(e);
-                if ((this.Tbl_ExaminationTypesRowDeleted != null))
+                if ((this.Tbl_TemplatesRowDeleted != null))
                 {
-                    this.Tbl_ExaminationTypesRowDeleted(this, new Tbl_ExaminationTypesRowChangeEvent(((Tbl_ExaminationTypesRow)(e.Row)), e.Action));
+                    this.Tbl_TemplatesRowDeleted(this, new Tbl_TemplatesRowChangeEvent(((Tbl_TemplatesRow)(e.Row)), e.Action));
                 }
             }
 
@@ -1179,15 +1152,15 @@ namespace UltrasoundProtocols
             protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e)
             {
                 base.OnRowDeleting(e);
-                if ((this.Tbl_ExaminationTypesRowDeleting != null))
+                if ((this.Tbl_TemplatesRowDeleting != null))
                 {
-                    this.Tbl_ExaminationTypesRowDeleting(this, new Tbl_ExaminationTypesRowChangeEvent(((Tbl_ExaminationTypesRow)(e.Row)), e.Action));
+                    this.Tbl_TemplatesRowDeleting(this, new Tbl_TemplatesRowChangeEvent(((Tbl_TemplatesRow)(e.Row)), e.Action));
                 }
             }
 
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void RemoveTbl_ExaminationTypesRow(Tbl_ExaminationTypesRow row)
+            public void RemoveTbl_TemplatesRow(Tbl_TemplatesRow row)
             {
                 this.Rows.Remove(row);
             }
@@ -1216,329 +1189,7 @@ namespace UltrasoundProtocols
                 type.Attributes.Add(attribute1);
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "Tbl_ExaminationTypesDataTable";
-                type.Attributes.Add(attribute2);
-                type.Particle = sequence;
-                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
-                if (xs.Contains(dsSchema.TargetNamespace))
-                {
-                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
-                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
-                    try
-                    {
-                        global::System.Xml.Schema.XmlSchema schema = null;
-                        dsSchema.Write(s1);
-                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext();)
-                        {
-                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
-                            s2.SetLength(0);
-                            schema.Write(s2);
-                            if ((s1.Length == s2.Length))
-                            {
-                                s1.Position = 0;
-                                s2.Position = 0;
-                                for (; ((s1.Position != s1.Length)
-                                            && (s1.ReadByte() == s2.ReadByte()));)
-                                {
-                                    ;
-                                }
-                                if ((s1.Position == s1.Length))
-                                {
-                                    return type;
-                                }
-                            }
-                        }
-                    }
-                    finally
-                    {
-                        if ((s1 != null))
-                        {
-                            s1.Close();
-                        }
-                        if ((s2 != null))
-                        {
-                            s2.Close();
-                        }
-                    }
-                }
-                xs.Add(dsSchema);
-                return type;
-            }
-        }
-
-        /// <summary>
-        ///Represents the strongly named DataTable class.
-        ///</summary>
-        [global::System.Serializable()]
-        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class Tbl_GenderDataTable : global::System.Data.TypedTableBase<Tbl_GenderRow>
-        {
-
-            private global::System.Data.DataColumn columngnd_id;
-
-            private global::System.Data.DataColumn columngnd_value;
-
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public Tbl_GenderDataTable()
-            {
-                this.TableName = "Tbl_Gender";
-                this.BeginInit();
-                this.InitClass();
-                this.EndInit();
-            }
-
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal Tbl_GenderDataTable(global::System.Data.DataTable table)
-            {
-                this.TableName = table.TableName;
-                if ((table.CaseSensitive != table.DataSet.CaseSensitive))
-                {
-                    this.CaseSensitive = table.CaseSensitive;
-                }
-                if ((table.Locale.ToString() != table.DataSet.Locale.ToString()))
-                {
-                    this.Locale = table.Locale;
-                }
-                if ((table.Namespace != table.DataSet.Namespace))
-                {
-                    this.Namespace = table.Namespace;
-                }
-                this.Prefix = table.Prefix;
-                this.MinimumCapacity = table.MinimumCapacity;
-            }
-
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected Tbl_GenderDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) :
-                    base(info, context)
-            {
-                this.InitVars();
-            }
-
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn gnd_idColumn
-            {
-                get
-                {
-                    return this.columngnd_id;
-                }
-            }
-
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn gnd_valueColumn
-            {
-                get
-                {
-                    return this.columngnd_value;
-                }
-            }
-
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            [global::System.ComponentModel.Browsable(false)]
-            public int Count
-            {
-                get
-                {
-                    return this.Rows.Count;
-                }
-            }
-
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public Tbl_GenderRow this[int index]
-            {
-                get
-                {
-                    return ((Tbl_GenderRow)(this.Rows[index]));
-                }
-            }
-
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event Tbl_GenderRowChangeEventHandler Tbl_GenderRowChanging;
-
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event Tbl_GenderRowChangeEventHandler Tbl_GenderRowChanged;
-
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event Tbl_GenderRowChangeEventHandler Tbl_GenderRowDeleting;
-
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event Tbl_GenderRowChangeEventHandler Tbl_GenderRowDeleted;
-
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void AddTbl_GenderRow(Tbl_GenderRow row)
-            {
-                this.Rows.Add(row);
-            }
-
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public Tbl_GenderRow AddTbl_GenderRow(string gnd_value)
-            {
-                Tbl_GenderRow rowTbl_GenderRow = ((Tbl_GenderRow)(this.NewRow()));
-                object[] columnValuesArray = new object[] {
-                        null,
-                        gnd_value};
-                rowTbl_GenderRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowTbl_GenderRow);
-                return rowTbl_GenderRow;
-            }
-
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public Tbl_GenderRow FindBygnd_id(int gnd_id)
-            {
-                return ((Tbl_GenderRow)(this.Rows.Find(new object[] {
-                            gnd_id})));
-            }
-
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public override global::System.Data.DataTable Clone()
-            {
-                Tbl_GenderDataTable cln = ((Tbl_GenderDataTable)(base.Clone()));
-                cln.InitVars();
-                return cln;
-            }
-
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override global::System.Data.DataTable CreateInstance()
-            {
-                return new Tbl_GenderDataTable();
-            }
-
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal void InitVars()
-            {
-                this.columngnd_id = base.Columns["gnd_id"];
-                this.columngnd_value = base.Columns["gnd_value"];
-            }
-
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            private void InitClass()
-            {
-                this.columngnd_id = new global::System.Data.DataColumn("gnd_id", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columngnd_id);
-                this.columngnd_value = new global::System.Data.DataColumn("gnd_value", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columngnd_value);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columngnd_id}, true));
-                this.columngnd_id.AutoIncrement = true;
-                this.columngnd_id.AutoIncrementSeed = -1;
-                this.columngnd_id.AutoIncrementStep = -1;
-                this.columngnd_id.AllowDBNull = false;
-                this.columngnd_id.ReadOnly = true;
-                this.columngnd_id.Unique = true;
-                this.columngnd_value.AllowDBNull = false;
-                this.columngnd_value.MaxLength = 40;
-            }
-
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public Tbl_GenderRow NewTbl_GenderRow()
-            {
-                return ((Tbl_GenderRow)(this.NewRow()));
-            }
-
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder)
-            {
-                return new Tbl_GenderRow(builder);
-            }
-
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override global::System.Type GetRowType()
-            {
-                return typeof(Tbl_GenderRow);
-            }
-
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e)
-            {
-                base.OnRowChanged(e);
-                if ((this.Tbl_GenderRowChanged != null))
-                {
-                    this.Tbl_GenderRowChanged(this, new Tbl_GenderRowChangeEvent(((Tbl_GenderRow)(e.Row)), e.Action));
-                }
-            }
-
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e)
-            {
-                base.OnRowChanging(e);
-                if ((this.Tbl_GenderRowChanging != null))
-                {
-                    this.Tbl_GenderRowChanging(this, new Tbl_GenderRowChangeEvent(((Tbl_GenderRow)(e.Row)), e.Action));
-                }
-            }
-
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e)
-            {
-                base.OnRowDeleted(e);
-                if ((this.Tbl_GenderRowDeleted != null))
-                {
-                    this.Tbl_GenderRowDeleted(this, new Tbl_GenderRowChangeEvent(((Tbl_GenderRow)(e.Row)), e.Action));
-                }
-            }
-
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e)
-            {
-                base.OnRowDeleting(e);
-                if ((this.Tbl_GenderRowDeleting != null))
-                {
-                    this.Tbl_GenderRowDeleting(this, new Tbl_GenderRowChangeEvent(((Tbl_GenderRow)(e.Row)), e.Action));
-                }
-            }
-
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void RemoveTbl_GenderRow(Tbl_GenderRow row)
-            {
-                this.Rows.Remove(row);
-            }
-
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs)
-            {
-                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
-                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                UltraSoundProtocolsDBDataSet ds = new UltraSoundProtocolsDBDataSet();
-                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
-                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
-                any1.MinOccurs = new decimal(0);
-                any1.MaxOccurs = decimal.MaxValue;
-                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any1);
-                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
-                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
-                any2.MinOccurs = new decimal(1);
-                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any2);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute1.Name = "namespace";
-                attribute1.FixedValue = ds.Namespace;
-                type.Attributes.Add(attribute1);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "Tbl_GenderDataTable";
+                attribute2.FixedValue = "Tbl_TemplatesDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -3140,89 +2791,58 @@ namespace UltrasoundProtocols
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class Tbl_ExaminationTypesRow : global::System.Data.DataRow
+        public partial class Tbl_TemplatesRow : global::System.Data.DataRow
         {
 
-            private Tbl_ExaminationTypesDataTable tableTbl_ExaminationTypes;
+            private Tbl_TemplatesDataTable tableTbl_Templates;
 
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal Tbl_ExaminationTypesRow(global::System.Data.DataRowBuilder rb) :
+            internal Tbl_TemplatesRow(global::System.Data.DataRowBuilder rb) :
                     base(rb)
             {
-                this.tableTbl_ExaminationTypes = ((Tbl_ExaminationTypesDataTable)(this.Table));
+                this.tableTbl_Templates = ((Tbl_TemplatesDataTable)(this.Table));
             }
 
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int ext_id
+            public string tem_id
             {
                 get
                 {
-                    return ((int)(this[this.tableTbl_ExaminationTypes.ext_idColumn]));
+                    return ((string)(this[this.tableTbl_Templates.tem_idColumn]));
                 }
                 set
                 {
-                    this[this.tableTbl_ExaminationTypes.ext_idColumn] = value;
+                    this[this.tableTbl_Templates.tem_idColumn] = value;
                 }
             }
 
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string ext_name
+            public string tem_name
             {
                 get
                 {
-                    return ((string)(this[this.tableTbl_ExaminationTypes.ext_nameColumn]));
+                    return ((string)(this[this.tableTbl_Templates.tem_nameColumn]));
                 }
                 set
                 {
-                    this[this.tableTbl_ExaminationTypes.ext_nameColumn] = value;
+                    this[this.tableTbl_Templates.tem_nameColumn] = value;
                 }
             }
-        }
-
-        /// <summary>
-        ///Represents strongly named DataRow class.
-        ///</summary>
-        public partial class Tbl_GenderRow : global::System.Data.DataRow
-        {
-
-            private Tbl_GenderDataTable tableTbl_Gender;
 
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal Tbl_GenderRow(global::System.Data.DataRowBuilder rb) :
-                    base(rb)
-            {
-                this.tableTbl_Gender = ((Tbl_GenderDataTable)(this.Table));
-            }
-
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int gnd_id
+            public string tem_template
             {
                 get
                 {
-                    return ((int)(this[this.tableTbl_Gender.gnd_idColumn]));
+                    return ((string)(this[this.tableTbl_Templates.tem_templateColumn]));
                 }
                 set
                 {
-                    this[this.tableTbl_Gender.gnd_idColumn] = value;
-                }
-            }
-
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string gnd_value
-            {
-                get
-                {
-                    return ((string)(this[this.tableTbl_Gender.gnd_valueColumn]));
-                }
-                set
-                {
-                    this[this.tableTbl_Gender.gnd_valueColumn] = value;
+                    this[this.tableTbl_Templates.tem_templateColumn] = value;
                 }
             }
         }
@@ -3641,16 +3261,16 @@ namespace UltrasoundProtocols
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public class Tbl_ExaminationTypesRowChangeEvent : global::System.EventArgs
+        public class Tbl_TemplatesRowChangeEvent : global::System.EventArgs
         {
 
-            private Tbl_ExaminationTypesRow eventRow;
+            private Tbl_TemplatesRow eventRow;
 
             private global::System.Data.DataRowAction eventAction;
 
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public Tbl_ExaminationTypesRowChangeEvent(Tbl_ExaminationTypesRow row, global::System.Data.DataRowAction action)
+            public Tbl_TemplatesRowChangeEvent(Tbl_TemplatesRow row, global::System.Data.DataRowAction action)
             {
                 this.eventRow = row;
                 this.eventAction = action;
@@ -3658,47 +3278,7 @@ namespace UltrasoundProtocols
 
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public Tbl_ExaminationTypesRow Row
-            {
-                get
-                {
-                    return this.eventRow;
-                }
-            }
-
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataRowAction Action
-            {
-                get
-                {
-                    return this.eventAction;
-                }
-            }
-        }
-
-        /// <summary>
-        ///Row event argument class
-        ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public class Tbl_GenderRowChangeEvent : global::System.EventArgs
-        {
-
-            private Tbl_GenderRow eventRow;
-
-            private global::System.Data.DataRowAction eventAction;
-
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public Tbl_GenderRowChangeEvent(Tbl_GenderRow row, global::System.Data.DataRowAction action)
-            {
-                this.eventRow = row;
-                this.eventAction = action;
-            }
-
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public Tbl_GenderRow Row
+            public Tbl_TemplatesRow Row
             {
                 get
                 {
@@ -3910,7 +3490,8 @@ namespace UltrasoundProtocols.UltraSoundProtocolsDBDataSetTableAdapters
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public Tbl_DoctorsTableAdapter(DataBaseSettings settings)
         {
-            this.ClearBeforeFill = true; ConnectionString = settings.GetConnectionString();
+            this.ClearBeforeFill = true;
+            ConnectionString = settings.GetConnectionString();
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4052,7 +3633,7 @@ namespace UltrasoundProtocols.UltraSoundProtocolsDBDataSetTableAdapters
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
             this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[Tbl_Doctors] ([dct_firstname], [dct_middlename], [dct_lastname], [dct_status]) VALUES (@dct_firstname, @dct_middlename, @dct_lastname, @dct_status);
-SELECT dct_id, dct_firstname, dct_middlename, dct_lastname, dct_status FROM Tbl_Doctors WHERE (dct_id = SCOPE_IDENTITY())";
+SELECT dct_id, dct_firstname, dct_middlename, dct_lastname, dct_status FROM dbo.Tbl_Doctors WHERE (dct_id = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@dct_firstname", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "dct_firstname", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@dct_middlename", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "dct_middlename", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -4061,7 +3642,7 @@ SELECT dct_id, dct_firstname, dct_middlename, dct_lastname, dct_status FROM Tbl_
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
             this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Tbl_Doctors] SET [dct_firstname] = @dct_firstname, [dct_middlename] = @dct_middlename, [dct_lastname] = @dct_lastname, [dct_status] = @dct_status WHERE (([dct_id] = @Original_dct_id) AND ([dct_firstname] = @Original_dct_firstname) AND ((@IsNull_dct_middlename = 1 AND [dct_middlename] IS NULL) OR ([dct_middlename] = @Original_dct_middlename)) AND ([dct_lastname] = @Original_dct_lastname) AND ([dct_status] = @Original_dct_status));
-SELECT dct_id, dct_firstname, dct_middlename, dct_lastname, dct_status FROM Tbl_Doctors WHERE (dct_id = @dct_id)";
+SELECT dct_id, dct_firstname, dct_middlename, dct_lastname, dct_status FROM dbo.Tbl_Doctors WHERE (dct_id = @dct_id)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@dct_firstname", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "dct_firstname", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@dct_middlename", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "dct_middlename", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -4360,7 +3941,7 @@ SELECT dct_id, dct_firstname, dct_middlename, dct_lastname, dct_status FROM Tbl_
     [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
         ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class Tbl_ExaminationTypesTableAdapter : global::System.ComponentModel.Component
+    public partial class Tbl_TemplatesTableAdapter : global::System.ComponentModel.Component
     {
 
         private global::System.Data.SqlClient.SqlDataAdapter _adapter;
@@ -4377,7 +3958,7 @@ SELECT dct_id, dct_firstname, dct_middlename, dct_lastname, dct_status FROM Tbl_
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public Tbl_ExaminationTypesTableAdapter(DataBaseSettings settings)
+        public Tbl_TemplatesTableAdapter(DataBaseSettings settings)
         {
             this.ClearBeforeFill = true; ConnectionString = settings.GetConnectionString();
         }
@@ -4501,33 +4082,37 @@ SELECT dct_id, dct_firstname, dct_middlename, dct_lastname, dct_status FROM Tbl_
             this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
-            tableMapping.DataSetTable = "Tbl_ExaminationTypes";
-            tableMapping.ColumnMappings.Add("ext_id", "ext_id");
-            tableMapping.ColumnMappings.Add("ext_name", "ext_name");
+            tableMapping.DataSetTable = "Tbl_Templates";
+            tableMapping.ColumnMappings.Add("tem_id", "tem_id");
+            tableMapping.ColumnMappings.Add("tem_name", "tem_name");
+            tableMapping.ColumnMappings.Add("tem_template", "tem_template");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[Tbl_ExaminationTypes] WHERE (([ext_id] = @Original_ext_id) AND" +
-                " ([ext_name] = @Original_ext_name))";
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[Tbl_Templates] WHERE (([tem_id] = @Original_tem_id) AND ([tem_" +
+                "name] = @Original_tem_name))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ext_id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ext_id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ext_name", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ext_name", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_tem_id", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "tem_id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_tem_name", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "tem_name", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[Tbl_ExaminationTypes] ([ext_name]) VALUES (@ext_name);\r\nSELECT" +
-                " ext_id, ext_name FROM Tbl_ExaminationTypes WHERE (ext_id = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[Tbl_Templates] ([tem_id], [tem_name], [tem_template]) VALUES (" +
+                "@tem_id, @tem_name, @tem_template);\r\nSELECT tem_id, tem_name, tem_template FROM " +
+                "dbo.Tbl_Templates WHERE (tem_id = @tem_id)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ext_name", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ext_name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@tem_id", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "tem_id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@tem_name", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "tem_name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@tem_template", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "tem_template", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = "UPDATE [dbo].[Tbl_ExaminationTypes] SET [ext_name] = @ext_name WHERE (([ext_id] =" +
-                " @Original_ext_id) AND ([ext_name] = @Original_ext_name));\r\nSELECT ext_id, ext_n" +
-                "ame FROM Tbl_ExaminationTypes WHERE (ext_id = @ext_id)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Tbl_Templates] SET [tem_id] = @tem_id, [tem_name] = @tem_name, [tem_template] = @tem_template WHERE (([tem_id] = @Original_tem_id) AND ([tem_name] = @Original_tem_name));
+SELECT tem_id, tem_name, tem_template FROM dbo.Tbl_Templates WHERE (tem_id = @tem_id)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ext_name", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ext_name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ext_id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ext_id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ext_name", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ext_name", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ext_id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "ext_id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@tem_id", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "tem_id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@tem_name", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "tem_name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@tem_template", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "tem_template", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_tem_id", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "tem_id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_tem_name", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "tem_name", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4545,7 +4130,7 @@ SELECT dct_id, dct_firstname, dct_middlename, dct_lastname, dct_status FROM Tbl_
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT ext_id, ext_name FROM dbo.Tbl_ExaminationTypes";
+            this._commandCollection[0].CommandText = "SELECT tem_id, tem_name, tem_template FROM dbo.Tbl_Templates";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
 
@@ -4553,7 +4138,7 @@ SELECT dct_id, dct_firstname, dct_middlename, dct_lastname, dct_status FROM Tbl_
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(UltraSoundProtocolsDBDataSet.Tbl_ExaminationTypesDataTable dataTable)
+        public virtual int Fill(UltraSoundProtocolsDBDataSet.Tbl_TemplatesDataTable dataTable)
         {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true))
@@ -4568,10 +4153,10 @@ SELECT dct_id, dct_firstname, dct_middlename, dct_lastname, dct_status FROM Tbl_
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual UltraSoundProtocolsDBDataSet.Tbl_ExaminationTypesDataTable GetData()
+        public virtual UltraSoundProtocolsDBDataSet.Tbl_TemplatesDataTable GetData()
         {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            UltraSoundProtocolsDBDataSet.Tbl_ExaminationTypesDataTable dataTable = new UltraSoundProtocolsDBDataSet.Tbl_ExaminationTypesDataTable();
+            UltraSoundProtocolsDBDataSet.Tbl_TemplatesDataTable dataTable = new UltraSoundProtocolsDBDataSet.Tbl_TemplatesDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -4579,7 +4164,7 @@ SELECT dct_id, dct_firstname, dct_middlename, dct_lastname, dct_status FROM Tbl_
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(UltraSoundProtocolsDBDataSet.Tbl_ExaminationTypesDataTable dataTable)
+        public virtual int Update(UltraSoundProtocolsDBDataSet.Tbl_TemplatesDataTable dataTable)
         {
             return this.Adapter.Update(dataTable);
         }
@@ -4589,7 +4174,7 @@ SELECT dct_id, dct_firstname, dct_middlename, dct_lastname, dct_status FROM Tbl_
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         public virtual int Update(UltraSoundProtocolsDBDataSet dataSet)
         {
-            return this.Adapter.Update(dataSet, "Tbl_ExaminationTypes");
+            return this.Adapter.Update(dataSet, "Tbl_Templates");
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4613,16 +4198,23 @@ SELECT dct_id, dct_firstname, dct_middlename, dct_lastname, dct_status FROM Tbl_
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_ext_id, string Original_ext_name)
+        public virtual int Delete(string Original_tem_id, string Original_tem_name)
         {
-            this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_ext_id));
-            if ((Original_ext_name == null))
+            if ((Original_tem_id == null))
             {
-                throw new global::System.ArgumentNullException("Original_ext_name");
+                throw new global::System.ArgumentNullException("Original_tem_id");
             }
             else
             {
-                this.Adapter.DeleteCommand.Parameters[1].Value = ((string)(Original_ext_name));
+                this.Adapter.DeleteCommand.Parameters[0].Value = ((string)(Original_tem_id));
+            }
+            if ((Original_tem_name == null))
+            {
+                throw new global::System.ArgumentNullException("Original_tem_name");
+            }
+            else
+            {
+                this.Adapter.DeleteCommand.Parameters[1].Value = ((string)(Original_tem_name));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open)
@@ -4648,15 +4240,31 @@ SELECT dct_id, dct_firstname, dct_middlename, dct_lastname, dct_status FROM Tbl_
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string ext_name)
+        public virtual int Insert(string tem_id, string tem_name, string tem_template)
         {
-            if ((ext_name == null))
+            if ((tem_id == null))
             {
-                throw new global::System.ArgumentNullException("ext_name");
+                throw new global::System.ArgumentNullException("tem_id");
             }
             else
             {
-                this.Adapter.InsertCommand.Parameters[0].Value = ((string)(ext_name));
+                this.Adapter.InsertCommand.Parameters[0].Value = ((string)(tem_id));
+            }
+            if ((tem_name == null))
+            {
+                throw new global::System.ArgumentNullException("tem_name");
+            }
+            else
+            {
+                this.Adapter.InsertCommand.Parameters[1].Value = ((string)(tem_name));
+            }
+            if ((tem_template == null))
+            {
+                throw new global::System.ArgumentNullException("tem_template");
+            }
+            else
+            {
+                this.Adapter.InsertCommand.Parameters[2].Value = ((string)(tem_template));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open)
@@ -4682,26 +4290,48 @@ SELECT dct_id, dct_firstname, dct_middlename, dct_lastname, dct_status FROM Tbl_
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string ext_name, int Original_ext_id, string Original_ext_name, int ext_id)
+        public virtual int Update(string tem_id, string tem_name, string tem_template, string Original_tem_id, string Original_tem_name)
         {
-            if ((ext_name == null))
+            if ((tem_id == null))
             {
-                throw new global::System.ArgumentNullException("ext_name");
+                throw new global::System.ArgumentNullException("tem_id");
             }
             else
             {
-                this.Adapter.UpdateCommand.Parameters[0].Value = ((string)(ext_name));
+                this.Adapter.UpdateCommand.Parameters[0].Value = ((string)(tem_id));
             }
-            this.Adapter.UpdateCommand.Parameters[1].Value = ((int)(Original_ext_id));
-            if ((Original_ext_name == null))
+            if ((tem_name == null))
             {
-                throw new global::System.ArgumentNullException("Original_ext_name");
+                throw new global::System.ArgumentNullException("tem_name");
             }
             else
             {
-                this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(Original_ext_name));
+                this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(tem_name));
             }
-            this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(ext_id));
+            if ((tem_template == null))
+            {
+                throw new global::System.ArgumentNullException("tem_template");
+            }
+            else
+            {
+                this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(tem_template));
+            }
+            if ((Original_tem_id == null))
+            {
+                throw new global::System.ArgumentNullException("Original_tem_id");
+            }
+            else
+            {
+                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(Original_tem_id));
+            }
+            if ((Original_tem_name == null))
+            {
+                throw new global::System.ArgumentNullException("Original_tem_name");
+            }
+            else
+            {
+                this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(Original_tem_name));
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open)
                         != global::System.Data.ConnectionState.Open))
@@ -4726,390 +4356,9 @@ SELECT dct_id, dct_firstname, dct_middlename, dct_lastname, dct_status FROM Tbl_
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string ext_name, int Original_ext_id, string Original_ext_name)
+        public virtual int Update(string tem_name, string tem_template, string Original_tem_id, string Original_tem_name)
         {
-            return this.Update(ext_name, Original_ext_id, Original_ext_name, Original_ext_id);
-        }
-    }
-
-    /// <summary>
-    ///Represents the connection and commands used to retrieve and save data.
-    ///</summary>
-    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
-    [global::System.ComponentModel.ToolboxItem(true)]
-    [global::System.ComponentModel.DataObjectAttribute(true)]
-    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
-        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
-    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class Tbl_GenderTableAdapter : global::System.ComponentModel.Component
-    {
-
-        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
-
-        private global::System.Data.SqlClient.SqlConnection _connection;
-
-        private global::System.Data.SqlClient.SqlTransaction _transaction;
-
-        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
-
-        private bool _clearBeforeFill;
-
-        private string ConnectionString;
-
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public Tbl_GenderTableAdapter(DataBaseSettings settings)
-        {
-            this.ClearBeforeFill = true; ConnectionString = settings.GetConnectionString();
-        }
-
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter
-        {
-            get
-            {
-                if ((this._adapter == null))
-                {
-                    this.InitAdapter();
-                }
-                return this._adapter;
-            }
-        }
-
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        internal global::System.Data.SqlClient.SqlConnection Connection
-        {
-            get
-            {
-                if ((this._connection == null))
-                {
-                    this.InitConnection();
-                }
-                return this._connection;
-            }
-            set
-            {
-                this._connection = value;
-                if ((this.Adapter.InsertCommand != null))
-                {
-                    this.Adapter.InsertCommand.Connection = value;
-                }
-                if ((this.Adapter.DeleteCommand != null))
-                {
-                    this.Adapter.DeleteCommand.Connection = value;
-                }
-                if ((this.Adapter.UpdateCommand != null))
-                {
-                    this.Adapter.UpdateCommand.Connection = value;
-                }
-                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1))
-                {
-                    if ((this.CommandCollection[i] != null))
-                    {
-                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
-                    }
-                }
-            }
-        }
-
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        internal global::System.Data.SqlClient.SqlTransaction Transaction
-        {
-            get
-            {
-                return this._transaction;
-            }
-            set
-            {
-                this._transaction = value;
-                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1))
-                {
-                    this.CommandCollection[i].Transaction = this._transaction;
-                }
-                if (((this.Adapter != null)
-                            && (this.Adapter.DeleteCommand != null)))
-                {
-                    this.Adapter.DeleteCommand.Transaction = this._transaction;
-                }
-                if (((this.Adapter != null)
-                            && (this.Adapter.InsertCommand != null)))
-                {
-                    this.Adapter.InsertCommand.Transaction = this._transaction;
-                }
-                if (((this.Adapter != null)
-                            && (this.Adapter.UpdateCommand != null)))
-                {
-                    this.Adapter.UpdateCommand.Transaction = this._transaction;
-                }
-            }
-        }
-
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection
-        {
-            get
-            {
-                if ((this._commandCollection == null))
-                {
-                    this.InitCommandCollection();
-                }
-                return this._commandCollection;
-            }
-        }
-
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public bool ClearBeforeFill
-        {
-            get
-            {
-                return this._clearBeforeFill;
-            }
-            set
-            {
-                this._clearBeforeFill = value;
-            }
-        }
-
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private void InitAdapter()
-        {
-            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
-            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
-            tableMapping.SourceTable = "Table";
-            tableMapping.DataSetTable = "Tbl_Gender";
-            tableMapping.ColumnMappings.Add("gnd_id", "gnd_id");
-            tableMapping.ColumnMappings.Add("gnd_value", "gnd_value");
-            this._adapter.TableMappings.Add(tableMapping);
-            this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
-            this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[Tbl_Gender] WHERE (([gnd_id] = @Original_gnd_id) AND ([gnd_val" +
-                "ue] = @Original_gnd_value))";
-            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_gnd_id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "gnd_id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_gnd_value", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "gnd_value", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
-            this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[Tbl_Gender] ([gnd_value]) VALUES (@gnd_value);\r\nSELECT gnd_id," +
-                " gnd_value FROM Tbl_Gender WHERE (gnd_id = SCOPE_IDENTITY())";
-            this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@gnd_value", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "gnd_value", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
-            this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = "UPDATE [dbo].[Tbl_Gender] SET [gnd_value] = @gnd_value WHERE (([gnd_id] = @Origin" +
-                "al_gnd_id) AND ([gnd_value] = @Original_gnd_value));\r\nSELECT gnd_id, gnd_value F" +
-                "ROM Tbl_Gender WHERE (gnd_id = @gnd_id)";
-            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@gnd_value", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "gnd_value", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_gnd_id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "gnd_id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_gnd_value", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "gnd_value", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@gnd_id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "gnd_id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-        }
-
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private void InitConnection()
-        {
-            this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = ConnectionString;
-        }
-
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private void InitCommandCollection()
-        {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
-            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
-            this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT gnd_id, gnd_value FROM dbo.Tbl_Gender";
-            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
-        }
-
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(UltraSoundProtocolsDBDataSet.Tbl_GenderDataTable dataTable)
-        {
-            this.Adapter.SelectCommand = this.CommandCollection[0];
-            if ((this.ClearBeforeFill == true))
-            {
-                dataTable.Clear();
-            }
-            int returnValue = this.Adapter.Fill(dataTable);
-            return returnValue;
-        }
-
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual UltraSoundProtocolsDBDataSet.Tbl_GenderDataTable GetData()
-        {
-            this.Adapter.SelectCommand = this.CommandCollection[0];
-            UltraSoundProtocolsDBDataSet.Tbl_GenderDataTable dataTable = new UltraSoundProtocolsDBDataSet.Tbl_GenderDataTable();
-            this.Adapter.Fill(dataTable);
-            return dataTable;
-        }
-
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(UltraSoundProtocolsDBDataSet.Tbl_GenderDataTable dataTable)
-        {
-            return this.Adapter.Update(dataTable);
-        }
-
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(UltraSoundProtocolsDBDataSet dataSet)
-        {
-            return this.Adapter.Update(dataSet, "Tbl_Gender");
-        }
-
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(global::System.Data.DataRow dataRow)
-        {
-            return this.Adapter.Update(new global::System.Data.DataRow[] {
-                        dataRow});
-        }
-
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(global::System.Data.DataRow[] dataRows)
-        {
-            return this.Adapter.Update(dataRows);
-        }
-
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_gnd_id, string Original_gnd_value)
-        {
-            this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_gnd_id));
-            if ((Original_gnd_value == null))
-            {
-                throw new global::System.ArgumentNullException("Original_gnd_value");
-            }
-            else
-            {
-                this.Adapter.DeleteCommand.Parameters[1].Value = ((string)(Original_gnd_value));
-            }
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
-            if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open)
-                        != global::System.Data.ConnectionState.Open))
-            {
-                this.Adapter.DeleteCommand.Connection.Open();
-            }
-            try
-            {
-                int returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally
-            {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed))
-                {
-                    this.Adapter.DeleteCommand.Connection.Close();
-                }
-            }
-        }
-
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string gnd_value)
-        {
-            if ((gnd_value == null))
-            {
-                throw new global::System.ArgumentNullException("gnd_value");
-            }
-            else
-            {
-                this.Adapter.InsertCommand.Parameters[0].Value = ((string)(gnd_value));
-            }
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
-            if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open)
-                        != global::System.Data.ConnectionState.Open))
-            {
-                this.Adapter.InsertCommand.Connection.Open();
-            }
-            try
-            {
-                int returnValue = this.Adapter.InsertCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally
-            {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed))
-                {
-                    this.Adapter.InsertCommand.Connection.Close();
-                }
-            }
-        }
-
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string gnd_value, int Original_gnd_id, string Original_gnd_value, int gnd_id)
-        {
-            if ((gnd_value == null))
-            {
-                throw new global::System.ArgumentNullException("gnd_value");
-            }
-            else
-            {
-                this.Adapter.UpdateCommand.Parameters[0].Value = ((string)(gnd_value));
-            }
-            this.Adapter.UpdateCommand.Parameters[1].Value = ((int)(Original_gnd_id));
-            if ((Original_gnd_value == null))
-            {
-                throw new global::System.ArgumentNullException("Original_gnd_value");
-            }
-            else
-            {
-                this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(Original_gnd_value));
-            }
-            this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(gnd_id));
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
-            if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open)
-                        != global::System.Data.ConnectionState.Open))
-            {
-                this.Adapter.UpdateCommand.Connection.Open();
-            }
-            try
-            {
-                int returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally
-            {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed))
-                {
-                    this.Adapter.UpdateCommand.Connection.Close();
-                }
-            }
-        }
-
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string gnd_value, int Original_gnd_id, string Original_gnd_value)
-        {
-            return this.Update(gnd_value, Original_gnd_id, Original_gnd_value, Original_gnd_id);
+            return this.Update(Original_tem_id, tem_name, tem_template, Original_tem_id, Original_tem_name);
         }
     }
 
@@ -5141,7 +4390,8 @@ SELECT dct_id, dct_firstname, dct_middlename, dct_lastname, dct_status FROM Tbl_
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public Tbl_MedicalEquipmentsTableAdapter(DataBaseSettings settings)
         {
-            this.ClearBeforeFill = true; ConnectionString = settings.GetConnectionString();
+            this.ClearBeforeFill = true;
+            ConnectionString = settings.GetConnectionString();
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5277,14 +4527,15 @@ SELECT dct_id, dct_firstname, dct_middlename, dct_lastname, dct_status FROM Tbl_
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
             this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[Tbl_MedicalEquipments] ([meq_name]) VALUES (@meq_name);\r\nSELEC" +
-                "T meq_id, meq_name FROM Tbl_MedicalEquipments WHERE (meq_id = SCOPE_IDENTITY())";
+                "T meq_id, meq_name FROM dbo.Tbl_MedicalEquipments WHERE (meq_id = SCOPE_IDENTITY" +
+                "())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@meq_name", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "meq_name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
             this._adapter.UpdateCommand.CommandText = "UPDATE [dbo].[Tbl_MedicalEquipments] SET [meq_name] = @meq_name WHERE (([meq_id] " +
                 "= @Original_meq_id) AND ([meq_name] = @Original_meq_name));\r\nSELECT meq_id, meq_" +
-                "name FROM Tbl_MedicalEquipments WHERE (meq_id = @meq_id)";
+                "name FROM dbo.Tbl_MedicalEquipments WHERE (meq_id = @meq_id)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@meq_name", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "meq_name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_meq_id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "meq_id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -5669,7 +4920,7 @@ SELECT dct_id, dct_firstname, dct_middlename, dct_lastname, dct_status FROM Tbl_
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
             this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[Tbl_Patients] ([pat_firstname], [pat_middlename], [pat_lastname], [pat_gender], [pat_birthdate], [pat_numberambulatorycard]) VALUES (@pat_firstname, @pat_middlename, @pat_lastname, @pat_gender, @pat_birthdate, @pat_numberambulatorycard);
-SELECT pat_id, pat_firstname, pat_middlename, pat_lastname, pat_gender, pat_birthdate, pat_numberambulatorycard FROM Tbl_Patients WHERE (pat_id = SCOPE_IDENTITY())";
+SELECT pat_id, pat_firstname, pat_middlename, pat_lastname, pat_gender, pat_birthdate, pat_numberambulatorycard FROM dbo.Tbl_Patients WHERE (pat_id = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@pat_firstname", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "pat_firstname", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@pat_middlename", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "pat_middlename", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -5680,7 +4931,7 @@ SELECT pat_id, pat_firstname, pat_middlename, pat_lastname, pat_gender, pat_birt
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
             this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Tbl_Patients] SET [pat_firstname] = @pat_firstname, [pat_middlename] = @pat_middlename, [pat_lastname] = @pat_lastname, [pat_gender] = @pat_gender, [pat_birthdate] = @pat_birthdate, [pat_numberambulatorycard] = @pat_numberambulatorycard WHERE (([pat_id] = @Original_pat_id) AND ([pat_firstname] = @Original_pat_firstname) AND ((@IsNull_pat_middlename = 1 AND [pat_middlename] IS NULL) OR ([pat_middlename] = @Original_pat_middlename)) AND ([pat_lastname] = @Original_pat_lastname) AND ([pat_gender] = @Original_pat_gender) AND ([pat_birthdate] = @Original_pat_birthdate) AND ((@IsNull_pat_numberambulatorycard = 1 AND [pat_numberambulatorycard] IS NULL) OR ([pat_numberambulatorycard] = @Original_pat_numberambulatorycard)));
-SELECT pat_id, pat_firstname, pat_middlename, pat_lastname, pat_gender, pat_birthdate, pat_numberambulatorycard FROM Tbl_Patients WHERE (pat_id = @pat_id)";
+SELECT pat_id, pat_firstname, pat_middlename, pat_lastname, pat_gender, pat_birthdate, pat_numberambulatorycard FROM dbo.Tbl_Patients WHERE (pat_id = @pat_id)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@pat_firstname", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "pat_firstname", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@pat_middlename", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "pat_middlename", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -6188,7 +5439,7 @@ SELECT pat_id, pat_firstname, pat_middlename, pat_lastname, pat_gender, pat_birt
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
             this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[Tbl_Protocols] ([prt_datetime], [prt_doctor], [prt_patient], [prt_equipment], [prt_source]) VALUES (@prt_datetime, @prt_doctor, @prt_patient, @prt_equipment, @prt_source);
-SELECT prt_id, prt_datetime, prt_doctor, prt_patient, prt_equipment, prt_source FROM Tbl_Protocols WHERE (prt_id = SCOPE_IDENTITY())";
+SELECT prt_id, prt_datetime, prt_doctor, prt_patient, prt_equipment, prt_source FROM dbo.Tbl_Protocols WHERE (prt_id = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@prt_datetime", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "prt_datetime", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@prt_doctor", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "prt_doctor", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -6198,7 +5449,7 @@ SELECT prt_id, prt_datetime, prt_doctor, prt_patient, prt_equipment, prt_source 
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
             this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Tbl_Protocols] SET [prt_datetime] = @prt_datetime, [prt_doctor] = @prt_doctor, [prt_patient] = @prt_patient, [prt_equipment] = @prt_equipment, [prt_source] = @prt_source WHERE (([prt_id] = @Original_prt_id) AND ([prt_datetime] = @Original_prt_datetime) AND ([prt_doctor] = @Original_prt_doctor) AND ([prt_patient] = @Original_prt_patient) AND ([prt_equipment] = @Original_prt_equipment) AND ((@IsNull_prt_source = 1 AND [prt_source] IS NULL) OR ([prt_source] = @Original_prt_source)));
-SELECT prt_id, prt_datetime, prt_doctor, prt_patient, prt_equipment, prt_source FROM Tbl_Protocols WHERE (prt_id = @prt_id)";
+SELECT prt_id, prt_datetime, prt_doctor, prt_patient, prt_equipment, prt_source FROM dbo.Tbl_Protocols WHERE (prt_id = @prt_id)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@prt_datetime", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "prt_datetime", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@prt_doctor", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "prt_doctor", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -6602,14 +5853,14 @@ SELECT prt_id, prt_datetime, prt_doctor, prt_patient, prt_equipment, prt_source 
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
             this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[Tbl_Source] ([src_value]) VALUES (@src_value);\r\nSELECT src_id," +
-                " src_value FROM Tbl_Source WHERE (src_id = SCOPE_IDENTITY())";
+                " src_value FROM dbo.Tbl_Source WHERE (src_id = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@src_value", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "src_value", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
             this._adapter.UpdateCommand.CommandText = "UPDATE [dbo].[Tbl_Source] SET [src_value] = @src_value WHERE (([src_id] = @Origin" +
                 "al_src_id) AND ([src_value] = @Original_src_value));\r\nSELECT src_id, src_value F" +
-                "ROM Tbl_Source WHERE (src_id = @src_id)";
+                "ROM dbo.Tbl_Source WHERE (src_id = @src_id)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@src_value", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "src_value", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_src_id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "src_id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -6834,9 +6085,7 @@ SELECT prt_id, prt_datetime, prt_doctor, prt_patient, prt_equipment, prt_source 
 
         private Tbl_DoctorsTableAdapter _tbl_DoctorsTableAdapter;
 
-        private Tbl_ExaminationTypesTableAdapter _tbl_ExaminationTypesTableAdapter;
-
-        private Tbl_GenderTableAdapter _tbl_GenderTableAdapter;
+        private Tbl_TemplatesTableAdapter _tbl_TemplatesTableAdapter;
 
         private Tbl_MedicalEquipmentsTableAdapter _tbl_MedicalEquipmentsTableAdapter;
 
@@ -6886,32 +6135,15 @@ SELECT prt_id, prt_datetime, prt_doctor, prt_patient, prt_equipment, prt_source 
         [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
             "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
             "a", "System.Drawing.Design.UITypeEditor")]
-        public Tbl_ExaminationTypesTableAdapter Tbl_ExaminationTypesTableAdapter
+        public Tbl_TemplatesTableAdapter Tbl_TemplatesTableAdapter
         {
             get
             {
-                return this._tbl_ExaminationTypesTableAdapter;
+                return this._tbl_TemplatesTableAdapter;
             }
             set
             {
-                this._tbl_ExaminationTypesTableAdapter = value;
-            }
-        }
-
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
-            "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
-            "a", "System.Drawing.Design.UITypeEditor")]
-        public Tbl_GenderTableAdapter Tbl_GenderTableAdapter
-        {
-            get
-            {
-                return this._tbl_GenderTableAdapter;
-            }
-            set
-            {
-                this._tbl_GenderTableAdapter = value;
+                this._tbl_TemplatesTableAdapter = value;
             }
         }
 
@@ -7013,15 +6245,10 @@ SELECT prt_id, prt_datetime, prt_doctor, prt_patient, prt_equipment, prt_source 
                 {
                     return this._tbl_DoctorsTableAdapter.Connection;
                 }
-                if (((this._tbl_ExaminationTypesTableAdapter != null)
-                            && (this._tbl_ExaminationTypesTableAdapter.Connection != null)))
+                if (((this._tbl_TemplatesTableAdapter != null)
+                            && (this._tbl_TemplatesTableAdapter.Connection != null)))
                 {
-                    return this._tbl_ExaminationTypesTableAdapter.Connection;
-                }
-                if (((this._tbl_GenderTableAdapter != null)
-                            && (this._tbl_GenderTableAdapter.Connection != null)))
-                {
-                    return this._tbl_GenderTableAdapter.Connection;
+                    return this._tbl_TemplatesTableAdapter.Connection;
                 }
                 if (((this._tbl_MedicalEquipmentsTableAdapter != null)
                             && (this._tbl_MedicalEquipmentsTableAdapter.Connection != null)))
@@ -7063,11 +6290,7 @@ SELECT prt_id, prt_datetime, prt_doctor, prt_patient, prt_equipment, prt_source 
                 {
                     count = (count + 1);
                 }
-                if ((this._tbl_ExaminationTypesTableAdapter != null))
-                {
-                    count = (count + 1);
-                }
-                if ((this._tbl_GenderTableAdapter != null))
+                if ((this._tbl_TemplatesTableAdapter != null))
                 {
                     count = (count + 1);
                 }
@@ -7110,25 +6333,14 @@ SELECT prt_id, prt_datetime, prt_doctor, prt_patient, prt_equipment, prt_source 
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._tbl_ExaminationTypesTableAdapter != null))
+            if ((this._tbl_TemplatesTableAdapter != null))
             {
-                global::System.Data.DataRow[] updatedRows = dataSet.Tbl_ExaminationTypes.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                global::System.Data.DataRow[] updatedRows = dataSet.Tbl_Templates.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null)
                             && (0 < updatedRows.Length)))
                 {
-                    result = (result + this._tbl_ExaminationTypesTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
-            if ((this._tbl_GenderTableAdapter != null))
-            {
-                global::System.Data.DataRow[] updatedRows = dataSet.Tbl_Gender.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null)
-                            && (0 < updatedRows.Length)))
-                {
-                    result = (result + this._tbl_GenderTableAdapter.Update(updatedRows));
+                    result = (result + this._tbl_TemplatesTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -7197,23 +6409,13 @@ SELECT prt_id, prt_datetime, prt_doctor, prt_patient, prt_equipment, prt_source 
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._tbl_ExaminationTypesTableAdapter != null))
+            if ((this._tbl_TemplatesTableAdapter != null))
             {
-                global::System.Data.DataRow[] addedRows = dataSet.Tbl_ExaminationTypes.Select(null, null, global::System.Data.DataViewRowState.Added);
+                global::System.Data.DataRow[] addedRows = dataSet.Tbl_Templates.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null)
                             && (0 < addedRows.Length)))
                 {
-                    result = (result + this._tbl_ExaminationTypesTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
-            if ((this._tbl_GenderTableAdapter != null))
-            {
-                global::System.Data.DataRow[] addedRows = dataSet.Tbl_Gender.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null)
-                            && (0 < addedRows.Length)))
-                {
-                    result = (result + this._tbl_GenderTableAdapter.Update(addedRows));
+                    result = (result + this._tbl_TemplatesTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -7308,23 +6510,13 @@ SELECT prt_id, prt_datetime, prt_doctor, prt_patient, prt_equipment, prt_source 
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._tbl_GenderTableAdapter != null))
+            if ((this._tbl_TemplatesTableAdapter != null))
             {
-                global::System.Data.DataRow[] deletedRows = dataSet.Tbl_Gender.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                global::System.Data.DataRow[] deletedRows = dataSet.Tbl_Templates.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null)
                             && (0 < deletedRows.Length)))
                 {
-                    result = (result + this._tbl_GenderTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
-            if ((this._tbl_ExaminationTypesTableAdapter != null))
-            {
-                global::System.Data.DataRow[] deletedRows = dataSet.Tbl_ExaminationTypes.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null)
-                            && (0 < deletedRows.Length)))
-                {
-                    result = (result + this._tbl_ExaminationTypesTableAdapter.Update(deletedRows));
+                    result = (result + this._tbl_TemplatesTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -7391,14 +6583,8 @@ SELECT prt_id, prt_datetime, prt_doctor, prt_patient, prt_equipment, prt_source 
                 throw new global::System.ArgumentException("Все адаптеры таблицы, управляемые диспетчером адаптера таблицы TableAdapterManage" +
                         "r, должны использовать одинаковую строку подключения.");
             }
-            if (((this._tbl_ExaminationTypesTableAdapter != null)
-                        && (this.MatchTableAdapterConnection(this._tbl_ExaminationTypesTableAdapter.Connection) == false)))
-            {
-                throw new global::System.ArgumentException("Все адаптеры таблицы, управляемые диспетчером адаптера таблицы TableAdapterManage" +
-                        "r, должны использовать одинаковую строку подключения.");
-            }
-            if (((this._tbl_GenderTableAdapter != null)
-                        && (this.MatchTableAdapterConnection(this._tbl_GenderTableAdapter.Connection) == false)))
+            if (((this._tbl_TemplatesTableAdapter != null)
+                        && (this.MatchTableAdapterConnection(this._tbl_TemplatesTableAdapter.Connection) == false)))
             {
                 throw new global::System.ArgumentException("Все адаптеры таблицы, управляемые диспетчером адаптера таблицы TableAdapterManage" +
                         "r, должны использовать одинаковую строку подключения.");
@@ -7476,26 +6662,15 @@ SELECT prt_id, prt_datetime, prt_doctor, prt_patient, prt_equipment, prt_source 
                         adaptersWithAcceptChangesDuringUpdate.Add(this._tbl_DoctorsTableAdapter.Adapter);
                     }
                 }
-                if ((this._tbl_ExaminationTypesTableAdapter != null))
+                if ((this._tbl_TemplatesTableAdapter != null))
                 {
-                    revertConnections.Add(this._tbl_ExaminationTypesTableAdapter, this._tbl_ExaminationTypesTableAdapter.Connection);
-                    this._tbl_ExaminationTypesTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
-                    this._tbl_ExaminationTypesTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
-                    if (this._tbl_ExaminationTypesTableAdapter.Adapter.AcceptChangesDuringUpdate)
+                    revertConnections.Add(this._tbl_TemplatesTableAdapter, this._tbl_TemplatesTableAdapter.Connection);
+                    this._tbl_TemplatesTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
+                    this._tbl_TemplatesTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
+                    if (this._tbl_TemplatesTableAdapter.Adapter.AcceptChangesDuringUpdate)
                     {
-                        this._tbl_ExaminationTypesTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
-                        adaptersWithAcceptChangesDuringUpdate.Add(this._tbl_ExaminationTypesTableAdapter.Adapter);
-                    }
-                }
-                if ((this._tbl_GenderTableAdapter != null))
-                {
-                    revertConnections.Add(this._tbl_GenderTableAdapter, this._tbl_GenderTableAdapter.Connection);
-                    this._tbl_GenderTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
-                    this._tbl_GenderTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
-                    if (this._tbl_GenderTableAdapter.Adapter.AcceptChangesDuringUpdate)
-                    {
-                        this._tbl_GenderTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
-                        adaptersWithAcceptChangesDuringUpdate.Add(this._tbl_GenderTableAdapter.Adapter);
+                        this._tbl_TemplatesTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
+                        adaptersWithAcceptChangesDuringUpdate.Add(this._tbl_TemplatesTableAdapter.Adapter);
                     }
                 }
                 if ((this._tbl_MedicalEquipmentsTableAdapter != null))
@@ -7618,15 +6793,10 @@ SELECT prt_id, prt_datetime, prt_doctor, prt_patient, prt_equipment, prt_source 
                     this._tbl_DoctorsTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._tbl_DoctorsTableAdapter]));
                     this._tbl_DoctorsTableAdapter.Transaction = null;
                 }
-                if ((this._tbl_ExaminationTypesTableAdapter != null))
+                if ((this._tbl_TemplatesTableAdapter != null))
                 {
-                    this._tbl_ExaminationTypesTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._tbl_ExaminationTypesTableAdapter]));
-                    this._tbl_ExaminationTypesTableAdapter.Transaction = null;
-                }
-                if ((this._tbl_GenderTableAdapter != null))
-                {
-                    this._tbl_GenderTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._tbl_GenderTableAdapter]));
-                    this._tbl_GenderTableAdapter.Transaction = null;
+                    this._tbl_TemplatesTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._tbl_TemplatesTableAdapter]));
+                    this._tbl_TemplatesTableAdapter.Transaction = null;
                 }
                 if ((this._tbl_MedicalEquipmentsTableAdapter != null))
                 {

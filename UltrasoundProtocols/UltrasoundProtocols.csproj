@@ -153,8 +153,8 @@
     </None>
     <None Include="UltraSoundProtocolsDBDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>UltraSoundProtocolsDBDataSet.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>UltraSoundProtocolsDBDataSet.Designer.cs</LastGenOutput>
     </None>
     <None Include="UltraSoundProtocolsDBDataSet.xss">
       <DependentUpon>UltraSoundProtocolsDBDataSet.xsd</DependentUpon>

@@ -43,8 +43,8 @@ namespace UltrasoundProtocols
             Logger.Debug("Request for mediacal equipment {0}", id);
             Tbl_MedicalEquipmentsTableAdapter adapter = new Tbl_MedicalEquipmentsTableAdapter(Settings);
             var equipments = (from table in adapter.GetData()
-                           where table.meq_id == id
-                           select ConvertMedicalEquipment(table));
+                              where table.meq_id == id
+                              select ConvertMedicalEquipment(table));
             return GetFirstOrNull(equipments, id);
         }
 
@@ -72,14 +72,13 @@ namespace UltrasoundProtocols
             throw new NotImplementedException();
         }
 
-        public List<ExaminationType> GetExaminationTypes()
+        public List<Template> GetExaminationTypes()
         {
-            Logger.Debug("Request for examination types");
-            Tbl_ExaminationTypesTableAdapter adapter = new Tbl_ExaminationTypesTableAdapter(Settings);
-            List<ExaminationType> examinationTypes = (from table in adapter.GetData()
-                                                      select ConverExaminationType(table))
-                .ToList();
-            Logger.Debug("Found {0} examinations types", examinationTypes.Count);
+            Logger.Debug("Request for templates");
+            Tbl_TemplatesTableAdapter adapter = new Tbl_TemplatesTableAdapter(Settings);
+            List<Template> examinationTypes = (from table in adapter.GetData()
+                                               select ConvertTemplate(table)).ToList();
+            Logger.Debug("Found {0} templates", examinationTypes.Count);
             return examinationTypes;
         }
 
@@ -129,9 +128,9 @@ namespace UltrasoundProtocols
             return new MedicalEquipment(table.meq_id, table.meq_name);
         }
 
-        private static ExaminationType ConverExaminationType(UltraSoundProtocolsDBDataSet.Tbl_ExaminationTypesRow table)
+        private static Template ConvertTemplate(UltraSoundProtocolsDBDataSet.Tbl_TemplatesRow table)
         {
-            return new ExaminationType(table.ext_id, table.ext_name);
+            return Template.GetFromDatabaseEntry(table.tem_name, table.tem_id, table.tem_template);
         }
 
         private static Logger Logger = LogManager.GetCurrentClassLogger();

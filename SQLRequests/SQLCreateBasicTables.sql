@@ -11,13 +11,6 @@ CREATE TABLE
 	);
 
 CREATE TABLE
-	Tbl_Gender
-	(
-		gnd_id INT NOT NULL IDENTITY(0, 1) PRIMARY KEY,
-		gnd_value VARCHAR(40) NOT NULL
-	);
-
-CREATE TABLE
 	Tbl_Patients
 	(
 		pat_id INT NOT NULL IDENTITY(1, 1) PRIMARY KEY,
@@ -37,10 +30,11 @@ CREATE TABLE
 	);
 
 CREATE TABLE
-	Tbl_ExaminationTypes
+	Tbl_Templates
 	(
-		ext_id INT NOT NULL IDENTITY(1, 1) PRIMARY KEY,
-		ext_name VARCHAR(255) NOT NULL
+		tem_id VARCHAR(255) NOT NULL PRIMARY KEY,
+		tem_name VARCHAR(255) NOT NULL,
+		tem_template VARCHAR(max) NOT NULL
 	);
 
 CREATE TABLE

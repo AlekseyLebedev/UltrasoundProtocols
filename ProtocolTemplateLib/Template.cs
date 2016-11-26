@@ -91,6 +91,21 @@ namespace ProtocolTemplateLib
             return result.ToString().Replace(" encoding=\"utf-16\"", "");
         }
 
+        public static Template GetFromDatabaseEntry(string name, string id, string xml)
+        {
+            XmlDocument document = new XmlDocument();
+            document.LoadXml(xml);
+            Template template = GetFromXml(document);
+            if ((template.Name != name) || (template.IdName != id))
+            {
+                logger.Error("Wrong configuration of template entry in database. Name and Id in xml '{0}' '{1}', in database '{2}' '{3}'",
+                    template.Name, template.IdName, id, xml);
+                throw new XmlException(String.Format(
+                    "Wrong configuration of template entry in database. Name and Id in xml '{0}' '{1}', in database '{2}' '{3}'",
+                    template.Name, template.IdName, id, xml));
+            }
+            return template;
+        }
 
         public static Template GetFromXml(XmlDocument document)
         {
