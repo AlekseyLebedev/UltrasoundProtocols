@@ -16,7 +16,7 @@ namespace ProtocolTemplateLib
             }
             ParseFromTokens(values);
         }
-        public abstract string AddToSaveRequest();
+        public abstract string[] AddToSaveRequest();
         public abstract void PrintToProtocol(StringBuilder builder);
         public abstract int GetFieldCount();
         protected abstract void ParseFromTokens(string[] values);
@@ -55,9 +55,9 @@ namespace ProtocolTemplateLib
                 Contol_ = value;
             }
         }
-        public override string AddToSaveRequest()
+        public override string[] AddToSaveRequest()
         {
-            return Value;
+            return new string[] { Value };
         }
 
         protected override void ParseFromTokens(string[] values)
@@ -100,7 +100,7 @@ namespace ProtocolTemplateLib
             builder.Append(Value);
         }
 
-        public override string AddToSaveRequest()
+        public override string[] AddToSaveRequest()
         {
             if (Editable_.EnableOtherField)
             {
@@ -108,16 +108,16 @@ namespace ProtocolTemplateLib
                 int index = Editable_.Variants.IndexOf(realValue);
                 if (index < 0)
                 {
-                    return "NULL, " + realValue;
+                    return new string[] { null, realValue };
                 }
                 else
                 {
-                    return index + ", NULL";
+                    return new string[] { index.ToString(), null };
                 }
             }
             else
             {
-                return ValueString.ToString();
+                return new string[] { ValueString.ToString() };
             }
         }
 

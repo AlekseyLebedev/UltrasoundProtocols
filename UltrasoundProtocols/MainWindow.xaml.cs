@@ -16,6 +16,9 @@ using ProtocolTemplateLib;
 using System.Threading;
 using NLog;
 
+using System.Data.SqlClient;
+using System.Xml;
+
 namespace UltrasoundProtocols
 {
     /// <summary>
@@ -47,6 +50,14 @@ namespace UltrasoundProtocols
             id.DisplayMemberBinding = new Binding("NumberAmbulatoryCard");
             Birthday.DisplayMemberBinding = new Binding("Date");
             Birthday.DisplayMemberBinding.StringFormat = "dd.MM.yyyy";
+
+			//проверка корректности работы сохранения данных
+			//SqlCommand command = new SqlCommand();
+			//XmlDocument doc = new XmlDocument();
+			//doc.Load("D:\\ABBYY\\UltraSoundProtocol\\UltrasoundProtocols\\ProtocolTemplateRedactor\\bin\\Debug\\test.xml");
+			//Template template = ProtocolTemplateLib.Template.GetFromXml(doc);
+			//Protocol protocol = new Protocol(template);
+			//protocol.SaveToDatabase(1, command);
         }
 
         EditPatientPresenter Presenter;
