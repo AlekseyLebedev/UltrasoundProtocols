@@ -48,9 +48,6 @@ namespace ProtocolTemplateLib
             }
         }
 
-        // TODO Код ниже хранит нарботки по сохранению.
-        // Они не могут быть применены, т.к. тут в классе создается Connection, который по идее должен передаваться в аргументы
-        // Из-за этого не работает остальной код.
         public void SaveToDatabase(int ProtocolId, SqlCommand command)
         {
             StringBuilder builder = new StringBuilder(INSERT_INTO);

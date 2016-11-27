@@ -37,7 +37,7 @@ namespace UltrasoundProtocols
                     throw new NotSupportedException("Settings has been already set");
                 }
                 Connector_ = value;
-                Presenter = new EditPatientPresenter(value);
+                Presenter = new Presenter(value);
             }
         }
 
@@ -50,17 +50,9 @@ namespace UltrasoundProtocols
             id.DisplayMemberBinding = new Binding("NumberAmbulatoryCard");
             Birthday.DisplayMemberBinding = new Binding("Date");
             Birthday.DisplayMemberBinding.StringFormat = "dd.MM.yyyy";
-
-			//проверка корректности работы сохранения данных
-			//SqlCommand command = new SqlCommand();
-			//XmlDocument doc = new XmlDocument();
-			//doc.Load("D:\\ABBYY\\UltraSoundProtocol\\UltrasoundProtocols\\ProtocolTemplateRedactor\\bin\\Debug\\test.xml");
-			//Template template = ProtocolTemplateLib.Template.GetFromXml(doc);
-			//Protocol protocol = new Protocol(template);
-			//protocol.SaveToDatabase(1, command);
         }
 
-        EditPatientPresenter Presenter;
+        Presenter Presenter;
 
         private void EditPatientBotton_Click(object sender, RoutedEventArgs e)
         {
@@ -107,6 +99,17 @@ namespace UltrasoundProtocols
                 // TODO
             }
 
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Presenter.ClosingWindow();
+        }
+
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            Presenter.CloseWindow();
         }
 
         private Logger logger = LogManager.GetCurrentClassLogger();

@@ -8,24 +8,24 @@ using System.Windows.Controls;
 
 namespace UltrasoundProtocols
 {
-    class EditPatientPresenter
+    class Presenter
     {
         //Текущий выбранный пациент
         private Patient currentPatient;
         private DataBaseController Controller;
         private DataBaseConnector Connector;
-        private Logger logger = LogManager.GetCurrentClassLogger();
+        private Logger Logger = LogManager.GetCurrentClassLogger();
 
-        public EditPatientPresenter(DataBaseConnector connector)
+        public Presenter(DataBaseConnector connector)
         {
-            logger.Info("Connect to dataBase.");
+            Logger.Info("Connect to dataBase.");
             Controller = new DataBaseController(connector.Settings);
             Connector = connector;
         }
 
         internal List<Patient> LoadPatientListFromDataBase()
         {
-            logger.Info("Loading patients from dataBase.");
+            Logger.Info("Loading patients from dataBase.");
             List<Patient> patientList = new List<Patient>();
             patientList.AddRange(Controller.GetPatients());
             return patientList;
@@ -33,7 +33,7 @@ namespace UltrasoundProtocols
 
         internal void ShowPatient(PatientShowControl showController, SelectionChangedEventArgs e)
         {
-            logger.Info("Showing patient");
+            Logger.Info("Showing patient");
             currentPatient = (Patient)e.AddedItems[0];
             showController.FirstNameTextBlock.Text = currentPatient.FirstName;
             showController.SexTextBox.Text = currentPatient.Gender.ToString();
@@ -60,8 +60,22 @@ namespace UltrasoundProtocols
             editController.MiddleNameTextBox.Text = currentPatient.MiddleName;
             editController.BirthdayPicker.Text = currentPatient.Date.ToLongDateString();
             editController.AmbulatorCardTextBox.Text = currentPatient.NumberAmbulatoryCard;
-        } 
-        
+        }
+
+        internal void CloseWindow()
+        {
+            try
+            {
+                Connector.CloseConnection();
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex, "Can't close connection");
+            }
+        }
+
+        internal void ClosingWindow()
+        {
+        }
     }
 }
-    

@@ -415,5 +415,20 @@ namespace ProtocolTemplateRedactor
         private Random Rnd = new Random();
         private Template SelectedTemplate_ = null;
         private Protocol CurrentProtocol = null;
+
+        internal void ClosedWindow()
+        {
+            try
+            {
+                if (Connector != null)
+                {
+                    Connector.CloseConnection();
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex, "Can't close connection");
+            }
+        }
     }
 }

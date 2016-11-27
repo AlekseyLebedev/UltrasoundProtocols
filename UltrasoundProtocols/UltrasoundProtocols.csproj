@@ -75,7 +75,7 @@
     <Compile Include="EditFullProtocolUserControl.xaml.cs">
       <DependentUpon>EditFullProtocolUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="EditPatientPresenter.cs" />
+    <Compile Include="Presenter.cs" />
     <Compile Include="EditPatientUserControl.xaml.cs">
       <DependentUpon>EditPatientUserControl.xaml</DependentUpon>
     </Compile>

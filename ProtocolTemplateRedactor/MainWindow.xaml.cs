@@ -384,5 +384,10 @@ namespace ProtocolTemplateRedactor
             };
             task.Run();
         }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            Presenter.ClosedWindow();
+        }
     }
 }

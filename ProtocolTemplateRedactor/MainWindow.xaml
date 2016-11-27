@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:ProtocolTemplateRedactor"
         xmlns:ProtocolTemplateLib="clr-namespace:ProtocolTemplateLib;assembly=ProtocolTemplateLib" x:Class="ProtocolTemplateRedactor.MainWindow"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="900" WindowState="Maximized"
+        Title="MainWindow" Height="600" Width="900" WindowState="Maximized" Closed="Window_Closed"
         >
     <Grid>
         <TabControl x:Name="tabControl"  Margin="0" SelectionChanged="tabControl_SelectionChanged">

@@ -6,7 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UltrasoundProtocols"
         mc:Ignorable="d"
-           Title="MainWindow" Height="600" Width="900" WindowState="Maximized">
+           Title="MainWindow" Height="600" Width="900" WindowState="Maximized" Closing="Window_Closing" Closed="Window_Closed">
     <!--<Window.Resources>
         local:PatientEnumDescriptionValueConverter x:Key="GenderConverter"/>
         </Window.Resources> -->
