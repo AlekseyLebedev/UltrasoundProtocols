@@ -76,6 +76,7 @@ namespace ProtocolTemplateLib
         protected abstract void LoadFromXml(XmlNode node);
         protected const string NODE_NAME_LINE = "line";
         protected const string NODE_NAME_HEADER = "header";
+        protected const string ATTRIBUTE_NAME_ID = "id";
         private string Id_;
     }
 
@@ -123,6 +124,7 @@ namespace ProtocolTemplateLib
         {
             writer.WriteStartElement(NODE_NAME_LINE);
             writer.WriteAttributeString(ATTRIBUTE_NAME_LABEL, Label);
+            writer.WriteAttributeString(ATTRIBUTE_NAME_ID, Id);
             Field.SaveXml(writer);
             writer.WriteEndElement();
         }
@@ -131,12 +133,14 @@ namespace ProtocolTemplateLib
         {
             XmlUtils.AssertNodeName(node, NODE_NAME_LINE);
             XmlUtils.AssertAttributeNotNull(node, ATTRIBUTE_NAME_LABEL);
+            XmlUtils.AssertAttributeNotNull(node, ATTRIBUTE_NAME_ID);
             if (node.ChildNodes.Count != 1)
             {
                 throw new XmlException("Line node has no info about editable");
             }
             Field = Editable.GetFromXml(node.ChildNodes[0]);
             Label = node.Attributes[ATTRIBUTE_NAME_LABEL].Value;
+            Id = node.Attributes[ATTRIBUTE_NAME_ID].Value;
         }
 
         public override bool RequireValue()
@@ -210,6 +214,7 @@ namespace ProtocolTemplateLib
         {
             writer.WriteStartElement(NODE_NAME_HEADER);
             writer.WriteAttributeString(ATTRIBUTE_NAME_LABEL, Header);
+            writer.WriteAttributeString(ATTRIBUTE_NAME_ID, Id);
             writer.WriteEndElement();
         }
 
@@ -217,7 +222,9 @@ namespace ProtocolTemplateLib
         {
             XmlUtils.AssertNodeName(node, NODE_NAME_HEADER);
             XmlUtils.AssertAttributeNotNull(node, ATTRIBUTE_NAME_LABEL);
+            XmlUtils.AssertAttributeNotNull(node, ATTRIBUTE_NAME_ID);
             Header = node.Attributes[ATTRIBUTE_NAME_LABEL].Value;
+            Id = node.Attributes[ATTRIBUTE_NAME_ID].Value;
         }
 
         public override bool RequireValue()

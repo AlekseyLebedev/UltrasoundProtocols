@@ -248,7 +248,7 @@ namespace ProtocolTemplateRedactor
         {
             Presenter.Connector = e.Connector;
             Autorization.Visibility = Visibility.Collapsed;
-            GuiAsyncTask<IEnumerable<Template>> task = new GuiAsyncTask<IEnumerable<ProtocolTemplateLib.Template>>();
+            GuiAsyncTask<List<Template>> task = new GuiAsyncTask<List<Template>>();
             task.AsyncTask = Presenter.LoadTemplates;
             task.Dispatcher = Dispatcher;
             task.ErrorTitle = "Ошибка загрузки шаблонов";

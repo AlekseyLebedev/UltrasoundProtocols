@@ -263,12 +263,20 @@ namespace ProtocolTemplateRedactor
             SelectedItem = item;
         }
 
-        internal IEnumerable<Template> LoadTemplates()
+        internal List<Template> LoadTemplates()
         {
             Logger.Debug("Loading templates");
-            TemplatesDataSet.Tbl_TemplatesDataTable table = new TemplatesDataSetTableAdapters.
-                Tbl_TemplatesTableAdapter(Connector.Settings).GetData();
-            return from row in table select Template.GetFromDatabaseEntry(row.tem_name, row.tem_id, row.tem_template);
+            try
+            {
+                TemplatesDataSet.Tbl_TemplatesDataTable table = new TemplatesDataSetTableAdapters.
+                    Tbl_TemplatesTableAdapter(Connector.Settings).GetData();
+                return (from row in table select Template.GetFromDatabaseEntry(row.tem_name, row.tem_id, row.tem_template)).ToList();
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex, "Error Loading templates");
+                throw ex;
+            }
         }
 
         internal TemplateItem GetSelectedItem()
