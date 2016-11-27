@@ -268,9 +268,11 @@ namespace ProtocolTemplateRedactor
             Logger.Debug("Loading templates");
             try
             {
-                TemplatesDataSet.Tbl_TemplatesDataTable table = new TemplatesDataSetTableAdapters.
-                    Tbl_TemplatesTableAdapter(Connector.Settings).GetData();
-                return (from row in table select Template.GetFromDatabaseEntry(row.tem_name, row.tem_id, row.tem_template)).ToList();
+                using (var adpater = new TemplatesDataSetTableAdapters.Tbl_TemplatesTableAdapter(Connector.Settings))
+                {
+                    TemplatesDataSet.Tbl_TemplatesDataTable table = adpater.GetData();
+                    return (from row in table select Template.GetFromDatabaseEntry(row.tem_name, row.tem_id, row.tem_template)).ToList();
+                }
             }
             catch (Exception ex)
             {
@@ -297,32 +299,34 @@ namespace ProtocolTemplateRedactor
         internal bool SaveTemplateToDB(bool force)
         {
             Logger.Info("Saving tamplte id '{0}' name '{1}'", Template_.IdName, Template_.Name);
-            var adapter = new TemplatesDataSetTableAdapters.Tbl_TemplatesTableAdapter(Connector.Settings);
-            TemplatesDataSet.Tbl_TemplatesDataTable table = adapter.GetData();
-            var templates = from r in table select r;
-
-            var alreadyContainsRow = templates.FirstOrDefault(x => (x.tem_id == Template_.IdName));
-            bool containsId = alreadyContainsRow != null;
-            Logger.Info("Find id: {0}", containsId);
-            if (containsId && (!force))
+            using (var adapter = new TemplatesDataSetTableAdapters.Tbl_TemplatesTableAdapter(Connector.Settings))
             {
-                return false;
-            }
+                TemplatesDataSet.Tbl_TemplatesDataTable table = adapter.GetData();
+                var templates = from r in table select r;
 
-            string xml = Template_.SaveToXmlString();
-            Logger.Debug("Xml: {0}", xml);
-            if (containsId)
-            {
-                alreadyContainsRow.tem_name = Template_.Name;
-                alreadyContainsRow.tem_template = xml;
-                adapter.Update(alreadyContainsRow);
-            }
-            else
-            {
-                adapter.Insert(Template_.IdName, Template_.Name, xml);
-            }
+                var alreadyContainsRow = templates.FirstOrDefault(x => (x.tem_id == Template_.IdName));
+                bool containsId = alreadyContainsRow != null;
+                Logger.Info("Find id: {0}", containsId);
+                if (containsId && (!force))
+                {
+                    return false;
+                }
 
-            return true;
+                string xml = Template_.SaveToXmlString();
+                Logger.Debug("Xml: {0}", xml);
+                if (containsId)
+                {
+                    alreadyContainsRow.tem_name = Template_.Name;
+                    alreadyContainsRow.tem_template = xml;
+                    adapter.Update(alreadyContainsRow);
+                }
+                else
+                {
+                    adapter.Insert(Template_.IdName, Template_.Name, xml);
+                }
+
+                return true;
+            }
         }
 
         internal TemplateItem RemoveSelectedItem()

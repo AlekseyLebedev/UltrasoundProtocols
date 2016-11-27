@@ -21,49 +21,61 @@ namespace UltrasoundProtocols
         public List<Doctor> GetActiveDoctors()
         {
             Logger.Debug("Request for active doctors");
-            Tbl_DoctorsTableAdapter adapter =
-                new Tbl_DoctorsTableAdapter(Settings);
-            List<Doctor> doctors = (from table in adapter.GetData() where table.dct_status select ConvertDoctor(table))
-                .ToList();
-            Logger.Debug("Found {0} active doctors", doctors.Count);
-            return doctors;
+            using (Tbl_DoctorsTableAdapter adapter = new Tbl_DoctorsTableAdapter(Settings))
+            {
+                List<Doctor> doctors = (from table in adapter.GetData() where table.dct_status select ConvertDoctor(table))
+                    .ToList();
+
+                Logger.Debug("Found {0} active doctors", doctors.Count);
+                return doctors;
+            }
         }
 
         public Patient GetPatient(int id)
         {
-            Tbl_PatientsTableAdapter adapter = new Tbl_PatientsTableAdapter(Settings);
-            var patients = (from x in adapter.GetData()
-                            where x.pat_id == id
-                            select ConvertPatient(x));
-            return GetFirstOrNull(patients, id);
+            using (Tbl_PatientsTableAdapter adapter = new Tbl_PatientsTableAdapter(Settings))
+            {
+                var patients = (from x in adapter.GetData()
+                                where x.pat_id == id
+                                select ConvertPatient(x));
+                return GetFirstOrNull(patients, id);
+            }
         }
 
         internal MedicalEquipment GetMedicalEquipment(int id)
         {
             Logger.Debug("Request for mediacal equipment {0}", id);
-            Tbl_MedicalEquipmentsTableAdapter adapter = new Tbl_MedicalEquipmentsTableAdapter(Settings);
-            var equipments = (from table in adapter.GetData()
-                              where table.meq_id == id
-                              select ConvertMedicalEquipment(table));
-            return GetFirstOrNull(equipments, id);
+            using (Tbl_MedicalEquipmentsTableAdapter adapter = new Tbl_MedicalEquipmentsTableAdapter(Settings))
+            {
+                var equipments = (from table in adapter.GetData()
+                                  where table.meq_id == id
+                                  select ConvertMedicalEquipment(table));
+                return GetFirstOrNull(equipments, id);
+            }
         }
 
         internal Doctor GetDoctor(int id)
         {
             Logger.Debug("Request for doctor {0}", id);
-            Tbl_DoctorsTableAdapter adapter = new Tbl_DoctorsTableAdapter(Settings);
-            var doctors = (from table in adapter.GetData()
-                           where table.dct_id == id
-                           select ConvertDoctor(table));
-            return GetFirstOrNull(doctors, id);
+            using (Tbl_DoctorsTableAdapter adapter = new Tbl_DoctorsTableAdapter(Settings))
+            {
+                var doctors = (from table in adapter.GetData()
+                               where table.dct_id == id
+                               select ConvertDoctor(table));
+                return GetFirstOrNull(doctors, id);
+            }
         }
 
         public List<Patient> GetPatients()
         {
-            Tbl_PatientsTableAdapter adapter = new Tbl_PatientsTableAdapter(Settings);
-            List<Patient> patients = (from x in adapter.GetData() select ConvertPatient(x))
-                .ToList();
-            return patients;
+            Logger.Debug("Request for patrients");
+            using (Tbl_PatientsTableAdapter adapter = new Tbl_PatientsTableAdapter(Settings))
+            {
+                List<Patient> patients = (from x in adapter.GetData() select ConvertPatient(x))
+                    .ToList();
+                Logger.Debug("Found {0} patrients", patients.Count);
+                return patients;
+            }
         }
 
         public List<Protocol> GetProtocols(int id)
@@ -75,21 +87,25 @@ namespace UltrasoundProtocols
         public List<Template> GetExaminationTypes()
         {
             Logger.Debug("Request for templates");
-            Tbl_TemplatesTableAdapter adapter = new Tbl_TemplatesTableAdapter(Settings);
-            List<Template> examinationTypes = (from table in adapter.GetData()
-                                               select ConvertTemplate(table)).ToList();
-            Logger.Debug("Found {0} templates", examinationTypes.Count);
-            return examinationTypes;
+            using (Tbl_TemplatesTableAdapter adapter = new Tbl_TemplatesTableAdapter(Settings))
+            {
+                List<Template> examinationTypes = (from table in adapter.GetData()
+                                                   select ConvertTemplate(table)).ToList();
+                Logger.Debug("Found {0} templates", examinationTypes.Count);
+                return examinationTypes;
+            }
         }
 
         public List<MedicalEquipment> GetMedicalEquipments()
         {
             Logger.Debug("Request for medical equipment");
-            Tbl_MedicalEquipmentsTableAdapter adapter = new Tbl_MedicalEquipmentsTableAdapter(Settings);
-            List<MedicalEquipment> equipments = (from table in adapter.GetData() select ConvertMedicalEquipment(table))
-                .ToList();
-            Logger.Debug("Found {0} medical equipments", equipments.Count);
-            return equipments;
+            using (Tbl_MedicalEquipmentsTableAdapter adapter = new Tbl_MedicalEquipmentsTableAdapter(Settings))
+            {
+                List<MedicalEquipment> equipments = (from table in adapter.GetData() select ConvertMedicalEquipment(table))
+                    .ToList();
+                Logger.Debug("Found {0} medical equipments", equipments.Count);
+                return equipments;
+            }
         }
 
         private T GetFirstOrNull<T>(IEnumerable<T> collection, int id) where T : class
