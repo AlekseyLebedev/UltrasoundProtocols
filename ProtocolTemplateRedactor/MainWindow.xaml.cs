@@ -369,7 +369,7 @@ namespace ProtocolTemplateRedactor
             Template selected = Presenter.SelectedTemplate;
             DataBaseGroupBox.IsEnabled = false;
             GuiAsyncTask task = new GuiAsyncTask();
-            task.AsyncTask = Presenter.DeleteSelectedProtocol;
+            task.AsyncTask = Presenter.DeleteSelectedTemplate;
             task.Dispatcher = Dispatcher;
             task.ErrorTitle = "Ошибка удаления шаблона";
             task.InfoMessage = "Template adding";

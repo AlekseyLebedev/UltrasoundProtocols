@@ -2,6 +2,7 @@
 using ProtocolTemplateLib;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -298,13 +299,15 @@ namespace ProtocolTemplateRedactor
 
         internal bool SaveTemplateToDB(bool force)
         {
-            Logger.Info("Saving tamplte id '{0}' name '{1}'", Template_.IdName, Template_.Name);
+            var idName = Template_.IdName;
+            var name = Template_.Name;
+            Logger.Info("Saving tamplte id '{0}' name '{1}'", idName, name);
             using (var adapter = new TemplatesDataSetTableAdapters.Tbl_TemplatesTableAdapter(Connector.Settings))
             {
                 TemplatesDataSet.Tbl_TemplatesDataTable table = adapter.GetData();
                 var templates = from r in table select r;
 
-                var alreadyContainsRow = templates.FirstOrDefault(x => (x.tem_id == Template_.IdName));
+                var alreadyContainsRow = templates.FirstOrDefault(x => (x.tem_id == idName));
                 bool containsId = alreadyContainsRow != null;
                 Logger.Info("Find id: {0}", containsId);
                 if (containsId && (!force))
@@ -314,16 +317,22 @@ namespace ProtocolTemplateRedactor
 
                 string xml = Template_.SaveToXmlString();
                 Logger.Debug("Xml: {0}", xml);
+                var request = Template.GetPartOfCreateTableScript();
+                SqlCommand command = new SqlCommand();
+                command.Connection = Connector.Connection;
                 if (containsId)
                 {
-                    alreadyContainsRow.tem_name = Template_.Name;
+                    alreadyContainsRow.tem_name = name;
                     alreadyContainsRow.tem_template = xml;
                     adapter.Update(alreadyContainsRow);
+                    command.CommandText = String.Format("USE [UltraSoundProtocolsDB]{1}{0}{1}DROP TABLE {2}", request, Environment.NewLine, idName);
                 }
                 else
                 {
-                    adapter.Insert(Template_.IdName, Template_.Name, xml);
+                    adapter.Insert(idName, name, xml);
+                    command.CommandText = request;
                 }
+                command.ExecuteNonQuery();
 
                 return true;
             }
@@ -344,17 +353,37 @@ namespace ProtocolTemplateRedactor
 
         }
 
-        internal void DeleteSelectedProtocol()
+        internal void DeleteSelectedTemplate()
         {
-            Logger.Debug("Delete selected template id '{0}' name '{1}'", SelectedTemplate.IdName, SelectedTemplate.Name);
+            var idName = SelectedTemplate.IdName;
+            var name = SelectedTemplate.Name;
+            Logger.Debug("Delete selected template id '{0}' name '{1}'", idName, name);
             using (var adapter = new TemplatesDataSetTableAdapters.Tbl_TemplatesTableAdapter(Connector.Settings))
             {
                 TemplatesDataSet.Tbl_TemplatesDataTable table = adapter.GetData();
-                adapter.Delete(SelectedTemplate.IdName, SelectedTemplate.Name);
+                adapter.Delete(idName, SelectedTemplate.Name);
+                SqlCommand command = new SqlCommand();
+                command.Connection = Connector.Connection;
+                command.CommandText = String.Format("USE [UltraSoundProtocolsDB]{0}DROP TABLE {1}", Environment.NewLine, idName);
+                command.ExecuteNonQuery();
                 SelectedTemplate_ = null;
             }
         }
 
+        internal void ClosedWindow()
+        {
+            try
+            {
+                if (Connector != null)
+                {
+                    Connector.CloseConnection();
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex, "Can't close connection");
+            }
+        }
 
         private static bool ValidateId(string value)
         {
@@ -383,6 +412,7 @@ namespace ProtocolTemplateRedactor
                 Refresh(this, new EventArgs());
             }
         }
+
         private bool ValidateUniqueId(string name)
         {
             foreach (var item in Template_.Items)
@@ -415,20 +445,5 @@ namespace ProtocolTemplateRedactor
         private Random Rnd = new Random();
         private Template SelectedTemplate_ = null;
         private Protocol CurrentProtocol = null;
-
-        internal void ClosedWindow()
-        {
-            try
-            {
-                if (Connector != null)
-                {
-                    Connector.CloseConnection();
-                }
-            }
-            catch (Exception ex)
-            {
-                Logger.Error(ex, "Can't close connection");
-            }
-        }
     }
 }

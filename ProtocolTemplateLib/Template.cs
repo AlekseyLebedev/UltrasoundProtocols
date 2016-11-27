@@ -47,7 +47,7 @@ namespace ProtocolTemplateLib
             builder.Append(IdName);
             builder.Append(" (");
             builder.AppendLine();
-            builder.Append("id int");
+            builder.Append("id int PRIMARY KEY");
             for (int i = 0; i < Items.Count; i++)
             {
                 var part = Items[i].GetPartOfCreateTableScript();
@@ -57,9 +57,6 @@ namespace ProtocolTemplateLib
                     builder.Append(part);
                 }
             }
-            builder.Append(" CONSTRAINT [");
-            builder.Append(IdName);
-            builder.Append(" ] PRIMARY KEY CLUSTERED (id)");
             builder.AppendLine(")");
             var result = builder.ToString();
             logger.Info("Create script: '{0}'", result);

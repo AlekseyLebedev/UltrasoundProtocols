@@ -13,7 +13,7 @@ namespace ProtocolTemplateLib
         private const string EXCEPTION_CLOSE_LOGGER_MESSAGE = "Error close connection";
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
-        private SqlConnection Connection { get; set; }
+        public SqlConnection Connection { get; private set; }
 
         public SqlCommand Command { get; set; }
 
