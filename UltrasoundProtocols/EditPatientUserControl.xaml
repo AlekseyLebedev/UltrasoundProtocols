@@ -5,44 +5,37 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:wf="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
              mc:Ignorable="d" d:DesignWidth="400" Height="320">
-    <Grid HorizontalAlignment="Left" Width="400" Height="300" VerticalAlignment="Top">
-        
-        <Label Content="Фамилия" 
+    <Grid>
+
+        <TextBlock Text="Фамилия" 
                HorizontalAlignment="Left" 
-               Margin="120,10,0,0" 
-               VerticalAlignment="Top"  
-               Width="60" Height="30"/>
-        <Label Content="Имя" 
+               Margin="10,10,0,260"  
+               Width="165" TextAlignment="Right" VerticalAlignment="Center"/>
+        <TextBlock Text="Имя" 
                HorizontalAlignment="Left" 
-               Margin="140,46,0,0" 
-               VerticalAlignment="Top"  
-               Width="40" Height="30"/>
-        <Label Content="Отчество" 
+               Margin="10,50,0,220"  
+               Width="165" TextAlignment="Right" VerticalAlignment="Center"/>
+        <TextBlock Text="Отчество" 
                HorizontalAlignment="Left" 
-               Margin="120,90,0,0" 
-               VerticalAlignment="Top"  
-               Width="60" Height="30"/>
-        <Label Content="Дата рождения" 
+               Margin="10,90,0,180"  
+               Width="165" TextAlignment="Right" VerticalAlignment="Center"/>
+        <TextBlock Text="Дата рождения" 
                HorizontalAlignment="Left" 
-               Margin="85,130,0,0" 
-               VerticalAlignment="Top"  
-               Width="95" Height="30"/>
-        <Label Content="Пол" 
+               Margin="10,130,0,140"  
+               Width="165" TextAlignment="Right" VerticalAlignment="Center"/>
+        <TextBlock Text="Пол" 
                HorizontalAlignment="Left" 
-               Margin="140,170,0,0" 
-               VerticalAlignment="Top"  
-               Width="40" Height="30"/>
-        <Label Content="Номер амбулаторной карты" 
+               Margin="10,170,0,100"
+               Width="165" TextAlignment="Right" VerticalAlignment="Center"/>
+        <TextBlock Text="Номер амбулаторной карты" 
                HorizontalAlignment="Left" 
-               Margin="10,210,0,0" 
-               VerticalAlignment="Top"  
-               Width="170" Height="30"/>
+               Margin="10,210,0,60"  
+               Width="165" TextAlignment="Right" VerticalAlignment="Center"/>
         <ComboBox Name="SexComboBox"
                   HorizontalAlignment="Stretch" 
                   Height="30" Margin="180,170,20,0" 
                   VerticalAlignment="Top" />
         <TextBox Name="LastNameTextBox" 
-                 HorizontalAlignment="Stretch" 
                  Height="30" 
                  Margin="180,10,20,0" 
                  TextWrapping="Wrap" 
