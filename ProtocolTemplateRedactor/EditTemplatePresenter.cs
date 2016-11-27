@@ -27,6 +27,7 @@ namespace ProtocolTemplateRedactor
                 ((TemplateHeader)SelectedItem).Header = value;
             }
         }
+
         internal string SelectedItemId
         {
             get { return SelectedItem.Id; }
@@ -110,6 +111,7 @@ namespace ProtocolTemplateRedactor
         internal List<TemplateItem> AllItems { get { return Template_.Items; } }
 
         internal DataBaseConnector Connector { get; set; }
+
         internal Template SelectedTemplate
         {
             get
@@ -159,28 +161,6 @@ namespace ProtocolTemplateRedactor
                 return false;
             }
         }
-
-        private static bool ValidateId(string value)
-        {
-            if (value.Length == 0)
-            {
-                Logger.Info("Empty text set for id");
-                return false;
-            }
-            for (int i = 0; i < value.Length; i++)
-            {
-                var symbol = value[i];
-                if (!(char.IsDigit(symbol) || ((symbol >= 'a') && (symbol <= 'z'))
-                    || ((symbol >= 'A') && (symbol <= 'Z'))))
-                {
-                    Logger.Info("Wrong symbol '{0}' in id", symbol);
-                    return false;
-                }
-            }
-            return true;
-        }
-
-        private const string ADD_LABEL_TEXT = "Добавьте подпись";
 
         internal TemplateItem AddItem(int selectedIndex)
         {
@@ -265,21 +245,12 @@ namespace ProtocolTemplateRedactor
             try
             {
                 document.Load(fileName);
-                Template_ = Template.GetFromXml(document);
-                CurrentProtocol = null;
+                SelectOtherTemplate(Template.GetFromXml(document));
             }
             catch (Exception ex)
             {
                 Logger.Error(ex, "Error loading file");
                 throw ex;
-            }
-        }
-
-        private void CreateProtocolIfNeeded()
-        {
-            if (CurrentProtocol == null)
-            {
-                CurrentProtocol = new Protocol(Template_);
             }
         }
 
@@ -315,26 +286,6 @@ namespace ProtocolTemplateRedactor
 
         internal event EventHandler Refresh;
 
-        private void InvokeRefresh()
-        {
-            if (Refresh != null)
-            {
-                Refresh(this, new EventArgs());
-            }
-        }
-        private bool ValidateUniqueId(string name)
-        {
-            foreach (var item in Template_.Items)
-            {
-                if (item.Id.Equals(name))
-                    return false;
-            }
-            return true;
-        }
-
-        private static Logger Logger = LogManager.GetCurrentClassLogger();
-        private Template Template_ = new ProtocolTemplateLib.Template();
-
         internal bool SaveTemplateToDB(bool force)
         {
             Logger.Info("Saving tamplte id '{0}' name '{1}'", Template_.IdName, Template_.Name);
@@ -366,11 +317,6 @@ namespace ProtocolTemplateRedactor
             return true;
         }
 
-        private TemplateItem SelectedItem = null;
-        private Random Rnd = new Random();
-        private Template SelectedTemplate_ = null;
-        private Protocol CurrentProtocol = null;
-
         internal TemplateItem RemoveSelectedItem()
         {
             TemplateItem item = SelectedItem;
@@ -378,5 +324,72 @@ namespace ProtocolTemplateRedactor
             Template_.Items.Remove(item);
             return item;
         }
+
+        internal void LoadSeletedTemplate()
+        {
+            Logger.Debug("Selected template loaded");
+            Template_ = SelectedTemplate;
+
+        }
+
+        private static bool ValidateId(string value)
+        {
+            if (value.Length == 0)
+            {
+                Logger.Info("Empty text set for id");
+                return false;
+            }
+            for (int i = 0; i < value.Length; i++)
+            {
+                var symbol = value[i];
+                if (!(char.IsDigit(symbol) || ((symbol >= 'a') && (symbol <= 'z'))
+                    || ((symbol >= 'A') && (symbol <= 'Z'))))
+                {
+                    Logger.Info("Wrong symbol '{0}' in id", symbol);
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        private void InvokeRefresh()
+        {
+            if (Refresh != null)
+            {
+                Refresh(this, new EventArgs());
+            }
+        }
+        private bool ValidateUniqueId(string name)
+        {
+            foreach (var item in Template_.Items)
+            {
+                if (item.Id.Equals(name))
+                    return false;
+            }
+            return true;
+        }
+
+        private void SelectOtherTemplate(Template template)
+        {
+            Template_ = template;
+            CurrentProtocol = null;
+        }
+
+        private void CreateProtocolIfNeeded()
+        {
+            if (CurrentProtocol == null)
+            {
+                CurrentProtocol = new Protocol(Template_);
+            }
+        }
+
+        private const string ADD_LABEL_TEXT = "Добавьте подпись";
+
+        private static Logger Logger = LogManager.GetCurrentClassLogger();
+        private Template Template_ = new ProtocolTemplateLib.Template();
+        private TemplateItem SelectedItem = null;
+        private Random Rnd = new Random();
+        private Template SelectedTemplate_ = null;
+        private Protocol CurrentProtocol = null;
     }
 }

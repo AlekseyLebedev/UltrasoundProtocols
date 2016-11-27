@@ -36,14 +36,14 @@ namespace ProtocolTemplateRedactor
 
         private void Presenter_Refresh(object sender, EventArgs e)
         {
-            listView.Items.Refresh();
+            ItemsListView.Items.Refresh();
         }
 
         EditTemplatePresenter Presenter;
 
         private void buttonAdd_Click(object sender, RoutedEventArgs e)
         {
-            listView.Items.Add(Presenter.AddItem(comboBoxSelect.SelectedIndex));
+            ItemsListView.Items.Add(Presenter.AddItem(comboBoxSelect.SelectedIndex));
         }
 
         private void listView_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -123,7 +123,7 @@ namespace ProtocolTemplateRedactor
 
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
-            listView.Items.Remove(Presenter.RemoveSelectedItem());
+            ItemsListView.Items.Remove(Presenter.RemoveSelectedItem());
         }
 
         private void UpdateHtmlProtocol()
@@ -222,20 +222,25 @@ namespace ProtocolTemplateRedactor
                 try
                 {
                     Presenter.LoadTemplateToXml(dialog.FileName);
-                    textBoxId.Text = Presenter.TemplateId;
-                    textBoxName.Text = Presenter.TemplateName;
-                    listView.Items.Clear();
-                    SelectNoItems();
-                    List<TemplateItem> allItems = Presenter.AllItems;
-                    foreach (var item in allItems)
-                    {
-                        listView.Items.Add(item);
-                    }
+                    LoadOtherTemplate();
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message, "Ошибка загрузки файла.", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
+            }
+        }
+
+        private void LoadOtherTemplate()
+        {
+            textBoxId.Text = Presenter.TemplateId;
+            textBoxName.Text = Presenter.TemplateName;
+            ItemsListView.Items.Clear();
+            SelectNoItems();
+            List<TemplateItem> allItems = Presenter.AllItems;
+            foreach (var item in allItems)
+            {
+                ItemsListView.Items.Add(item);
             }
         }
 
@@ -259,6 +264,7 @@ namespace ProtocolTemplateRedactor
                 }
                 DataBaseGrid.Visibility = Visibility.Visible;
             };
+            task.Fail = () => Autorization.Visibility = Visibility.Visible;
             task.Run();
         }
 
@@ -286,7 +292,7 @@ namespace ProtocolTemplateRedactor
 
         private void AddTemplateButton_Click(object sender, RoutedEventArgs e)
         {
-            DatbaseGroupBox.IsEnabled = false;
+            DataBaseGroupBox.IsEnabled = false;
             GuiAsyncTask<bool> task = new GuiAsyncTask<bool>();
             task.AsyncTask = () => Presenter.SaveTemplateToDB(false);
             task.Dispatcher = Dispatcher;
@@ -298,7 +304,29 @@ namespace ProtocolTemplateRedactor
             {
                 if (success)
                 {
-                    TemplatesListView.Items.Add(Presenter.Template);
+                    Logger.Debug("Reloading templates");
+                    GuiAsyncTask<IEnumerable<Template>> reloadTask = new GuiAsyncTask<IEnumerable<Template>>();
+                    reloadTask.AsyncTask = Presenter.LoadTemplates;
+                    reloadTask.Dispatcher = Dispatcher;
+                    reloadTask.ErrorTitle = "Ошибка загрузки шаблонов";
+                    reloadTask.InfoMessage = "Template loading";
+                    reloadTask.Logger = Logger;
+                    reloadTask.RetryEnabled = true;
+                    reloadTask.SyncTask = (results) =>
+                    {
+                        TemplatesListView.Items.Clear();
+                        foreach (var template in results)
+                        {
+                            TemplatesListView.Items.Add(template);
+                        }
+                        DataBaseGroupBox.IsEnabled = true;
+                    };
+                    reloadTask.Fail = () =>
+                    {
+                        DataBaseGrid.Visibility = Visibility.Collapsed;
+                        Autorization.Visibility = Visibility.Visible;
+                    };
+                    reloadTask.Run();
                 }
                 else
                 {
@@ -309,10 +337,24 @@ namespace ProtocolTemplateRedactor
                         task.Run();
                         return;
                     }
+                    else
+                    {
+                        DataBaseGroupBox.IsEnabled = true;
+                    }
                 }
-                DatbaseGroupBox.IsEnabled = true;
             };
+            task.Fail = () => DataBaseGroupBox.IsEnabled = true;
             task.Run();
+        }
+
+        private void LoadTemplateButton_Click(object sender, RoutedEventArgs e)
+        {
+            if(MessageBox.Show("Загрузив шаблон из базы данных, вы потеряете все несохраненные изменения. Вы уверены, что хотите загрузить шаблон?",
+                "Загрузка шаблона из базы данны", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                Presenter.LoadSeletedTemplate();
+                LoadOtherTemplate();
+            }
         }
     }
 }
