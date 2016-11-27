@@ -38,7 +38,7 @@
                                     </ListView.View>
                                 </ListView>
                                 <Button x:Name="AddTemplateButton" Content="Добавить" Margin="0,10,10,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="130" Height="30" Click="AddTemplateButton_Click"/>
-                                <Button x:Name="DeleteTemplateButton" Content="Удалить" Margin="0,45,10,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="130" Height="30" IsEnabled="False"/>
+                                <Button x:Name="DeleteTemplateButton" Content="Удалить" Margin="0,45,10,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="130" Height="30" IsEnabled="False" Click="DeleteTemplateButton_Click"/>
                                 <Button x:Name="LoadTemplateButton" Content="Загрузить" Margin="0,80,10,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="130" Height="30" IsEnabled="False" Click="LoadTemplateButton_Click"/>
                             </Grid>
                         </Grid>

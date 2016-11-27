@@ -43,7 +43,9 @@ namespace ProtocolTemplateRedactor
 
         private void buttonAdd_Click(object sender, RoutedEventArgs e)
         {
-            ItemsListView.Items.Add(Presenter.AddItem(comboBoxSelect.SelectedIndex));
+            var templateItem = Presenter.AddItem(comboBoxSelect.SelectedIndex);
+            ItemsListView.Items.Add(templateItem);
+            ItemsListView.SelectedItem = templateItem;
         }
 
         private void listView_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -297,36 +299,14 @@ namespace ProtocolTemplateRedactor
             task.AsyncTask = () => Presenter.SaveTemplateToDB(false);
             task.Dispatcher = Dispatcher;
             task.ErrorTitle = "Ошибка добавления шаблона";
-            task.InfoMessage = "Template loading";
+            task.InfoMessage = "Template adding";
             task.Logger = Logger;
             task.RetryEnabled = true;
             task.SyncTask = (success) =>
             {
                 if (success)
                 {
-                    Logger.Debug("Reloading templates");
-                    GuiAsyncTask<IEnumerable<Template>> reloadTask = new GuiAsyncTask<IEnumerable<Template>>();
-                    reloadTask.AsyncTask = Presenter.LoadTemplates;
-                    reloadTask.Dispatcher = Dispatcher;
-                    reloadTask.ErrorTitle = "Ошибка загрузки шаблонов";
-                    reloadTask.InfoMessage = "Template loading";
-                    reloadTask.Logger = Logger;
-                    reloadTask.RetryEnabled = true;
-                    reloadTask.SyncTask = (results) =>
-                    {
-                        TemplatesListView.Items.Clear();
-                        foreach (var template in results)
-                        {
-                            TemplatesListView.Items.Add(template);
-                        }
-                        DataBaseGroupBox.IsEnabled = true;
-                    };
-                    reloadTask.Fail = () =>
-                    {
-                        DataBaseGrid.Visibility = Visibility.Collapsed;
-                        Autorization.Visibility = Visibility.Visible;
-                    };
-                    reloadTask.Run();
+                    ReloadTemplates();
                 }
                 else
                 {
@@ -347,6 +327,33 @@ namespace ProtocolTemplateRedactor
             task.Run();
         }
 
+        private void ReloadTemplates()
+        {
+            Logger.Debug("Reloading templates");
+            GuiAsyncTask<IEnumerable<Template>> reloadTask = new GuiAsyncTask<IEnumerable<Template>>();
+            reloadTask.AsyncTask = Presenter.LoadTemplates;
+            reloadTask.Dispatcher = Dispatcher;
+            reloadTask.ErrorTitle = "Ошибка загрузки шаблонов";
+            reloadTask.InfoMessage = "Template reloading";
+            reloadTask.Logger = Logger;
+            reloadTask.RetryEnabled = true;
+            reloadTask.SyncTask = (results) =>
+            {
+                TemplatesListView.Items.Clear();
+                foreach (var template in results)
+                {
+                    TemplatesListView.Items.Add(template);
+                }
+                DataBaseGroupBox.IsEnabled = true;
+            };
+            reloadTask.Fail = () =>
+            {
+                DataBaseGrid.Visibility = Visibility.Collapsed;
+                Autorization.Visibility = Visibility.Visible;
+            };
+            reloadTask.Run();
+        }
+
         private void LoadTemplateButton_Click(object sender, RoutedEventArgs e)
         {
             if(MessageBox.Show("Загрузив шаблон из базы данных, вы потеряете все несохраненные изменения. Вы уверены, что хотите загрузить шаблон?",
@@ -355,6 +362,27 @@ namespace ProtocolTemplateRedactor
                 Presenter.LoadSeletedTemplate();
                 LoadOtherTemplate();
             }
+        }
+
+        private void DeleteTemplateButton_Click(object sender, RoutedEventArgs e)
+        {
+            Template selected = Presenter.SelectedTemplate;
+            DataBaseGroupBox.IsEnabled = false;
+            GuiAsyncTask task = new GuiAsyncTask();
+            task.AsyncTask = Presenter.DeleteSelectedProtocol;
+            task.Dispatcher = Dispatcher;
+            task.ErrorTitle = "Ошибка удаления шаблона";
+            task.InfoMessage = "Template adding";
+            task.Logger = Logger;
+            task.RetryEnabled = true;
+            task.Fail = ReloadTemplates;
+            task.SyncTask = () =>
+            {
+                TemplatesListView.Items.Remove(selected);
+                DataBaseGroupBox.IsEnabled = true;
+                SetTemplateButtonsEnabled(false);
+            };
+            task.Run();
         }
     }
 }

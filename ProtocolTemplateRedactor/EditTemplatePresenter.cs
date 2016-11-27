@@ -340,6 +340,18 @@ namespace ProtocolTemplateRedactor
 
         }
 
+        internal void DeleteSelectedProtocol()
+        {
+            Logger.Debug("Delete selected template id '{0}' name '{1}'", SelectedTemplate.IdName, SelectedTemplate.Name);
+            using (var adapter = new TemplatesDataSetTableAdapters.Tbl_TemplatesTableAdapter(Connector.Settings))
+            {
+                TemplatesDataSet.Tbl_TemplatesDataTable table = adapter.GetData();
+                adapter.Delete(SelectedTemplate.IdName, SelectedTemplate.Name);
+                SelectedTemplate_ = null;
+            }
+        }
+
+
         private static bool ValidateId(string value)
         {
             if (value.Length == 0)
