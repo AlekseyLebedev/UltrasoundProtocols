@@ -41,8 +41,8 @@ namespace UltrasoundProtocols
             }
         }
 
-        private List<Patient> allPatients;
-        private List<Patient> viewedPatients;
+        public List<Patient> allPatients { get; set; }
+        public List<Patient> viewedPatients { get; set; }
 
         public MainWindow()
         {
@@ -150,5 +150,10 @@ namespace UltrasoundProtocols
         }
 
         private Logger logger = LogManager.GetCurrentClassLogger();
+
+        private void Search_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Presenter.OnSearchTextChanged(Search.Text);
+        }
     }
 }

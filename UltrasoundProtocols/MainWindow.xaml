@@ -13,7 +13,7 @@
         <Grid>
         <GroupBox Header="Пациенты">
             <Grid >
-                <TextBox x:Name="Search" HorizontalAlignment="Stretch"  VerticalAlignment="Top" Text="" Margin="46.663,0,0,0" />
+                <TextBox x:Name="Search" TextChanged="Search_TextChanged" HorizontalAlignment="Stretch"  VerticalAlignment="Top" Text="" Margin="46.663,0,0,0" />
                 <Grid Margin="0,24,0,0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="8*" x:Name ="ListColumn"/>

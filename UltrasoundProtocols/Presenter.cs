@@ -17,6 +17,7 @@ namespace UltrasoundProtocols
         private DataBaseConnector Connector;
         private Logger Logger = LogManager.GetCurrentClassLogger();
         private MainWindow mainWindow;
+        private bool searchActive = false;
 
         public Presenter(MainWindow mainWindow, DataBaseConnector connector)
         {
@@ -68,6 +69,33 @@ namespace UltrasoundProtocols
             currentPatient = patient;
             mainWindow.HideEditor();
             mainWindow.UpdateListView();
+        }
+
+        internal void OnSearchTextChanged(string query)
+        {
+            if (query.Equals("")) {
+                mainWindow.viewedPatients = mainWindow.allPatients;
+                mainWindow.UpdateListView();
+                searchActive = false;
+                return;
+            }
+
+            searchActive = true;
+
+            List<Patient> ambulatorCardFilter = new List<Patient>();
+            foreach (Patient patient in mainWindow.allPatients) {
+                if (patient.NumberAmbulatoryCard.StartsWith(query))
+                {
+                    ambulatorCardFilter.Add(patient);
+                }
+            }
+
+            if (ambulatorCardFilter.Count != 0)
+            {
+                mainWindow.viewedPatients = ambulatorCardFilter;
+                mainWindow.UpdateListView();
+                return;
+            }
         }
 
         internal void CloseWindow()
