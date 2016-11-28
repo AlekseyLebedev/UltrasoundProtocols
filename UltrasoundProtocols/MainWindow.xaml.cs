@@ -100,6 +100,11 @@ namespace UltrasoundProtocols
             return listView.SelectedIndex;
         }
 
+        public void ClearSearch()
+        {
+            Search.Text = "";
+        }
+
         public void UpdateListView()
         {
             listView.Items.Clear();
@@ -163,6 +168,14 @@ namespace UltrasoundProtocols
         private void Search_TextChanged(object sender, TextChangedEventArgs e)
         {
             Presenter.OnSearchTextChanged(Search.Text);
+        }
+
+        private void Search_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key.Equals(Key.Return))
+            {
+                Presenter.OnSearchEnter(Search.Text);
+            }
         }
     }
 }

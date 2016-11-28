@@ -18,6 +18,7 @@ namespace UltrasoundProtocols
         private Logger Logger = LogManager.GetCurrentClassLogger();
         private MainWindow mainWindow;
         private bool searchActive = false;
+        private bool patientCreating = false;
 
         public Presenter(MainWindow mainWindow, DataBaseConnector connector)
         {
@@ -26,6 +27,7 @@ namespace UltrasoundProtocols
             Logger.Info("Connect to dataBase.");
             Controller = new DataBaseController(connector.Settings);
             Connector = connector;
+            mainWindow.EditPatientControl.onSaveButtonClick += OnEditSaveButtonClick;
         }
 
         internal List<Patient> LoadPatientListFromDataBase()
@@ -38,6 +40,7 @@ namespace UltrasoundProtocols
 
         internal void ShowPatient(PatientShowControl showController, SelectionChangedEventArgs e)
         {
+            patientCreating = false;
             Logger.Info("Showing patient");
             currentPatient = (Patient)e.AddedItems[0];
             currentPatientIndex = mainWindow.GetSelectedListViewIndex();
@@ -61,14 +64,23 @@ namespace UltrasoundProtocols
         internal void ShowPatientEditor(EditPatientUserControl editController)
         {
             editController.Patient = currentPatient;
-            editController.onSaveButtonClick += OnEditSaveButtonClick;
         }
 
         internal void OnEditSaveButtonClick(Patient patient)
         {
-            currentPatient = patient;
+            if (patientCreating)
+            {
+                mainWindow.allPatients.Add(patient);
+                mainWindow.ViewedPatients = mainWindow.allPatients;
+                mainWindow.ClearSearch();
+            }
+            else
+            {
+                currentPatient = patient;
+                mainWindow.UpdateListView();
+            }
+
             mainWindow.HideEditor();
-            mainWindow.UpdateListView();
         }
 
         private List<Patient> searchByAmbulator(string query)
@@ -121,6 +133,7 @@ namespace UltrasoundProtocols
         internal void OnSearchTextChanged(string query)
         {
             mainWindow.HideAll();
+            patientCreating = false;
 
             if (query.Equals("")) {
                 mainWindow.ViewedPatients = mainWindow.allPatients;
@@ -145,6 +158,20 @@ namespace UltrasoundProtocols
             }
 
             mainWindow.ViewedPatients = new List<Patient>();
+        }
+
+        internal void OnSearchEnter(string query)
+        {
+            if (mainWindow.ViewedPatients.Count == 0)
+            {
+                Patient patient = new Patient();
+                patient.LastName = query;
+                patient.Gender = PatientGender.Man;
+                patient.Date = new DateTime(1995, 7, 7);
+                mainWindow.ShowEditor();
+                mainWindow.EditPatientControl.Patient = patient;
+                patientCreating = true;
+            }
         }
 
         internal void CloseWindow()

@@ -52,5 +52,10 @@ namespace UltrasoundProtocols
 			this.Date = date;
 			this.NumberAmbulatoryCard = numberAmbulatoryCard;
 		}
+
+        public Patient()
+        {
+
+        }
 	}
 }
