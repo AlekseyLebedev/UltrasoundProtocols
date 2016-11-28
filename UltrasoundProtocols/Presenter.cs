@@ -121,8 +121,7 @@ namespace UltrasoundProtocols
         internal void OnSearchTextChanged(string query)
         {
             if (query.Equals("")) {
-                mainWindow.viewedPatients = mainWindow.allPatients;
-                mainWindow.UpdateListView();
+                mainWindow.ViewedPatients = mainWindow.allPatients;
                 searchActive = false;
                 return;
             }
@@ -132,21 +131,18 @@ namespace UltrasoundProtocols
             List<Patient> filteredPatients = searchByAmbulator(query);
             if (filteredPatients.Count != 0)
             {
-                mainWindow.viewedPatients = filteredPatients;
-                mainWindow.UpdateListView();
+                mainWindow.ViewedPatients = filteredPatients;
                 return;
             }
 
             filteredPatients = searchByName(query);
             if (filteredPatients.Count != 0)
             {
-                mainWindow.viewedPatients = filteredPatients;
-                mainWindow.UpdateListView();
+                mainWindow.ViewedPatients = filteredPatients;
                 return;
             }
 
-            mainWindow.viewedPatients = new List<Patient>();
-            mainWindow.UpdateListView();
+            mainWindow.ViewedPatients = new List<Patient>();
         }
 
         internal void CloseWindow()

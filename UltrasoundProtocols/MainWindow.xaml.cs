@@ -42,7 +42,11 @@ namespace UltrasoundProtocols
         }
 
         public List<Patient> allPatients { get; set; }
-        public List<Patient> viewedPatients { get; set; }
+        private List<Patient> _viewedPatients;
+        public List<Patient> ViewedPatients { 
+            get { return _viewedPatients; }
+            set { _viewedPatients = value; UpdateListView(); } 
+        }
 
         public MainWindow()
         {
@@ -93,7 +97,7 @@ namespace UltrasoundProtocols
         public void UpdateListView()
         {
             listView.Items.Clear();
-            foreach (Patient patient in viewedPatients)
+            foreach (Patient patient in ViewedPatients)
             {
                 listView.Items.Add(patient);
             }
@@ -108,8 +112,7 @@ namespace UltrasoundProtocols
             task.SyncTask = (patientList) =>
               {
                   allPatients = patientList;
-                  viewedPatients = patientList;
-                  UpdateListView();
+                  ViewedPatients = patientList;
 
                   this.IsEnabled = true;
               };
