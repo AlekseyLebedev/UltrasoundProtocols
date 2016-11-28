@@ -177,5 +177,10 @@ namespace UltrasoundProtocols
                 Presenter.OnSearchEnter(Search.Text);
             }
         }
+
+        private void AddUser_Click(object sender, RoutedEventArgs e)
+        {
+            Presenter.OnAddUserClick(Search.Text);
+        }
     }
 }

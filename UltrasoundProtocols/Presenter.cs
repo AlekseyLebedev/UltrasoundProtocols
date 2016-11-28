@@ -83,6 +83,18 @@ namespace UltrasoundProtocols
             mainWindow.HideEditor();
         }
 
+        internal void OnCreateUser(string lastname)
+        {
+            mainWindow.HideAll();
+            Patient patient = new Patient();
+            patient.LastName = lastname;
+            patient.Gender = PatientGender.Man;
+            patient.Date = new DateTime(1995, 7, 7);
+            mainWindow.ShowEditor();
+            mainWindow.EditPatientControl.Patient = patient;
+            patientCreating = true;
+        }
+
         private List<Patient> searchByAmbulator(string query)
         {
             List<Patient> ambulatorCardFilter = new List<Patient>();
@@ -164,14 +176,13 @@ namespace UltrasoundProtocols
         {
             if (mainWindow.ViewedPatients.Count == 0)
             {
-                Patient patient = new Patient();
-                patient.LastName = query;
-                patient.Gender = PatientGender.Man;
-                patient.Date = new DateTime(1995, 7, 7);
-                mainWindow.ShowEditor();
-                mainWindow.EditPatientControl.Patient = patient;
-                patientCreating = true;
+                OnCreateUser(query);
             }
+        }
+
+        internal void OnAddUserClick(string lastname)
+        {
+            OnCreateUser(lastname);
         }
 
         internal void CloseWindow()
