@@ -120,6 +120,8 @@ namespace UltrasoundProtocols
 
         internal void OnSearchTextChanged(string query)
         {
+            mainWindow.HideAll();
+
             if (query.Equals("")) {
                 mainWindow.ViewedPatients = mainWindow.allPatients;
                 searchActive = false;

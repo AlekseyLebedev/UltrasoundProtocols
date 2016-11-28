@@ -89,6 +89,12 @@ namespace UltrasoundProtocols
             EditPatientColumn.Width = new GridLength(0, GridUnitType.Star);
         }
 
+        public void HideAll()
+        {
+            HideEditor();
+            HidePatientInfo();
+        }
+
         public int GetSelectedListViewIndex()
         {
             return listView.SelectedIndex;
