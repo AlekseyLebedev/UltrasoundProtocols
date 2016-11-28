@@ -69,11 +69,11 @@ namespace UltrasoundProtocols
 
             if (Patient_.Gender == PatientGender.Man)
             {
-                SexComboBox.SelectedIndex = 0;
+                SexComboBox.SelectedIndex = 1;
             }
             else
             {
-                SexComboBox.SelectedIndex = 1;
+                SexComboBox.SelectedIndex = 0;
             }
 
             BirthdayPicker.Value = Patient_.Date;
@@ -97,7 +97,7 @@ namespace UltrasoundProtocols
 
             Patient_.NumberAmbulatoryCard = AmbulatorCardTextBox.Text;
 
-            if (SexComboBox.SelectedIndex == 0)
+            if (SexComboBox.SelectedIndex == 1)
             {
                 Patient_.Gender = PatientGender.Man;
             }
