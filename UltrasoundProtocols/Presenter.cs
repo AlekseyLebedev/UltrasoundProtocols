@@ -67,7 +67,7 @@ namespace UltrasoundProtocols
         {
             currentPatient = patient;
             mainWindow.HideEditor();
-            mainWindow.UpdateListViewItem(currentPatientIndex, patient);
+            mainWindow.UpdateListView();
         }
 
         internal void CloseWindow()

@@ -41,6 +41,9 @@ namespace UltrasoundProtocols
             }
         }
 
+        private List<Patient> allPatients;
+        private List<Patient> viewedPatients;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -87,9 +90,13 @@ namespace UltrasoundProtocols
             return listView.SelectedIndex;
         }
 
-        public void UpdateListViewItem(int itemIndex, Patient patient)
+        public void UpdateListView()
         {
-            listView.Items[itemIndex] = patient;
+            listView.Items.Clear();
+            foreach (Patient patient in viewedPatients)
+            {
+                listView.Items.Add(patient);
+            }
         }
 
         private void listView_Loaded(object sender, RoutedEventArgs e)
@@ -100,10 +107,10 @@ namespace UltrasoundProtocols
             task.AsyncTask = () => Presenter.LoadPatientListFromDataBase();
             task.SyncTask = (patientList) =>
               {
-                  foreach (Patient patient in patientList)
-                  {
-                      listView.Items.Add(patient);
-                  }
+                  allPatients = patientList;
+                  viewedPatients = patientList;
+                  UpdateListView();
+
                   this.IsEnabled = true;
               };
             task.Fail = () => Environment.Exit(1);
