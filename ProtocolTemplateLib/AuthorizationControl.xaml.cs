@@ -41,7 +41,10 @@ namespace ProtocolTemplateLib
             {
                 TryConnect();
             }
-            LoginButton.IsEnabled = true;
+            else
+            {
+                LoginButton.IsEnabled = true;
+            }
         }
 
         private void TryConnect()
