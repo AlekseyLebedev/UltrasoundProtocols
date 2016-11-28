@@ -12,12 +12,16 @@ namespace UltrasoundProtocols
     {
         //Текущий выбранный пациент
         private Patient currentPatient;
+        private int currentPatientIndex;
         private DataBaseController Controller;
         private DataBaseConnector Connector;
         private Logger Logger = LogManager.GetCurrentClassLogger();
+        private MainWindow mainWindow;
 
-        public Presenter(DataBaseConnector connector)
+        public Presenter(MainWindow mainWindow, DataBaseConnector connector)
         {
+            this.mainWindow = mainWindow;
+
             Logger.Info("Connect to dataBase.");
             Controller = new DataBaseController(connector.Settings);
             Connector = connector;
@@ -35,6 +39,7 @@ namespace UltrasoundProtocols
         {
             Logger.Info("Showing patient");
             currentPatient = (Patient)e.AddedItems[0];
+            currentPatientIndex = mainWindow.GetSelectedListViewIndex();
             showController.FirstNameTextBlock.Text = currentPatient.FirstName;
             showController.SexTextBox.Text = currentPatient.Gender.ToString();
             showController.LastNameTextBlock.Text = currentPatient.LastName;
@@ -54,12 +59,15 @@ namespace UltrasoundProtocols
 
         internal void ShowPatientEditor(EditPatientUserControl editController)
         {
-            editController.FirstNameTextBox.Text = currentPatient.FirstName;
-            editController.SexComboBox.SelectedIndex = (int)currentPatient.Gender;
-            editController.LastNameTextBox.Text = currentPatient.LastName;
-            editController.MiddleNameTextBox.Text = currentPatient.MiddleName;
-            editController.BirthdayPicker.Text = currentPatient.Date.ToLongDateString();
-            editController.AmbulatorCardTextBox.Text = currentPatient.NumberAmbulatoryCard;
+            editController.Patient = currentPatient;
+            editController.onSaveButtonClick += OnEditSaveButtonClick;
+        }
+
+        internal void OnEditSaveButtonClick(Patient patient)
+        {
+            currentPatient = patient;
+            mainWindow.HideEditor();
+            mainWindow.UpdateListViewItem(currentPatientIndex, patient);
         }
 
         internal void CloseWindow()

@@ -83,7 +83,10 @@ namespace UltrasoundProtocols
         {
             ApplyFieldsToPatient();
             OutToLog();
-            onSaveButtonClick(Patient_);
+            if (onSaveButtonClick != null)
+            {
+                onSaveButtonClick(Patient_);
+            }
         }
 
         private void ApplyFieldsToPatient()

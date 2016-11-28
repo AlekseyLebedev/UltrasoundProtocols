@@ -37,7 +37,7 @@ namespace UltrasoundProtocols
                     throw new NotSupportedException("Settings has been already set");
                 }
                 Connector_ = value;
-                Presenter = new Presenter(value);
+                Presenter = new Presenter(this, value);
             }
         }
 
@@ -58,8 +58,38 @@ namespace UltrasoundProtocols
         {
             logger.Debug("Edit Template Button is pressed");
             Presenter.ShowPatientEditor(EditPatientControl);
+            HidePatientInfo();
+            ShowEditor();
+        }
+
+        public void ShowPatientInfo()
+        {
+            PatientColumn.Width = new GridLength(9, GridUnitType.Star);
+        }
+
+        public void HidePatientInfo()
+        {
             PatientColumn.Width = new GridLength(0, GridUnitType.Star);
+        }
+
+        public void ShowEditor()
+        {
             EditPatientColumn.Width = new GridLength(9, GridUnitType.Star);
+        }
+
+        public void HideEditor()
+        {
+            EditPatientColumn.Width = new GridLength(0, GridUnitType.Star);
+        }
+
+        public int GetSelectedListViewIndex()
+        {
+            return listView.SelectedIndex;
+        }
+
+        public void UpdateListViewItem(int itemIndex, Patient patient)
+        {
+            listView.Items[itemIndex] = patient;
         }
 
         private void listView_Loaded(object sender, RoutedEventArgs e)
@@ -92,7 +122,7 @@ namespace UltrasoundProtocols
                 logger.Debug("show one patient");
                 Presenter.ShowPatient(showController, e);
                 EditPatientColumn.Width = new GridLength(0, GridUnitType.Star);
-                PatientColumn.Width = new GridLength(9, GridUnitType.Star);
+                ShowPatientInfo();
             }
             else
             {
