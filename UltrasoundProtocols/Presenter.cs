@@ -71,6 +71,53 @@ namespace UltrasoundProtocols
             mainWindow.UpdateListView();
         }
 
+        private List<Patient> searchByAmbulator(string query)
+        {
+            List<Patient> ambulatorCardFilter = new List<Patient>();
+            foreach (Patient patient in mainWindow.allPatients)
+            {
+                if (patient.NumberAmbulatoryCard.StartsWith(query))
+                {
+                    ambulatorCardFilter.Add(patient);
+                }
+            }
+
+            return ambulatorCardFilter;
+        }
+
+        private bool isPatientInQuery(string query, Patient patient)
+        {
+            string[] tokens = query.Split(new char[] {' '});
+
+            switch (tokens.Length)
+            {
+                case 1:
+                    return patient.LastName.Contains(tokens[0]);
+                case 2:
+                    return patient.LastName.Contains(tokens[0])
+                        && patient.FirstName.Contains(tokens[1]);
+                case 3:
+                    return patient.LastName.Contains(tokens[0])
+                        && patient.FirstName.Contains(tokens[1])
+                        && patient.MiddleName.Contains(tokens[2]);
+                default:
+                    return false;
+            }
+        }
+
+        private List<Patient> searchByName(string query)
+        {
+            List<Patient> nameFilter = new List<Patient>();
+            foreach (Patient patient in mainWindow.allPatients)
+            {
+                if (isPatientInQuery(query, patient)) {
+                    nameFilter.Add(patient);
+                }
+            }
+
+            return nameFilter;
+        }
+
         internal void OnSearchTextChanged(string query)
         {
             if (query.Equals("")) {
@@ -82,20 +129,24 @@ namespace UltrasoundProtocols
 
             searchActive = true;
 
-            List<Patient> ambulatorCardFilter = new List<Patient>();
-            foreach (Patient patient in mainWindow.allPatients) {
-                if (patient.NumberAmbulatoryCard.StartsWith(query))
-                {
-                    ambulatorCardFilter.Add(patient);
-                }
-            }
-
-            if (ambulatorCardFilter.Count != 0)
+            List<Patient> filteredPatients = searchByAmbulator(query);
+            if (filteredPatients.Count != 0)
             {
-                mainWindow.viewedPatients = ambulatorCardFilter;
+                mainWindow.viewedPatients = filteredPatients;
                 mainWindow.UpdateListView();
                 return;
             }
+
+            filteredPatients = searchByName(query);
+            if (filteredPatients.Count != 0)
+            {
+                mainWindow.viewedPatients = filteredPatients;
+                mainWindow.UpdateListView();
+                return;
+            }
+
+            mainWindow.viewedPatients = new List<Patient>();
+            mainWindow.UpdateListView();
         }
 
         internal void CloseWindow()
