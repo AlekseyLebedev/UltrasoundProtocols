@@ -83,11 +83,17 @@ namespace UltrasoundProtocols
             mainWindow.HideEditor();
         }
 
-        internal void OnCreateUser(string lastname)
+        internal void OnCreateUser(string query)
         {
             mainWindow.HideAll();
             Patient patient = new Patient();
-            patient.LastName = lastname;
+            string[] tokens = query.Split();
+            if (tokens.Length > 0)
+                patient.LastName = tokens[0];
+            if (tokens.Length > 1)
+                patient.FirstName = tokens[1];
+            if (tokens.Length > 2)
+                patient.MiddleName = tokens[2];
             patient.Gender = PatientGender.Man;
             patient.Date = new DateTime(1995, 7, 7);
             mainWindow.ShowEditor();
@@ -111,15 +117,15 @@ namespace UltrasoundProtocols
 
         private bool isPatientInQuery(string query, Patient patient)
         {
-            string[] tokens = query.Split(new char[] {' '});
+            string[] tokens = query.Split(new char[] { ' ' });
 
             switch (tokens.Length)
             {
                 case 1:
-                    return patient.LastName.Contains(tokens[0]);
+                    return (patient.FirstName.Contains(tokens[0]) || patient.MiddleName.Contains(tokens[0]) || patient.LastName.Contains(tokens[0]));
                 case 2:
-                    return patient.LastName.Contains(tokens[0])
-                        && patient.FirstName.Contains(tokens[1]);
+                    return ((patient.LastName.Contains(tokens[0]) && patient.FirstName.Contains(tokens[1])) || (patient.LastName.Contains(tokens[0]) && patient.MiddleName.Contains(tokens[1])) ||
+                        (patient.FirstName.Contains(tokens[0]) && patient.MiddleName.Contains(tokens[1])));
                 case 3:
                     return patient.LastName.Contains(tokens[0])
                         && patient.FirstName.Contains(tokens[1])
@@ -134,7 +140,8 @@ namespace UltrasoundProtocols
             List<Patient> nameFilter = new List<Patient>();
             foreach (Patient patient in mainWindow.allPatients)
             {
-                if (isPatientInQuery(query, patient)) {
+                if (isPatientInQuery(query, patient))
+                {
                     nameFilter.Add(patient);
                 }
             }
@@ -147,7 +154,8 @@ namespace UltrasoundProtocols
             mainWindow.HideAll();
             patientCreating = false;
 
-            if (query.Equals("")) {
+            if (query.Equals(""))
+            {
                 mainWindow.ViewedPatients = mainWindow.allPatients;
                 searchActive = false;
                 return;
