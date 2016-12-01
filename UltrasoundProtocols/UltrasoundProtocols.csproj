@@ -83,11 +83,6 @@
       <DependentUpon>PatientShowControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="DataBaseController.cs" />
-    <Compile Include="TemplatesDataSet.Designer.cs">
-      <DependentUpon>TemplatesDataSet.xsd</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <Compile Include="UltraSoundProtocolsDBDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -153,17 +148,6 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
-    <None Include="TemplatesDataSet.xsc">
-      <DependentUpon>TemplatesDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="TemplatesDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>TemplatesDataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="TemplatesDataSet.xss">
-      <DependentUpon>TemplatesDataSet.xsd</DependentUpon>
-    </None>
     <None Include="UltraSoundProtocolsDBDataSet.xsc">
       <DependentUpon>UltraSoundProtocolsDBDataSet.xsd</DependentUpon>
     </None>
