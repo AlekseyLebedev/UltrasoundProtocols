@@ -41,7 +41,6 @@ namespace UltrasoundProtocols
             }
         }
 
-        public List<Patient> allPatients { get; set; }
         private List<Patient> _viewedPatients;
         public List<Patient> ViewedPatients { 
             get { return _viewedPatients; }
@@ -122,7 +121,6 @@ namespace UltrasoundProtocols
             task.AsyncTask = () => Presenter.LoadPatientListFromDataBase();
             task.SyncTask = (patientList) =>
               {
-                  allPatients = patientList;
                   ViewedPatients = patientList;
 
                   this.IsEnabled = true;

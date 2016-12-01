@@ -11,18 +11,19 @@ namespace UltrasoundProtocols
     class Presenter
     {
         //Текущий выбранный пациент
-        private Patient currentPatient;
-        private int currentPatientIndex;
+        private Patient CurrentPatient;
+        private int CurrentPatientIndex;
         private DataBaseController Controller;
         private DataBaseConnector Connector;
         private Logger Logger = LogManager.GetCurrentClassLogger();
-        private MainWindow mainWindow;
-        private bool searchActive = false;
-        private bool patientCreating = false;
+        private MainWindow MainWindow;
+        private bool PatientCreating = false;
+
+        public List<Patient> AllPatients { get; set; }
 
         public Presenter(MainWindow mainWindow, DataBaseConnector connector)
         {
-            this.mainWindow = mainWindow;
+            this.MainWindow = mainWindow;
 
             Logger.Info("Connect to dataBase.");
             Controller = new DataBaseController(connector.Settings);
@@ -35,21 +36,22 @@ namespace UltrasoundProtocols
             Logger.Info("Loading patients from dataBase.");
             List<Patient> patientList = new List<Patient>();
             patientList.AddRange(Controller.GetPatients());
+            AllPatients = patientList;
             return patientList;
         }
 
         internal void ShowPatient(PatientShowControl showController, SelectionChangedEventArgs e)
         {
-            patientCreating = false;
+            PatientCreating = false;
             Logger.Info("Showing patient");
-            currentPatient = (Patient)e.AddedItems[0];
-            currentPatientIndex = mainWindow.GetSelectedListViewIndex();
-            showController.FirstNameTextBlock.Text = currentPatient.FirstName;
-            showController.SexTextBox.Text = currentPatient.Gender.ToString();
-            showController.LastNameTextBlock.Text = currentPatient.LastName;
-            showController.MiddleNameTextBlock.Text = currentPatient.MiddleName;
-            showController.BirthdayTextBlock.Text = currentPatient.Date.ToShortDateString();
-            showController.AmbulatorCardTextBlock.Text = currentPatient.NumberAmbulatoryCard;
+            CurrentPatient = (Patient)e.AddedItems[0];
+            CurrentPatientIndex = MainWindow.GetSelectedListViewIndex();
+            showController.FirstNameTextBlock.Text = CurrentPatient.FirstName;
+            showController.SexTextBox.Text = CurrentPatient.Gender.ToString();
+            showController.LastNameTextBlock.Text = CurrentPatient.LastName;
+            showController.MiddleNameTextBlock.Text = CurrentPatient.MiddleName;
+            showController.BirthdayTextBlock.Text = CurrentPatient.Date.ToShortDateString();
+            showController.AmbulatorCardTextBlock.Text = CurrentPatient.NumberAmbulatoryCard;
         }
 
         internal string GetDateString(DateTime dateTime)
@@ -63,29 +65,29 @@ namespace UltrasoundProtocols
 
         internal void ShowPatientEditor(EditPatientUserControl editController)
         {
-            editController.Patient = currentPatient;
+            editController.Patient = CurrentPatient;
         }
 
         internal void OnEditSaveButtonClick(Patient patient)
         {
-            if (patientCreating)
+            if (PatientCreating)
             {
-                mainWindow.allPatients.Add(patient);
-                mainWindow.ViewedPatients = mainWindow.allPatients;
-                mainWindow.ClearSearch();
+                AllPatients.Add(patient);
+                MainWindow.ViewedPatients = AllPatients;
+                MainWindow.ClearSearch();
             }
             else
             {
-                currentPatient = patient;
-                mainWindow.UpdateListView();
+                CurrentPatient = patient;
+                MainWindow.UpdateListView();
             }
 
-            mainWindow.HideEditor();
+            MainWindow.HideEditor();
         }
 
         internal void OnCreateUser(string query)
         {
-            mainWindow.HideAll();
+            MainWindow.HideAll();
             Patient patient = new Patient();
             string[] tokens = query.Split();
             if (tokens.Length > 0)
@@ -96,15 +98,15 @@ namespace UltrasoundProtocols
                 patient.MiddleName = tokens[2];
             patient.Gender = PatientGender.Man;
             patient.Date = new DateTime(1995, 7, 7);
-            mainWindow.ShowEditor();
-            mainWindow.EditPatientControl.Patient = patient;
-            patientCreating = true;
+            MainWindow.ShowEditor();
+            MainWindow.EditPatientControl.Patient = patient;
+            PatientCreating = true;
         }
 
         private List<Patient> searchByAmbulator(string query)
         {
             List<Patient> ambulatorCardFilter = new List<Patient>();
-            foreach (Patient patient in mainWindow.allPatients)
+            foreach (Patient patient in AllPatients)
             {
                 if (patient.NumberAmbulatoryCard.StartsWith(query))
                 {
@@ -138,7 +140,7 @@ namespace UltrasoundProtocols
         private List<Patient> searchByName(string query)
         {
             List<Patient> nameFilter = new List<Patient>();
-            foreach (Patient patient in mainWindow.allPatients)
+            foreach (Patient patient in AllPatients)
             {
                 if (isPatientInQuery(query, patient))
                 {
@@ -151,38 +153,35 @@ namespace UltrasoundProtocols
 
         internal void OnSearchTextChanged(string query)
         {
-            mainWindow.HideAll();
-            patientCreating = false;
+            MainWindow.HideAll();
+            PatientCreating = false;
 
             if (query.Equals(""))
             {
-                mainWindow.ViewedPatients = mainWindow.allPatients;
-                searchActive = false;
+                MainWindow.ViewedPatients = AllPatients;
                 return;
             }
-
-            searchActive = true;
 
             List<Patient> filteredPatients = searchByAmbulator(query);
             if (filteredPatients.Count != 0)
             {
-                mainWindow.ViewedPatients = filteredPatients;
+                MainWindow.ViewedPatients = filteredPatients;
                 return;
             }
 
             filteredPatients = searchByName(query);
             if (filteredPatients.Count != 0)
             {
-                mainWindow.ViewedPatients = filteredPatients;
+                MainWindow.ViewedPatients = filteredPatients;
                 return;
             }
 
-            mainWindow.ViewedPatients = new List<Patient>();
+            MainWindow.ViewedPatients = new List<Patient>();
         }
 
         internal void OnSearchEnter(string query)
         {
-            if (mainWindow.ViewedPatients.Count == 0)
+            if (MainWindow.ViewedPatients.Count == 0)
             {
                 OnCreateUser(query);
             }
