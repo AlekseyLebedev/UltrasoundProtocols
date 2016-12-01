@@ -76,7 +76,7 @@ namespace UltrasoundProtocols
                 SexComboBox.SelectedIndex = 0;
             }
 
-            BirthdayPicker.Value = Patient_.Date;
+            BirthdayPicker.Value = Patient_.BirthDate;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -106,7 +106,7 @@ namespace UltrasoundProtocols
                 Patient_.Gender = PatientGender.Woman;
             }
 
-            Patient_.Date = BirthdayPicker.Value;
+            Patient_.BirthDate = BirthdayPicker.Value;
         }
 
         private void OutToLog()
@@ -116,7 +116,7 @@ namespace UltrasoundProtocols
             logger.Debug(TAG, "last name: " + Patient_.LastName);
             logger.Debug(TAG, "NumberAmbulatoryCard: " + Patient_.NumberAmbulatoryCard);
             logger.Debug(TAG, "Gender: " + Patient_.Gender);
-            logger.Debug(TAG, "Date: " + Patient_.Date);
+            logger.Debug(TAG, "Date: " + Patient_.BirthDate);
             logger.Debug(TAG, "Id: " + Patient_.Id);
         }
 

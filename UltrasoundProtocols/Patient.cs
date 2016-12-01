@@ -38,7 +38,7 @@ namespace UltrasoundProtocols
 		public string MiddleName { get; set; }
 		public string LastName { get; set; }
 		public PatientGender Gender { get; set; }
-		public DateTime Date { get; set; }
+		public DateTime BirthDate { get; set; }
 		public string NumberAmbulatoryCard { get; set; }
 
 		public Patient(int id, string FirstName, string MiddleName, string LastName,
@@ -49,7 +49,7 @@ namespace UltrasoundProtocols
 			this.MiddleName = MiddleName;
 			this.LastName = LastName;
 			this.Gender = gender;
-			this.Date = date;
+			this.BirthDate = date;
 			this.NumberAmbulatoryCard = numberAmbulatoryCard;
 		}
 

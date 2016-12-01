@@ -84,6 +84,36 @@ namespace UltrasoundProtocols
             throw new NotImplementedException();
         }
 
+        public int AddPatient(Patient patient)
+        {
+            Logger.Debug("Adding patient {0}", patient);
+            using (Tbl_PatientsTableAdapter adapter = new Tbl_PatientsTableAdapter(Settings))
+            {
+                return adapter.Insert(patient.FirstName, patient.MiddleName, patient.LastName, (int)patient.Gender,
+                     patient.BirthDate, patient.NumberAmbulatoryCard);
+            }
+        }
+
+        public void UpdatePatient(Patient patient)
+        {
+            Logger.Debug("Updating patient {0}", patient);
+            using (Tbl_PatientsTableAdapter adapter = new Tbl_PatientsTableAdapter(Settings))
+            {
+                adapter.Update((from x in adapter.GetData() where x.pat_id == patient.Id select x).Select(
+                    row =>
+                    {
+                        row.pat_birthdate = patient.BirthDate;
+                        row.pat_firstname = patient.FirstName;
+                        row.pat_gender = (int)patient.Gender;
+                        row.pat_lastname = patient.LastName;
+                        row.pat_middlename = patient.MiddleName;
+                        row.pat_numberambulatorycard = patient.NumberAmbulatoryCard;
+                        return row;
+                    }).ToArray());
+            }
+
+        }
+
         public List<Template> GetExaminationTypes()
         {
             Logger.Debug("Request for templates");

@@ -41,10 +41,10 @@ namespace UltrasoundProtocols
             }
         }
 
-        private List<Patient> _viewedPatients;
+        private List<Patient> _ViewedPatients;
         public List<Patient> ViewedPatients { 
-            get { return _viewedPatients; }
-            set { _viewedPatients = value; UpdateListView(); } 
+            get { return _ViewedPatients; }
+            set { _ViewedPatients = value; UpdateListView(); } 
         }
 
         public MainWindow()
