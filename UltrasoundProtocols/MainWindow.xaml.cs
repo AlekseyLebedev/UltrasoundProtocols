@@ -26,6 +26,7 @@ namespace UltrasoundProtocols
     /// </summary>
     public partial class MainWindow : Window
     {
+        private const int SECOND_COLUMN_WIDTH = 10;
         private DataBaseConnector Connector_;
         public DataBaseConnector Connector
         {
@@ -70,7 +71,7 @@ namespace UltrasoundProtocols
 
         public void ShowPatientInfo()
         {
-            PatientColumn.Width = new GridLength(9, GridUnitType.Star);
+            PatientColumn.Width = new GridLength(SECOND_COLUMN_WIDTH, GridUnitType.Star);
         }
 
         public void HidePatientInfo()
@@ -80,7 +81,7 @@ namespace UltrasoundProtocols
 
         public void ShowEditor()
         {
-            EditPatientColumn.Width = new GridLength(9, GridUnitType.Star);
+            EditPatientColumn.Width = new GridLength(SECOND_COLUMN_WIDTH, GridUnitType.Star);
         }
 
         public void HideEditor()
@@ -96,7 +97,7 @@ namespace UltrasoundProtocols
 
         public int GetSelectedListViewIndex()
         {
-            return listView.SelectedIndex;
+            return PatientsListView.SelectedIndex;
         }
 
         public void ClearSearch()
@@ -106,40 +107,19 @@ namespace UltrasoundProtocols
 
         public void UpdateListView()
         {
-            listView.Items.Clear();
+            PatientsListView.Items.Clear();
             foreach (Patient patient in ViewedPatients)
             {
-                listView.Items.Add(patient);
+                PatientsListView.Items.Add(patient);
             }
         }
 
-        private void listView_Loaded(object sender, RoutedEventArgs e)
-        {
-            this.IsEnabled = false;
-            logger.Debug("Loading patients");
-            GuiAsyncTask<List<Patient>> task = new GuiAsyncTask<List<Patient>>();
-            task.AsyncTask = () => Presenter.LoadPatientListFromDataBase();
-            task.SyncTask = (patientList) =>
-              {
-                  ViewedPatients = patientList;
-
-                  this.IsEnabled = true;
-              };
-            task.Fail = () => Environment.Exit(1);
-            task.RetryEnabled = true;
-            task.ErrorTitle = "Ошибка загрузки пациентов";
-            task.Dispatcher = Dispatcher;
-            task.Logger = logger;
-            task.InfoMessage = "Loading Patients";
-            task.Run();
-        }
-
-        private void listView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void PatientsListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (e.AddedItems.Count == 1)
             {
                 logger.Debug("show one patient");
-                Presenter.ShowPatient(showController, e);
+                Presenter.ShowPatient(PatientInfoControl, e);
                 EditPatientColumn.Width = new GridLength(0, GridUnitType.Star);
                 ShowPatientInfo();
             }
@@ -179,6 +159,36 @@ namespace UltrasoundProtocols
         private void AddUser_Click(object sender, RoutedEventArgs e)
         {
             Presenter.OnAddUserClick(Search.Text);
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            HidePatientInfo();
+            HideEditor();
+
+            LoadAllPatients();
+
+        }
+
+        private void LoadAllPatients()
+        {
+            this.IsEnabled = false;
+            logger.Debug("Loading patients");
+            GuiAsyncTask<List<Patient>> task = new GuiAsyncTask<List<Patient>>();
+            task.AsyncTask = () => Presenter.LoadPatientListFromDataBase();
+            task.SyncTask = (patientList) =>
+            {
+                ViewedPatients = patientList;
+
+                this.IsEnabled = true;
+            };
+            task.Fail = () => Environment.Exit(1);
+            task.RetryEnabled = true;
+            task.ErrorTitle = "Ошибка загрузки пациентов";
+            task.Dispatcher = Dispatcher;
+            task.Logger = logger;
+            task.InfoMessage = "Loading Patients";
+            task.Run();
         }
     }
 }

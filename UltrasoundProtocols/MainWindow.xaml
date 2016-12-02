@@ -1,57 +1,49 @@
-﻿
-<Window x:Class="UltrasoundProtocols.MainWindow"
+﻿<Window x:Class="UltrasoundProtocols.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UltrasoundProtocols"
         mc:Ignorable="d"
-           Title="MainWindow" Height="600" Width="900" WindowState="Maximized" Closing="Window_Closing" Closed="Window_Closed">
+           Title="MainWindow" Height="600" Width="900" WindowState="Maximized" Closing="Window_Closing" Closed="Window_Closed" Loaded="Window_Loaded">
     <!--<Window.Resources>
         local:PatientEnumDescriptionValueConverter x:Key="GenderConverter"/>
         </Window.Resources> -->
-        <Grid>
-        <GroupBox Header="Пациенты">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10*" x:Name ="ListColumn"/>
+            <ColumnDefinition Width ="10*" x:Name ="PatientColumn"/>
+            <ColumnDefinition Width ="0*" x:Name ="EditPatientColumn"/>
+        </Grid.ColumnDefinitions>
+        <GroupBox Header="Пациенты" Grid.Column="0">
             <Grid >
-                <TextBox x:Name="Search" KeyDown="Search_KeyDown" TextChanged="Search_TextChanged" HorizontalAlignment="Stretch"  VerticalAlignment="Top" Text="" Margin="46.663,0,80,0" />
-                <Button x:Name="AddUser" Content="Add Patient" Click="AddUser_Click" HorizontalAlignment="Right" VerticalAlignment="Top"  />
-                <Grid Margin="0,24,0,0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="8*" x:Name ="ListColumn"/>
-                        <ColumnDefinition Width ="0*" x:Name ="PatientColumn"/>
-                        <ColumnDefinition Width ="0*" x:Name ="EditPatientColumn"/>
-                    </Grid.ColumnDefinitions>
-                    <ListView x:Name="listView"  Loaded="listView_Loaded" Grid.Column="0" SelectionChanged="listView_SelectionChanged">
-                        <ListView.View>
-                            <GridView>
-                                <GridView.Columns>
-                                    <GridViewColumn x:Name="Surname" Header="Фамилия" Width="200" />
-                                    <GridViewColumn x:Name="NameColumn" Header="Имя" Width="200" />
-                                    <GridViewColumn x:Name="MiddleName" Header="Отчество" Width="200" />
-                                    <GridViewColumn x:Name="id" Header="Номер карты" Width="150" />
-                                    <GridViewColumn x:Name="Gender" Header="Пол" Width="150"
+                <Label Content="Поиск:" HorizontalAlignment="Left" Margin="0,9.52,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.514,0.194"/>
+                <TextBox x:Name="Search" KeyDown="Search_KeyDown" TextChanged="Search_TextChanged" HorizontalAlignment="Stretch"  VerticalAlignment="Top" Text=""  Height="25" Margin="51.663,10,126.433,0" />
+                <Button x:Name="AddUser" Content="Добавить пациента" Click="AddUser_Click" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,10,10,0" Height="25" />
+                <ListView x:Name="PatientsListView" Margin="0,47.333,0,0" SelectionChanged="PatientsListView_SelectionChanged">
+                    <ListView.View>
+                        <GridView>
+                            <GridView.Columns>
+                                <GridViewColumn x:Name="Surname" Header="Фамилия" Width="200" />
+                                <GridViewColumn x:Name="NameColumn" Header="Имя" Width="200" />
+                                <GridViewColumn x:Name="MiddleName" Header="Отчество" Width="200" />
+                                <GridViewColumn x:Name="id" Header="Номер карты" Width="150" />
+                                <GridViewColumn x:Name="Gender" Header="Пол" Width="150"
                                                     DisplayMemberBinding="{Binding  Gender }"/>
-                                    <!--Converter= {StaticResource GenderConverter} }"/> -->
-                                    <GridViewColumn x:Name="Birthday" Header="Дата рождения" Width="150" />
-                                </GridView.Columns>
-                            </GridView>
-                        </ListView.View>
-                    </ListView>
-                    <Grid Grid.Column="1">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="10*"/>
-                            <RowDefinition Height="1*"/>
-                        </Grid.RowDefinitions>
-                        <local:PatientShowControl Grid.Row="0" x:Name="showController">
-                        </local:PatientShowControl>
-                        <Button Grid.Row="1" x:Name="EditPatientBotton" Content="Редактировать" Click="EditPatientBotton_Click"/>
-                    </Grid>
-                    <local:EditPatientUserControl Grid.Column ="2" x:Name="EditPatientControl" Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Top" >
-                    </local:EditPatientUserControl>
-
-                </Grid>
-                <Label Content="Поиск:" HorizontalAlignment="Left" Margin="0,-1.96,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.514,0.194"/>
+                                <!--Converter= {StaticResource GenderConverter} }"/> -->
+                                <GridViewColumn x:Name="Birthday" Header="Дата рождения" Width="150" />
+                            </GridView.Columns>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
             </Grid>
         </GroupBox>
+        <Grid Grid.Column="1" >
+            <local:PatientShowControl Margin ="0" VerticalAlignment="Top" x:Name="PatientInfoControl">
+            </local:PatientShowControl>
+            <Button x:Name="EditPatientBotton" HorizontalAlignment="Left" Content="Редактировать" Click="EditPatientBotton_Click" Margin="10,0,0,10" Height="19.96" VerticalAlignment="Bottom"/>
+        </Grid>
+        <local:EditPatientUserControl Grid.Column ="2" x:Name="EditPatientControl" Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Top" >
+        </local:EditPatientUserControl>
     </Grid>
 </Window>
