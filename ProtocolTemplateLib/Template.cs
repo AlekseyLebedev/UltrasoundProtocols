@@ -9,7 +9,7 @@ using System.Windows;
 
 namespace ProtocolTemplateLib
 {
-    public class Template : ITemplatePart
+    public class Template
     {
         public string Name { get; set; }
         public string IdName { get; set; }

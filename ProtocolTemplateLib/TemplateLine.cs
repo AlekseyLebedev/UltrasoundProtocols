@@ -10,7 +10,7 @@ using System.Web;
 
 namespace ProtocolTemplateLib
 {
-    public abstract class TemplateItem : ITemplatePart
+    public abstract class TemplateItem
     {
         public string Id
         {

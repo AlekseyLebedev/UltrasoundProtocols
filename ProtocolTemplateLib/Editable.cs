@@ -8,7 +8,7 @@ using System.Xml;
 
 namespace ProtocolTemplateLib
 {
-    public abstract class Editable : ITemplatePart
+    public abstract class Editable
     {
         public bool EnableOtherField { get; set; }
 
