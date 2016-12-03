@@ -54,7 +54,7 @@ namespace ProtocolTemplateRedactor
 
                 string xml = template.SaveToXmlString();
                 Logger.Debug("Xml: {0}", xml);
-                var request = template.GetPartOfCreateTableScript();
+                var request = template.GetCreateTableScript();
                 SqlCommand command = new SqlCommand();
                 command.Connection = Connector.Connection;
                 if (containsId)

@@ -41,7 +41,7 @@ namespace ProtocolTemplateLib
             return result;
         }
 
-        public string GetPartOfCreateTableScript()
+        public string GetCreateTableScript()
         {
             StringBuilder builder = new StringBuilder("CREATE TABLE ");
             builder.Append(IdName);

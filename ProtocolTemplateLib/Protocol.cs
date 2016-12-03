@@ -101,7 +101,7 @@ namespace ProtocolTemplateLib
             }
         }
 
-        public Protocol LoadProtocol(Template template, int id, DataBaseConnector connector)
+        public static Protocol LoadProtocol(Template template, int id, DataBaseConnector connector)
         {
             Protocol protocol = new Protocol(template);
             protocol.LoadFromDatabase(id, connector);
