@@ -39,8 +39,8 @@
             </Grid>
         </GroupBox>
         <Grid Grid.Column="1" >
-            <local:PatientShowControl Margin ="0" VerticalAlignment="Top" x:Name="PatientInfoControl">
-            </local:PatientShowControl>
+            <local:PatientInfoControl Margin ="0" VerticalAlignment="Top" x:Name="PatientInfoControl">
+            </local:PatientInfoControl>
             <Button x:Name="EditPatientBotton" HorizontalAlignment="Left" Content="Редактировать" Click="EditPatientBotton_Click" Margin="10,0,0,10" Height="19.96" VerticalAlignment="Bottom"/>
         </Grid>
         <local:EditPatientUserControl Grid.Column ="2" x:Name="EditPatientControl" Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Top" >

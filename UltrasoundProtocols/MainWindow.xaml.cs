@@ -43,9 +43,10 @@ namespace UltrasoundProtocols
         }
 
         private List<Patient> _ViewedPatients;
-        public List<Patient> ViewedPatients { 
+        public List<Patient> ViewedPatients
+        {
             get { return _ViewedPatients; }
-            set { _ViewedPatients = value; UpdateListView(); } 
+            set { _ViewedPatients = value; UpdateListView(); }
         }
 
         public MainWindow()
@@ -119,13 +120,17 @@ namespace UltrasoundProtocols
             if (e.AddedItems.Count == 1)
             {
                 logger.Debug("show one patient");
-                Presenter.ShowPatient(PatientInfoControl, e);
+                var patient = (Patient)e.AddedItems[0];
+                Presenter.ShowPatient(patient);
+                PatientInfoControl.CurrentPatient = patient;
                 EditPatientColumn.Width = new GridLength(0, GridUnitType.Star);
                 ShowPatientInfo();
             }
             else
             {
-                // TODO
+                Presenter.ShowPatient(null);
+                HidePatientInfo();
+                HideEditor();
             }
 
         }

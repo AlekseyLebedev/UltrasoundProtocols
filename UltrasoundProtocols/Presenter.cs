@@ -12,7 +12,6 @@ namespace UltrasoundProtocols
     {
         //Текущий выбранный пациент
         private Patient CurrentPatient;
-        private int CurrentPatientIndex;
         private DataBaseController Controller;
         private DataBaseConnector Connector;
         private Logger Logger = LogManager.GetCurrentClassLogger();
@@ -40,18 +39,12 @@ namespace UltrasoundProtocols
             return patientList;
         }
 
-        internal void ShowPatient(PatientShowControl showController, SelectionChangedEventArgs e)
+        internal void ShowPatient(Patient patient)
         {
             PatientCreating = false;
-            Logger.Info("Showing patient");
-            CurrentPatient = (Patient)e.AddedItems[0];
-            CurrentPatientIndex = MainWindow.GetSelectedListViewIndex();
-            showController.FirstNameTextBlock.Text = CurrentPatient.FirstName;
-            showController.SexTextBox.Text = CurrentPatient.Gender.ToString();
-            showController.LastNameTextBlock.Text = CurrentPatient.LastName;
-            showController.MiddleNameTextBlock.Text = CurrentPatient.MiddleName;
-            showController.BirthdayTextBlock.Text = CurrentPatient.BirthDate.ToShortDateString();
-            showController.AmbulatorCardTextBlock.Text = CurrentPatient.NumberAmbulatoryCard;
+            Logger.Info("Showing patient {0}", patient);
+            CurrentPatient = patient;
+
         }
 
         internal string GetDateString(DateTime dateTime)

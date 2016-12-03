@@ -79,8 +79,8 @@
     <Compile Include="EditPatientUserControl.xaml.cs">
       <DependentUpon>EditPatientUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PatientShowControl.xaml.cs">
-      <DependentUpon>PatientShowControl.xaml</DependentUpon>
+    <Compile Include="PatientInfoControl.xaml.cs">
+      <DependentUpon>PatientInfoControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="DataBaseController.cs" />
     <Compile Include="UltraSoundProtocolsDBDataSet.Designer.cs">
@@ -112,7 +112,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="PatientShowControl.xaml">
+    <Page Include="PatientInfoControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
