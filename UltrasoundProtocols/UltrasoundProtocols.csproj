@@ -72,8 +72,8 @@
     <Compile Include="MedicalEquipment.cs" />
     <Compile Include="Patient.cs" />
     <Compile Include="FullProtocol.cs" />
-    <Compile Include="EditFullProtocolUserControl.xaml.cs">
-      <DependentUpon>EditFullProtocolUserControl.xaml</DependentUpon>
+    <Compile Include="FullProtocolEditControl.xaml.cs">
+      <DependentUpon>FullProtocolEditControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Presenter.cs" />
     <Compile Include="EditPatientUserControl.xaml.cs">
@@ -83,6 +83,9 @@
       <DependentUpon>PatientInfoControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="DataBaseController.cs" />
+    <Compile Include="ProtocolWindow.xaml.cs">
+      <DependentUpon>ProtocolWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UltraSoundProtocolsDBDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -92,7 +95,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="EditFullProtocolUserControl.xaml">
+    <Page Include="FullProtocolEditControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -113,6 +116,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="PatientInfoControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ProtocolWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -21,5 +21,10 @@ namespace UltrasoundProtocols
 			this.LastName = lastname;
 			this.Status = status;
 		}
-	}
+
+        public override string ToString()
+        {
+            return String.Format("{0} {1} {2}", LastName, FirstName, MiddleName);
+        }
+    }
 }

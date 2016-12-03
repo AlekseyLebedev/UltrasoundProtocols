@@ -42,6 +42,21 @@
             <local:PatientInfoControl Margin ="0" VerticalAlignment="Top" x:Name="PatientInfoControl">
             </local:PatientInfoControl>
             <Button x:Name="EditPatientBotton" HorizontalAlignment="Left" Content="Редактировать" Click="EditPatientBotton_Click" Margin="10,0,0,10" Height="19.96" VerticalAlignment="Bottom"/>
+            <GroupBox Margin="0,250,0,35" Header="Исследования">
+                <Grid>
+                    <ListView Margin="0,0,0,40" x:Name="FullPrtotocolsListView">
+                        <ListView.View>
+                            <GridView>
+                                <GridView.Columns>
+                                    <GridViewColumn x:Name="DateColumn" Header="Дата" Width="200" DisplayMemberBinding="{Binding Date}" />
+                                    <GridViewColumn x:Name="DoctorColumn" Header="Врач" Width="200"  DisplayMemberBinding="{Binding Doctor}" />
+                                </GridView.Columns>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                    <Button x:Name="AddProtocolButton" Content="Добавить протокол" HorizontalAlignment="Left" Margin="10,0,0,10" VerticalAlignment="Bottom" Height="25" Width="120"/>
+                </Grid>
+            </GroupBox>
         </Grid>
         <local:EditPatientUserControl Grid.Column ="2" x:Name="EditPatientControl" Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Top" >
         </local:EditPatientUserControl>

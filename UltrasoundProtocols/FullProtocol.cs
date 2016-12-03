@@ -10,7 +10,7 @@ namespace UltrasoundProtocols
     public class FullProtocol
     {
         public int Id { get; set; }
-        public DateTime DateTime { get; set; }
+        public DateTime Date { get; set; }
         public int DoctorId { get; set; }
         public int PatientId { get; set; }
         public int EquipmentId { get; set; }
@@ -24,7 +24,7 @@ namespace UltrasoundProtocols
         public FullProtocol(int id, DateTime dateTime, int doctor, int patient, int equipment, string source)
         {
             this.Id = id;
-            this.DateTime = dateTime;
+            this.Date = dateTime;
             this.DoctorId = doctor;
             this.PatientId = patient;
             this.EquipmentId = equipment;
@@ -57,7 +57,7 @@ namespace UltrasoundProtocols
             builder.AppendLine("<h1>Протокол ульразвукового исследования</h1>");
             builder.AppendFormat("{0}Пациент:{1} {2} {3} {4}", BEGIN_MARKED_TAG, END_MARKED_TAG, Patient.FirstName, Patient.MiddleName, Patient.LastName);
             builder.AppendLine(NEW_LINE_TAG);
-            builder.AppendFormat("{0}Дата исследования:{1} {2:dd.MM.yyyy}", BEGIN_MARKED_TAG, END_MARKED_TAG, DateTime);
+            builder.AppendFormat("{0}Дата исследования:{1} {2:dd.MM.yyyy}", BEGIN_MARKED_TAG, END_MARKED_TAG, Date);
             builder.AppendLine(NEW_LINE_TAG);
             if (Source != null)
             {

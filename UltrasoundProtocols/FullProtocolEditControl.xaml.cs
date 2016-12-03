@@ -19,7 +19,7 @@ namespace UltrasoundProtocols
     /// <summary>
     /// Interaction logic for EditFullProtocolUserControl.xaml
     /// </summary>
-    public partial class EditFullProtocolUserControl : UserControl
+    public partial class FullProtocolEditControl : UserControl
     {
         private static string TAG = "EditFullProtocolUserControl";
 
@@ -50,7 +50,7 @@ namespace UltrasoundProtocols
 
         public DataBaseController Controller { get; set; }
 
-        public EditFullProtocolUserControl()
+        public FullProtocolEditControl()
         {
             InitializeComponent();
         }
@@ -104,7 +104,7 @@ namespace UltrasoundProtocols
             }
             else
             {
-                PatientName.Content = Patient.FirstName + " " + Patient.MiddleName + " " + Patient.LastName;
+                PatientName.Text = Patient.FirstName + " " + Patient.MiddleName + " " + Patient.LastName;
             }
 
             SourceTextBox.Text = FullProtocol_.Source;
@@ -133,7 +133,7 @@ namespace UltrasoundProtocols
             }
             EquipmentsComboBox.SelectedIndex = equipmentIndexInCombobox;
 
-            DatePicker.Value = FullProtocol_.DateTime;
+            DatePicker.Value = FullProtocol_.Date;
         }
 
         private void ApplyViewsDataToProtocol()
@@ -142,7 +142,7 @@ namespace UltrasoundProtocols
             FullProtocol_.DoctorId = Doctors[DoctorsComboBox.SelectedIndex].Id;
             FullProtocol_.EquipmentId = Equipments[EquipmentsComboBox.SelectedIndex].Id;
             FullProtocol_.Source = SourceTextBox.Text;
-            FullProtocol_.DateTime = DatePicker.Value;
+            FullProtocol_.Date = DatePicker.Value;
         }
 
         private void OutToLogger()
@@ -151,7 +151,7 @@ namespace UltrasoundProtocols
             logger.Debug(TAG, "Doctor id: " + FullProtocol_.DoctorId);
             logger.Debug(TAG, "Patient id: " + FullProtocol_.PatientId);
             logger.Debug(TAG, "Equipment id" + FullProtocol_.EquipmentId);
-            logger.Debug(TAG, "Date: " + FullProtocol_.DateTime);
+            logger.Debug(TAG, "Date: " + FullProtocol_.Date);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

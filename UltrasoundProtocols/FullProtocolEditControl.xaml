@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="UltrasoundProtocols.EditFullProtocolUserControl"
+﻿<UserControl x:Class="UltrasoundProtocols.FullProtocolEditControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -7,27 +7,22 @@
              mc:Ignorable="d" 
              d:DesignHeight="250" d:DesignWidth="300">
     <Grid>
-        <Label Content="Пациент" 
-               HorizontalAlignment="Left" 
-               Margin="35,10,0,0" 
-               VerticalAlignment="Top"/>
-        <Label Content="Доктор" 
-               HorizontalAlignment="Left" 
-               Margin="42,50,0,0" 
-               VerticalAlignment="Top"/>
-        <Label Content="Оборудование" 
-               HorizontalAlignment="Left" 
-               Margin="5,90,0,0" 
-               VerticalAlignment="Top"/>
-        <Label Content="Source" 
-               HorizontalAlignment="Left" 
-               Margin="46,130,0,0" 
-               VerticalAlignment="Top"/>
-        <Label Content="Дата" 
-               HorizontalAlignment="Left" 
-               Margin="50,170,0,0" 
-               VerticalAlignment="Top"/>
-        <Label Content="Имя пациента" 
+        <TextBlock Text="Пациент" 
+               Margin="0,10,205,224.04" 
+               VerticalAlignment="Center" HorizontalAlignment="Right"/>
+        <TextBlock Text="Доктор" 
+               Margin="0,50,205,178.04" 
+               VerticalAlignment="Center" HorizontalAlignment="Right"/>
+        <TextBlock Text="Оборудование" 
+               Margin="0,90,205,138.04" 
+               VerticalAlignment="Center" HorizontalAlignment="Right"/>
+        <TextBlock Text="Направление" 
+               Margin="0,130,205,98" 
+               VerticalAlignment="Center" HorizontalAlignment="Right" />
+        <TextBlock Text="Дата" 
+               Margin="0,170,205,50" 
+               VerticalAlignment="Center" HorizontalAlignment="Right"/>
+        <TextBlock Text="Имя пациента" 
                Name="PatientName"
                HorizontalAlignment="Stretch" 
                Margin="100,10,20,0" 
@@ -50,7 +45,7 @@
         <WindowsFormsHost HorizontalAlignment="Stretch" Height="30" Margin="100,170,20,0" VerticalAlignment="Top" >
             <wf:DateTimePicker x:Name="DatePicker" Dock="Fill" Size="200, 30" Format="Short" />
         </WindowsFormsHost>
-        <Button Content="Save" 
+        <Button x:Name="SaveButton" Content="Сохранить" 
                 HorizontalAlignment="Left" 
                 Margin="100,210,0,0" 
                 VerticalAlignment="Top" 
