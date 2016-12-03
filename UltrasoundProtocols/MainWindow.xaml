@@ -54,7 +54,7 @@
                             </GridView>
                         </ListView.View>
                     </ListView>
-                    <Button x:Name="AddProtocolButton" Content="Добавить протокол" HorizontalAlignment="Left" Margin="10,0,0,10" VerticalAlignment="Bottom" Height="25" Width="120"/>
+                    <Button x:Name="AddProtocolButton" Content="Добавить протокол" HorizontalAlignment="Left" Margin="10,0,0,10" VerticalAlignment="Bottom" Height="25" Width="120" Click="AddProtocolButton_Click"/>
                 </Grid>
             </GroupBox>
         </Grid>

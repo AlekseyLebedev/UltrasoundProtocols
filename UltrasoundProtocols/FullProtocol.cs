@@ -21,6 +21,16 @@ namespace UltrasoundProtocols
         public Patient Patient { get; set; }
         public MedicalEquipment Equipment { get; set; }
 
+        public FullProtocol()
+        {
+            Id = -1;
+            Date = DateTime.Now;
+            DoctorId = 0;
+            PatientId = 0;
+            EquipmentId = 0;
+            Source = "";
+        }
+
         public FullProtocol(int id, DateTime dateTime, int doctor, int patient, int equipment, string source)
         {
             this.Id = id;

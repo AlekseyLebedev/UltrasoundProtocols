@@ -20,8 +20,6 @@ namespace ProtocolTemplateLib
         private static string VALUES = "VALUES";
         private static string COMMA = ",";
         private static string SEMICOLON = ";";
-        private static string QUOTE = "'";
-        private static string DOT = ".";
 
         public Template TemplateInstance { get; private set; }
         public Protocol(Template template)
@@ -48,8 +46,10 @@ namespace ProtocolTemplateLib
             }
         }
 
-        public void SaveToDatabase(int ProtocolId, SqlCommand command)
+        public void SaveToDatabase(int ProtocolId, DataBaseConnector connector)
         {
+            SqlCommand command = new SqlCommand();
+            command.Connection = connector.Connection;
             StringBuilder builder = new StringBuilder(INSERT_INTO);
             builder.Append(SPACE).Append("@TableId").Append(SPACE).Append(VALUES).Append(OPEN_BRACKET);
             command.Parameters.AddWithValue("@TableId", TemplateInstance.IdName);
@@ -74,8 +74,10 @@ namespace ProtocolTemplateLib
             command.ExecuteNonQuery();
         }
 
-        public void LoadFromDatabase(int ProtocolId, SqlCommand command)
+        public void LoadFromDatabase(int ProtocolId, DataBaseConnector connector)
         {
+            SqlCommand command = new SqlCommand();
+            command.Connection = connector.Connection;
             StringBuilder builder = new StringBuilder(SELECT_ALL).Append(SPACE).Append("@TableId").Append(SPACE)
                 .AppendLine(WHERE_ID).Append("@ProtocolId").Append(SEMICOLON);
             command.Parameters.AddWithValue("@TableId", TemplateInstance.IdName);
@@ -99,10 +101,10 @@ namespace ProtocolTemplateLib
             }
         }
 
-        public Protocol LoadProtocol(Template template, int id, SqlCommand command)
+        public Protocol LoadProtocol(Template template, int id, DataBaseConnector connector)
         {
             Protocol protocol = new Protocol(template);
-            protocol.LoadFromDatabase(id, command);
+            protocol.LoadFromDatabase(id, connector);
             return protocol;
         }
 

@@ -12,7 +12,7 @@ namespace UltrasoundProtocols
     {
         //Текущий выбранный пациент
         private Patient CurrentPatient;
-        private DataBaseController Controller;
+        private DataBaseController DatabaseController;
         private DataBaseConnector Connector;
         private Logger Logger = LogManager.GetCurrentClassLogger();
         private MainWindow MainWindow;
@@ -25,7 +25,7 @@ namespace UltrasoundProtocols
             this.MainWindow = mainWindow;
 
             Logger.Info("Connect to dataBase.");
-            Controller = new DataBaseController(connector.Settings);
+            DatabaseController = new DataBaseController(connector.Settings);
             Connector = connector;
             mainWindow.EditPatientControl.onSaveButtonClick += OnEditSaveButtonClick;
         }
@@ -34,7 +34,7 @@ namespace UltrasoundProtocols
         {
             Logger.Info("Loading patients from dataBase.");
             List<Patient> patientList = new List<Patient>();
-            patientList.AddRange(Controller.GetPatients());
+            patientList.AddRange(DatabaseController.GetPatients());
             AllPatients = patientList;
             return patientList;
         }
@@ -75,7 +75,7 @@ namespace UltrasoundProtocols
             if (PatientCreating)
             {
                 Logger.Debug("Adding patient");
-                task.AsyncTask = () => patient.Id = Controller.AddPatient(patient);
+                task.AsyncTask = () => patient.Id = DatabaseController.AddPatient(patient);
                 task.SyncTask = () =>
                 {
                     AllPatients.Add(patient);
@@ -87,7 +87,7 @@ namespace UltrasoundProtocols
             {
                 Logger.Debug("Updating patient");
                 CurrentPatient = patient;
-                task.AsyncTask = () => Controller.UpdatePatient(patient);
+                task.AsyncTask = () => DatabaseController.UpdatePatient(patient);
                 task.SyncTask = () =>
                 {
                     MainWindow.UpdateListView();
@@ -190,6 +190,18 @@ namespace UltrasoundProtocols
             }
 
             MainWindow.ViewedPatients = new List<Patient>();
+        }
+
+        internal void OnAddProtocol()
+        {
+            ProtocolWindow window = new ProtocolWindow();
+            window.CurrentPatient = CurrentPatient;
+            window.Database = DatabaseController;
+            window.Value = null;
+            if (window.ShowDialog().Value)
+            {
+
+            }
         }
 
         internal void OnSearchEnter(string query)

@@ -42,11 +42,9 @@ namespace UltrasoundProtocols
 
         private List<MedicalEquipment> Equipments;
         private List<Doctor> Doctors;
-        private Patient Patient;
+        public Patient Patient { get; set; }
 
-        public delegate void OnSaveButtonClick(FullProtocol protocol);
-
-        public event OnSaveButtonClick onSaveButtonClick;
+        public event EventHandler<SaveButtonClickEventArgs> SaveButtonClick;
 
         public DataBaseController Controller { get; set; }
 
@@ -58,54 +56,30 @@ namespace UltrasoundProtocols
         //Загружает асинхронно данные из бд
         private void LoadFieldsAsync()
         {
+            IsEnabled = false;
             GuiAsyncTask task = new GuiAsyncTask();
             task.AsyncTask = LoadFields;
-            task.CustomExceptionAction = ShowErrorBox;
             task.SyncTask = applyFieldsToViews;
             task.Logger = logger;
             task.InfoMessage = TAG;
             task.Dispatcher = Dispatcher;
+            task.ErrorTitle = "Ошибка загрузки из БД";
+            task.RetryEnabled = true;
             task.Run();
         }
 
-        //показать ошибку загрузки данных из бд
-        private void ShowErrorBox(Exception exc)
-        {
-            MessageBoxResult dialogResult = MessageBox.Show(
-                exc.Message + "\nПроизошла ошибка при загрузке из базы данных",
-                "Ошибка базы данных",
-                MessageBoxButton.OK,
-                MessageBoxImage.Error);
-        }
 
         //Подгружает данные из бд
         private void LoadFields()
         {
             Equipments = Controller.GetMedicalEquipments();
             Doctors = Controller.GetActiveDoctors();
-            Patient = Controller.GetPatient(FullProtocol_.PatientId);
-        }
-
-        private void ShowPatientLoadError()
-        {
-            MessageBoxResult dialogResult = MessageBox.Show(
-                "Пациент не загрузился :(",
-                "Ошибка базы данных",
-                MessageBoxButton.OK,
-                MessageBoxImage.Error);
         }
 
         //Применяет данные из бд к views
         private void applyFieldsToViews()
         {
-            if (Patient == null)
-            {
-                ShowPatientLoadError();
-            }
-            else
-            {
-                PatientName.Text = Patient.FirstName + " " + Patient.MiddleName + " " + Patient.LastName;
-            }
+            PatientName.Text = Patient.FirstName + " " + Patient.MiddleName + " " + Patient.LastName;
 
             SourceTextBox.Text = FullProtocol_.Source;
 
@@ -134,6 +108,8 @@ namespace UltrasoundProtocols
             EquipmentsComboBox.SelectedIndex = equipmentIndexInCombobox;
 
             DatePicker.Value = FullProtocol_.Date;
+
+            IsEnabled = true;
         }
 
         private void ApplyViewsDataToProtocol()
@@ -147,18 +123,27 @@ namespace UltrasoundProtocols
 
         private void OutToLogger()
         {
-            logger.Debug(TAG, "Source: " + FullProtocol_.Source);
-            logger.Debug(TAG, "Doctor id: " + FullProtocol_.DoctorId);
-            logger.Debug(TAG, "Patient id: " + FullProtocol_.PatientId);
-            logger.Debug(TAG, "Equipment id" + FullProtocol_.EquipmentId);
-            logger.Debug(TAG, "Date: " + FullProtocol_.Date);
+            logger.Debug("Source: " + FullProtocol_.Source);
+            logger.Debug("Doctor id: " + FullProtocol_.DoctorId);
+            logger.Debug("Patient id: " + FullProtocol_.PatientId);
+            logger.Debug("Equipment id" + FullProtocol_.EquipmentId);
+            logger.Debug("Date: " + FullProtocol_.Date);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             ApplyViewsDataToProtocol();
             OutToLogger();
-            onSaveButtonClick(FullProtocol_);
+            SaveButtonClick(this, new SaveButtonClickEventArgs(FullProtocol_));
+        }
+
+        public class SaveButtonClickEventArgs : EventArgs
+        {
+            public FullProtocol Value { get; private set; }
+            public SaveButtonClickEventArgs(FullProtocol value)
+            {
+                Value = value;
+            }
         }
 
     }

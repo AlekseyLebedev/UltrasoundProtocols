@@ -8,20 +8,20 @@
              d:DesignHeight="250" d:DesignWidth="300">
     <Grid>
         <TextBlock Text="Пациент" 
-               Margin="0,10,205,224.04" 
-               VerticalAlignment="Center" HorizontalAlignment="Right"/>
+               Margin="48.04,10,0,224.04" 
+               VerticalAlignment="Center" HorizontalAlignment="Left"/>
         <TextBlock Text="Доктор" 
-               Margin="0,50,205,178.04" 
-               VerticalAlignment="Center" HorizontalAlignment="Right"/>
+               Margin="54.68,53,0,181.04" 
+               VerticalAlignment="Center" HorizontalAlignment="Left"/>
         <TextBlock Text="Оборудование" 
-               Margin="0,90,205,138.04" 
-               VerticalAlignment="Center" HorizontalAlignment="Right"/>
+               Margin="12.88,93,0,141.04" 
+               VerticalAlignment="Center" HorizontalAlignment="Left"/>
         <TextBlock Text="Направление" 
-               Margin="0,130,205,98" 
-               VerticalAlignment="Center" HorizontalAlignment="Right" />
+               Margin="21.153,133.02,0,101.02" 
+               VerticalAlignment="Center" HorizontalAlignment="Left" />
         <TextBlock Text="Дата" 
-               Margin="0,170,205,50" 
-               VerticalAlignment="Center" HorizontalAlignment="Right"/>
+               Margin="69.543,177.02,0,57.02" 
+               VerticalAlignment="Center" HorizontalAlignment="Left"/>
         <TextBlock Text="Имя пациента" 
                Name="PatientName"
                HorizontalAlignment="Stretch" 

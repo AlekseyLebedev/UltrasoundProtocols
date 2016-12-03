@@ -195,5 +195,10 @@ namespace UltrasoundProtocols
             task.InfoMessage = "Loading Patients";
             task.Run();
         }
+
+        private void AddProtocolButton_Click(object sender, RoutedEventArgs e)
+        {
+            Presenter.OnAddProtocol();
+        }
     }
 }

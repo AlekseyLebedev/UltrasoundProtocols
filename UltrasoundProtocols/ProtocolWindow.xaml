@@ -5,15 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UltrasoundProtocols"
         mc:Ignorable="d"
-        Title="Протокол">
+        Title="Протокол" Loaded="Window_Loaded" Closing="Window_Closing">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition x:Name="HtmlViewColumn" Width="1*"/>
+            <ColumnDefinition x:Name="EditViewColumn" Width="1*"/>
         </Grid.ColumnDefinitions>
         <Grid Grid.Column="0" Margin="0">
-            <WebBrowser x:Name="ProtocolWebBrowser" Margin="0" />
+            <WebBrowser x:Name="ProtocolWebBrowser" Margin="0,0,0,40" />
+            <Button x:Name="EditButton" Content="Редактировать" HorizontalAlignment="Left" Margin="10,0,0,10" VerticalAlignment="Bottom" Width="100" Height="25" IsEnabled="False"/>
+            <Button x:Name="PrintButton" Content="Печать" HorizontalAlignment="Left" Margin="115,0,0,10" VerticalAlignment="Bottom" Width="100" Height="25" IsEnabled="False"/>
         </Grid>
-        <local:FullProtocolEditControl Grid.Column="1" VerticalAlignment="Top"/>
+        <Grid x:Name="EditProtocolRootGrid" Grid.Column="1" Margin="0" IsEnabled="False">
+            <local:FullProtocolEditControl x:Name="FullProtocolEditor" VerticalAlignment="Top" SaveButtonClick="FullProtocolEditor_SaveButtonClick"/>
+        </Grid>
     </Grid>
 </Window>
