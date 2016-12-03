@@ -2,7 +2,6 @@
 using ProtocolTemplateLib;
 using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -111,7 +110,18 @@ namespace ProtocolTemplateRedactor
 
         internal List<TemplateItem> AllItems { get { return Template_.Items; } }
 
-        internal DataBaseConnector Connector { get; set; }
+        internal DataBaseConnector Connector
+        {
+            get
+            {
+                return Connector_;
+            }
+            set
+            {
+                DatabaseController = new DatabaseController(value);
+                Connector_ = value;
+            }
+        }
 
         internal Template SelectedTemplate
         {
@@ -266,20 +276,7 @@ namespace ProtocolTemplateRedactor
 
         internal List<Template> LoadTemplates()
         {
-            Logger.Debug("Loading templates");
-            try
-            {
-                using (var adpater = new TemplatesDataSetTableAdapters.Tbl_TemplatesTableAdapter(Connector.Settings))
-                {
-                    TemplatesDataSet.Tbl_TemplatesDataTable table = adpater.GetData();
-                    return (from row in table select Template.GetFromDatabaseEntry(row.tem_name, row.tem_id, row.tem_template)).ToList();
-                }
-            }
-            catch (Exception ex)
-            {
-                Logger.Error(ex, "Error Loading templates");
-                throw ex;
-            }
+            return DatabaseController.LoadAllTemplates();
         }
 
         internal TemplateItem GetSelectedItem()
@@ -299,43 +296,7 @@ namespace ProtocolTemplateRedactor
 
         internal bool SaveTemplateToDB(bool force)
         {
-            var idName = Template_.IdName;
-            var name = Template_.Name;
-            Logger.Info("Saving tamplte id '{0}' name '{1}'", idName, name);
-            using (var adapter = new TemplatesDataSetTableAdapters.Tbl_TemplatesTableAdapter(Connector.Settings))
-            {
-                TemplatesDataSet.Tbl_TemplatesDataTable table = adapter.GetData();
-                var templates = from r in table select r;
-
-                var alreadyContainsRow = templates.FirstOrDefault(x => (x.tem_id == idName));
-                bool containsId = alreadyContainsRow != null;
-                Logger.Info("Find id: {0}", containsId);
-                if (containsId && (!force))
-                {
-                    return false;
-                }
-
-                string xml = Template_.SaveToXmlString();
-                Logger.Debug("Xml: {0}", xml);
-                var request = Template.GetPartOfCreateTableScript();
-                SqlCommand command = new SqlCommand();
-                command.Connection = Connector.Connection;
-                if (containsId)
-                {
-                    alreadyContainsRow.tem_name = name;
-                    alreadyContainsRow.tem_template = xml;
-                    adapter.Update(alreadyContainsRow);
-                    command.CommandText = String.Format("USE [UltraSoundProtocolsDB]{1}{0}{1}DROP TABLE {2}", request, Environment.NewLine, idName);
-                }
-                else
-                {
-                    adapter.Insert(idName, name, xml);
-                    command.CommandText = request;
-                }
-                command.ExecuteNonQuery();
-
-                return true;
-            }
+            return DatabaseController.SaveTemplate(Template_, force);
         }
 
         internal TemplateItem RemoveSelectedItem()
@@ -355,19 +316,8 @@ namespace ProtocolTemplateRedactor
 
         internal void DeleteSelectedTemplate()
         {
-            var idName = SelectedTemplate.IdName;
-            var name = SelectedTemplate.Name;
-            Logger.Debug("Delete selected template id '{0}' name '{1}'", idName, name);
-            using (var adapter = new TemplatesDataSetTableAdapters.Tbl_TemplatesTableAdapter(Connector.Settings))
-            {
-                TemplatesDataSet.Tbl_TemplatesDataTable table = adapter.GetData();
-                adapter.Delete(idName, SelectedTemplate.Name);
-                SqlCommand command = new SqlCommand();
-                command.Connection = Connector.Connection;
-                command.CommandText = String.Format("USE [UltraSoundProtocolsDB]{0}DROP TABLE {1}", Environment.NewLine, idName);
-                command.ExecuteNonQuery();
-                SelectedTemplate_ = null;
-            }
+            DatabaseController.DeleteTemplate(SelectedTemplate);
+            SelectedTemplate_ = null;
         }
 
         internal void ClosedWindow()
@@ -445,5 +395,7 @@ namespace ProtocolTemplateRedactor
         private Random Rnd = new Random();
         private Template SelectedTemplate_ = null;
         private Protocol CurrentProtocol = null;
+        private DataBaseConnector Connector_ = null;
+        private DatabaseController DatabaseController = null;
     }
 }
